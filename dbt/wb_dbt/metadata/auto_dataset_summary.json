@@ -1,0 +1,219 @@
+[
+  {
+    "dataset_name": "analytics_sales_funnel",
+    "source_files": 1,
+    "main_record_path": "data.products",
+    "record_count": 1,
+    "field_count": 100
+  },
+  {
+    "dataset_name": "analytics_stocks",
+    "source_files": 1,
+    "main_record_path": "data.items",
+    "record_count": 9,
+    "field_count": 8
+  },
+  {
+    "dataset_name": "communications_chats",
+    "source_files": 1,
+    "main_record_path": "result",
+    "record_count": 11,
+    "field_count": 22
+  },
+  {
+    "dataset_name": "communications_feedbacks",
+    "source_files": 1,
+    "main_record_path": "data.feedbacks",
+    "record_count": 12,
+    "field_count": 39
+  },
+  {
+    "dataset_name": "fbw_supplies",
+    "source_files": 1,
+    "main_record_path": "$",
+    "record_count": 18,
+    "field_count": 10
+  },
+  {
+    "dataset_name": "finance_balance",
+    "source_files": 1,
+    "main_record_path": "$",
+    "record_count": 1,
+    "field_count": 3
+  },
+  {
+    "dataset_name": "finance_sales_reports",
+    "source_files": 1,
+    "main_record_path": "$",
+    "record_count": 6,
+    "field_count": 46
+  },
+  {
+    "dataset_name": "finance_sales_reports_detailed",
+    "source_files": 1,
+    "main_record_path": "$",
+    "record_count": 6,
+    "field_count": 109
+  },
+  {
+    "dataset_name": "general_seller_info",
+    "source_files": 1,
+    "main_record_path": "$",
+    "record_count": 1,
+    "field_count": 4
+  },
+  {
+    "dataset_name": "items_cards",
+    "source_files": 1,
+    "main_record_path": "cards",
+    "record_count": 18,
+    "field_count": 30
+  },
+  {
+    "dataset_name": "items_stocks",
+    "source_files": 1,
+    "main_record_path": "stocks",
+    "record_count": 14,
+    "field_count": 14
+  },
+  {
+    "dataset_name": "items_warehouses",
+    "source_files": 1,
+    "main_record_path": "$",
+    "record_count": 17,
+    "field_count": 10
+  },
+  {
+    "dataset_name": "orders_dbs_completed",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 15,
+    "field_count": 39
+  },
+  {
+    "dataset_name": "orders_dbs_new",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 8,
+    "field_count": 39
+  },
+  {
+    "dataset_name": "orders_dbs_statuses",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 13,
+    "field_count": 11
+  },
+  {
+    "dataset_name": "orders_dbw_completed",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 16,
+    "field_count": 37
+  },
+  {
+    "dataset_name": "orders_dbw_new",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 7,
+    "field_count": 38
+  },
+  {
+    "dataset_name": "orders_dbw_statuses",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 10,
+    "field_count": 10
+  },
+  {
+    "dataset_name": "orders_fbs_archive",
+    "source_files": 1,
+    "main_record_path": "orders.metaDetails",
+    "record_count": 0,
+    "field_count": 0
+  },
+  {
+    "dataset_name": "orders_fbs_current",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 15,
+    "field_count": 40
+  },
+  {
+    "dataset_name": "orders_fbs_new",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 15,
+    "field_count": 44
+  },
+  {
+    "dataset_name": "orders_fbs_statuses",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 11,
+    "field_count": 11
+  },
+  {
+    "dataset_name": "orders_pickup_new",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 12,
+    "field_count": 32
+  },
+  {
+    "dataset_name": "orders_pickup_statuses",
+    "source_files": 1,
+    "main_record_path": "orders",
+    "record_count": 18,
+    "field_count": 11
+  },
+  {
+    "dataset_name": "promotion_campaigns",
+    "source_files": 1,
+    "main_record_path": "adverts",
+    "record_count": 13,
+    "field_count": 20
+  },
+  {
+    "dataset_name": "promotion_fullstats",
+    "source_files": 1,
+    "main_record_path": "days.apps",
+    "record_count": 0,
+    "field_count": 0
+  },
+  {
+    "dataset_name": "report_orders",
+    "source_files": 1,
+    "main_record_path": "$",
+    "record_count": 11,
+    "field_count": 48
+  },
+  {
+    "dataset_name": "report_sales",
+    "source_files": 1,
+    "main_record_path": "$",
+    "record_count": 15,
+    "field_count": 49
+  },
+  {
+    "dataset_name": "tariffs_acceptance",
+    "source_files": 1,
+    "main_record_path": "$",
+    "record_count": 14,
+    "field_count": 13
+  },
+  {
+    "dataset_name": "tariffs_box",
+    "source_files": 1,
+    "main_record_path": "response.data.warehouseList",
+    "record_count": 3,
+    "field_count": 11
+  },
+  {
+    "dataset_name": "tariffs_commission",
+    "source_files": 1,
+    "main_record_path": "report",
+    "record_count": 17,
+    "field_count": 10
+  }
+]

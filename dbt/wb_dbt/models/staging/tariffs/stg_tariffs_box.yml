@@ -1,0 +1,57 @@
+version: 2
+models:
+- name: stg_tariffs_box
+  description: 'Автоматически сгенерированная staging-модель для dataset tariffs_box. Главный record path: response.data.warehouseList. Одна строка
+    = одна запись из главного массива JSON.'
+  columns:
+  - name: raw_payload_id
+    description: Технический lineage. ID строки из landing.raw_payloads.
+    data_tests:
+    - not_null
+  - name: record_index
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    data_tests:
+    - not_null
+  - name: source_system
+    description: Система-источник данных.
+  - name: dataset_name
+    description: Имя исходного dataset/endpoint mock API.
+    data_tests:
+    - not_null
+  - name: source_file
+    description: Имя исходного JSON-файла.
+  - name: source_url
+    description: URL исходного JSON-файла.
+  - name: file_hash
+    description: Хэш исходного файла.
+  - name: loaded_at
+    description: Время загрузки raw payload в PostgreSQL.
+  - name: raw_record
+    description: Исходный JSON-объект одной записи без потери структуры.
+    data_tests:
+    - not_null
+  - name: box_delivery_base
+    description: 'Logistics of the first liter, ₽ JSON path: `boxDeliveryBase`. Dataset: `tariffs_box`.'
+  - name: box_delivery_coef_expr
+    description: 'Coefficient **Logistics**, %. The logistics cost is multiplied by it. Already included in the tariffs JSON path: `boxDeliveryCoefExpr`.
+      Dataset: `tariffs_box`.'
+  - name: box_delivery_liter
+    description: 'Logistics of every next liter, ₽ JSON path: `boxDeliveryLiter`. Dataset: `tariffs_box`.'
+  - name: box_delivery_marketplace_base
+    description: 'FBS logistics of the first liter, ₽ JSON path: `boxDeliveryMarketplaceBase`. Dataset: `tariffs_box`.'
+  - name: box_delivery_marketplace_coef_expr
+    description: 'Coefficient **FBS**, %. The FBS logistics cost is multiplied by it. Already included in the tariffs JSON path: `boxDeliveryMarketplaceCoefExpr`.
+      Dataset: `tariffs_box`.'
+  - name: box_delivery_marketplace_liter
+    description: 'FBS logistics of every next liter, ₽ JSON path: `boxDeliveryMarketplaceLiter`. Dataset: `tariffs_box`.'
+  - name: box_storage_base
+    description: 'Storage of the first liter per day, ₽ JSON path: `boxStorageBase`. Dataset: `tariffs_box`.'
+  - name: box_storage_coef_expr
+    description: 'Coefficient **Storage**, %. The storage cost is multiplied by it. Already included in the tariffs JSON path: `boxStorageCoefExpr`.
+      Dataset: `tariffs_box`.'
+  - name: box_storage_liter
+    description: 'Storage of every next liter per day, ₽ JSON path: `boxStorageLiter`. Dataset: `tariffs_box`.'
+  - name: geo_name
+    description: 'Country, for Russian Federation — federal district JSON path: `geoName`. Dataset: `tariffs_box`.'
+  - name: warehouse_name
+    description: 'Warehouse name JSON path: `warehouseName`. Dataset: `tariffs_box`.'

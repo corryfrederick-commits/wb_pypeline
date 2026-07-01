@@ -1,0 +1,602 @@
+version: 2
+
+models:
+  - name: orders_current_issues
+    description: >
+      Row quarantine issues для заказов. Одна строка = одна найденная проблема качества
+      в одной строке staging.stg_orders_current.
+    columns:
+      - name: id
+        description: "Детерминированный технический ID issue внутри результата dbt-модели."
+        data_tests:
+          - not_null
+      - name: raw_payload_id
+        description: "Технический lineage. ID строки из landing.raw_payloads, из которой был получен заказ."
+        data_tests:
+          - not_null
+      - name: record_index
+        description: "Технический lineage. Порядковый номер заказа внутри массива orders[] исходного JSON. Нумерация начинается с 1."
+        data_tests:
+          - not_null
+      - name: dataset_name
+        description: "Техническое поле. Имя набора данных/endpoint mock API: orders_fbs_new, orders_dbs_completed и т.д."
+      - name: source_file
+        description: "Техническое поле. Имя JSON-файла, из которого пришёл payload."
+      - name: order_flow
+        description: "Нормализованный тип потока заказа, вычисляется из dataset_name: fbs, dbs, dbw или pickup."
+      - name: order_kind
+        description: "Тип набора заказов, вычисляется из dataset_name: new, current, completed или archive."
+      - name: order_id
+        description: "Числовой идентификатор заказа, если он есть в источнике."
+      - name: issue_level
+        description: "Уровень проблемы: bad, partial или warning."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["bad", "partial", "warning"]
+      - name: issue_code
+        description: "Машиночитаемый код проблемы качества данных."
+      - name: problem_field
+        description: "Поле, к которому относится проблема."
+      - name: problem_value
+        description: "Значение проблемного поля на момент проверки."
+      - name: details
+        description: "Человекочитаемое объяснение проблемы."
+      - name: raw_record
+        description: "Исходный JSON-объект одного заказа без потери структуры."
+      - name: detected_at
+        description: "Время выполнения dbt-модели, когда issue был рассчитан."
+
+  - name: orders_current_quality
+    description: >
+      Итоговые quality-флаги для заказов. Одна строка = одна строка staging.stg_orders_current.
+      Модель агрегирует orders_current_issues и решает, можно ли строку грузить в core.
+    columns:
+      - name: raw_payload_id
+        description: "Технический lineage. ID строки из landing.raw_payloads, из которой был получен заказ."
+        data_tests:
+          - not_null
+      - name: record_index
+        description: "Технический lineage. Порядковый номер заказа внутри массива orders[] исходного JSON. Нумерация начинается с 1."
+        data_tests:
+          - not_null
+      - name: dataset_name
+        description: "Техническое поле. Имя набора данных/endpoint mock API: orders_fbs_new, orders_dbs_completed и т.д."
+      - name: source_file
+        description: "Техническое поле. Имя JSON-файла, из которого пришёл payload."
+      - name: order_flow
+        description: "Нормализованный тип потока заказа, вычисляется из dataset_name: fbs, dbs, dbw или pickup."
+      - name: order_kind
+        description: "Тип набора заказов, вычисляется из dataset_name: new, current, completed или archive."
+      - name: order_id
+        description: "Числовой идентификатор заказа, если он есть в источнике."
+      - name: quality_status
+        description: "Итоговый статус качества строки: good, partial или bad."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["good", "partial", "bad"]
+      - name: quality_issues
+        description: "Массив issue_code уровня bad/partial."
+      - name: warning_issues
+        description: "Массив issue_code уровня warning. Не блокирует загрузку в core."
+      - name: issue_details
+        description: "JSONB-массив подробностей по всем найденным issues строки."
+      - name: can_load_to_core
+        description: "Флаг: можно ли загружать строку в core.orders. false при bad-issues."
+        data_tests:
+          - not_null
+      - name: can_count_order
+        description: "Флаг: можно ли учитывать строку как заказ в аналитике."
+      - name: can_count_revenue
+        description: "Флаг: можно ли учитывать строку в revenue-аналитике."
+      - name: can_use_order_date
+        description: "Флаг: можно ли использовать дату заказа для date-based аналитики."
+      - name: is_complete
+        description: "true, если у строки нет bad/partial-проблем."
+      - name: checked_at
+        description: "Время выполнения dbt-модели, когда quality-флаги были рассчитаны."
+
+  - name: v_orders_current_for_core
+    description: "View заказов, которые прошли row quarantine и могут идти в core. Фильтр: can_load_to_core = true."
+    columns:
+      - name: raw_payload_id
+        description: "Технический lineage. ID строки из landing.raw_payloads, из которой был получен заказ."
+      - name: record_index
+        description: "Технический lineage. Порядковый номер заказа внутри массива orders[] исходного JSON. Нумерация начинается с 1."
+      - name: source_system
+        description: "Техническое поле. Система-источник данных, например wb_mock."
+      - name: dataset_name
+        description: "Техническое поле. Имя набора данных/endpoint mock API: orders_fbs_new, orders_dbs_completed и т.д."
+      - name: source_file
+        description: "Техническое поле. Имя JSON-файла, из которого пришёл payload."
+      - name: source_url
+        description: "Техническое поле. URL исходного JSON-файла на mock API/static host."
+      - name: file_hash
+        description: "Техническое поле. Хэш исходного файла, нужен для контроля изменений и воспроизводимости загрузки."
+      - name: loaded_at
+        description: "Техническое поле. Время загрузки raw payload в PostgreSQL."
+      - name: order_flow
+        description: "Нормализованный тип потока заказа, вычисляется из dataset_name: fbs, dbs, dbw или pickup."
+      - name: order_kind
+        description: "Тип набора заказов, вычисляется из dataset_name: new, current, completed или archive."
+      - name: order_id
+        description: "Числовой идентификатор заказа, если он есть в источнике."
+      - name: rid
+        description: "Уникальный идентификатор заказа/строки заказа WB. Используется как один из ключевых идентификаторов заказа."
+      - name: srid
+        description: "Дополнительный строковый идентификатор WB, если присутствует в источнике."
+      - name: order_uid
+        description: "Строковый UID заказа из источника. Используется как альтернативный идентификатор, если order_id отсутствует."
+      - name: order_code
+        description: "Дополнительный код заказа из источника. Используется как fallback-идентификатор в row quarantine."
+      - name: created_at
+        description: "Дата и время создания заказа в источнике. Используется для аналитики по дате заказа."
+      - name: ddate
+        description: "Дата доставки/плановая дата, если присутствует в источнике."
+      - name: seller_date
+        description: "Дата, связанная с продавцом/операцией продавца, если присутствует в источнике."
+      - name: delivery_type
+        description: "Тип доставки из исходного JSON. Может отличаться по формату от order_flow."
+      - name: delivery_method
+        description: "Метод доставки из исходного JSON, если присутствует."
+      - name: delivery_service
+        description: "Служба доставки из исходного JSON, если присутствует."
+      - name: pay_mode
+        description: "Способ оплаты заказа из источника."
+      - name: article
+        description: "Артикул продавца/vendor code. Используется для аналитики по товарам и сверки с карточками."
+      - name: nm_id
+        description: "WB nmId — идентификатор номенклатуры/карточки товара."
+      - name: chrt_id
+        description: "WB chrtId — идентификатор характеристики/размера товара."
+      - name: barcode
+        description: "Баркод/SKU товара, если присутствует в orders JSON."
+      - name: skus
+        description: "JSON-массив SKU/баркодов товара. Проверяется row quarantine: если поле есть, оно должно быть JSON array."
+      - name: price
+        description: "Цена заказа из источника."
+      - name: sale_price
+        description: "Цена продажи/цена со скидкой из источника, если присутствует."
+      - name: final_price
+        description: "Финальная цена заказа после скидок/пересчётов, если присутствует."
+      - name: converted_price
+        description: "Цена после валютной конвертации, если присутствует."
+      - name: converted_final_price
+        description: "Финальная цена после валютной конвертации, если присутствует."
+      - name: currency_code
+        description: "Код валюты исходной цены."
+      - name: converted_currency_code
+        description: "Код валюты после конвертации."
+      - name: scan_price
+        description: "Цена сканирования/сканированная цена, если присутствует в источнике."
+      - name: warehouse_id
+        description: "ID склада WB или склада/точки, связанной с заказом."
+      - name: warehouse_address
+        description: "Адрес склада, если присутствует в источнике."
+      - name: office_id
+        description: "ID офиса/точки выдачи/операционной точки, если присутствует."
+      - name: supply_id
+        description: "ID поставки, если заказ связан с поставкой."
+      - name: group_id
+        description: "Групповой идентификатор заказа/операции из источника."
+      - name: cargo_type
+        description: "Тип груза из исходного JSON."
+      - name: cross_border_type
+        description: "Тип cross-border операции из источника."
+      - name: color_code
+        description: "Служебный цветовой код из источника, если присутствует."
+      - name: comment
+        description: "Комментарий к заказу из исходного JSON."
+      - name: is_zero_order
+        description: "Флаг zero-order из источника."
+      - name: is_b2b
+        description: "Флаг B2B-заказа. Может приходить в разных путях JSON, нормализуется в boolean."
+      - name: is_archive
+        description: "Флаг архивного набора. true для dataset_name с суффиксом archive."
+      - name: address_full
+        description: "Полный адрес доставки/точки, если присутствует в source JSON."
+      - name: address_latitude
+        description: "Широта адреса. Row quarantine проверяет диапазон от -90 до 90."
+      - name: address_longitude
+        description: "Долгота адреса. Row quarantine проверяет диапазон от -180 до 180."
+      - name: raw_record
+        description: "Исходный JSON-объект одного заказа без потери структуры."
+      - name: inserted_at
+        description: "Техническое поле dbt-модели. Время построения строки staging при dbt run."
+      - name: quality_status
+        description: "Итоговый статус качества строки: good, partial или bad."
+      - name: quality_issues
+        description: "Массив issue_code уровня bad/partial."
+      - name: warning_issues
+        description: "Массив issue_code уровня warning. Не блокирует загрузку в core."
+      - name: issue_details
+        description: "JSONB-массив подробностей по всем найденным issues строки."
+      - name: can_load_to_core
+        description: "Флаг: можно ли загружать строку в core.orders. false при bad-issues."
+      - name: can_count_order
+        description: "Флаг: можно ли учитывать строку как заказ в аналитике."
+      - name: can_count_revenue
+        description: "Флаг: можно ли учитывать строку в revenue-аналитике."
+      - name: can_use_order_date
+        description: "Флаг: можно ли использовать дату заказа для date-based аналитики."
+      - name: is_complete
+        description: "true, если у строки нет bad/partial-проблем."
+
+  - name: v_orders_current_good
+    description: "View строк заказов со статусом quality_status = good."
+    columns:
+      - name: raw_payload_id
+        description: "Технический lineage. ID строки из landing.raw_payloads, из которой был получен заказ."
+      - name: record_index
+        description: "Технический lineage. Порядковый номер заказа внутри массива orders[] исходного JSON. Нумерация начинается с 1."
+      - name: source_system
+        description: "Техническое поле. Система-источник данных, например wb_mock."
+      - name: dataset_name
+        description: "Техническое поле. Имя набора данных/endpoint mock API: orders_fbs_new, orders_dbs_completed и т.д."
+      - name: source_file
+        description: "Техническое поле. Имя JSON-файла, из которого пришёл payload."
+      - name: source_url
+        description: "Техническое поле. URL исходного JSON-файла на mock API/static host."
+      - name: file_hash
+        description: "Техническое поле. Хэш исходного файла, нужен для контроля изменений и воспроизводимости загрузки."
+      - name: loaded_at
+        description: "Техническое поле. Время загрузки raw payload в PostgreSQL."
+      - name: order_flow
+        description: "Нормализованный тип потока заказа, вычисляется из dataset_name: fbs, dbs, dbw или pickup."
+      - name: order_kind
+        description: "Тип набора заказов, вычисляется из dataset_name: new, current, completed или archive."
+      - name: order_id
+        description: "Числовой идентификатор заказа, если он есть в источнике."
+      - name: rid
+        description: "Уникальный идентификатор заказа/строки заказа WB. Используется как один из ключевых идентификаторов заказа."
+      - name: srid
+        description: "Дополнительный строковый идентификатор WB, если присутствует в источнике."
+      - name: order_uid
+        description: "Строковый UID заказа из источника. Используется как альтернативный идентификатор, если order_id отсутствует."
+      - name: order_code
+        description: "Дополнительный код заказа из источника. Используется как fallback-идентификатор в row quarantine."
+      - name: created_at
+        description: "Дата и время создания заказа в источнике. Используется для аналитики по дате заказа."
+      - name: ddate
+        description: "Дата доставки/плановая дата, если присутствует в источнике."
+      - name: seller_date
+        description: "Дата, связанная с продавцом/операцией продавца, если присутствует в источнике."
+      - name: delivery_type
+        description: "Тип доставки из исходного JSON. Может отличаться по формату от order_flow."
+      - name: delivery_method
+        description: "Метод доставки из исходного JSON, если присутствует."
+      - name: delivery_service
+        description: "Служба доставки из исходного JSON, если присутствует."
+      - name: pay_mode
+        description: "Способ оплаты заказа из источника."
+      - name: article
+        description: "Артикул продавца/vendor code. Используется для аналитики по товарам и сверки с карточками."
+      - name: nm_id
+        description: "WB nmId — идентификатор номенклатуры/карточки товара."
+      - name: chrt_id
+        description: "WB chrtId — идентификатор характеристики/размера товара."
+      - name: barcode
+        description: "Баркод/SKU товара, если присутствует в orders JSON."
+      - name: skus
+        description: "JSON-массив SKU/баркодов товара. Проверяется row quarantine: если поле есть, оно должно быть JSON array."
+      - name: price
+        description: "Цена заказа из источника."
+      - name: sale_price
+        description: "Цена продажи/цена со скидкой из источника, если присутствует."
+      - name: final_price
+        description: "Финальная цена заказа после скидок/пересчётов, если присутствует."
+      - name: converted_price
+        description: "Цена после валютной конвертации, если присутствует."
+      - name: converted_final_price
+        description: "Финальная цена после валютной конвертации, если присутствует."
+      - name: currency_code
+        description: "Код валюты исходной цены."
+      - name: converted_currency_code
+        description: "Код валюты после конвертации."
+      - name: scan_price
+        description: "Цена сканирования/сканированная цена, если присутствует в источнике."
+      - name: warehouse_id
+        description: "ID склада WB или склада/точки, связанной с заказом."
+      - name: warehouse_address
+        description: "Адрес склада, если присутствует в источнике."
+      - name: office_id
+        description: "ID офиса/точки выдачи/операционной точки, если присутствует."
+      - name: supply_id
+        description: "ID поставки, если заказ связан с поставкой."
+      - name: group_id
+        description: "Групповой идентификатор заказа/операции из источника."
+      - name: cargo_type
+        description: "Тип груза из исходного JSON."
+      - name: cross_border_type
+        description: "Тип cross-border операции из источника."
+      - name: color_code
+        description: "Служебный цветовой код из источника, если присутствует."
+      - name: comment
+        description: "Комментарий к заказу из исходного JSON."
+      - name: is_zero_order
+        description: "Флаг zero-order из источника."
+      - name: is_b2b
+        description: "Флаг B2B-заказа. Может приходить в разных путях JSON, нормализуется в boolean."
+      - name: is_archive
+        description: "Флаг архивного набора. true для dataset_name с суффиксом archive."
+      - name: address_full
+        description: "Полный адрес доставки/точки, если присутствует в source JSON."
+      - name: address_latitude
+        description: "Широта адреса. Row quarantine проверяет диапазон от -90 до 90."
+      - name: address_longitude
+        description: "Долгота адреса. Row quarantine проверяет диапазон от -180 до 180."
+      - name: raw_record
+        description: "Исходный JSON-объект одного заказа без потери структуры."
+      - name: inserted_at
+        description: "Техническое поле dbt-модели. Время построения строки staging при dbt run."
+      - name: quality_status
+        description: "Итоговый статус качества строки: good, partial или bad."
+      - name: quality_issues
+        description: "Массив issue_code уровня bad/partial."
+      - name: warning_issues
+        description: "Массив issue_code уровня warning. Не блокирует загрузку в core."
+      - name: issue_details
+        description: "JSONB-массив подробностей по всем найденным issues строки."
+      - name: can_load_to_core
+        description: "Флаг: можно ли загружать строку в core.orders. false при bad-issues."
+      - name: can_count_order
+        description: "Флаг: можно ли учитывать строку как заказ в аналитике."
+      - name: can_count_revenue
+        description: "Флаг: можно ли учитывать строку в revenue-аналитике."
+      - name: can_use_order_date
+        description: "Флаг: можно ли использовать дату заказа для date-based аналитики."
+      - name: is_complete
+        description: "true, если у строки нет bad/partial-проблем."
+
+  - name: v_orders_current_partial
+    description: "View строк заказов со статусом quality_status = partial."
+    columns:
+      - name: raw_payload_id
+        description: "Технический lineage. ID строки из landing.raw_payloads, из которой был получен заказ."
+      - name: record_index
+        description: "Технический lineage. Порядковый номер заказа внутри массива orders[] исходного JSON. Нумерация начинается с 1."
+      - name: source_system
+        description: "Техническое поле. Система-источник данных, например wb_mock."
+      - name: dataset_name
+        description: "Техническое поле. Имя набора данных/endpoint mock API: orders_fbs_new, orders_dbs_completed и т.д."
+      - name: source_file
+        description: "Техническое поле. Имя JSON-файла, из которого пришёл payload."
+      - name: source_url
+        description: "Техническое поле. URL исходного JSON-файла на mock API/static host."
+      - name: file_hash
+        description: "Техническое поле. Хэш исходного файла, нужен для контроля изменений и воспроизводимости загрузки."
+      - name: loaded_at
+        description: "Техническое поле. Время загрузки raw payload в PostgreSQL."
+      - name: order_flow
+        description: "Нормализованный тип потока заказа, вычисляется из dataset_name: fbs, dbs, dbw или pickup."
+      - name: order_kind
+        description: "Тип набора заказов, вычисляется из dataset_name: new, current, completed или archive."
+      - name: order_id
+        description: "Числовой идентификатор заказа, если он есть в источнике."
+      - name: rid
+        description: "Уникальный идентификатор заказа/строки заказа WB. Используется как один из ключевых идентификаторов заказа."
+      - name: srid
+        description: "Дополнительный строковый идентификатор WB, если присутствует в источнике."
+      - name: order_uid
+        description: "Строковый UID заказа из источника. Используется как альтернативный идентификатор, если order_id отсутствует."
+      - name: order_code
+        description: "Дополнительный код заказа из источника. Используется как fallback-идентификатор в row quarantine."
+      - name: created_at
+        description: "Дата и время создания заказа в источнике. Используется для аналитики по дате заказа."
+      - name: ddate
+        description: "Дата доставки/плановая дата, если присутствует в источнике."
+      - name: seller_date
+        description: "Дата, связанная с продавцом/операцией продавца, если присутствует в источнике."
+      - name: delivery_type
+        description: "Тип доставки из исходного JSON. Может отличаться по формату от order_flow."
+      - name: delivery_method
+        description: "Метод доставки из исходного JSON, если присутствует."
+      - name: delivery_service
+        description: "Служба доставки из исходного JSON, если присутствует."
+      - name: pay_mode
+        description: "Способ оплаты заказа из источника."
+      - name: article
+        description: "Артикул продавца/vendor code. Используется для аналитики по товарам и сверки с карточками."
+      - name: nm_id
+        description: "WB nmId — идентификатор номенклатуры/карточки товара."
+      - name: chrt_id
+        description: "WB chrtId — идентификатор характеристики/размера товара."
+      - name: barcode
+        description: "Баркод/SKU товара, если присутствует в orders JSON."
+      - name: skus
+        description: "JSON-массив SKU/баркодов товара. Проверяется row quarantine: если поле есть, оно должно быть JSON array."
+      - name: price
+        description: "Цена заказа из источника."
+      - name: sale_price
+        description: "Цена продажи/цена со скидкой из источника, если присутствует."
+      - name: final_price
+        description: "Финальная цена заказа после скидок/пересчётов, если присутствует."
+      - name: converted_price
+        description: "Цена после валютной конвертации, если присутствует."
+      - name: converted_final_price
+        description: "Финальная цена после валютной конвертации, если присутствует."
+      - name: currency_code
+        description: "Код валюты исходной цены."
+      - name: converted_currency_code
+        description: "Код валюты после конвертации."
+      - name: scan_price
+        description: "Цена сканирования/сканированная цена, если присутствует в источнике."
+      - name: warehouse_id
+        description: "ID склада WB или склада/точки, связанной с заказом."
+      - name: warehouse_address
+        description: "Адрес склада, если присутствует в источнике."
+      - name: office_id
+        description: "ID офиса/точки выдачи/операционной точки, если присутствует."
+      - name: supply_id
+        description: "ID поставки, если заказ связан с поставкой."
+      - name: group_id
+        description: "Групповой идентификатор заказа/операции из источника."
+      - name: cargo_type
+        description: "Тип груза из исходного JSON."
+      - name: cross_border_type
+        description: "Тип cross-border операции из источника."
+      - name: color_code
+        description: "Служебный цветовой код из источника, если присутствует."
+      - name: comment
+        description: "Комментарий к заказу из исходного JSON."
+      - name: is_zero_order
+        description: "Флаг zero-order из источника."
+      - name: is_b2b
+        description: "Флаг B2B-заказа. Может приходить в разных путях JSON, нормализуется в boolean."
+      - name: is_archive
+        description: "Флаг архивного набора. true для dataset_name с суффиксом archive."
+      - name: address_full
+        description: "Полный адрес доставки/точки, если присутствует в source JSON."
+      - name: address_latitude
+        description: "Широта адреса. Row quarantine проверяет диапазон от -90 до 90."
+      - name: address_longitude
+        description: "Долгота адреса. Row quarantine проверяет диапазон от -180 до 180."
+      - name: raw_record
+        description: "Исходный JSON-объект одного заказа без потери структуры."
+      - name: inserted_at
+        description: "Техническое поле dbt-модели. Время построения строки staging при dbt run."
+      - name: quality_status
+        description: "Итоговый статус качества строки: good, partial или bad."
+      - name: quality_issues
+        description: "Массив issue_code уровня bad/partial."
+      - name: warning_issues
+        description: "Массив issue_code уровня warning. Не блокирует загрузку в core."
+      - name: issue_details
+        description: "JSONB-массив подробностей по всем найденным issues строки."
+      - name: can_load_to_core
+        description: "Флаг: можно ли загружать строку в core.orders. false при bad-issues."
+      - name: can_count_order
+        description: "Флаг: можно ли учитывать строку как заказ в аналитике."
+      - name: can_count_revenue
+        description: "Флаг: можно ли учитывать строку в revenue-аналитике."
+      - name: can_use_order_date
+        description: "Флаг: можно ли использовать дату заказа для date-based аналитики."
+      - name: is_complete
+        description: "true, если у строки нет bad/partial-проблем."
+
+  - name: v_orders_current_bad
+    description: "View строк заказов со статусом quality_status = bad."
+    columns:
+      - name: raw_payload_id
+        description: "Технический lineage. ID строки из landing.raw_payloads, из которой был получен заказ."
+      - name: record_index
+        description: "Технический lineage. Порядковый номер заказа внутри массива orders[] исходного JSON. Нумерация начинается с 1."
+      - name: source_system
+        description: "Техническое поле. Система-источник данных, например wb_mock."
+      - name: dataset_name
+        description: "Техническое поле. Имя набора данных/endpoint mock API: orders_fbs_new, orders_dbs_completed и т.д."
+      - name: source_file
+        description: "Техническое поле. Имя JSON-файла, из которого пришёл payload."
+      - name: source_url
+        description: "Техническое поле. URL исходного JSON-файла на mock API/static host."
+      - name: file_hash
+        description: "Техническое поле. Хэш исходного файла, нужен для контроля изменений и воспроизводимости загрузки."
+      - name: loaded_at
+        description: "Техническое поле. Время загрузки raw payload в PostgreSQL."
+      - name: order_flow
+        description: "Нормализованный тип потока заказа, вычисляется из dataset_name: fbs, dbs, dbw или pickup."
+      - name: order_kind
+        description: "Тип набора заказов, вычисляется из dataset_name: new, current, completed или archive."
+      - name: order_id
+        description: "Числовой идентификатор заказа, если он есть в источнике."
+      - name: rid
+        description: "Уникальный идентификатор заказа/строки заказа WB. Используется как один из ключевых идентификаторов заказа."
+      - name: srid
+        description: "Дополнительный строковый идентификатор WB, если присутствует в источнике."
+      - name: order_uid
+        description: "Строковый UID заказа из источника. Используется как альтернативный идентификатор, если order_id отсутствует."
+      - name: order_code
+        description: "Дополнительный код заказа из источника. Используется как fallback-идентификатор в row quarantine."
+      - name: created_at
+        description: "Дата и время создания заказа в источнике. Используется для аналитики по дате заказа."
+      - name: ddate
+        description: "Дата доставки/плановая дата, если присутствует в источнике."
+      - name: seller_date
+        description: "Дата, связанная с продавцом/операцией продавца, если присутствует в источнике."
+      - name: delivery_type
+        description: "Тип доставки из исходного JSON. Может отличаться по формату от order_flow."
+      - name: delivery_method
+        description: "Метод доставки из исходного JSON, если присутствует."
+      - name: delivery_service
+        description: "Служба доставки из исходного JSON, если присутствует."
+      - name: pay_mode
+        description: "Способ оплаты заказа из источника."
+      - name: article
+        description: "Артикул продавца/vendor code. Используется для аналитики по товарам и сверки с карточками."
+      - name: nm_id
+        description: "WB nmId — идентификатор номенклатуры/карточки товара."
+      - name: chrt_id
+        description: "WB chrtId — идентификатор характеристики/размера товара."
+      - name: barcode
+        description: "Баркод/SKU товара, если присутствует в orders JSON."
+      - name: skus
+        description: "JSON-массив SKU/баркодов товара. Проверяется row quarantine: если поле есть, оно должно быть JSON array."
+      - name: price
+        description: "Цена заказа из источника."
+      - name: sale_price
+        description: "Цена продажи/цена со скидкой из источника, если присутствует."
+      - name: final_price
+        description: "Финальная цена заказа после скидок/пересчётов, если присутствует."
+      - name: converted_price
+        description: "Цена после валютной конвертации, если присутствует."
+      - name: converted_final_price
+        description: "Финальная цена после валютной конвертации, если присутствует."
+      - name: currency_code
+        description: "Код валюты исходной цены."
+      - name: converted_currency_code
+        description: "Код валюты после конвертации."
+      - name: scan_price
+        description: "Цена сканирования/сканированная цена, если присутствует в источнике."
+      - name: warehouse_id
+        description: "ID склада WB или склада/точки, связанной с заказом."
+      - name: warehouse_address
+        description: "Адрес склада, если присутствует в источнике."
+      - name: office_id
+        description: "ID офиса/точки выдачи/операционной точки, если присутствует."
+      - name: supply_id
+        description: "ID поставки, если заказ связан с поставкой."
+      - name: group_id
+        description: "Групповой идентификатор заказа/операции из источника."
+      - name: cargo_type
+        description: "Тип груза из исходного JSON."
+      - name: cross_border_type
+        description: "Тип cross-border операции из источника."
+      - name: color_code
+        description: "Служебный цветовой код из источника, если присутствует."
+      - name: comment
+        description: "Комментарий к заказу из исходного JSON."
+      - name: is_zero_order
+        description: "Флаг zero-order из источника."
+      - name: is_b2b
+        description: "Флаг B2B-заказа. Может приходить в разных путях JSON, нормализуется в boolean."
+      - name: is_archive
+        description: "Флаг архивного набора. true для dataset_name с суффиксом archive."
+      - name: address_full
+        description: "Полный адрес доставки/точки, если присутствует в source JSON."
+      - name: address_latitude
+        description: "Широта адреса. Row quarantine проверяет диапазон от -90 до 90."
+      - name: address_longitude
+        description: "Долгота адреса. Row quarantine проверяет диапазон от -180 до 180."
+      - name: raw_record
+        description: "Исходный JSON-объект одного заказа без потери структуры."
+      - name: inserted_at
+        description: "Техническое поле dbt-модели. Время построения строки staging при dbt run."
+      - name: quality_status
+        description: "Итоговый статус качества строки: good, partial или bad."
+      - name: quality_issues
+        description: "Массив issue_code уровня bad/partial."
+      - name: warning_issues
+        description: "Массив issue_code уровня warning. Не блокирует загрузку в core."
+      - name: issue_details
+        description: "JSONB-массив подробностей по всем найденным issues строки."
+      - name: can_load_to_core
+        description: "Флаг: можно ли загружать строку в core.orders. false при bad-issues."
+      - name: can_count_order
+        description: "Флаг: можно ли учитывать строку как заказ в аналитике."
+      - name: can_count_revenue
+        description: "Флаг: можно ли учитывать строку в revenue-аналитике."
+      - name: can_use_order_date
+        description: "Флаг: можно ли использовать дату заказа для date-based аналитики."
+      - name: is_complete
+        description: "true, если у строки нет bad/partial-проблем."

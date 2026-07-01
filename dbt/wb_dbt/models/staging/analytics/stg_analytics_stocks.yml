@@ -1,0 +1,48 @@
+version: 2
+models:
+- name: stg_analytics_stocks
+  description: 'Автоматически сгенерированная staging-модель для dataset analytics_stocks. Главный record path: data.items. Одна строка = одна
+    запись из главного массива JSON.'
+  columns:
+  - name: raw_payload_id
+    description: Технический lineage. ID строки из landing.raw_payloads.
+    data_tests:
+    - not_null
+  - name: record_index
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    data_tests:
+    - not_null
+  - name: source_system
+    description: Система-источник данных.
+  - name: dataset_name
+    description: Имя исходного dataset/endpoint mock API.
+    data_tests:
+    - not_null
+  - name: source_file
+    description: Имя исходного JSON-файла.
+  - name: source_url
+    description: URL исходного JSON-файла.
+  - name: file_hash
+    description: Хэш исходного файла.
+  - name: loaded_at
+    description: Время загрузки raw payload в PostgreSQL.
+  - name: raw_record
+    description: Исходный JSON-объект одной записи без потери структуры.
+    data_tests:
+    - not_null
+  - name: chrt_id
+    description: 'Size ID JSON path: `chrtId`. Dataset: `analytics_stocks`.'
+  - name: in_way_from_client
+    description: 'On way from client JSON path: `inWayFromClient`. Dataset: `analytics_stocks`.'
+  - name: in_way_to_client
+    description: 'On way to client JSON path: `inWayToClient`. Dataset: `analytics_stocks`.'
+  - name: nm_id
+    description: 'WB item number JSON path: `nmId`. Dataset: `analytics_stocks`.'
+  - name: quantity
+    description: 'Warehouse inventory available to clients to add to cart JSON path: `quantity`. Dataset: `analytics_stocks`.'
+  - name: region_name
+    description: 'Shipping region JSON path: `regionName`. Dataset: `analytics_stocks`.'
+  - name: warehouse_id
+    description: 'Warehouse ID JSON path: `warehouseId`. Dataset: `analytics_stocks`.'
+  - name: warehouse_name
+    description: 'Warehouse name JSON path: `warehouseName`. Dataset: `analytics_stocks`.'

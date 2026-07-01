@@ -1,0 +1,42 @@
+# secrets
+.env
+*.env
+.env.*
+
+# python
+venv/
+dbt_venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# dbt artifacts
+dbt/wb_dbt/target/
+dbt/wb_dbt/logs/
+dbt/wb_dbt/dbt_packages/
+
+# logs / temp
+logs/
+*.log
+*.tmp
+*.bak
+
+# system/editor
+.DS_Store
+.vscode/
+
+# downloaded/mock runtime data
+data/tmp_downloads/
+
+# dbt user-local config
+dbt/.user.yml
+
+# downloaded/mock runtime data
+data/tmp_downloads/
+
+# dbt user-local config
+dbt/.user.yml
+
+# local dbt profile with credentials
+dbt/profiles.yml

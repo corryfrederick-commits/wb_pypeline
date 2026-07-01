@@ -1,0 +1,100 @@
+version: 2
+models:
+- name: stg_items_cards
+  description: 'Автоматически сгенерированная staging-модель для dataset items_cards. Главный record path: cards. Одна строка = одна запись из
+    главного массива JSON.'
+  columns:
+  - name: raw_payload_id
+    description: Технический lineage. ID строки из landing.raw_payloads.
+    data_tests:
+    - not_null
+  - name: record_index
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    data_tests:
+    - not_null
+  - name: source_system
+    description: Система-источник данных.
+  - name: dataset_name
+    description: Имя исходного dataset/endpoint mock API.
+    data_tests:
+    - not_null
+  - name: source_file
+    description: Имя исходного JSON-файла.
+  - name: source_url
+    description: URL исходного JSON-файла.
+  - name: file_hash
+    description: Хэш исходного файла.
+  - name: loaded_at
+    description: Время загрузки raw payload в PostgreSQL.
+  - name: raw_record
+    description: Исходный JSON-объект одной записи без потери структуры.
+    data_tests:
+    - not_null
+  - name: article
+    description: 'Артикул продавца JSON path: `article`. Dataset: `items_cards`.'
+  - name: barcode
+    description: 'Закодированное значение стикера JSON path: `barcode`. Dataset: `items_cards`.'
+  - name: brand
+    description: 'Brand JSON path: `brand`. Dataset: `items_cards`.'
+  - name: characteristics
+    description: 'Characteristics JSON path: `characteristics`. Dataset: `items_cards`.'
+  - name: chrt_id
+    description: 'Size ID JSON path: `chrtId`. Dataset: `items_cards`.'
+  - name: created_at
+    description: 'Creation date and time JSON path: `createdAt`. Dataset: `items_cards`.'
+  - name: description
+    description: 'Item description JSON path: `description`. Dataset: `items_cards`.'
+  - name: dimensions_height
+    description: 'Height, cm JSON path: `dimensions.height`. Dataset: `items_cards`.'
+  - name: dimensions_is_valid
+    description: 'Potential inaccuracy of item dimensions:  - `true` — not detected. `"isValid": true` does not guarantee that the dimensions
+      are correct. In some cases (for example, when creating a new item category), `"isValid": true` will be returned for any values except zero.  -
+      `false` — the specified dimensions significantly differ from the average for the category (subcategory). it is recommended to double-check
+      whether the item dimensions in the packaging are correctly specified in `centimeters`. The functionality of the listing, including the calculation
+      of logistics and storage, will not be limited. Logistics and storage will continue to be calculated based on the current dimensions. Also,
+      `"isValid": false` is returned when there are missing values or any dimension is zero. JSON path: `dimensions.isValid`. Dataset: `items_cards`.'
+  - name: dimensions_length
+    description: 'Length, cm JSON path: `dimensions.length`. Dataset: `items_cards`.'
+  - name: dimensions_weight_brutto
+    description: 'Weight, kg<br>Number of decimal places <=3 JSON path: `dimensions.weightBrutto`. Dataset: `items_cards`.'
+  - name: dimensions_width
+    description: 'Width, cm JSON path: `dimensions.width`. Dataset: `items_cards`.'
+  - name: imt_id
+    description: 'Merged listing ID search JSON path: `imtID`. Dataset: `items_cards`.'
+  - name: kiz_marked
+    description: 'Is there the confirmation from the seller that required labeling code [Chestny ZNAK](https://chestnyznak.ru/en) is applied to
+      the item:   - `true` — yes   - `false` — no  Whether labeling code [Chestny ZNAK](https://chestnyznak.ru/en) is required is specified in
+      the `needKiz` field JSON path: `kizMarked`. Dataset: `items_cards`.'
+  - name: need_kiz
+    description: 'Is labeling code [Chestny ZNAK](https://chestnyznak.ru/en) required for the item: <br>   - `false` — labeling code is not required
+      <br>   -`true` — labeling code is required JSON path: `needKiz`. Dataset: `items_cards`.'
+  - name: nm_id
+    description: 'WB item number JSON path: `nmID`. Dataset: `items_cards`.'
+  - name: nm_id_2
+    description: 'WB item number JSON path: `nmId`. Dataset: `items_cards`.'
+  - name: nm_uuid
+    description: 'Internal system ID of the listing JSON path: `nmUUID`. Dataset: `items_cards`.'
+  - name: photos
+    description: 'Photo array JSON path: `photos`. Dataset: `items_cards`.'
+  - name: sizes
+    description: 'Item sizes JSON path: `sizes`. Dataset: `items_cards`.'
+  - name: skus
+    description: 'SKU JSON path: `skus`. Dataset: `items_cards`.'
+  - name: subject_id
+    description: 'Subcategory ID JSON path: `subjectID`. Dataset: `items_cards`.'
+  - name: subject_name
+    description: 'Subcategory name JSON path: `subjectName`. Dataset: `items_cards`.'
+  - name: tags
+    description: 'Labels JSON path: `tags`. Dataset: `items_cards`.'
+  - name: title
+    description: 'Item title JSON path: `title`. Dataset: `items_cards`.'
+  - name: updated_at
+    description: 'Update date and time JSON path: `updatedAt`. Dataset: `items_cards`.'
+  - name: vendor_code
+    description: 'Seller item number JSON path: `vendorCode`. Dataset: `items_cards`.'
+  - name: video
+    description: 'Video URL JSON path: `video`. Dataset: `items_cards`.'
+  - name: wholesale_enabled
+    description: 'Is the listing intended for wholesale JSON path: `wholesale.enabled`. Dataset: `items_cards`.'
+  - name: wholesale_quantum
+    description: 'Number of item units per package JSON path: `wholesale.quantum`. Dataset: `items_cards`.'

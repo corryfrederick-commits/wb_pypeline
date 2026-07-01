@@ -1,0 +1,721 @@
+[
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "order_id",
+    "business_name_ru": "ID сборочного задания WB",
+    "description_ru": "Идентификатор сборочного задания или заказа в API Wildberries. В разных методах может приходить как orderId, orderID или id.",
+    "description_en": "Assembly order ID / order ID in Wildberries API.",
+    "semantic_type": "order_identifier",
+    "is_key": true,
+    "source_field_names": [
+      "orderId"
+    ],
+    "source_json_paths": [
+      "orders[].orderId"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "rid",
+    "business_name_ru": "Уникальный ID заказа WB",
+    "description_ru": "Уникальный идентификатор заказа Wildberries. Используется для связи заказов с продажами, возвратами, отчётами и финансовыми детализациями. В ряде методов WB этому же смыслу соответствует поле srid.",
+    "description_en": "Unique order ID. In several WB reports and finance methods, srid corresponds to rid.",
+    "semantic_type": "order_identifier",
+    "is_key": true,
+    "source_field_names": [
+      "rid"
+    ],
+    "source_json_paths": [
+      "orders[].rid"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "string"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "srid",
+    "business_name_ru": "Уникальный ID заказа WB в отчётах",
+    "description_ru": "Идентификатор заказа в отчётах и финансовых методах WB. Для Marketplace API по смыслу соответствует rid из методов сборочных заданий.",
+    "description_en": "Order ID in WB reports and finance methods. In Marketplace API responses, srid corresponds to rid.",
+    "semantic_type": "order_identifier",
+    "is_key": true,
+    "source_field_names": [
+      "srid"
+    ],
+    "source_json_paths": [
+      "orders[].srid"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "09-communications.yaml"
+    ],
+    "json_value_types": [
+      "string"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "order_uid",
+    "business_name_ru": "ID корзины / транзакции",
+    "description_ru": "Идентификатор транзакции для группировки сборочных заданий. Заказы из одной корзины покупателя могут иметь одинаковый orderUid.",
+    "description_en": "Transaction/cart ID for grouping assembly orders. Orders in the same buyer cart can have the same orderUid.",
+    "semantic_type": "cart_identifier",
+    "is_key": false,
+    "source_field_names": [
+      "orderUid"
+    ],
+    "source_json_paths": [
+      "orders[].orderUid"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml"
+    ],
+    "json_value_types": [
+      "string"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "nm_id",
+    "business_name_ru": "Артикул WB / номер товара WB",
+    "description_ru": "Номенклатурный номер товара Wildberries. Используется для связи заказа с карточкой товара, остатками, аналитикой, рекламой и отчётами.",
+    "description_en": "WB item number / Wildberries article number.",
+    "semantic_type": "product_identifier",
+    "is_key": true,
+    "source_field_names": [
+      "nmId"
+    ],
+    "source_json_paths": [
+      "orders[].nmId",
+      "orders[].product.nmId"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "chrt_id",
+    "business_name_ru": "ID размера / характеристики товара",
+    "description_ru": "Идентификатор размера или характеристики товара в системе Wildberries. Используется для различения вариантов одного товара.",
+    "description_en": "Size ID / item characteristic ID in WB systems.",
+    "semantic_type": "product_variant_identifier",
+    "is_key": true,
+    "source_field_names": [
+      "chrtId"
+    ],
+    "source_json_paths": [
+      "orders[].chrtId",
+      "orders[].product.chrtId"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "article",
+    "business_name_ru": "Артикул продавца",
+    "description_ru": "Артикул товара у продавца. Используется продавцом для внутренней идентификации товара.",
+    "description_en": "Seller item number / seller article.",
+    "semantic_type": "seller_product_identifier",
+    "is_key": false,
+    "source_field_names": [
+      "article"
+    ],
+    "source_json_paths": [
+      "orders[].article",
+      "orders[].product.article"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "string"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "supplier_article",
+    "business_name_ru": "Артикул продавца",
+    "description_ru": "Артикул товара у продавца в отчётах WB.",
+    "description_en": "Seller article number.",
+    "semantic_type": "seller_product_identifier",
+    "is_key": false,
+    "source_field_names": [],
+    "source_json_paths": [],
+    "source_datasets": [],
+    "source_yaml_files": [],
+    "json_value_types": [],
+    "has_actual_examples": false,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "barcode",
+    "business_name_ru": "Баркод / штрихкод",
+    "description_ru": "Баркод товара или закодированное значение стикера, в зависимости от метода WB. В core.orders используется как идентификатор товарной единицы из заказа.",
+    "description_en": "Barcode or encoded sticker value depending on the WB method.",
+    "semantic_type": "product_barcode",
+    "is_key": false,
+    "source_field_names": [
+      "barcode"
+    ],
+    "source_json_paths": [
+      "orders[].barcode"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml"
+    ],
+    "json_value_types": [
+      "string"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "skus",
+    "business_name_ru": "Список SKU / баркодов",
+    "description_ru": "Массив SKU или баркодов товарной единицы в заказе.",
+    "description_en": "Item SKU/barcode array.",
+    "semantic_type": "product_barcode_array",
+    "is_key": false,
+    "source_field_names": [
+      "skus"
+    ],
+    "source_json_paths": [
+      "orders[].skus",
+      "orders[].skus[]",
+      "orders[].product.skus",
+      "orders[].product.skus[]"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "array",
+      "string"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "warehouse_id",
+    "business_name_ru": "ID склада",
+    "description_ru": "Идентификатор склада, связанного с заказом. В зависимости от метода может означать склад продавца, склад приёмки или склад отгрузки.",
+    "description_en": "Warehouse ID related to the order.",
+    "semantic_type": "warehouse_identifier",
+    "is_key": true,
+    "source_field_names": [
+      "warehouseId"
+    ],
+    "source_json_paths": [
+      "orders[].warehouseId"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "delivery_type",
+    "business_name_ru": "Тип доставки",
+    "description_ru": "Тип доставки заказа. Для наших mock-данных используется словарь: fbs, dbs, edbs, dbsPickupPoint, dbw, pickupPoint, selfPickup.",
+    "description_en": "Delivery type. In mock data: fbs, dbs, edbs, dbsPickupPoint, dbw, pickupPoint, selfPickup.",
+    "semantic_type": "delivery_type",
+    "is_key": false,
+    "source_field_names": [
+      "deliveryType"
+    ],
+    "source_json_paths": [
+      "orders[].deliveryType"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "02-items.yaml",
+      "03-orders-fbs.yaml"
+    ],
+    "json_value_types": [
+      "string"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "delivery_method",
+    "business_name_ru": "Метод доставки / модель продажи",
+    "description_ru": "Метод доставки или модель продажи. В финансовых отчётах WB описывает sales model and item type.",
+    "description_en": "Delivery method / sales model and item type.",
+    "semantic_type": "delivery_method",
+    "is_key": false,
+    "source_field_names": [
+      "deliveryMethod"
+    ],
+    "source_json_paths": [
+      "orders[].deliveryMethod"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "13-finances.yaml"
+    ],
+    "json_value_types": [
+      "string"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "price",
+    "business_name_ru": "Цена заказа",
+    "description_ru": "Цена в валюте продажи с учётом скидок, кроме скидки WB Кошелька. В order API значения часто умножены на 100.",
+    "description_en": "Price in sale currency including discounts except WB Wallet discount. In order APIs values are often multiplied by 100.",
+    "semantic_type": "money_amount",
+    "is_key": false,
+    "source_field_names": [
+      "price"
+    ],
+    "source_json_paths": [
+      "orders[].price",
+      "orders[].priceInfo.price"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "sale_price",
+    "business_name_ru": "Цена продавца со скидкой",
+    "description_ru": "Цена продавца в валюте продажи с учётом скидки продавца, без учёта скидки WB Клуба. В order API значения часто умножены на 100.",
+    "description_en": "Seller price in sale currency including seller discount, excluding WB Club discount. Often multiplied by 100.",
+    "semantic_type": "money_amount",
+    "is_key": false,
+    "source_field_names": [
+      "salePrice"
+    ],
+    "source_json_paths": [
+      "orders[].salePrice"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "final_price",
+    "business_name_ru": "Итоговая сумма к оплате покупателем",
+    "description_ru": "Сумма к оплате покупателем в валюте продажи с учётом всех скидок. В order API значения часто умножены на 100.",
+    "description_en": "Final amount charged to the buyer in sale currency including all discounts. Often multiplied by 100.",
+    "semantic_type": "money_amount",
+    "is_key": false,
+    "source_field_names": [
+      "finalPrice"
+    ],
+    "source_json_paths": [
+      "orders[].finalPrice"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "converted_price",
+    "business_name_ru": "Цена в валюте страны продавца",
+    "description_ru": "Цена в валюте страны продавца с учётом скидок, кроме скидки WB Кошелька. В order API значения часто умножены на 100.",
+    "description_en": "Price in seller country currency including discounts except WB Wallet discount. Often multiplied by 100.",
+    "semantic_type": "money_amount",
+    "is_key": false,
+    "source_field_names": [
+      "convertedPrice"
+    ],
+    "source_json_paths": [
+      "orders[].convertedPrice",
+      "orders[].priceInfo.convertedPrice"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "converted_final_price",
+    "business_name_ru": "Итоговая сумма в валюте страны продавца",
+    "description_ru": "Сумма к оплате покупателем в валюте страны продавца с учётом всех скидок. В order API значения часто умножены на 100.",
+    "description_en": "Final amount charged to the buyer in seller country currency including all discounts. Often multiplied by 100.",
+    "semantic_type": "money_amount",
+    "is_key": false,
+    "source_field_names": [
+      "convertedFinalPrice"
+    ],
+    "source_json_paths": [
+      "orders[].convertedFinalPrice"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "currency_code",
+    "business_name_ru": "Код валюты",
+    "description_ru": "Код валюты продажи.",
+    "description_en": "Sale currency code.",
+    "semantic_type": "currency_code",
+    "is_key": false,
+    "source_field_names": [
+      "currencyCode"
+    ],
+    "source_json_paths": [
+      "orders[].currencyCode",
+      "orders[].priceInfo.currencyCode"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "integer"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  },
+  {
+    "model_layer": "staging/core",
+    "model_name": "orders",
+    "field_name": "created_at",
+    "business_name_ru": "Дата и время создания заказа",
+    "description_ru": "Дата и время создания заказа или сборочного задания.",
+    "description_en": "Order or assembly task creation date and time.",
+    "semantic_type": "event_timestamp",
+    "is_key": false,
+    "source_field_names": [
+      "createdAt"
+    ],
+    "source_json_paths": [
+      "orders[].createdAt"
+    ],
+    "source_datasets": [
+      "orders_dbs_completed",
+      "orders_dbs_new",
+      "orders_dbw_completed",
+      "orders_dbw_new",
+      "orders_fbs_archive",
+      "orders_fbs_current",
+      "orders_fbs_new",
+      "orders_pickup_new"
+    ],
+    "source_yaml_files": [
+      "05-orders-dbs.yaml",
+      "04-orders-dbw.yaml",
+      "03-orders-fbs.yaml",
+      "06-in-store-pickup.yaml"
+    ],
+    "json_value_types": [
+      "string"
+    ],
+    "has_actual_examples": true,
+    "notes": "manual_override"
+  }
+]

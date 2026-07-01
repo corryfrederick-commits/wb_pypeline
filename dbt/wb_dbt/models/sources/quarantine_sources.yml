@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: quarantine
+    schema: quarantine
+    description: "Слой структурного quarantine. Сюда попадают raw payloads после проверки JSON-структуры."
+    tables:
+      - name: v_raw_payloads_schema_passed
+        description: "Raw payloads, которые прошли структурный quarantine и могут использоваться для staging."

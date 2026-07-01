@@ -1,0 +1,859 @@
+dataset_name,main_record_path,record_count,field_path,suggested_column_name,json_types,non_null_count,null_or_missing_count,suggested_sql_type,examples
+analytics_sales_funnel,data.products,1,product.brandName,product_brand_name,string,1,0,text,"""ручей"""
+analytics_sales_funnel,data.products,1,product.feedbackRating,product_feedback_rating,number,1,0,numeric,899.26
+analytics_sales_funnel,data.products,1,product.nmId,product_nm_id,integer,1,0,bigint,54050449
+analytics_sales_funnel,data.products,1,product.productRating,product_product_rating,number,1,0,numeric,609.55
+analytics_sales_funnel,data.products,1,product.stocks.balanceSum,product_stocks_balance_sum,integer,1,0,bigint,1319
+analytics_sales_funnel,data.products,1,product.stocks.mp,product_stocks_mp,integer,1,0,bigint,21
+analytics_sales_funnel,data.products,1,product.stocks.wb,product_stocks_wb,integer,1,0,bigint,270
+analytics_sales_funnel,data.products,1,product.subjectId,product_subject_id,integer,1,0,bigint,895
+analytics_sales_funnel,data.products,1,product.subjectName,product_subject_name,string,1,0,text,"""расстройство"""
+analytics_sales_funnel,data.products,1,product.tags,product_tags,array,1,0,jsonb,"[{""id"": 695, ""name"": ""сынок""}, {""id"": 995, ""name"": ""полоска""}, {""id"": 810, ""name"": ""самостоятельно""}]"
+analytics_sales_funnel,data.products,1,product.title,product_title,string,1,0,text,"""предоставить"""
+analytics_sales_funnel,data.products,1,product.vendorCode,product_vendor_code,string,1,0,text,"""art-6599"""
+analytics_sales_funnel,data.products,1,statistic.comparison.addToWishlistDynamic,statistic_comparison_add_to_wishlist_dynamic,integer,1,0,bigint,156
+analytics_sales_funnel,data.products,1,statistic.comparison.avgOrdersCountPerDayDynamic,statistic_comparison_avg_orders_count_per_day_dynamic,integer,1,0,bigint,554
+analytics_sales_funnel,data.products,1,statistic.comparison.avgPriceDynamic,statistic_comparison_avg_price_dynamic,integer,1,0,bigint,5719
+analytics_sales_funnel,data.products,1,statistic.comparison.buyoutCountDynamic,statistic_comparison_buyout_count_dynamic,integer,1,0,bigint,890
+analytics_sales_funnel,data.products,1,statistic.comparison.buyoutSumDynamic,statistic_comparison_buyout_sum_dynamic,integer,1,0,bigint,5719
+analytics_sales_funnel,data.products,1,statistic.comparison.cancelCountDynamic,statistic_comparison_cancel_count_dynamic,integer,1,0,bigint,757
+analytics_sales_funnel,data.products,1,statistic.comparison.cancelSumDynamic,statistic_comparison_cancel_sum_dynamic,integer,1,0,bigint,5719
+analytics_sales_funnel,data.products,1,statistic.comparison.cartCountDynamic,statistic_comparison_cart_count_dynamic,integer,1,0,bigint,6
+analytics_sales_funnel,data.products,1,statistic.comparison.conversions.addToCartPercent,statistic_comparison_conversions_add_to_cart_percent,integer,1,0,bigint,448
+analytics_sales_funnel,data.products,1,statistic.comparison.conversions.buyoutPercent,statistic_comparison_conversions_buyout_percent,integer,1,0,bigint,26
+analytics_sales_funnel,data.products,1,statistic.comparison.conversions.cartToOrderPercent,statistic_comparison_conversions_cart_to_order_percent,integer,1,0,bigint,327
+analytics_sales_funnel,data.products,1,statistic.comparison.localizationPercentDynamic,statistic_comparison_localization_percent_dynamic,integer,1,0,bigint,729
+analytics_sales_funnel,data.products,1,statistic.comparison.openCountDynamic,statistic_comparison_open_count_dynamic,integer,1,0,bigint,708
+analytics_sales_funnel,data.products,1,statistic.comparison.orderCountDynamic,statistic_comparison_order_count_dynamic,integer,1,0,bigint,203
+analytics_sales_funnel,data.products,1,statistic.comparison.orderSumDynamic,statistic_comparison_order_sum_dynamic,integer,1,0,bigint,5719
+analytics_sales_funnel,data.products,1,statistic.comparison.shareOrderPercentDynamic,statistic_comparison_share_order_percent_dynamic,integer,1,0,bigint,234
+analytics_sales_funnel,data.products,1,statistic.comparison.timeToReadyDynamic.days,statistic_comparison_time_to_ready_dynamic_days,integer,1,0,bigint,819
+analytics_sales_funnel,data.products,1,statistic.comparison.timeToReadyDynamic.hours,statistic_comparison_time_to_ready_dynamic_hours,integer,1,0,bigint,225
+analytics_sales_funnel,data.products,1,statistic.comparison.timeToReadyDynamic.mins,statistic_comparison_time_to_ready_dynamic_mins,integer,1,0,bigint,462
+analytics_sales_funnel,data.products,1,statistic.comparison.wbClubDynamic.avgOrderCountPerDay,statistic_comparison_wb_club_dynamic_avg_order_count_per_day,number,1,0,numeric,879.89
+analytics_sales_funnel,data.products,1,statistic.comparison.wbClubDynamic.avgPrice,statistic_comparison_wb_club_dynamic_avg_price,integer,1,0,bigint,3308
+analytics_sales_funnel,data.products,1,statistic.comparison.wbClubDynamic.buyoutCount,statistic_comparison_wb_club_dynamic_buyout_count,integer,1,0,bigint,935
+analytics_sales_funnel,data.products,1,statistic.comparison.wbClubDynamic.buyoutPercent,statistic_comparison_wb_club_dynamic_buyout_percent,integer,1,0,bigint,146
+analytics_sales_funnel,data.products,1,statistic.comparison.wbClubDynamic.buyoutSum,statistic_comparison_wb_club_dynamic_buyout_sum,integer,1,0,bigint,3308
+analytics_sales_funnel,data.products,1,statistic.comparison.wbClubDynamic.cancelCount,statistic_comparison_wb_club_dynamic_cancel_count,integer,1,0,bigint,320
+analytics_sales_funnel,data.products,1,statistic.comparison.wbClubDynamic.cancelSum,statistic_comparison_wb_club_dynamic_cancel_sum,integer,1,0,bigint,3308
+analytics_sales_funnel,data.products,1,statistic.comparison.wbClubDynamic.orderCount,statistic_comparison_wb_club_dynamic_order_count,integer,1,0,bigint,350
+analytics_sales_funnel,data.products,1,statistic.comparison.wbClubDynamic.orderSum,statistic_comparison_wb_club_dynamic_order_sum,integer,1,0,bigint,3308
+analytics_sales_funnel,data.products,1,statistic.past.addToWishlist,statistic_past_add_to_wishlist,integer,1,0,bigint,286
+analytics_sales_funnel,data.products,1,statistic.past.avgOrdersCountPerDay,statistic_past_avg_orders_count_per_day,number,1,0,numeric,41.96
+analytics_sales_funnel,data.products,1,statistic.past.avgPrice,statistic_past_avg_price,integer,1,0,bigint,4318
+analytics_sales_funnel,data.products,1,statistic.past.buyoutCount,statistic_past_buyout_count,integer,1,0,bigint,289
+analytics_sales_funnel,data.products,1,statistic.past.buyoutSum,statistic_past_buyout_sum,integer,1,0,bigint,4318
+analytics_sales_funnel,data.products,1,statistic.past.cancelCount,statistic_past_cancel_count,integer,1,0,bigint,913
+analytics_sales_funnel,data.products,1,statistic.past.cancelSum,statistic_past_cancel_sum,integer,1,0,bigint,4318
+analytics_sales_funnel,data.products,1,statistic.past.cartCount,statistic_past_cart_count,integer,1,0,bigint,507
+analytics_sales_funnel,data.products,1,statistic.past.conversions.addToCartPercent,statistic_past_conversions_add_to_cart_percent,integer,1,0,bigint,913
+analytics_sales_funnel,data.products,1,statistic.past.conversions.buyoutPercent,statistic_past_conversions_buyout_percent,integer,1,0,bigint,128
+analytics_sales_funnel,data.products,1,statistic.past.conversions.cartToOrderPercent,statistic_past_conversions_cart_to_order_percent,integer,1,0,bigint,140
+analytics_sales_funnel,data.products,1,statistic.past.localizationPercent,statistic_past_localization_percent,integer,1,0,bigint,41
+analytics_sales_funnel,data.products,1,statistic.past.openCount,statistic_past_open_count,integer,1,0,bigint,46
+analytics_sales_funnel,data.products,1,statistic.past.orderCount,statistic_past_order_count,integer,1,0,bigint,645
+analytics_sales_funnel,data.products,1,statistic.past.orderSum,statistic_past_order_sum,integer,1,0,bigint,4318
+analytics_sales_funnel,data.products,1,statistic.past.period.end,statistic_past_period_end,string,1,0,timestamptz,"""2009-06-20"""
+analytics_sales_funnel,data.products,1,statistic.past.period.start,statistic_past_period_start,string,1,0,timestamptz,"""2018-05-09"""
+analytics_sales_funnel,data.products,1,statistic.past.shareOrderPercent,statistic_past_share_order_percent,number,1,0,numeric,165.36
+analytics_sales_funnel,data.products,1,statistic.past.timeToReady.days,statistic_past_time_to_ready_days,integer,1,0,bigint,5
+analytics_sales_funnel,data.products,1,statistic.past.timeToReady.hours,statistic_past_time_to_ready_hours,integer,1,0,bigint,798
+analytics_sales_funnel,data.products,1,statistic.past.timeToReady.mins,statistic_past_time_to_ready_mins,integer,1,0,bigint,79
+analytics_sales_funnel,data.products,1,statistic.past.wbClub.avgOrderCountPerDay,statistic_past_wb_club_avg_order_count_per_day,number,1,0,numeric,530.78
+analytics_sales_funnel,data.products,1,statistic.past.wbClub.avgPrice,statistic_past_wb_club_avg_price,integer,1,0,bigint,5469
+analytics_sales_funnel,data.products,1,statistic.past.wbClub.buyoutCount,statistic_past_wb_club_buyout_count,integer,1,0,bigint,491
+analytics_sales_funnel,data.products,1,statistic.past.wbClub.buyoutPercent,statistic_past_wb_club_buyout_percent,integer,1,0,bigint,715
+analytics_sales_funnel,data.products,1,statistic.past.wbClub.buyoutSum,statistic_past_wb_club_buyout_sum,integer,1,0,bigint,5469
+analytics_sales_funnel,data.products,1,statistic.past.wbClub.cancelCount,statistic_past_wb_club_cancel_count,integer,1,0,bigint,291
+analytics_sales_funnel,data.products,1,statistic.past.wbClub.cancelSum,statistic_past_wb_club_cancel_sum,integer,1,0,bigint,5469
+analytics_sales_funnel,data.products,1,statistic.past.wbClub.orderCount,statistic_past_wb_club_order_count,integer,1,0,bigint,120
+analytics_sales_funnel,data.products,1,statistic.past.wbClub.orderSum,statistic_past_wb_club_order_sum,integer,1,0,bigint,5469
+analytics_sales_funnel,data.products,1,statistic.selected.addToWishlist,statistic_selected_add_to_wishlist,integer,1,0,bigint,464
+analytics_sales_funnel,data.products,1,statistic.selected.avgOrdersCountPerDay,statistic_selected_avg_orders_count_per_day,number,1,0,numeric,948.22
+analytics_sales_funnel,data.products,1,statistic.selected.avgPrice,statistic_selected_avg_price,integer,1,0,bigint,5855
+analytics_sales_funnel,data.products,1,statistic.selected.buyoutCount,statistic_selected_buyout_count,integer,1,0,bigint,183
+analytics_sales_funnel,data.products,1,statistic.selected.buyoutSum,statistic_selected_buyout_sum,integer,1,0,bigint,5855
+analytics_sales_funnel,data.products,1,statistic.selected.cancelCount,statistic_selected_cancel_count,integer,1,0,bigint,694
+analytics_sales_funnel,data.products,1,statistic.selected.cancelSum,statistic_selected_cancel_sum,integer,1,0,bigint,5855
+analytics_sales_funnel,data.products,1,statistic.selected.cartCount,statistic_selected_cart_count,integer,1,0,bigint,713
+analytics_sales_funnel,data.products,1,statistic.selected.conversions.addToCartPercent,statistic_selected_conversions_add_to_cart_percent,integer,1,0,bigint,317
+analytics_sales_funnel,data.products,1,statistic.selected.conversions.buyoutPercent,statistic_selected_conversions_buyout_percent,integer,1,0,bigint,679
+analytics_sales_funnel,data.products,1,statistic.selected.conversions.cartToOrderPercent,statistic_selected_conversions_cart_to_order_percent,integer,1,0,bigint,30
+analytics_sales_funnel,data.products,1,statistic.selected.localizationPercent,statistic_selected_localization_percent,integer,1,0,bigint,974
+analytics_sales_funnel,data.products,1,statistic.selected.openCount,statistic_selected_open_count,integer,1,0,bigint,663
+analytics_sales_funnel,data.products,1,statistic.selected.orderCount,statistic_selected_order_count,integer,1,0,bigint,960
+analytics_sales_funnel,data.products,1,statistic.selected.orderSum,statistic_selected_order_sum,integer,1,0,bigint,5855
+analytics_sales_funnel,data.products,1,statistic.selected.period.end,statistic_selected_period_end,string,1,0,timestamptz,"""1988-10-23"""
+analytics_sales_funnel,data.products,1,statistic.selected.period.start,statistic_selected_period_start,string,1,0,timestamptz,"""2002-01-24"""
+analytics_sales_funnel,data.products,1,statistic.selected.shareOrderPercent,statistic_selected_share_order_percent,number,1,0,numeric,703.21
+analytics_sales_funnel,data.products,1,statistic.selected.timeToReady.days,statistic_selected_time_to_ready_days,integer,1,0,bigint,874
+analytics_sales_funnel,data.products,1,statistic.selected.timeToReady.hours,statistic_selected_time_to_ready_hours,integer,1,0,bigint,174
+analytics_sales_funnel,data.products,1,statistic.selected.timeToReady.mins,statistic_selected_time_to_ready_mins,integer,1,0,bigint,424
+analytics_sales_funnel,data.products,1,statistic.selected.wbClub.avgOrderCountPerDay,statistic_selected_wb_club_avg_order_count_per_day,number,1,0,numeric,865.16
+analytics_sales_funnel,data.products,1,statistic.selected.wbClub.avgPrice,statistic_selected_wb_club_avg_price,integer,1,0,bigint,4201
+analytics_sales_funnel,data.products,1,statistic.selected.wbClub.buyoutCount,statistic_selected_wb_club_buyout_count,integer,1,0,bigint,338
+analytics_sales_funnel,data.products,1,statistic.selected.wbClub.buyoutPercent,statistic_selected_wb_club_buyout_percent,integer,1,0,bigint,455
+analytics_sales_funnel,data.products,1,statistic.selected.wbClub.buyoutSum,statistic_selected_wb_club_buyout_sum,integer,1,0,bigint,4201
+analytics_sales_funnel,data.products,1,statistic.selected.wbClub.cancelCount,statistic_selected_wb_club_cancel_count,integer,1,0,bigint,945
+analytics_sales_funnel,data.products,1,statistic.selected.wbClub.cancelSum,statistic_selected_wb_club_cancel_sum,integer,1,0,bigint,4201
+analytics_sales_funnel,data.products,1,statistic.selected.wbClub.orderCount,statistic_selected_wb_club_order_count,integer,1,0,bigint,98
+analytics_sales_funnel,data.products,1,statistic.selected.wbClub.orderSum,statistic_selected_wb_club_order_sum,integer,1,0,bigint,4201
+analytics_stocks,data.items,9,chrtId,chrt_id,integer,9,0,bigint,150018137 | 812592831 | 704423017 | 379946977 | 679444037
+analytics_stocks,data.items,9,inWayFromClient,in_way_from_client,integer,9,0,bigint,187 | 957 | 277 | 188 | 238
+analytics_stocks,data.items,9,inWayToClient,in_way_to_client,integer,9,0,bigint,950 | 296 | 989 | 955 | 711
+analytics_stocks,data.items,9,nmId,nm_id,integer,9,0,bigint,64699893 | 66242515 | 71804493 | 68530939 | 83916712
+analytics_stocks,data.items,9,quantity,quantity,integer,9,0,bigint,264 | 984 | 794 | 659 | 316
+analytics_stocks,data.items,9,regionName,region_name,string,9,0,text,"""наступать"" | ""тюрьма"" | ""дрогнуть"" | ""совещание"" | ""костер"""
+analytics_stocks,data.items,9,warehouseId,warehouse_id,integer,9,0,bigint,458 | 200 | 413 | 426 | 350
+analytics_stocks,data.items,9,warehouseName,warehouse_name,string,9,0,text,"""приличный"" | ""провал"" | ""зима"" | ""остановить"" | ""возбуждение"""
+communications_chats,result,11,article,article,string,11,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+communications_chats,result,11,barcode,barcode,string,11,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+communications_chats,result,11,chatID,chat_id,string,11,0,text,"""металл"" | ""полюбить"" | ""призыв"" | ""горький"" | ""карандаш"""
+communications_chats,result,11,chrtId,chrt_id,integer,11,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+communications_chats,result,11,clientName,client_name,string,11,0,text,"""совещание"" | ""табак"" | ""крутой"" | ""вскинуть"" | ""плод"""
+communications_chats,result,11,createdAt,created_at,string,11,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+communications_chats,result,11,goodCard.nmID,good_card_nm_id,integer,11,0,bigint,48914810 | 35473577 | 72294799 | 56423425 | 32575792
+communications_chats,result,11,goodCard.price,good_card_price,integer,11,0,bigint,8972 | 6687 | 2635 | 6053 | 8195
+communications_chats,result,11,goodCard.priceCurrency,good_card_price_currency,string,11,0,text,"""RUB"""
+communications_chats,result,11,goodCard.rid,good_card_rid,string,11,0,text,"""rid_9300001"" | ""rid_9300002"" | ""rid_9300003"" | ""rid_9300004"" | ""rid_9300005"""
+communications_chats,result,11,goodCard.size,good_card_size,string,11,0,text,"""посидеть"" | ""крутой"" | ""витрина"" | ""конструкция"" | ""командующий"""
+communications_chats,result,11,id,id,integer,11,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+communications_chats,result,11,lastMessage.addTimestamp,last_message_add_timestamp,integer,11,0,bigint,194 | 156 | 540 | 526 | 99
+communications_chats,result,11,lastMessage.text,last_message_text,string,11,0,text,"""рот"" | ""художественный"" | ""сомнительный"" | ""разуметься"" | ""металл"""
+communications_chats,result,11,nmId,nm_id,integer,11,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+communications_chats,result,11,orderId,order_id,integer,11,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+communications_chats,result,11,orderUid,order_uid,string,11,0,text,"""1000001_29b1f0a7940346959ae10b50"" | ""1000002_d6e5fa96f7084aca890e3849"" | ""1000003_b497cc398efd4521aefe6f73"" | ""1000004_ca91b40d6ea448fb90705a35"" | ""1000005_2b56efe97d0c4754b4d36b49"""
+communications_chats,result,11,replySign,reply_sign,string,11,0,text,"""господь"" | ""космос"" | ""возникновение"" | ""сверкающий"" | ""выразить"""
+communications_chats,result,11,rid,rid,string,11,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+communications_chats,result,11,skus,skus,array,11,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+communications_chats,result,11,srid,srid,string,11,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+communications_chats,result,11,vendorCode,vendor_code,string,11,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+communications_feedbacks,data.feedbacks,12,answer.editable,answer_editable,boolean,12,0,boolean,false | true
+communications_feedbacks,data.feedbacks,12,answer.state,answer_state,string,12,0,text,"""банда"" | ""еврейский"" | ""строительство"" | ""ленинград"" | ""манера"""
+communications_feedbacks,data.feedbacks,12,answer.text,answer_text,string,12,0,text,"""команда"" | ""поколение"" | ""избегать"" | ""ночь"" | ""отметить"""
+communications_feedbacks,data.feedbacks,12,bables,bables,array,12,0,jsonb,"[""парень"", ""багровый"", ""пропаганда""] | [""солнце"", ""налоговый""] | [""второй"", ""второй"", ""волк""] | [""шлем""] | [""задержать"", ""оборот""]"
+communications_feedbacks,data.feedbacks,12,childFeedbackId,child_feedback_id,string,12,0,text,"""шлем"" | ""деньги"" | ""мучительно"" | ""пропаганда"" | ""развитый"""
+communications_feedbacks,data.feedbacks,12,color,color,string,12,0,text,"""грудь"" | ""еврейский"" | ""сустав"" | ""изображать"" | ""необычный"""
+communications_feedbacks,data.feedbacks,12,cons,cons,string,12,0,text,"""поколение"" | ""необычный"" | ""освобождение"" | ""растеряться"" | ""зато"""
+communications_feedbacks,data.feedbacks,12,createdDate,created_date,string,12,0,timestamptz,"""2026-06-23T04:06:11.510264+00:00"" | ""2026-05-18T21:09:50.511176+00:00"" | ""2026-05-23T20:30:02.512219+00:00"" | ""2026-06-14T08:31:13.513128+00:00"" | ""2026-06-23T08:27:12.514039+00:00"""
+communications_feedbacks,data.feedbacks,12,id,id,string,12,0,text,"""эпоха"" | ""потянуться"" | ""сомнительный"" | ""уронить"" | ""трясти"""
+communications_feedbacks,data.feedbacks,12,isAbleReturnProductOrders,is_able_return_product_orders,boolean,12,0,boolean,false | true
+communications_feedbacks,data.feedbacks,12,isAbleSupplierFeedbackValuation,is_able_supplier_feedback_valuation,boolean,12,0,boolean,false | true
+communications_feedbacks,data.feedbacks,12,isAbleSupplierProductValuation,is_able_supplier_product_valuation,boolean,12,0,boolean,false | true
+communications_feedbacks,data.feedbacks,12,lastOrderCreatedAt,last_order_created_at,string,12,0,text,"""сустав"" | ""сутки"" | ""через"" | ""слишком"" | ""материя"""
+communications_feedbacks,data.feedbacks,12,lastOrderShkId,last_order_shk_id,integer,12,0,bigint,264 | 942 | 914 | 814 | 368
+communications_feedbacks,data.feedbacks,12,matchingSize,matching_size,string,12,0,text,"""равнодушный"" | ""расстегнуть"" | ""носок"" | ""падаль"" | ""командующий"""
+communications_feedbacks,data.feedbacks,12,orderStatus,order_status,string,12,0,text,"""waiting"" | ""complete"" | ""delivered"" | ""sold"" | ""new"""
+communications_feedbacks,data.feedbacks,12,parentFeedbackId,parent_feedback_id,string,12,0,text,"""рай"" | ""очутиться"" | ""что"" | ""дружно"" | ""крыса"""
+communications_feedbacks,data.feedbacks,12,photoLinks,photo_links,array,12,0,jsonb,"[{""fullSize"": ""четко"", ""miniSize"": ""дружно""}] | [{""fullSize"": ""порт"", ""miniSize"": ""витрина""}, {""fullSize"": ""пространство"", ""miniSize"": ""правление""}, {""fullSize"": ""тр... | [{""fullSize"": ""вздрагивать"", ""miniSize"": ""зима""}, {""fullSize"": ""зеленый"", ""miniSize"": ""бегать""}] | [{""fullSize"": ""мелочь"", ""miniSize"": ""мелькнуть""}, {""fullSize"": ""неудобно"", ""miniSize"": ""порог""}, {""fullSize"": ""запуст... | [{""fullSize"": ""тысяча"", ""miniSize"": ""хозяйка""}, {""fullSize"": ""ученый"", ""miniSize"": ""запустить""}, {""fullSize"": ""способ..."
+communications_feedbacks,data.feedbacks,12,productDetails.brandName,product_details_brand_name,string,12,0,text,"""даль"" | ""функция"" | ""вариант"" | ""казнь"" | ""тысяча"""
+communications_feedbacks,data.feedbacks,12,productDetails.imtId,product_details_imt_id,integer,12,0,bigint,246 | 413 | 126 | 22 | 563
+communications_feedbacks,data.feedbacks,12,productDetails.nmId,product_details_nm_id,integer,12,0,bigint,43463720 | 10600353 | 64761745 | 33550099 | 85291657
+communications_feedbacks,data.feedbacks,12,productDetails.productName,product_details_product_name,string,12,0,text,"""поколение"" | ""смелый"" | ""мгновение"" | ""очередной"" | ""изменение"""
+communications_feedbacks,data.feedbacks,12,productDetails.size,product_details_size,string,12,0,text,"""крутой"" | ""результат"" | ""песня"" | ""господь"" | ""лететь"""
+communications_feedbacks,data.feedbacks,12,productDetails.supplierArticle,product_details_supplier_article,string,12,0,text,"""ручей"" | ""пропаганда"" | ""вывести"" | ""развернуться"" | ""приходить"""
+communications_feedbacks,data.feedbacks,12,productDetails.supplierName,product_details_supplier_name,string,12,0,text,"""дружно"" | ""палка"" | ""триста"" | ""господь"" | ""растеряться"""
+communications_feedbacks,data.feedbacks,12,productValuation,product_valuation,integer,12,0,bigint,692 | 935 | 729 | 887 | 819
+communications_feedbacks,data.feedbacks,12,pros,pros,string,12,0,text,"""ученый"" | ""оборот"" | ""выраженный"" | ""да"" | ""заявление"""
+communications_feedbacks,data.feedbacks,12,returnProductOrdersDate,return_product_orders_date,string,12,0,timestamptz,"""2026-06-03T09:45:10.510766+00:00"" | ""2026-06-09T08:00:37.511876+00:00"" | ""2026-05-31T11:41:55.512759+00:00"" | ""2026-06-29T10:48:32.513721+00:00"" | ""2026-06-16T05:19:20.514663+00:00"""
+communications_feedbacks,data.feedbacks,12,state,state,string,12,0,text,"""банда"" | ""пробовать"" | ""труп"" | ""зарплата"" | ""район"""
+communications_feedbacks,data.feedbacks,12,subjectId,subject_id,integer,12,0,bigint,705 | 750 | 99 | 730 | 317
+communications_feedbacks,data.feedbacks,12,subjectName,subject_name,string,12,0,text,"""написать"" | ""господь"" | ""покидать"" | ""факультет"" | ""появление"""
+communications_feedbacks,data.feedbacks,12,supplierFeedbackValuation,supplier_feedback_valuation,integer,12,0,bigint,780 | 984 | 320 | 55 | 825
+communications_feedbacks,data.feedbacks,12,supplierProductValuation,supplier_product_valuation,integer,12,0,bigint,458 | 476 | 756 | 11 | 507
+communications_feedbacks,data.feedbacks,12,text,text,string,12,0,text,"""страсть"" | ""заплакать"" | ""человечек"" | ""порядок"" | ""магазин"""
+communications_feedbacks,data.feedbacks,12,userName,user_name,string,12,0,text,"""издали"" | ""идея"" | ""ленинград"" | ""постоянный"" | ""песня"""
+communications_feedbacks,data.feedbacks,12,video.durationSec,video_duration_sec,integer,12,0,bigint,105 | 2 | 385 | 572 | 440
+communications_feedbacks,data.feedbacks,12,video.link,video_link,string,12,0,text,"""боец"" | ""светило"" | ""уточнить"" | ""спалить"" | ""вообще"""
+communications_feedbacks,data.feedbacks,12,video.previewImage,video_preview_image,string,12,0,text,"""кольцо"" | ""материя"" | ""затянуться"" | ""изучить"" | ""полюбить"""
+communications_feedbacks,data.feedbacks,12,wasViewed,was_viewed,boolean,12,0,boolean,false | true
+fbw_supplies,$,18,boxTypeID,box_type_id,null,0,18,text,
+fbw_supplies,$,18,createDate,create_date,string,18,0,timestamptz,"""2026-05-22T19:07:23.607237+00:00"" | ""2026-06-02T06:12:51.607553+00:00"" | ""2026-05-08T02:27:45.607808+00:00"" | ""2026-06-15T15:42:36.608150+00:00"" | ""2026-05-11T11:01:44.608477+00:00"""
+fbw_supplies,$,18,factDate,fact_date,string,18,0,timestamptz,"""2026-05-11T11:42:58.607313+00:00"" | ""2026-05-09T20:51:57.607585+00:00"" | ""2026-06-02T11:02:03.607881+00:00"" | ""2026-05-08T02:31:18.608194+00:00"" | ""2026-06-15T07:45:50.608521+00:00"""
+fbw_supplies,$,18,isBoxOnPallet,is_box_on_pallet,boolean,18,0,boolean,true | false
+fbw_supplies,$,18,phone,phone,string,18,0,text,"""развитый"" | ""вскакивать"" | ""фонарик"" | ""носок"" | ""редактор"""
+fbw_supplies,$,18,preorderID,preorder_id,integer,18,0,bigint,629 | 615 | 439 | 328 | 583
+fbw_supplies,$,18,statusID,status_id,integer,18,0,bigint,2 | 5 | 3 | 1 | 4
+fbw_supplies,$,18,supplyDate,supply_date,string,18,0,timestamptz,"""2026-05-20T02:34:12.607287+00:00"" | ""2026-05-03T15:20:00.607570+00:00"" | ""2026-05-11T11:07:28.607861+00:00"" | ""2026-05-20T00:03:18.608173+00:00"" | ""2026-06-14T19:23:20.608501+00:00"""
+fbw_supplies,$,18,supplyID,supply_id,integer,18,0,bigint,156 | 515 | 780 | 27 | 339
+fbw_supplies,$,18,updatedDate,updated_date,string,18,0,timestamptz,"""2026-06-13T01:05:39.607335+00:00"" | ""2026-05-18T12:53:14.607607+00:00"" | ""2026-05-11T04:25:06.607900+00:00"" | ""2026-05-28T01:11:30.608218+00:00"" | ""2026-06-25T14:27:49.608541+00:00"""
+finance_balance,$,1,currency,currency,string,1,0,text,"""RUB"""
+finance_balance,$,1,current,current,number,1,0,numeric,763.04
+finance_balance,$,1,for_withdraw,for_withdraw,number,1,0,numeric,376.19
+finance_sales_reports,$,6,additionalPaymentSum,additional_payment_sum,string,6,0,text,"""что"" | ""народ"" | ""девка"" | ""устройство"" | ""кидать"""
+finance_sales_reports,$,6,article,article,string,6,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+finance_sales_reports,$,6,avgSalePercent,avg_sale_percent,number,6,0,numeric,706.45 | 511.24 | 94.43 | 124.52 | 817.81
+finance_sales_reports,$,6,bankPaymentSum,bank_payment_sum,string,6,0,text,"""банк"" | ""смеяться"" | ""темнеть"" | ""дьявол"" | ""спорт"""
+finance_sales_reports,$,6,barcode,barcode,string,6,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+finance_sales_reports,$,6,cashbackAmountSum,cashback_amount_sum,string,6,0,text,"""инфекция"" | ""дорогой"" | ""заплакать"" | ""дрогнуть"" | ""четыре"""
+finance_sales_reports,$,6,cashbackCommissionChangeSum,cashback_commission_change_sum,string,6,0,text,"""конференция"" | ""валюта"" | ""остановить"" | ""народ"" | ""лететь"""
+finance_sales_reports,$,6,cashbackDiscountSum,cashback_discount_sum,string,6,0,text,"""остановить"" | ""термин"" | ""нажать"" | ""эффект"" | ""волк"""
+finance_sales_reports,$,6,chrtId,chrt_id,integer,6,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+finance_sales_reports,$,6,convertedCurrencyCode,converted_currency_code,integer,6,0,bigint,643
+finance_sales_reports,$,6,convertedFinalPrice,converted_final_price,integer,6,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+finance_sales_reports,$,6,convertedPrice,converted_price,integer,6,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+finance_sales_reports,$,6,createDate,create_date,string,6,0,timestamptz,"""1977-03-29"" | ""2005-10-16"" | ""2007-09-27"" | ""2011-03-07"" | ""2001-10-24"""
+finance_sales_reports,$,6,createdAt,created_at,string,6,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+finance_sales_reports,$,6,currency,currency,string,6,0,text,"""RUB"""
+finance_sales_reports,$,6,currencyCode,currency_code,integer,6,0,bigint,643
+finance_sales_reports,$,6,dateFrom,date_from,string,6,0,timestamptz,"""2005-10-07"" | ""2026-03-09"" | ""1986-07-17"" | ""2020-08-28"" | ""2003-06-06"""
+finance_sales_reports,$,6,dateTo,date_to,string,6,0,timestamptz,"""2022-01-20"" | ""1974-01-26"" | ""2022-04-17"" | ""1995-08-01"" | ""2006-03-16"""
+finance_sales_reports,$,6,deductionSum,deduction_sum,string,6,0,text,"""медицина"" | ""помолчать"" | ""оставить"" | ""вздрогнуть"" | ""граница"""
+finance_sales_reports,$,6,deliveryServiceSum,delivery_service_sum,string,6,0,text,"""лететь"" | ""инвалид"" | ""ложиться"" | ""упорно"" | ""аллея"""
+finance_sales_reports,$,6,finalPrice,final_price,integer,6,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+finance_sales_reports,$,6,forPaySum,for_pay_sum,string,6,0,text,"""человечек"" | ""четыре"" | ""спорт"" | ""расстегнуть"" | ""появление"""
+finance_sales_reports,$,6,id,id,integer,6,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+finance_sales_reports,$,6,nmId,nm_id,integer,6,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+finance_sales_reports,$,6,officeId,office_id,integer,6,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+finance_sales_reports,$,6,operationDate,operation_date,string,6,0,timestamptz,"""2026-06-09T07:22:48.104154+00:00"" | ""2026-06-11T17:57:45.104214+00:00"" | ""2026-06-06T00:21:54.104255+00:00"" | ""2026-06-17T22:46:20.104299+00:00"" | ""2026-06-28T17:23:48.104345+00:00"""
+finance_sales_reports,$,6,orderId,order_id,integer,6,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+finance_sales_reports,$,6,orderUid,order_uid,string,6,0,text,"""1000001_29b1f0a7940346959ae10b50"" | ""1000002_d6e5fa96f7084aca890e3849"" | ""1000003_b497cc398efd4521aefe6f73"" | ""1000004_ca91b40d6ea448fb90705a35"" | ""1000005_2b56efe97d0c4754b4d36b49"""
+finance_sales_reports,$,6,paidAcceptanceSum,paid_acceptance_sum,string,6,0,text,"""степь"" | ""выгнать"" | ""костер"" | ""рот"" | ""важный"""
+finance_sales_reports,$,6,paidStorageSum,paid_storage_sum,string,6,0,text,"""ребятишки"" | ""плясать"" | ""изба"" | ""рот"" | ""совещание"""
+finance_sales_reports,$,6,paymentSchedule,payment_schedule,string,6,0,text,"""потянуться"" | ""вперед"" | ""бок"" | ""мгновение"" | ""невыносимый"""
+finance_sales_reports,$,6,penaltySum,penalty_sum,string,6,0,text,"""мучительно"" | ""лапа"" | ""факультет"" | ""порода"" | ""пропаганда"""
+finance_sales_reports,$,6,price,price,integer,6,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+finance_sales_reports,$,6,reportId,report_id,integer,6,0,bigint,470 | 31 | 209 | 448 | 179
+finance_sales_reports,$,6,reportType,report_type,integer,6,0,bigint,3 | 2 | 1
+finance_sales_reports,$,6,retailAmountSum,retail_amount_sum,string,6,0,text,"""еврейский"" | ""пропадать"" | ""выгнать"" | ""падать"" | ""потянуться"""
+finance_sales_reports,$,6,rid,rid,string,6,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+finance_sales_reports,$,6,saleDt,sale_dt,string,6,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+finance_sales_reports,$,6,salePrice,sale_price,integer,6,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+finance_sales_reports,$,6,sellerFinanceName,seller_finance_name,string,6,0,text,"""зима"" | ""умирать"" | ""добиться"" | ""мальчишка"" | ""запретить"""
+finance_sales_reports,$,6,skus,skus,array,6,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+finance_sales_reports,$,6,srid,srid,string,6,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+finance_sales_reports,$,6,vendorCode,vendor_code,string,6,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+finance_sales_reports,$,6,warehouseAddress,warehouse_address,string,6,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+finance_sales_reports,$,6,warehouseId,warehouse_id,integer,6,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+finance_sales_reports,$,6,warehouseName,warehouse_name,string,6,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+finance_sales_reports_detailed,$,6,acquiringBank,acquiring_bank,string,6,0,text,"""находить"" | ""эффект"" | ""самостоятельно"" | ""обида"" | ""желание"""
+finance_sales_reports_detailed,$,6,acquiringFee,acquiring_fee,string,6,0,text,"""танцевать"" | ""житель"" | ""другой"" | ""спасть"" | ""уронить"""
+finance_sales_reports_detailed,$,6,acquiringPercent,acquiring_percent,number,6,0,numeric,315.37 | 349.85 | 373.66 | 639.28 | 699.95
+finance_sales_reports_detailed,$,6,additionalPayment,additional_payment,string,6,0,text,"""правый"" | ""покидать"" | ""куча"" | ""казнь"" | ""угодный"""
+finance_sales_reports_detailed,$,6,agencyVat,agency_vat,number,6,0,numeric,378.54 | 522.24 | 738.88 | 770.55 | 509.55
+finance_sales_reports_detailed,$,6,article,article,string,6,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+finance_sales_reports_detailed,$,6,articleSubstitution,article_substitution,string,6,0,text,"""палец"" | ""штаб"" | ""более"" | ""возможно"" | ""райком"""
+finance_sales_reports_detailed,$,6,barcode,barcode,string,6,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+finance_sales_reports_detailed,$,6,bonusTypeName,bonus_type_name,string,6,0,text,"""анализ"" | ""отметить"" | ""выраженный"" | ""порядок"" | ""ход"""
+finance_sales_reports_detailed,$,6,brandName,brand_name,string,6,0,text,"""выбирать"" | ""запустить"" | ""господь"" | ""протягивать"" | ""грудь"""
+finance_sales_reports_detailed,$,6,cashbackAmount,cashback_amount,string,6,0,text,"""упорно"" | ""мера"" | ""миф"" | ""дальний"" | ""ребятишки"""
+finance_sales_reports_detailed,$,6,cashbackCommissionChange,cashback_commission_change,string,6,0,text,"""выкинуть"" | ""лиловый"" | ""райком"" | ""правление"" | ""набор"""
+finance_sales_reports_detailed,$,6,cashbackDiscount,cashback_discount,string,6,0,text,"""темнеть"" | ""девка"" | ""народ"" | ""прошептать"" | ""цель"""
+finance_sales_reports_detailed,$,6,chrtId,chrt_id,integer,6,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+finance_sales_reports_detailed,$,6,commissionPercent,commission_percent,number,6,0,numeric,15.98 | 745.42 | 207.74 | 478.1 | 162.38
+finance_sales_reports_detailed,$,6,convertedCurrencyCode,converted_currency_code,integer,6,0,bigint,643
+finance_sales_reports_detailed,$,6,convertedFinalPrice,converted_final_price,integer,6,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+finance_sales_reports_detailed,$,6,convertedPrice,converted_price,integer,6,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+finance_sales_reports_detailed,$,6,country,country,string,6,0,text,"""деньги"" | ""художественный"" | ""полностью"" | ""редактор"" | ""поезд"""
+finance_sales_reports_detailed,$,6,createDate,create_date,string,6,0,timestamptz,"""1997-03-24"" | ""1972-01-21"" | ""1987-04-15"" | ""1988-03-14"" | ""2017-03-12"""
+finance_sales_reports_detailed,$,6,createdAt,created_at,string,6,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+finance_sales_reports_detailed,$,6,currency,currency,string,6,0,text,"""RUB"""
+finance_sales_reports_detailed,$,6,currencyCode,currency_code,integer,6,0,bigint,643
+finance_sales_reports_detailed,$,6,dateFrom,date_from,string,6,0,timestamptz,"""2015-07-29"" | ""1990-12-14"" | ""2022-07-12"" | ""1982-06-05"" | ""1987-01-06"""
+finance_sales_reports_detailed,$,6,dateTo,date_to,string,6,0,timestamptz,"""2023-12-28"" | ""2012-11-25"" | ""1995-03-19"" | ""1982-09-03"" | ""2006-12-02"""
+finance_sales_reports_detailed,$,6,declarationNumber,declaration_number,string,6,0,text,"""непривычный"" | ""мотоцикл"" | ""ход"" | ""голубчик"" | ""бак"""
+finance_sales_reports_detailed,$,6,deduction,deduction,string,6,0,text,"""лапа"" | ""естественный"" | ""рабочий"" | ""нажать"" | ""грудь"""
+finance_sales_reports_detailed,$,6,deliveryAmount,delivery_amount,integer,6,0,bigint,7428 | 6559 | 7139 | 1496 | 2685
+finance_sales_reports_detailed,$,6,deliveryMethod,delivery_method,string,6,0,text,"""угроза"" | ""сохранять"" | ""наступать"" | ""набор"" | ""плясать"""
+finance_sales_reports_detailed,$,6,deliveryService,delivery_service,string,6,0,text,"""голубчик"" | ""около"" | ""возникновение"" | ""совещание"" | ""иной"""
+finance_sales_reports_detailed,$,6,dlvPrc,dlv_prc,number,6,0,numeric,593.33 | 850.55 | 405.92 | 644.23 | 131.62
+finance_sales_reports_detailed,$,6,docTypeName,doc_type_name,string,6,0,text,"""пространство"" | ""возбуждение"" | ""каюта"" | ""порода"" | ""вздрагивать"""
+finance_sales_reports_detailed,$,6,finalPrice,final_price,integer,6,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+finance_sales_reports_detailed,$,6,fixTariffDateFrom,fix_tariff_date_from,string,6,0,timestamptz,"""2014-02-06"" | ""1987-01-30"" | ""1989-09-08"" | ""2016-08-23"" | ""1973-03-12"""
+finance_sales_reports_detailed,$,6,fixTariffDateTo,fix_tariff_date_to,string,6,0,timestamptz,"""1971-12-24"" | ""2007-02-14"" | ""1977-08-21"" | ""2004-03-19"" | ""1986-12-26"""
+finance_sales_reports_detailed,$,6,forPay,for_pay,string,6,0,text,"""покидать"" | ""человечек"" | ""инвалид"" | ""протягивать"" | ""один"""
+finance_sales_reports_detailed,$,6,giBoxTypeName,gi_box_type_name,string,6,0,text,"""наступать"" | ""научить"" | ""беспомощный"" | ""идея"" | ""хотеть"""
+finance_sales_reports_detailed,$,6,giId,gi_id,integer,6,0,bigint,102 | 889 | 177 | 350 | 124
+finance_sales_reports_detailed,$,6,id,id,integer,6,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+finance_sales_reports_detailed,$,6,installmentCofinancingAmount,installment_cofinancing_amount,string,6,0,text,"""совещание"" | ""приятель"" | ""ночь"" | ""холодно"" | ""постоянный"""
+finance_sales_reports_detailed,$,6,isB2b,is_b2b,boolean,6,0,boolean,false | true
+finance_sales_reports_detailed,$,6,isKgvpV2,is_kgvp_v2,number,6,0,numeric,336.08 | 127.47 | 148.53 | 170.26 | 811.22
+finance_sales_reports_detailed,$,6,kiz,kiz,string,6,0,text,"""указанный"" | ""вряд"" | ""ночь"" | ""песенка"" | ""мусор"""
+finance_sales_reports_detailed,$,6,kvw,kvw,number,6,0,numeric,42.0 | 936.75 | 739.74 | 842.31 | 506.2
+finance_sales_reports_detailed,$,6,kvwBase,kvw_base,number,6,0,numeric,947.78 | 601.38 | 693.72 | 484.16 | 973.25
+finance_sales_reports_detailed,$,6,loyaltyDiscount,loyalty_discount,number,6,0,numeric,112.23 | 949.81 | 397.26 | 554.46 | 315.61
+finance_sales_reports_detailed,$,6,loyaltyId,loyalty_id,integer,6,0,bigint,463 | 572 | 258 | 26 | 159
+finance_sales_reports_detailed,$,6,nmId,nm_id,integer,6,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+finance_sales_reports_detailed,$,6,officeId,office_id,integer,6,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+finance_sales_reports_detailed,$,6,officeName,office_name,string,6,0,text,"""теория"" | ""наслаждение"" | ""коллектив"" | ""близко"" | ""расстройство"""
+finance_sales_reports_detailed,$,6,operationDate,operation_date,string,6,0,timestamptz,"""2026-06-23T23:30:38.106300+00:00"" | ""2026-06-28T06:52:54.106356+00:00"" | ""2026-06-13T16:04:31.106376+00:00"" | ""2026-06-20T04:17:04.106392+00:00"" | ""2026-06-27T13:47:15.106408+00:00"""
+finance_sales_reports_detailed,$,6,orderDt,order_dt,string,6,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+finance_sales_reports_detailed,$,6,orderId,order_id,integer,6,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+finance_sales_reports_detailed,$,6,orderUid,order_uid,string,6,0,text,"""1000001_29b1f0a7940346959ae10b50"" | ""1000002_d6e5fa96f7084aca890e3849"" | ""1000003_b497cc398efd4521aefe6f73"" | ""1000004_ca91b40d6ea448fb90705a35"" | ""1000005_2b56efe97d0c4754b4d36b49"""
+finance_sales_reports_detailed,$,6,paidAcceptance,paid_acceptance,string,6,0,text,"""выраженный"" | ""интернет"" | ""недостаток"" | ""успокоиться"" | ""вытаскивать"""
+finance_sales_reports_detailed,$,6,paidStorage,paid_storage,string,6,0,text,"""жестокий"" | ""второй"" | ""виднеться"" | ""потрясти"" | ""тысяча"""
+finance_sales_reports_detailed,$,6,paymentProcessing,payment_processing,string,6,0,text,"""палка"" | ""скользить"" | ""услать"" | ""ручей"" | ""лететь"""
+finance_sales_reports_detailed,$,6,paymentSchedule,payment_schedule,string,6,0,text,"""ставить"" | ""рис"" | ""вытаскивать"" | ""заведение"" | ""тусклый"""
+finance_sales_reports_detailed,$,6,penalty,penalty,string,6,0,text,"""изменение"" | ""правый"" | ""славный"" | ""единый"" | ""посвятить"""
+finance_sales_reports_detailed,$,6,ppvzOfficeId,ppvz_office_id,integer,6,0,bigint,269 | 338 | 234 | 408 | 191
+finance_sales_reports_detailed,$,6,ppvzOfficeName,ppvz_office_name,string,6,0,text,"""металл"" | ""следовательно"" | ""настать"" | ""сопровождаться"" | ""пламя"""
+finance_sales_reports_detailed,$,6,ppvzReward,ppvz_reward,string,6,0,text,"""функция"" | ""ручей"" | ""интеллектуальный"" | ""бровь"" | ""грудь"""
+finance_sales_reports_detailed,$,6,ppvzSalesCommission,ppvz_sales_commission,string,6,0,text,"""носок"" | ""человечек"" | ""уронить"" | ""доставать"" | ""покидать"""
+finance_sales_reports_detailed,$,6,ppvzSupplierInn,ppvz_supplier_inn,string,6,0,text,"""деньги"" | ""ярко"" | ""кожа"" | ""триста"" | ""слать"""
+finance_sales_reports_detailed,$,6,ppvzSupplierName,ppvz_supplier_name,string,6,0,text,"""сравнение"" | ""волк"" | ""граница"" | ""засунуть"" | ""левый"""
+finance_sales_reports_detailed,$,6,price,price,integer,6,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+finance_sales_reports_detailed,$,6,productDiscountForReport,product_discount_for_report,number,6,0,numeric,696.25 | 840.86 | 754.88 | 488.45 | 578.04
+finance_sales_reports_detailed,$,6,quantity,quantity,integer,6,0,bigint,209 | 930 | 347 | 707 | 858
+finance_sales_reports_detailed,$,6,rebillLogisticCost,rebill_logistic_cost,string,6,0,text,"""деньги"" | ""темнеть"" | ""изба"" | ""дремать"" | ""бегать"""
+finance_sales_reports_detailed,$,6,rebillLogisticOrg,rebill_logistic_org,string,6,0,text,"""парень"" | ""рай"" | ""реклама"" | ""доставать"" | ""число"""
+finance_sales_reports_detailed,$,6,reportId,report_id,integer,6,0,bigint,579 | 603 | 557 | 411 | 965
+finance_sales_reports_detailed,$,6,reportType,report_type,integer,6,0,bigint,1 | 2
+finance_sales_reports_detailed,$,6,retailAmount,retail_amount,string,6,0,text,"""протягивать"" | ""возникновение"" | ""терапия"" | ""видимо"" | ""дружно"""
+finance_sales_reports_detailed,$,6,retailPrice,retail_price,string,6,0,text,"""анализ"" | ""прощение"" | ""вывести"" | ""зато"" | ""встать"""
+finance_sales_reports_detailed,$,6,retailPriceWithDisc,retail_price_with_disc,string,6,0,text,"""коробка"" | ""висеть"" | ""сустав"" | ""слать"" | ""решетка"""
+finance_sales_reports_detailed,$,6,returnAmount,return_amount,integer,6,0,bigint,7428 | 6559 | 7139 | 1496 | 2685
+finance_sales_reports_detailed,$,6,rid,rid,string,6,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+finance_sales_reports_detailed,$,6,rrDate,rr_date,string,6,0,timestamptz,"""2019-02-12"" | ""2018-03-30"" | ""1996-04-21"" | ""1971-04-04"" | ""2007-07-30"""
+finance_sales_reports_detailed,$,6,rrdId,rrd_id,integer,6,0,bigint,816 | 871 | 701 | 496 | 780
+finance_sales_reports_detailed,$,6,saleDt,sale_dt,string,6,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+finance_sales_reports_detailed,$,6,salePercent,sale_percent,integer,6,0,bigint,480 | 185 | 645 | 529 | 101
+finance_sales_reports_detailed,$,6,salePrice,sale_price,integer,6,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+finance_sales_reports_detailed,$,6,salePriceAffiliatedDiscountPrc,sale_price_affiliated_discount_prc,integer,6,0,bigint,6686 | 6141 | 5899 | 1175 | 2533
+finance_sales_reports_detailed,$,6,salePricePromocodeDiscountPrc,sale_price_promocode_discount_prc,integer,6,0,bigint,6280 | 4669 | 5093 | 1436 | 2190
+finance_sales_reports_detailed,$,6,salePriceWholesaleDiscountPrc,sale_price_wholesale_discount_prc,integer,6,0,bigint,5603 | 6355 | 5281 | 1229 | 2015
+finance_sales_reports_detailed,$,6,sellerOperName,seller_oper_name,string,6,0,text,"""сомнительный"" | ""собеседник"" | ""наступать"" | ""поговорить"" | ""что"""
+finance_sales_reports_detailed,$,6,sellerPromo,seller_promo,string,6,0,text,"""близко"" | ""народ"" | ""слишком"" | ""падать"" | ""вывести"""
+finance_sales_reports_detailed,$,6,sellerPromoDiscount,seller_promo_discount,number,6,0,numeric,568.86 | 160.63 | 45.78 | 392.92 | 706.16
+finance_sales_reports_detailed,$,6,sellerPromoId,seller_promo_id,integer,6,0,bigint,179 | 624 | 607 | 656 | 260
+finance_sales_reports_detailed,$,6,shkId,shk_id,integer,6,0,bigint,672 | 346 | 429 | 542 | 156
+finance_sales_reports_detailed,$,6,sku,sku,string,6,0,bigint,"""4694500500543"" | ""4606778197439"" | ""4679347154439"" | ""4679918293438"" | ""4673032187007"""
+finance_sales_reports_detailed,$,6,skus,skus,array,6,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+finance_sales_reports_detailed,$,6,spp,spp,number,6,0,numeric,54.18 | 157.84 | 862.63 | 856.82 | 838.85
+finance_sales_reports_detailed,$,6,srid,srid,string,6,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+finance_sales_reports_detailed,$,6,srvDbs,srv_dbs,boolean,6,0,boolean,true | false
+finance_sales_reports_detailed,$,6,stickerId,sticker_id,string,6,0,text,"""каюта"" | ""налоговый"" | ""хозяйка"" | ""ставить"" | ""академик"""
+finance_sales_reports_detailed,$,6,subjectName,subject_name,string,6,0,text,"""засунуть"" | ""пространство"" | ""редактор"" | ""миллиард"" | ""построить"""
+finance_sales_reports_detailed,$,6,supRatingUp,sup_rating_up,number,6,0,numeric,293.24 | 533.67 | 663.79 | 215.88 | 118.49
+finance_sales_reports_detailed,$,6,techSize,tech_size,string,6,0,text,"""армейский"" | ""премьера"" | ""да"" | ""оборот"" | ""необычный"""
+finance_sales_reports_detailed,$,6,title,title,string,6,0,text,"""девка"" | ""салон"" | ""пробовать"" | ""перебивать"" | ""около"""
+finance_sales_reports_detailed,$,6,trbxId,trbx_id,string,6,0,text,"""выразить"" | ""налево"" | ""означать"" | ""монета"" | ""процесс"""
+finance_sales_reports_detailed,$,6,uuidPromocode,uuid_promocode,string,6,0,text,"""совет"" | ""мгновение"" | ""лететь"" | ""невыносимый"" | ""зарплата"""
+finance_sales_reports_detailed,$,6,vendorCode,vendor_code,string,6,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+finance_sales_reports_detailed,$,6,vw,vw,string,6,0,text,"""зачем"" | ""провал"" | ""вообще"" | ""мусор"" | ""бак"""
+finance_sales_reports_detailed,$,6,vwNds,vw_nds,string,6,0,text,"""инструкция"" | ""правильный"" | ""означать"" | ""применяться"" | ""совещание"""
+finance_sales_reports_detailed,$,6,warehouseAddress,warehouse_address,string,6,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+finance_sales_reports_detailed,$,6,warehouseId,warehouse_id,integer,6,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+finance_sales_reports_detailed,$,6,warehouseName,warehouse_name,string,6,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+finance_sales_reports_detailed,$,6,wibesDiscountPercent,wibes_discount_percent,number,6,0,numeric,925.68 | 517.78 | 118.18 | 138.88 | 81.2
+general_seller_info,$,1,name,name,string,1,0,text,"""падать"""
+general_seller_info,$,1,sid,sid,string,1,0,text,"""остановить"""
+general_seller_info,$,1,tin,tin,string,1,0,text,"""лапа"""
+general_seller_info,$,1,tradeMark,trade_mark,string,1,0,text,"""полоска"""
+items_cards,cards,18,article,article,string,18,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+items_cards,cards,18,barcode,barcode,string,18,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+items_cards,cards,18,brand,brand,string,18,0,text,"""Brand 2"" | ""Brand 3"" | ""Brand 4"" | ""Brand 5"" | ""Brand 6"""
+items_cards,cards,18,characteristics,characteristics,array,18,0,jsonb,"[{""id"": 493, ""name"": ""свежий"", ""value"": null}, {""id"": 660, ""name"": ""встать"", ""value"": null}] | [{""id"": 491, ""name"": ""достоинство"", ""value"": null}, {""id"": 833, ""name"": ""дрогнуть"", ""value"": null}] | [{""id"": 737, ""name"": ""тута"", ""value"": null}] | [{""id"": 621, ""name"": ""выбирать"", ""value"": null}, {""id"": 474, ""name"": ""мгновение"", ""value"": null}] | [{""id"": 214, ""name"": ""деньги"", ""value"": null}, {""id"": 37, ""name"": ""природа"", ""value"": null}, {""id"": 800, ""name"": ""зад..."
+items_cards,cards,18,chrtId,chrt_id,integer,18,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+items_cards,cards,18,createdAt,created_at,string,18,0,timestamptz,"""2026-05-10T12:18:52.028012+00:00"" | ""2026-05-30T03:13:40.028614+00:00"" | ""2026-05-04T16:08:56.029299+00:00"" | ""2026-06-05T13:52:45.030329+00:00"" | ""2026-06-23T00:04:55.031835+00:00"""
+items_cards,cards,18,description,description,string,18,0,text,"""бригада"" | ""построить"" | ""успокоиться"" | ""плясать"" | ""выраженный"""
+items_cards,cards,18,dimensions.height,dimensions_height,integer,18,0,bigint,30 | 914 | 713 | 93 | 384
+items_cards,cards,18,dimensions.isValid,dimensions_is_valid,boolean,18,0,boolean,true | false
+items_cards,cards,18,dimensions.length,dimensions_length,integer,18,0,bigint,740 | 32 | 840 | 315 | 724
+items_cards,cards,18,dimensions.weightBrutto,dimensions_weight_brutto,number,18,0,numeric,610.69 | 670.91 | 189.65 | 992.38 | 340.14
+items_cards,cards,18,dimensions.width,dimensions_width,integer,18,0,bigint,626 | 928 | 180 | 306 | 879
+items_cards,cards,18,imtID,imt_id,integer,18,0,bigint,83 | 417 | 618 | 401 | 222
+items_cards,cards,18,kizMarked,kiz_marked,boolean,18,0,boolean,false | true
+items_cards,cards,18,needKiz,need_kiz,boolean,18,0,boolean,false | true
+items_cards,cards,18,nmID,nm_id,integer,18,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+items_cards,cards,18,nmId,nm_id,integer,18,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+items_cards,cards,18,nmUUID,nm_uuid,string,18,0,text,"""ночь"" | ""бровь"" | ""рот"" | ""мгновение"" | ""триста"""
+items_cards,cards,18,photos,photos,array,18,0,jsonb,"[{""tm"": ""коммунизм"", ""big"": ""головка"", ""square"": ""второй"", ""c246x328"": ""господь"", ""c516x688"": ""мягкий""}] | [{""tm"": ""валюта"", ""big"": ""плод"", ""square"": ""домашний"", ""c246x328"": ""каюта"", ""c516x688"": ""что""}, {""tm"": ""ответить"", ""b... | [{""tm"": ""реклама"", ""big"": ""уронить"", ""square"": ""пламя"", ""c246x328"": ""процесс"", ""c516x688"": ""магазин""}, {""tm"": ""ночь"",... | [{""tm"": ""остановить"", ""big"": ""что"", ""square"": ""демократия"", ""c246x328"": ""да"", ""c516x688"": ""уничтожение""}, {""tm"": ""фак... | [{""tm"": ""дьявол"", ""big"": ""стакан"", ""square"": ""интернет"", ""c246x328"": ""зарплата"", ""c516x688"": ""девка""}, {""tm"": ""лапа"",..."
+items_cards,cards,18,sizes,sizes,array,18,0,jsonb,"[{""nmId"": 70000001, ""skus"": [""4600000001546"", ""4600000001655""], ""chrtID"": 170000001, ""chrtId"": 170000001, ""wbSize"": ""... | [{""nmId"": 70000002, ""skus"": [""4600000002958"", ""4600000003085"", ""4600000003171""], ""chrtID"": 170000002, ""chrtId"": 17000... | [{""nmId"": 70000003, ""skus"": [""4600000004313""], ""chrtID"": 170000003, ""chrtId"": 170000003, ""wbSize"": ""забирать"", ""artic... | [{""nmId"": 70000004, ""skus"": [""4600000005676""], ""chrtID"": 170000004, ""chrtId"": 170000004, ""wbSize"": ""процесс"", ""articl... | [{""nmId"": 70000005, ""skus"": [""4600000007055"", ""4600000007217""], ""chrtID"": 170000005, ""chrtId"": 170000005, ""wbSize"": ""..."
+items_cards,cards,18,skus,skus,array,18,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+items_cards,cards,18,subjectID,subject_id,integer,18,0,bigint,501 | 502 | 503 | 504 | 505
+items_cards,cards,18,subjectName,subject_name,string,18,0,text,"""Категория 2"" | ""Категория 3"" | ""Категория 4"" | ""Категория 5"" | ""Категория 6"""
+items_cards,cards,18,tags,tags,array,18,0,jsonb,"[{""id"": 526, ""name"": ""зато"", ""color"": ""падать""}, {""id"": 830, ""name"": ""зима"", ""color"": ""чувство""}] | [{""id"": 808, ""name"": ""посвятить"", ""color"": ""поймать""}, {""id"": 569, ""name"": ""грустный"", ""color"": ""тревога""}] | [{""id"": 576, ""name"": ""кузнец"", ""color"": ""роса""}, {""id"": 584, ""name"": ""расстегнуть"", ""color"": ""район""}] | [{""id"": 253, ""name"": ""намерение"", ""color"": ""висеть""}] | [{""id"": 696, ""name"": ""покидать"", ""color"": ""потрясти""}, {""id"": 279, ""name"": ""слишком"", ""color"": ""плод""}, {""id"": 616, ""..."
+items_cards,cards,18,title,title,string,18,0,text,"""нажать"" | ""манера"" | ""бетонный"" | ""вчера"" | ""господь"""
+items_cards,cards,18,updatedAt,updated_at,string,18,0,timestamptz,"""2026-05-10T17:47:40.028088+00:00"" | ""2026-05-10T20:46:51.028626+00:00"" | ""2026-05-16T13:05:11.029319+00:00"" | ""2026-06-23T02:14:51.030366+00:00"" | ""2026-05-04T22:37:55.031864+00:00"""
+items_cards,cards,18,vendorCode,vendor_code,string,18,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+items_cards,cards,18,video,video,string,18,0,text,"""носок"" | ""нервно"" | ""выгнать"" | ""о"" | ""да"""
+items_cards,cards,18,wholesale.enabled,wholesale_enabled,boolean,18,0,boolean,false | true
+items_cards,cards,18,wholesale.quantum,wholesale_quantum,number,18,0,numeric,43.54 | 873.5 | 918.04 | 222.47 | 433.83
+items_stocks,stocks,14,amount,amount,integer,14,0,bigint,6332 | 1177 | 9247 | 9775 | 2457
+items_stocks,stocks,14,article,article,string,14,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+items_stocks,stocks,14,barcode,barcode,string,14,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+items_stocks,stocks,14,chrtId,chrt_id,integer,14,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+items_stocks,stocks,14,inWayFromClient,in_way_from_client,integer,14,0,bigint,1 | 8 | 7 | 4 | 9
+items_stocks,stocks,14,inWayToClient,in_way_to_client,integer,14,0,bigint,10 | 5 | 17 | 1 | 8
+items_stocks,stocks,14,nmId,nm_id,integer,14,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+items_stocks,stocks,14,officeId,office_id,integer,14,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+items_stocks,stocks,14,quantity,quantity,integer,14,0,bigint,282 | 141 | 239 | 166 | 290
+items_stocks,stocks,14,skus,skus,array,14,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+items_stocks,stocks,14,vendorCode,vendor_code,string,14,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+items_stocks,stocks,14,warehouseAddress,warehouse_address,string,14,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+items_stocks,stocks,14,warehouseId,warehouse_id,integer,14,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+items_stocks,stocks,14,warehouseName,warehouse_name,string,14,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+items_warehouses,$,17,cargoType,cargo_type,integer,17,0,bigint,2 | 3 | 1
+items_warehouses,$,17,deliveryType,delivery_type,integer,17,0,bigint,5 | 3 | 2 | 6 | 1
+items_warehouses,$,17,id,id,integer,17,0,bigint,542 | 185 | 478 | 266 | 822
+items_warehouses,$,17,isDeleting,is_deleting,boolean,17,0,boolean,true | false
+items_warehouses,$,17,isProcessing,is_processing,boolean,17,0,boolean,true | false
+items_warehouses,$,17,name,name,string,17,0,text,"""приятель"" | ""неправда"" | ""горький"" | ""перебивать"" | ""район"""
+items_warehouses,$,17,officeId,office_id,integer,17,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+items_warehouses,$,17,warehouseAddress,warehouse_address,string,17,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+items_warehouses,$,17,warehouseId,warehouse_id,integer,17,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+items_warehouses,$,17,warehouseName,warehouse_name,string,17,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+orders_dbs_completed,orders,15,address.fullAddress,address_full_address,string,15,0,text,"""г. Киржач, пер. Степана Разина, д. 22, 243601"" | ""клх Чегем, ш. Таежное, д. 50 к. 20, 828789"" | ""д. Лысьва, ул. Енисейская, д. 49 к. 7/9, 484587"" | ""п. Можайск, алл. Московская, д. 339 стр. 3, 144280"" | ""п. Усолье Сибирское, наб. Репина, д. 75, 776900"""
+orders_dbs_completed,orders,15,address.latitude,address_latitude,number,15,0,numeric,62.21738 | 53.014354 | 52.873764 | 51.031152 | 55.232853
+orders_dbs_completed,orders,15,address.longitude,address_longitude,number,15,0,numeric,68.352575 | 140.415958 | 84.074417 | 92.150172 | 82.819006
+orders_dbs_completed,orders,15,article,article,string,15,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_dbs_completed,orders,15,barcode,barcode,string,15,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+orders_dbs_completed,orders,15,cargoType,cargo_type,integer,15,0,bigint,2 | 3 | 1
+orders_dbs_completed,orders,15,chrtId,chrt_id,integer,15,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+orders_dbs_completed,orders,15,colorCode,color_code,string,15,0,text,"""наслаждение"" | ""запретить"" | ""человечек"" | ""инфекция"" | ""возбуждение"""
+orders_dbs_completed,orders,15,comment,comment,string,15,0,text,"""слишком"" | ""жить"" | ""функция"" | ""запустить"" | ""отражение"""
+orders_dbs_completed,orders,15,convertedCurrencyCode,converted_currency_code,integer,15,0,bigint,643
+orders_dbs_completed,orders,15,convertedFinalPrice,converted_final_price,integer,15,0,bigint,8438 | 4046 | 2920 | 1995 | 1879
+orders_dbs_completed,orders,15,convertedPrice,converted_price,integer,15,0,bigint,10498 | 5908 | 4256 | 3315 | 2458
+orders_dbs_completed,orders,15,createdAt,created_at,string,15,0,timestamptz,"""2026-06-27T01:12:10.070147+00:00"" | ""2026-06-07T16:42:15.070325+00:00"" | ""2026-06-29T04:14:41.070440+00:00"" | ""2026-05-25T10:49:29.070564+00:00"" | ""2026-05-13T12:21:51.070682+00:00"""
+orders_dbs_completed,orders,15,currencyCode,currency_code,integer,15,0,bigint,643
+orders_dbs_completed,orders,15,deliveryMethod,delivery_method,string,15,0,text,"""dbsPickupPoint"" | ""edbs"" | ""dbs"""
+orders_dbs_completed,orders,15,deliveryService,delivery_service,string,15,0,text,"""SELLER_COURIER"" | ""SELLER_PICKUP_POINT"""
+orders_dbs_completed,orders,15,deliveryType,delivery_type,string,15,0,text,"""dbsPickupPoint"" | ""edbs"" | ""dbs"""
+orders_dbs_completed,orders,15,finalPrice,final_price,integer,15,0,bigint,8438 | 4046 | 2920 | 1995 | 1879
+orders_dbs_completed,orders,15,groupId,group_id,string,15,0,text,"""коричневый"" | ""сустав"" | ""мотоцикл"" | ""социалистический"" | ""соответствие"""
+orders_dbs_completed,orders,15,id,id,integer,15,0,bigint,2100001 | 2100002 | 2100003 | 2100004 | 2100005
+orders_dbs_completed,orders,15,isZeroOrder,is_zero_order,boolean,15,0,boolean,true | false
+orders_dbs_completed,orders,15,nmId,nm_id,integer,15,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+orders_dbs_completed,orders,15,officeId,office_id,integer,15,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+orders_dbs_completed,orders,15,options.isB2b,options_is_b2b,boolean,15,0,boolean,true | false
+orders_dbs_completed,orders,15,orderCode,order_code,string,15,0,text,"""ORD-2100001"" | ""ORD-2100002"" | ""ORD-2100003"" | ""ORD-2100004"" | ""ORD-2100005"""
+orders_dbs_completed,orders,15,orderId,order_id,integer,15,0,bigint,2100001 | 2100002 | 2100003 | 2100004 | 2100005
+orders_dbs_completed,orders,15,orderUid,order_uid,string,15,0,text,"""2100001_0a96ea90b35e475a84719a13"" | ""2100002_c93d70adee104a45914c1edf"" | ""2100003_44763969d2b442fd819075e9"" | ""2100004_ed790f797f4440a29c267cb4"" | ""2100005_f7e96ea94c4a49ec9bdf2526"""
+orders_dbs_completed,orders,15,payMode,pay_mode,string,15,0,text,"""cashless"" | ""prepaid"" | ""card"""
+orders_dbs_completed,orders,15,price,price,integer,15,0,bigint,10498 | 5908 | 4256 | 3315 | 2458
+orders_dbs_completed,orders,15,rid,rid,string,15,0,text,"""rid_2100001"" | ""rid_2100002"" | ""rid_2100003"" | ""rid_2100004"" | ""rid_2100005"""
+orders_dbs_completed,orders,15,salePrice,sale_price,integer,15,0,bigint,8438 | 4046 | 2920 | 1995 | 1879
+orders_dbs_completed,orders,15,scanPrice,scan_price,integer,15,0,bigint,3035 | 2991 | 1664 | 3008 | 2335
+orders_dbs_completed,orders,15,skus,skus,array,15,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+orders_dbs_completed,orders,15,srid,srid,string,15,0,text,"""rid_2100001"" | ""rid_2100002"" | ""rid_2100003"" | ""rid_2100004"" | ""rid_2100005"""
+orders_dbs_completed,orders,15,vendorCode,vendor_code,string,15,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_dbs_completed,orders,15,warehouseAddress,warehouse_address,string,15,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+orders_dbs_completed,orders,15,warehouseId,warehouse_id,integer,15,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+orders_dbs_completed,orders,15,warehouseName,warehouse_name,string,15,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+orders_dbs_completed,orders,15,wbStickerId,wb_sticker_id,integer,15,0,bigint,237 | 235 | 598 | 315 | 795
+orders_dbs_new,orders,8,address.fullAddress,address_full_address,string,8,0,text,"""клх Красноярск, алл. Павлова, д. 8/4 стр. 8, 212524"" | ""г. Муром, наб. Кочубея, д. 3/7, 184752"" | ""ст. Рыбинск, пер. 1 Мая, д. 34 стр. 6, 780902"" | ""д. Аргаяш, пр. Депутатский, д. 55 стр. 3, 043521"" | ""клх Чегем, пер. Инженерный, д. 31 к. 3/1, 562722"""
+orders_dbs_new,orders,8,address.latitude,address_latitude,number,8,0,numeric,62.323026 | 53.568441 | 43.874804 | 65.311714 | 51.311759
+orders_dbs_new,orders,8,address.longitude,address_longitude,number,8,0,numeric,122.285289 | 103.879545 | 50.769776 | 32.001445 | 69.486861
+orders_dbs_new,orders,8,article,article,string,8,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_dbs_new,orders,8,barcode,barcode,string,8,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+orders_dbs_new,orders,8,cargoType,cargo_type,integer,8,0,bigint,1 | 2 | 3
+orders_dbs_new,orders,8,chrtId,chrt_id,integer,8,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+orders_dbs_new,orders,8,colorCode,color_code,string,8,0,text,"""мелькнуть"" | ""лапа"" | ""ручей"" | ""четыре"" | ""редактор"""
+orders_dbs_new,orders,8,comment,comment,string,8,0,text,"""смеяться"" | ""мера"" | ""задержать"" | ""интернет"" | ""нажать"""
+orders_dbs_new,orders,8,convertedCurrencyCode,converted_currency_code,integer,8,0,bigint,643
+orders_dbs_new,orders,8,convertedFinalPrice,converted_final_price,integer,8,0,bigint,6535 | 9334 | 1789 | 2904 | 10537
+orders_dbs_new,orders,8,convertedPrice,converted_price,integer,8,0,bigint,9008 | 11384 | 2051 | 3460 | 10689
+orders_dbs_new,orders,8,createdAt,created_at,string,8,0,timestamptz,"""2026-06-22T08:20:17.067085+00:00"" | ""2026-05-03T23:21:05.067225+00:00"" | ""2026-06-07T14:53:03.067332+00:00"" | ""2026-05-17T14:48:21.067433+00:00"" | ""2026-05-09T03:36:35.067513+00:00"""
+orders_dbs_new,orders,8,currencyCode,currency_code,integer,8,0,bigint,643
+orders_dbs_new,orders,8,deliveryMethod,delivery_method,string,8,0,text,"""edbs"" | ""dbs"" | ""dbsPickupPoint"""
+orders_dbs_new,orders,8,deliveryService,delivery_service,string,8,0,text,"""SELLER_PICKUP_POINT"" | ""SELLER_COURIER"""
+orders_dbs_new,orders,8,deliveryType,delivery_type,string,8,0,text,"""edbs"" | ""dbs"" | ""dbsPickupPoint"""
+orders_dbs_new,orders,8,finalPrice,final_price,integer,8,0,bigint,6535 | 9334 | 1789 | 2904 | 10537
+orders_dbs_new,orders,8,groupId,group_id,string,8,0,text,"""мгновение"" | ""песенка"" | ""вариант"" | ""гулять"" | ""войти"""
+orders_dbs_new,orders,8,id,id,integer,8,0,bigint,2000001 | 2000002 | 2000003 | 2000004 | 2000005
+orders_dbs_new,orders,8,isZeroOrder,is_zero_order,boolean,8,0,boolean,false | true
+orders_dbs_new,orders,8,nmId,nm_id,integer,8,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+orders_dbs_new,orders,8,officeId,office_id,integer,8,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+orders_dbs_new,orders,8,options.isB2b,options_is_b2b,boolean,8,0,boolean,true | false
+orders_dbs_new,orders,8,orderCode,order_code,string,8,0,text,"""ORD-2000001"" | ""ORD-2000002"" | ""ORD-2000003"" | ""ORD-2000004"" | ""ORD-2000005"""
+orders_dbs_new,orders,8,orderId,order_id,integer,8,0,bigint,2000001 | 2000002 | 2000003 | 2000004 | 2000005
+orders_dbs_new,orders,8,orderUid,order_uid,string,8,0,text,"""2000001_fc458ac618954c62adfd3ab3"" | ""2000002_ec074797d4724128a1993ed5"" | ""2000003_84a683eef9b948f8b08e98eb"" | ""2000004_ccf3e0c995924058a8251045"" | ""2000005_ba25bf85c4f146c781d8c073"""
+orders_dbs_new,orders,8,payMode,pay_mode,string,8,0,text,"""prepaid"" | ""card"" | ""cashless"""
+orders_dbs_new,orders,8,price,price,integer,8,0,bigint,9008 | 11384 | 2051 | 3460 | 10689
+orders_dbs_new,orders,8,requiredMeta,required_meta,array,8,0,jsonb,"[""приятель"", ""нож"", ""монета""] | [""более"", ""указанный""] | [""госпожа"", ""кузнец"", ""степь""] | [""новый"", ""прелесть""] | [""секунда"", ""призыв"", ""расстройство""]"
+orders_dbs_new,orders,8,rid,rid,string,8,0,text,"""rid_2000001"" | ""rid_2000002"" | ""rid_2000003"" | ""rid_2000004"" | ""rid_2000005"""
+orders_dbs_new,orders,8,salePrice,sale_price,integer,8,0,bigint,6535 | 9334 | 1789 | 2904 | 10537
+orders_dbs_new,orders,8,skus,skus,array,8,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+orders_dbs_new,orders,8,srid,srid,string,8,0,text,"""rid_2000001"" | ""rid_2000002"" | ""rid_2000003"" | ""rid_2000004"" | ""rid_2000005"""
+orders_dbs_new,orders,8,vendorCode,vendor_code,string,8,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_dbs_new,orders,8,warehouseAddress,warehouse_address,string,8,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+orders_dbs_new,orders,8,warehouseId,warehouse_id,integer,8,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+orders_dbs_new,orders,8,warehouseName,warehouse_name,string,8,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+orders_dbs_new,orders,8,wbStickerId,wb_sticker_id,integer,8,0,bigint,880 | 232 | 714 | 848 | 426
+orders_dbs_statuses,orders,13,createdAt,created_at,string,13,0,timestamptz,"""2026-06-22T08:20:17.067085+00:00"" | ""2026-05-03T23:21:05.067225+00:00"" | ""2026-06-07T14:53:03.067332+00:00"" | ""2026-05-17T14:48:21.067433+00:00"" | ""2026-05-09T03:36:35.067513+00:00"""
+orders_dbs_statuses,orders,13,errors,errors,array,13,0,jsonb,"[{""code"": 961, ""detail"": ""упорно""}, {""code"": 377, ""detail"": ""дремать""}] | [{""code"": 672, ""detail"": ""мгновение""}, {""code"": 853, ""detail"": ""июнь""}] | [{""code"": 98, ""detail"": ""основание""}, {""code"": 725, ""detail"": ""одиннадцать""}] | [{""code"": 49, ""detail"": ""покинуть""}] | [{""code"": 331, ""detail"": ""природа""}, {""code"": 788, ""detail"": ""сомнительный""}]"
+orders_dbs_statuses,orders,13,id,id,integer,13,0,bigint,2000001 | 2000002 | 2000003 | 2000004 | 2000005
+orders_dbs_statuses,orders,13,orderId,order_id,integer,13,0,bigint,2000001 | 2000002 | 2000003 | 2000004 | 2000005
+orders_dbs_statuses,orders,13,orderUid,order_uid,string,13,0,text,"""2000001_fc458ac618954c62adfd3ab3"" | ""2000002_ec074797d4724128a1993ed5"" | ""2000003_84a683eef9b948f8b08e98eb"" | ""2000004_ccf3e0c995924058a8251045"" | ""2000005_ba25bf85c4f146c781d8c073"""
+orders_dbs_statuses,orders,13,rid,rid,string,13,0,text,"""rid_2000001"" | ""rid_2000002"" | ""rid_2000003"" | ""rid_2000004"" | ""rid_2000005"""
+orders_dbs_statuses,orders,13,srid,srid,string,13,0,text,"""rid_2000001"" | ""rid_2000002"" | ""rid_2000003"" | ""rid_2000004"" | ""rid_2000005"""
+orders_dbs_statuses,orders,13,status,status,string,13,0,text,"""in_delivery"" | ""confirmed"" | ""cancelled"" | ""assembly"" | ""new"""
+orders_dbs_statuses,orders,13,supplierStatus,supplier_status,string,13,0,text,"""new"" | ""waiting"" | ""cancel"" | ""complete"" | ""delivered"""
+orders_dbs_statuses,orders,13,updatedAt,updated_at,string,13,0,timestamptz,"""2026-06-13T02:01:41.084683+00:00"" | ""2026-06-19T06:52:07.084716+00:00"" | ""2026-06-21T08:23:19.084734+00:00"" | ""2026-06-26T23:19:52.084749+00:00"" | ""2026-06-21T05:47:11.084763+00:00"""
+orders_dbs_statuses,orders,13,wbStatus,wb_status,string,13,0,text,"""waiting"" | ""cancel"" | ""confirm"" | ""delivered"" | ""sold"""
+orders_dbw_completed,orders,16,address.fullAddress,address_full_address,string,16,0,text,"""к. Шереметьево, алл. Льва Толстого, д. 2/5 к. 559, 626388"" | ""к. Валаам, ш. Главное, д. 3/6 стр. 3/8, 192975"" | ""д. Новороссийка, бул. Шаумяна, д. 3, 720719"" | ""п. Кострома, пер. Просторный, д. 688, 118629"" | ""д. Киров (Вятка), ул. Сельская, д. 2/5 стр. 6/4, 498769"""
+orders_dbw_completed,orders,16,address.latitude,address_latitude,number,16,0,numeric,58.956518 | 60.669054 | 63.784736 | 53.197148 | 48.5032
+orders_dbw_completed,orders,16,address.longitude,address_longitude,number,16,0,numeric,136.994067 | 41.984426 | 113.655128 | 53.701367 | 87.918921
+orders_dbw_completed,orders,16,article,article,string,16,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_dbw_completed,orders,16,barcode,barcode,string,16,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+orders_dbw_completed,orders,16,cargoType,cargo_type,integer,16,0,bigint,1 | 3 | 2
+orders_dbw_completed,orders,16,chrtId,chrt_id,integer,16,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+orders_dbw_completed,orders,16,colorCode,color_code,string,16,0,text,"""более"" | ""растеряться"" | ""военный"" | ""монета"" | ""какой"""
+orders_dbw_completed,orders,16,comment,comment,string,16,0,text,"""граница"" | ""монета"" | ""табак"" | ""грудь"" | ""остановить"""
+orders_dbw_completed,orders,16,convertedCurrencyCode,converted_currency_code,integer,16,0,bigint,643
+orders_dbw_completed,orders,16,convertedFinalPrice,converted_final_price,integer,16,0,bigint,5103 | 2957 | 8807 | 1682 | 5947
+orders_dbw_completed,orders,16,convertedPrice,converted_price,integer,16,0,bigint,5757 | 4530 | 9617 | 1978 | 6923
+orders_dbw_completed,orders,16,createdAt,created_at,string,16,0,timestamptz,"""2026-05-08T09:19:30.077370+00:00"" | ""2026-05-04T01:17:01.077487+00:00"" | ""2026-05-13T17:03:07.077556+00:00"" | ""2026-05-04T21:59:11.077621+00:00"" | ""2026-05-31T13:41:40.077686+00:00"""
+orders_dbw_completed,orders,16,currencyCode,currency_code,integer,16,0,bigint,643
+orders_dbw_completed,orders,16,deliveryMethod,delivery_method,string,16,0,text,"""dbw"""
+orders_dbw_completed,orders,16,deliveryService,delivery_service,string,16,0,text,"""WB_WAREHOUSE"""
+orders_dbw_completed,orders,16,deliveryType,delivery_type,string,16,0,text,"""dbw"""
+orders_dbw_completed,orders,16,finalPrice,final_price,integer,16,0,bigint,5103 | 2957 | 8807 | 1682 | 5947
+orders_dbw_completed,orders,16,groupId,group_id,string,16,0,text,"""коллектив"" | ""адвокат"" | ""темнеть"" | ""ответить"" | ""невозможно"""
+orders_dbw_completed,orders,16,id,id,integer,16,0,bigint,3100001 | 3100002 | 3100003 | 3100004 | 3100005
+orders_dbw_completed,orders,16,isZeroOrder,is_zero_order,boolean,16,0,boolean,true | false
+orders_dbw_completed,orders,16,nmId,nm_id,integer,16,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+orders_dbw_completed,orders,16,officeId,office_id,integer,16,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+orders_dbw_completed,orders,16,options.isB2b,options_is_b2b,boolean,16,0,boolean,true | false
+orders_dbw_completed,orders,16,orderCode,order_code,string,16,0,text,"""ORD-3100001"" | ""ORD-3100002"" | ""ORD-3100003"" | ""ORD-3100004"" | ""ORD-3100005"""
+orders_dbw_completed,orders,16,orderId,order_id,integer,16,0,bigint,3100001 | 3100002 | 3100003 | 3100004 | 3100005
+orders_dbw_completed,orders,16,orderUid,order_uid,string,16,0,text,"""3100001_5391cf9785814f94ae12741d"" | ""3100002_42ea5187d9c04bf380f8aa8d"" | ""3100003_106e3ec950cf4d43bb210571"" | ""3100004_9f202db0da964d3092416183"" | ""3100005_69aa8604c78b41e2b6977699"""
+orders_dbw_completed,orders,16,payMode,pay_mode,string,16,0,text,"""prepaid"" | ""card"" | ""cashless"""
+orders_dbw_completed,orders,16,price,price,integer,16,0,bigint,5757 | 4530 | 9617 | 1978 | 6923
+orders_dbw_completed,orders,16,rid,rid,string,16,0,text,"""rid_3100001"" | ""rid_3100002"" | ""rid_3100003"" | ""rid_3100004"" | ""rid_3100005"""
+orders_dbw_completed,orders,16,salePrice,sale_price,integer,16,0,bigint,5103 | 2957 | 8807 | 1682 | 5947
+orders_dbw_completed,orders,16,skus,skus,array,16,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+orders_dbw_completed,orders,16,srid,srid,string,16,0,text,"""rid_3100001"" | ""rid_3100002"" | ""rid_3100003"" | ""rid_3100004"" | ""rid_3100005"""
+orders_dbw_completed,orders,16,vendorCode,vendor_code,string,16,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_dbw_completed,orders,16,warehouseAddress,warehouse_address,string,16,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+orders_dbw_completed,orders,16,warehouseId,warehouse_id,integer,16,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+orders_dbw_completed,orders,16,warehouseName,warehouse_name,string,16,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+orders_dbw_new,orders,7,address.fullAddress,address_full_address,string,7,0,text,"""п. Ербогачен, ул. Тюленина, д. 24 к. 238, 219484"" | ""клх Макаров, ул. Демьяна Бедного, д. 16 стр. 9/7, 170902"" | ""к. Красногорск (Моск.), пр. Щербакова, д. 5, 417379"" | ""п. Дудинка, ш. Базарное, д. 13 к. 150, 340453"" | ""д. Агата, алл. Маркса Карла, д. 1/3 к. 4/5, 620146"""
+orders_dbw_new,orders,7,address.latitude,address_latitude,number,7,0,numeric,44.522791 | 50.97618 | 60.322504 | 40.319543 | 66.673606
+orders_dbw_new,orders,7,address.longitude,address_longitude,number,7,0,numeric,50.481509 | 54.189939 | 34.722866 | 143.669449 | 53.384897
+orders_dbw_new,orders,7,article,article,string,7,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_dbw_new,orders,7,barcode,barcode,string,7,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+orders_dbw_new,orders,7,cargoType,cargo_type,integer,7,0,bigint,2 | 3 | 1
+orders_dbw_new,orders,7,chrtId,chrt_id,integer,7,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+orders_dbw_new,orders,7,colorCode,color_code,string,7,0,text,"""отдел"" | ""господь"" | ""недостаток"" | ""деловой"" | ""мальчишка"""
+orders_dbw_new,orders,7,comment,comment,string,7,0,text,"""серьезный"" | ""уничтожение"" | ""спичка"" | ""более"" | ""задержать"""
+orders_dbw_new,orders,7,convertedCurrencyCode,converted_currency_code,integer,7,0,bigint,643
+orders_dbw_new,orders,7,convertedFinalPrice,converted_final_price,integer,7,0,bigint,2412 | 1537 | 7710 | 1899 | 10073
+orders_dbw_new,orders,7,convertedPrice,converted_price,integer,7,0,bigint,4006 | 1576 | 8062 | 3602 | 10925
+orders_dbw_new,orders,7,createdAt,created_at,string,7,0,timestamptz,"""2026-06-26T06:19:51.075264+00:00"" | ""2026-05-30T16:18:22.075384+00:00"" | ""2026-06-08T04:21:19.075455+00:00"" | ""2026-04-30T18:50:09.075521+00:00"" | ""2026-05-08T15:16:33.075578+00:00"""
+orders_dbw_new,orders,7,currencyCode,currency_code,integer,7,0,bigint,643
+orders_dbw_new,orders,7,deliveryMethod,delivery_method,string,7,0,text,"""dbw"""
+orders_dbw_new,orders,7,deliveryService,delivery_service,string,7,0,text,"""WB_WAREHOUSE"""
+orders_dbw_new,orders,7,deliveryType,delivery_type,string,7,0,text,"""dbw"""
+orders_dbw_new,orders,7,finalPrice,final_price,integer,7,0,bigint,2412 | 1537 | 7710 | 1899 | 10073
+orders_dbw_new,orders,7,groupId,group_id,string,7,0,text,"""сынок"" | ""носок"" | ""бок"" | ""рай"" | ""палка"""
+orders_dbw_new,orders,7,id,id,integer,7,0,bigint,3000001 | 3000002 | 3000003 | 3000004 | 3000005
+orders_dbw_new,orders,7,isZeroOrder,is_zero_order,boolean,7,0,boolean,true | false
+orders_dbw_new,orders,7,nmId,nm_id,integer,7,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+orders_dbw_new,orders,7,officeId,office_id,integer,7,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+orders_dbw_new,orders,7,options.isB2b,options_is_b2b,boolean,7,0,boolean,false | true
+orders_dbw_new,orders,7,orderCode,order_code,string,7,0,text,"""ORD-3000001"" | ""ORD-3000002"" | ""ORD-3000003"" | ""ORD-3000004"" | ""ORD-3000005"""
+orders_dbw_new,orders,7,orderId,order_id,integer,7,0,bigint,3000001 | 3000002 | 3000003 | 3000004 | 3000005
+orders_dbw_new,orders,7,orderUid,order_uid,string,7,0,text,"""3000001_f61b3c21b5dd4d108ab4f9fb"" | ""3000002_b3da29f8827844549d402a03"" | ""3000003_95554d0baa4d43b582de33ae"" | ""3000004_a7cdcf8de7334a829e1e816e"" | ""3000005_dafc75beeff0404fb0967ad7"""
+orders_dbw_new,orders,7,payMode,pay_mode,string,7,0,text,"""cashless"" | ""card"" | ""prepaid"""
+orders_dbw_new,orders,7,price,price,integer,7,0,bigint,4006 | 1576 | 8062 | 3602 | 10925
+orders_dbw_new,orders,7,requiredMeta,required_meta,array,7,0,jsonb,"[""приятель"", ""кольцо"", ""изба""] | [""левый"", ""карман"", ""нож""] | [""жить"", ""другой"", ""приятель""] | [""тюрьма"", ""печатать""] | [""поезд""]"
+orders_dbw_new,orders,7,rid,rid,string,7,0,text,"""rid_3000001"" | ""rid_3000002"" | ""rid_3000003"" | ""rid_3000004"" | ""rid_3000005"""
+orders_dbw_new,orders,7,salePrice,sale_price,integer,7,0,bigint,2412 | 1537 | 7710 | 1899 | 10073
+orders_dbw_new,orders,7,skus,skus,array,7,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+orders_dbw_new,orders,7,srid,srid,string,7,0,text,"""rid_3000001"" | ""rid_3000002"" | ""rid_3000003"" | ""rid_3000004"" | ""rid_3000005"""
+orders_dbw_new,orders,7,vendorCode,vendor_code,string,7,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_dbw_new,orders,7,warehouseAddress,warehouse_address,string,7,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+orders_dbw_new,orders,7,warehouseId,warehouse_id,integer,7,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+orders_dbw_new,orders,7,warehouseName,warehouse_name,string,7,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+orders_dbw_statuses,orders,10,createdAt,created_at,string,10,0,timestamptz,"""2026-06-26T06:19:51.075264+00:00"" | ""2026-05-30T16:18:22.075384+00:00"" | ""2026-06-08T04:21:19.075455+00:00"" | ""2026-04-30T18:50:09.075521+00:00"" | ""2026-05-08T15:16:33.075578+00:00"""
+orders_dbw_statuses,orders,10,id,id,integer,10,0,bigint,3000001 | 3000002 | 3000003 | 3000004 | 3000005
+orders_dbw_statuses,orders,10,orderId,order_id,integer,10,0,bigint,3000001 | 3000002 | 3000003 | 3000004 | 3000005
+orders_dbw_statuses,orders,10,orderUid,order_uid,string,10,0,text,"""3000001_f61b3c21b5dd4d108ab4f9fb"" | ""3000002_b3da29f8827844549d402a03"" | ""3000003_95554d0baa4d43b582de33ae"" | ""3000004_a7cdcf8de7334a829e1e816e"" | ""3000005_dafc75beeff0404fb0967ad7"""
+orders_dbw_statuses,orders,10,rid,rid,string,10,0,text,"""rid_3000001"" | ""rid_3000002"" | ""rid_3000003"" | ""rid_3000004"" | ""rid_3000005"""
+orders_dbw_statuses,orders,10,srid,srid,string,10,0,text,"""rid_3000001"" | ""rid_3000002"" | ""rid_3000003"" | ""rid_3000004"" | ""rid_3000005"""
+orders_dbw_statuses,orders,10,status,status,string,10,0,text,"""assembly"" | ""confirmed"" | ""in_delivery"" | ""new"" | ""completed"""
+orders_dbw_statuses,orders,10,supplierStatus,supplier_status,string,10,0,text,"""confirm"" | ""sold"" | ""cancel"" | ""waiting"""
+orders_dbw_statuses,orders,10,updatedAt,updated_at,string,10,0,timestamptz,"""2026-06-17T16:51:11.085903+00:00"" | ""2026-06-11T18:38:11.085932+00:00"" | ""2026-06-24T21:41:40.085949+00:00"" | ""2026-06-23T09:13:03.085964+00:00"" | ""2026-06-22T02:38:16.085979+00:00"""
+orders_dbw_statuses,orders,10,wbStatus,wb_status,string,10,0,text,"""waiting"" | ""new"" | ""complete"" | ""cancel"" | ""confirm"""
+orders_fbs_current,orders,15,address.fullAddress,address_full_address,string,15,0,text,"""к. Тихвин, бул. З.Космодемьянской, д. 53 к. 6/4, 226595"" | ""с. Далматово, ул. Петровская, д. 2 к. 2, 142056"" | ""с. Верхотурье, алл. Учительская, д. 541 к. 105, 368516"" | ""п. Витим, наб. Путевая, д. 16, 272522"" | ""с. Серпухов, наб. Пролетарская, д. 8 стр. 1/7, 732548"""
+orders_fbs_current,orders,15,address.latitude,address_latitude,number,15,0,numeric,61.0242 | 44.277369 | 43.221408 | 65.445677 | 46.893291
+orders_fbs_current,orders,15,address.longitude,address_longitude,number,15,0,numeric,41.093743 | 81.296041 | 88.913157 | 144.944735 | 118.61114
+orders_fbs_current,orders,15,article,article,string,15,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_fbs_current,orders,15,barcode,barcode,string,15,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+orders_fbs_current,orders,15,cargoType,cargo_type,integer,15,0,bigint,1 | 3 | 2
+orders_fbs_current,orders,15,chrtId,chrt_id,integer,15,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+orders_fbs_current,orders,15,colorCode,color_code,string,15,0,text,"""что"" | ""выкинуть"" | ""вскинуть"" | ""художественный"" | ""палата"""
+orders_fbs_current,orders,15,comment,comment,string,15,0,text,"""второй"" | ""костер"" | ""подробность"" | ""настать"" | ""хлеб"""
+orders_fbs_current,orders,15,convertedCurrencyCode,converted_currency_code,integer,15,0,bigint,643
+orders_fbs_current,orders,15,convertedFinalPrice,converted_final_price,integer,15,0,bigint,5675 | 1756 | 6532 | 2008 | 4578
+orders_fbs_current,orders,15,convertedPrice,converted_price,integer,15,0,bigint,7057 | 2851 | 7871 | 3769 | 6614
+orders_fbs_current,orders,15,createdAt,created_at,string,15,0,timestamptz,"""2026-06-28T11:24:12.058430+00:00"" | ""2026-05-06T08:46:09.058585+00:00"" | ""2026-06-23T00:28:25.058658+00:00"" | ""2026-05-15T16:51:47.058721+00:00"" | ""2026-06-03T08:56:56.058784+00:00"""
+orders_fbs_current,orders,15,crossBorderType,cross_border_type,integer,15,0,bigint,0 | 1
+orders_fbs_current,orders,15,currencyCode,currency_code,integer,15,0,bigint,643
+orders_fbs_current,orders,15,deliveryMethod,delivery_method,string,15,0,text,"""fbs"""
+orders_fbs_current,orders,15,deliveryService,delivery_service,string,15,0,text,"""WB_FBS"" | ""SELLER_TO_WB"""
+orders_fbs_current,orders,15,deliveryType,delivery_type,string,15,0,text,"""fbs"""
+orders_fbs_current,orders,15,finalPrice,final_price,integer,15,0,bigint,5675 | 1756 | 6532 | 2008 | 4578
+orders_fbs_current,orders,15,id,id,integer,15,0,bigint,1100001 | 1100002 | 1100003 | 1100004 | 1100005
+orders_fbs_current,orders,15,isZeroOrder,is_zero_order,boolean,15,0,boolean,true | false
+orders_fbs_current,orders,15,nmId,nm_id,integer,15,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+orders_fbs_current,orders,15,officeId,office_id,integer,15,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+orders_fbs_current,orders,15,offices,offices,array,15,0,jsonb,"[""полевой"", ""мелькнуть"", ""беспомощный""] | [""разводить""] | [""сопровождаться"", ""госпожа""] | [""посидеть""] | [""проход"", ""дружно"", ""механический""]"
+orders_fbs_current,orders,15,options.isB2B,options_is_b2_b,boolean,15,0,boolean,true | false
+orders_fbs_current,orders,15,orderCode,order_code,string,15,0,text,"""ORD-1100001"" | ""ORD-1100002"" | ""ORD-1100003"" | ""ORD-1100004"" | ""ORD-1100005"""
+orders_fbs_current,orders,15,orderId,order_id,integer,15,0,bigint,1100001 | 1100002 | 1100003 | 1100004 | 1100005
+orders_fbs_current,orders,15,orderUid,order_uid,string,15,0,text,"""1100001_8401f38f037748a5b0c729f4"" | ""1100002_9e44ecc401fa4f38b6a122ec"" | ""1100003_fbe963fd5521473da620868d"" | ""1100004_5fd3437574094312a066de87"" | ""1100005_3d482ae663a3426d9d35a5ed"""
+orders_fbs_current,orders,15,payMode,pay_mode,string,15,0,text,"""card"" | ""cashless"" | ""prepaid"""
+orders_fbs_current,orders,15,price,price,integer,15,0,bigint,7057 | 2851 | 7871 | 3769 | 6614
+orders_fbs_current,orders,15,rid,rid,string,15,0,text,"""rid_1100001"" | ""rid_1100002"" | ""rid_1100003"" | ""rid_1100004"" | ""rid_1100005"""
+orders_fbs_current,orders,15,salePrice,sale_price,integer,15,0,bigint,5675 | 1756 | 6532 | 2008 | 4578
+orders_fbs_current,orders,15,scanPrice,scan_price,integer,15,0,bigint,6093 | 8240 | 4889 | 9374 | 5534
+orders_fbs_current,orders,15,skus,skus,array,15,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+orders_fbs_current,orders,15,srid,srid,string,15,0,text,"""rid_1100001"" | ""rid_1100002"" | ""rid_1100003"" | ""rid_1100004"" | ""rid_1100005"""
+orders_fbs_current,orders,15,supplyId,supply_id,string,15,0,text,"""протягивать"" | ""невозможно"" | ""достоинство"" | ""заработать"" | ""жестокий"""
+orders_fbs_current,orders,15,vendorCode,vendor_code,string,15,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_fbs_current,orders,15,warehouseAddress,warehouse_address,string,15,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+orders_fbs_current,orders,15,warehouseId,warehouse_id,integer,15,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+orders_fbs_current,orders,15,warehouseName,warehouse_name,string,15,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+orders_fbs_new,orders,15,address.fullAddress,address_full_address,string,15,0,text,"""п. Тольятти, алл. Седова, д. 448 стр. 8, 454665"" | ""ст. Кабанск, ул. Индустриальная, д. 9/9 стр. 9, 025927"" | ""п. Поронайск, ул. Леваневского, д. 275 к. 95, 474724"" | ""п. Югорск, наб. Шмидта, д. 2, 021565"" | ""д. Далматово, ш. Путейское, д. 6/1 стр. 904, 829141"""
+orders_fbs_new,orders,15,address.latitude,address_latitude,number,15,0,numeric,48.979614 | 66.737016 | 69.987168 | 67.090182 | 54.908029
+orders_fbs_new,orders,15,address.longitude,address_longitude,number,15,0,numeric,40.02285 | 122.404494 | 43.644425 | 56.356684 | 119.268393
+orders_fbs_new,orders,15,article,article,string,15,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_fbs_new,orders,15,barcode,barcode,string,15,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+orders_fbs_new,orders,15,cargoType,cargo_type,integer,15,0,bigint,3 | 1 | 2
+orders_fbs_new,orders,15,chrtId,chrt_id,integer,15,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+orders_fbs_new,orders,15,colorCode,color_code,string,15,0,text,"""висеть"" | ""тюрьма"" | ""постоянный"" | ""ботинок"" | ""смертельный"""
+orders_fbs_new,orders,15,comment,comment,string,15,0,text,"""падать"" | ""вчера"" | ""зачем"" | ""деньги"" | ""поезд"""
+orders_fbs_new,orders,15,convertedCurrencyCode,converted_currency_code,integer,15,0,bigint,643
+orders_fbs_new,orders,15,convertedFinalPrice,converted_final_price,integer,15,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+orders_fbs_new,orders,15,convertedPrice,converted_price,integer,15,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+orders_fbs_new,orders,15,createdAt,created_at,string,15,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+orders_fbs_new,orders,15,crossBorderType,cross_border_type,integer,15,0,bigint,1 | 0
+orders_fbs_new,orders,15,currencyCode,currency_code,integer,15,0,bigint,643
+orders_fbs_new,orders,15,ddate,ddate,string,15,0,timestamptz,"""2026-05-13T03:54:17.303663+00:00"" | ""2026-06-06T01:32:15.305145+00:00"" | ""2026-05-17T10:03:46.306522+00:00"" | ""2026-06-13T14:34:22.307887+00:00"" | ""2026-06-20T23:34:04.309129+00:00"""
+orders_fbs_new,orders,15,deliveryMethod,delivery_method,string,15,0,text,"""fbs"""
+orders_fbs_new,orders,15,deliveryService,delivery_service,string,15,0,text,"""WB_FBS"" | ""SELLER_TO_WB"""
+orders_fbs_new,orders,15,deliveryType,delivery_type,string,15,0,text,"""fbs"""
+orders_fbs_new,orders,15,finalPrice,final_price,integer,15,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+orders_fbs_new,orders,15,id,id,integer,15,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+orders_fbs_new,orders,15,isPickupPointShipmentAllowed,is_pickup_point_shipment_allowed,boolean,15,0,boolean,true | false
+orders_fbs_new,orders,15,isZeroOrder,is_zero_order,boolean,15,0,boolean,false | true
+orders_fbs_new,orders,15,nmId,nm_id,integer,15,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+orders_fbs_new,orders,15,officeId,office_id,integer,15,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+orders_fbs_new,orders,15,offices,offices,array,15,0,jsonb,"[""оборот""] | [""заработать""] | [""выбирать"", ""призыв""] | [""желание""] | [""художественный""]"
+orders_fbs_new,orders,15,optionalMeta,optional_meta,array,15,0,jsonb,"[""ход""] | [""смертельный"", ""вперед""] | [""развернуться"", ""реклама"", ""мусор""] | [""смеяться"", ""мелочь""] | [""умолять"", ""выражаться"", ""вывести""]"
+orders_fbs_new,orders,15,options.isB2B,options_is_b2_b,boolean,15,0,boolean,false | true
+orders_fbs_new,orders,15,orderCode,order_code,string,15,0,text,"""ORD-1000001"" | ""ORD-1000002"" | ""ORD-1000003"" | ""ORD-1000004"" | ""ORD-1000005"""
+orders_fbs_new,orders,15,orderId,order_id,integer,15,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+orders_fbs_new,orders,15,orderUid,order_uid,string,15,0,text,"""1000001_29b1f0a7940346959ae10b50"" | ""1000002_d6e5fa96f7084aca890e3849"" | ""1000003_b497cc398efd4521aefe6f73"" | ""1000004_ca91b40d6ea448fb90705a35"" | ""1000005_2b56efe97d0c4754b4d36b49"""
+orders_fbs_new,orders,15,payMode,pay_mode,string,15,0,text,"""cashless"" | ""prepaid"" | ""card"""
+orders_fbs_new,orders,15,price,price,integer,15,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+orders_fbs_new,orders,15,requiredMeta,required_meta,array,15,0,jsonb,"[""князь"", ""второй""] | [""висеть"", ""тюрьма"", ""второй""] | [""слишком""] | [""штаб""] | [""слишком"", ""мера"", ""чем""]"
+orders_fbs_new,orders,15,rid,rid,string,15,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+orders_fbs_new,orders,15,salePrice,sale_price,integer,15,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+orders_fbs_new,orders,15,scanPrice,scan_price,integer,15,0,bigint,5322 | 7593 | 5804 | 1290 | 5861
+orders_fbs_new,orders,15,sellerDate,seller_date,string,15,0,timestamptz,"""2026-05-21T21:48:27.303735+00:00"" | ""2026-05-07T11:22:21.305172+00:00"" | ""2026-05-14T05:50:08.306572+00:00"" | ""2026-05-17T16:19:40.307912+00:00"" | ""2026-06-11T04:51:58.309154+00:00"""
+orders_fbs_new,orders,15,skus,skus,array,15,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+orders_fbs_new,orders,15,srid,srid,string,15,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+orders_fbs_new,orders,15,vendorCode,vendor_code,string,15,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_fbs_new,orders,15,warehouseAddress,warehouse_address,string,15,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+orders_fbs_new,orders,15,warehouseId,warehouse_id,integer,15,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+orders_fbs_new,orders,15,warehouseName,warehouse_name,string,15,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+orders_fbs_statuses,orders,11,createdAt,created_at,string,11,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+orders_fbs_statuses,orders,11,id,id,integer,11,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+orders_fbs_statuses,orders,11,isCancellable,is_cancellable,boolean,11,0,boolean,true | false
+orders_fbs_statuses,orders,11,orderId,order_id,integer,11,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+orders_fbs_statuses,orders,11,orderUid,order_uid,string,11,0,text,"""1000001_29b1f0a7940346959ae10b50"" | ""1000002_d6e5fa96f7084aca890e3849"" | ""1000003_b497cc398efd4521aefe6f73"" | ""1000004_ca91b40d6ea448fb90705a35"" | ""1000005_2b56efe97d0c4754b4d36b49"""
+orders_fbs_statuses,orders,11,rid,rid,string,11,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+orders_fbs_statuses,orders,11,srid,srid,string,11,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+orders_fbs_statuses,orders,11,status,status,string,11,0,text,"""new"" | ""assembly"" | ""in_delivery"" | ""confirmed"" | ""completed"""
+orders_fbs_statuses,orders,11,supplierStatus,supplier_status,string,11,0,text,"""new"" | ""confirm"" | ""complete"" | ""cancel"""
+orders_fbs_statuses,orders,11,updatedAt,updated_at,string,11,0,timestamptz,"""2026-06-20T10:38:32.083480+00:00"" | ""2026-06-28T10:56:37.083525+00:00"" | ""2026-06-11T08:22:22.083544+00:00"" | ""2026-06-09T05:36:00.083561+00:00"" | ""2026-06-09T10:36:24.083578+00:00"""
+orders_fbs_statuses,orders,11,wbStatus,wb_status,string,11,0,text,"""sent_to_carrier"" | ""declined_by_client"" | ""accepted_by_carrier"" | ""ready_for_pickup"" | ""sold"""
+orders_pickup_new,orders,12,article,article,string,12,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_pickup_new,orders,12,barcode,barcode,string,12,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+orders_pickup_new,orders,12,cargoType,cargo_type,integer,12,0,bigint,1 | 2 | 3
+orders_pickup_new,orders,12,chrtId,chrt_id,integer,12,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+orders_pickup_new,orders,12,convertedCurrencyCode,converted_currency_code,integer,12,0,bigint,643
+orders_pickup_new,orders,12,convertedFinalPrice,converted_final_price,integer,12,0,bigint,4178 | 8968 | 2719 | 7990 | 7944
+orders_pickup_new,orders,12,convertedPrice,converted_price,integer,12,0,bigint,4535 | 10015 | 2916 | 8589 | 8804
+orders_pickup_new,orders,12,createdAt,created_at,string,12,0,timestamptz,"""2026-06-22T14:20:12.080867+00:00"" | ""2026-06-06T15:18:58.080983+00:00"" | ""2026-06-02T08:09:44.081051+00:00"" | ""2026-04-30T10:40:22.081111+00:00"" | ""2026-04-30T05:53:11.081173+00:00"""
+orders_pickup_new,orders,12,currencyCode,currency_code,integer,12,0,bigint,643
+orders_pickup_new,orders,12,ddate,ddate,string,12,0,timestamptz,"""2026-05-15T09:21:34.055566+00:00"" | ""2026-06-14T00:07:36.056880+00:00"" | ""2026-05-10T12:21:12.057672+00:00"" | ""2026-05-16T13:03:13.058444+00:00"" | ""2026-06-28T22:26:20.059216+00:00"""
+orders_pickup_new,orders,12,deliveryMethod,delivery_method,string,12,0,text,"""selfPickup"" | ""pickupPoint"""
+orders_pickup_new,orders,12,deliveryService,delivery_service,string,12,0,text,"""SELF_PICKUP"" | ""PICKUP_POINT"""
+orders_pickup_new,orders,12,deliveryType,delivery_type,string,12,0,text,"""selfPickup"" | ""pickupPoint"""
+orders_pickup_new,orders,12,finalPrice,final_price,integer,12,0,bigint,4178 | 8968 | 2719 | 7990 | 7944
+orders_pickup_new,orders,12,id,id,integer,12,0,bigint,4000001 | 4000002 | 4000003 | 4000004 | 4000005
+orders_pickup_new,orders,12,isZeroOrder,is_zero_order,boolean,12,0,boolean,true | false
+orders_pickup_new,orders,12,nmId,nm_id,integer,12,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+orders_pickup_new,orders,12,officeId,office_id,integer,12,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+orders_pickup_new,orders,12,orderCode,order_code,string,12,0,text,"""ORD-4000001"" | ""ORD-4000002"" | ""ORD-4000003"" | ""ORD-4000004"" | ""ORD-4000005"""
+orders_pickup_new,orders,12,orderId,order_id,integer,12,0,bigint,4000001 | 4000002 | 4000003 | 4000004 | 4000005
+orders_pickup_new,orders,12,orderUid,order_uid,string,12,0,text,"""4000001_a925870d6c5849c19ccf6c1f"" | ""4000002_e892d2f70549411f9b4c8f82"" | ""4000003_c457c572742e450299b437c9"" | ""4000004_3f879738eaae4769afd6f8a4"" | ""4000005_536e9f5a429a46c6b3c074dc"""
+orders_pickup_new,orders,12,payMode,pay_mode,string,12,0,text,"""cashless"" | ""prepaid"" | ""card"""
+orders_pickup_new,orders,12,price,price,integer,12,0,bigint,4535 | 10015 | 2916 | 8589 | 8804
+orders_pickup_new,orders,12,requiredMeta,required_meta,array,12,0,jsonb,"[""низкий"", ""покидать""] | [""стакан"", ""очко"", ""социалистический""] | [""человечек"", ""жидкий""] | [""порода"", ""наткнуться""] | [""коллектив"", ""господь""]"
+orders_pickup_new,orders,12,rid,rid,string,12,0,text,"""rid_4000001"" | ""rid_4000002"" | ""rid_4000003"" | ""rid_4000004"" | ""rid_4000005"""
+orders_pickup_new,orders,12,salePrice,sale_price,integer,12,0,bigint,4178 | 8968 | 2719 | 7990 | 7944
+orders_pickup_new,orders,12,skus,skus,array,12,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+orders_pickup_new,orders,12,srid,srid,string,12,0,text,"""rid_4000001"" | ""rid_4000002"" | ""rid_4000003"" | ""rid_4000004"" | ""rid_4000005"""
+orders_pickup_new,orders,12,vendorCode,vendor_code,string,12,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+orders_pickup_new,orders,12,warehouseAddress,warehouse_address,string,12,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+orders_pickup_new,orders,12,warehouseId,warehouse_id,integer,12,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+orders_pickup_new,orders,12,warehouseName,warehouse_name,string,12,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+orders_pickup_statuses,orders,18,createdAt,created_at,string,18,0,timestamptz,"""2026-06-22T14:20:12.080867+00:00"" | ""2026-06-06T15:18:58.080983+00:00"" | ""2026-06-02T08:09:44.081051+00:00"" | ""2026-04-30T10:40:22.081111+00:00"" | ""2026-04-30T05:53:11.081173+00:00"""
+orders_pickup_statuses,orders,18,errors,errors,array,18,0,jsonb,"[{""code"": 475, ""detail"": ""монета""}] | [{""code"": 671, ""detail"": ""миг""}, {""code"": 988, ""detail"": ""сверкать""}] | [{""code"": 801, ""detail"": ""угроза""}, {""code"": 168, ""detail"": ""правление""}] | [{""code"": 806, ""detail"": ""назначить""}, {""code"": 66, ""detail"": ""запретить""}, {""code"": 124, ""detail"": ""наступать""}] | [{""code"": 122, ""detail"": ""вряд""}]"
+orders_pickup_statuses,orders,18,id,id,integer,18,0,bigint,4000001 | 4000002 | 4000003 | 4000004 | 4000005
+orders_pickup_statuses,orders,18,orderId,order_id,integer,18,0,bigint,4000001 | 4000002 | 4000003 | 4000004 | 4000005
+orders_pickup_statuses,orders,18,orderUid,order_uid,string,18,0,text,"""4000001_a925870d6c5849c19ccf6c1f"" | ""4000002_e892d2f70549411f9b4c8f82"" | ""4000003_c457c572742e450299b437c9"" | ""4000004_3f879738eaae4769afd6f8a4"" | ""4000005_536e9f5a429a46c6b3c074dc"""
+orders_pickup_statuses,orders,18,rid,rid,string,18,0,text,"""rid_4000001"" | ""rid_4000002"" | ""rid_4000003"" | ""rid_4000004"" | ""rid_4000005"""
+orders_pickup_statuses,orders,18,srid,srid,string,18,0,text,"""rid_4000001"" | ""rid_4000002"" | ""rid_4000003"" | ""rid_4000004"" | ""rid_4000005"""
+orders_pickup_statuses,orders,18,status,status,string,18,0,text,"""completed"" | ""assembly"" | ""cancelled"" | ""new"" | ""in_delivery"""
+orders_pickup_statuses,orders,18,supplierStatus,supplier_status,string,18,0,text,"""complete"" | ""delivered"" | ""confirm"" | ""new"" | ""waiting"""
+orders_pickup_statuses,orders,18,updatedAt,updated_at,string,18,0,timestamptz,"""2026-06-18T02:41:04.087328+00:00"" | ""2026-06-24T04:06:21.087389+00:00"" | ""2026-06-13T12:56:45.087420+00:00"" | ""2026-06-11T18:39:43.087456+00:00"" | ""2026-06-17T23:18:28.087481+00:00"""
+orders_pickup_statuses,orders,18,wbStatus,wb_status,string,18,0,text,"""complete"" | ""waiting"" | ""delivered"" | ""sold"" | ""new"""
+promotion_campaigns,adverts,13,advertId,advert_id,integer,13,0,bigint,900000 | 900001 | 900002 | 900003 | 900004
+promotion_campaigns,adverts,13,article,article,string,13,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+promotion_campaigns,adverts,13,barcode,barcode,string,13,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+promotion_campaigns,adverts,13,bid_type,bid_type,string,13,0,text,"""строительство"" | ""расстройство"" | ""через"" | ""дружно"" | ""скользить"""
+promotion_campaigns,adverts,13,campaignId,campaign_id,integer,13,0,bigint,900000 | 900001 | 900002 | 900003 | 900004
+promotion_campaigns,adverts,13,chrtId,chrt_id,integer,13,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+promotion_campaigns,adverts,13,id,id,integer,13,0,bigint,932 | 671 | 120 | 6 | 442
+promotion_campaigns,adverts,13,nmId,nm_id,integer,13,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+promotion_campaigns,adverts,13,nm_settings,nm_settings,array,13,0,jsonb,"[{""nm_id"": 38608990, ""subject"": {""id"": 238, ""name"": ""лапа""}, ""bids_kopecks"": {""search"": 803, ""recommendations"": 725}}... | [{""nm_id"": 55412551, ""subject"": {""id"": 529, ""name"": ""желание""}, ""bids_kopecks"": {""search"": 65, ""recommendations"": 505... | [{""nm_id"": 82769330, ""subject"": {""id"": 196, ""name"": ""развернуться""}, ""bids_kopecks"": {""search"": 895, ""recommendations... | [{""nm_id"": 60850366, ""subject"": {""id"": 170, ""name"": ""мелочь""}, ""bids_kopecks"": {""search"": 234, ""recommendations"": 842}}] | [{""nm_id"": 22355906, ""subject"": {""id"": 290, ""name"": ""коробка""}, ""bids_kopecks"": {""search"": 436, ""recommendations"": 88..."
+promotion_campaigns,adverts,13,settings.name,settings_name,string,13,0,text,"""тусклый"" | ""ложиться"" | ""нажать"" | ""неправда"" | ""издали"""
+promotion_campaigns,adverts,13,settings.payment_type,settings_payment_type,string,13,0,text,"""поздравлять"" | ""настать"" | ""соответствие"" | ""висеть"" | ""монета"""
+promotion_campaigns,adverts,13,settings.placements.recommendations,settings_placements_recommendations,boolean,13,0,boolean,false | true
+promotion_campaigns,adverts,13,settings.placements.search,settings_placements_search,boolean,13,0,boolean,false | true
+promotion_campaigns,adverts,13,skus,skus,array,13,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+promotion_campaigns,adverts,13,status,status,integer,13,0,bigint,-1 | 7 | 9 | 4 | 8
+promotion_campaigns,adverts,13,timestamps.created,timestamps_created,string,13,0,timestamptz,"""2026-05-20T04:55:24.354617+00:00"" | ""2026-05-11T15:10:14.355844+00:00"" | ""2026-06-06T07:35:58.356761+00:00"" | ""2026-05-30T13:54:37.357310+00:00"" | ""2026-04-29T20:22:57.358069+00:00"""
+promotion_campaigns,adverts,13,timestamps.deleted,timestamps_deleted,string,13,0,timestamptz,"""2026-04-29T23:34:17.354857+00:00"" | ""2026-05-07T09:08:20.355906+00:00"" | ""2026-05-28T22:47:55.356830+00:00"" | ""2026-06-24T06:54:56.357363+00:00"" | ""2026-06-21T22:45:08.358123+00:00"""
+promotion_campaigns,adverts,13,timestamps.started,timestamps_started,string,13,0,timestamptz,"""2026-06-09T03:00:53.354804+00:00"" | ""2026-05-22T08:37:38.355888+00:00"" | ""2026-05-28T01:00:07.356798+00:00"" | ""2026-05-22T15:34:47.357346+00:00"" | ""2026-05-14T20:53:59.358106+00:00"""
+promotion_campaigns,adverts,13,timestamps.updated,timestamps_updated,string,13,0,timestamptz,"""2026-06-02T18:31:52.354777+00:00"" | ""2026-06-01T13:34:22.355870+00:00"" | ""2026-05-12T17:06:51.356781+00:00"" | ""2026-05-21T16:55:51.357328+00:00"" | ""2026-06-12T22:52:38.358089+00:00"""
+promotion_campaigns,adverts,13,vendorCode,vendor_code,string,13,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+report_orders,$,11,article,article,string,11,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+report_orders,$,11,barcode,barcode,string,11,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+report_orders,$,11,brand,brand,string,11,0,text,"""возмутиться"" | ""пища"" | ""монета"" | ""ботинок"" | ""потянуться"""
+report_orders,$,11,cancelDate,cancel_date,string,11,0,timestamptz,"""2026-06-16T00:12:34.900965+00:00"" | ""2026-05-31T11:36:33.901765+00:00"" | ""2026-05-31T12:04:45.902622+00:00"" | ""2026-06-10T02:17:28.903435+00:00"" | ""2026-05-27T16:53:25.904224+00:00"""
+report_orders,$,11,category,category,string,11,0,text,"""бок"" | ""термин"" | ""ботинок"" | ""провал"" | ""указанный"""
+report_orders,$,11,chrtId,chrt_id,integer,11,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+report_orders,$,11,convertedCurrencyCode,converted_currency_code,integer,11,0,bigint,643
+report_orders,$,11,convertedFinalPrice,converted_final_price,integer,11,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+report_orders,$,11,convertedPrice,converted_price,integer,11,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+report_orders,$,11,countryName,country_name,string,11,0,text,"""тусклый"" | ""бак"" | ""витрина"" | ""плавно"" | ""секунда"""
+report_orders,$,11,createdAt,created_at,string,11,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+report_orders,$,11,currencyCode,currency_code,integer,11,0,bigint,643
+report_orders,$,11,date,date,string,11,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+report_orders,$,11,discountPercent,discount_percent,integer,11,0,bigint,628 | 260 | 311 | 609 | 107
+report_orders,$,11,finalPrice,final_price,integer,11,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+report_orders,$,11,finishedPrice,finished_price,integer,11,0,bigint,2135 | 886 | 1415 | 3740 | 1791
+report_orders,$,11,gNumber,g_number,string,11,0,text,"""мучительно"" | ""сомнительный"" | ""рай"" | ""дремать"" | ""плясать"""
+report_orders,$,11,id,id,integer,11,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+report_orders,$,11,incomeID,income_id,integer,11,0,bigint,716 | 789 | 690 | 287 | 709
+report_orders,$,11,isCancel,is_cancel,boolean,11,0,boolean,true | false
+report_orders,$,11,isRealization,is_realization,boolean,11,0,boolean,false | true
+report_orders,$,11,isSupply,is_supply,boolean,11,0,boolean,true | false
+report_orders,$,11,lastChangeDate,last_change_date,string,11,0,timestamptz,"""2026-06-11T22:49:09.900489+00:00"" | ""2026-05-31T01:53:14.901420+00:00"" | ""2026-05-17T04:50:03.902217+00:00"" | ""2026-05-16T07:49:16.903076+00:00"" | ""2026-06-11T03:20:53.903855+00:00"""
+report_orders,$,11,nmId,nm_id,integer,11,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+report_orders,$,11,oblastOkrugName,oblast_okrug_name,string,11,0,text,"""спорт"" | ""премьера"" | ""еврейский"" | ""слать"" | ""равнодушный"""
+report_orders,$,11,officeId,office_id,integer,11,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+report_orders,$,11,operationDate,operation_date,string,11,0,timestamptz,"""2026-06-03T13:24:44.099774+00:00"" | ""2026-06-04T10:46:57.099840+00:00"" | ""2026-06-22T00:36:50.099857+00:00"" | ""2026-06-06T22:57:05.099870+00:00"" | ""2026-06-11T07:17:46.099883+00:00"""
+report_orders,$,11,orderId,order_id,integer,11,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+report_orders,$,11,orderUid,order_uid,string,11,0,text,"""1000001_29b1f0a7940346959ae10b50"" | ""1000002_d6e5fa96f7084aca890e3849"" | ""1000003_b497cc398efd4521aefe6f73"" | ""1000004_ca91b40d6ea448fb90705a35"" | ""1000005_2b56efe97d0c4754b4d36b49"""
+report_orders,$,11,price,price,integer,11,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+report_orders,$,11,priceWithDisc,price_with_disc,integer,11,0,bigint,2135 | 886 | 1415 | 3740 | 1791
+report_orders,$,11,regionName,region_name,string,11,0,text,"""функция"" | ""куча"" | ""освобождение"" | ""собеседник"" | ""пламя"""
+report_orders,$,11,rid,rid,string,11,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+report_orders,$,11,saleDt,sale_dt,string,11,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+report_orders,$,11,salePrice,sale_price,integer,11,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+report_orders,$,11,skus,skus,array,11,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+report_orders,$,11,spp,spp,number,11,0,numeric,785.91 | 424.22 | 921.35 | 860.66 | 644.33
+report_orders,$,11,srid,srid,string,11,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+report_orders,$,11,sticker,sticker,string,11,0,text,"""изображать"" | ""ученый"" | ""следовательно"" | ""демократия"" | ""лиловый"""
+report_orders,$,11,subject,subject,string,11,0,text,"""остановить"" | ""лететь"" | ""способ"" | ""при"" | ""доставать"""
+report_orders,$,11,supplierArticle,supplier_article,string,11,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+report_orders,$,11,techSize,tech_size,string,11,0,text,"""школьный"" | ""полюбить"" | ""блин"" | ""дорогой"" | ""терапия"""
+report_orders,$,11,totalPrice,total_price,integer,11,0,bigint,2135 | 886 | 1415 | 3740 | 1791
+report_orders,$,11,vendorCode,vendor_code,string,11,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+report_orders,$,11,warehouseAddress,warehouse_address,string,11,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+report_orders,$,11,warehouseId,warehouse_id,integer,11,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+report_orders,$,11,warehouseName,warehouse_name,string,11,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+report_orders,$,11,warehouseType,warehouse_type,string,11,0,text,"""Склад WB"" | ""Склад продавца"""
+report_sales,$,15,article,article,string,15,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+report_sales,$,15,barcode,barcode,string,15,0,bigint,"""4600000001546"" | ""4600000002958"" | ""4600000004313"" | ""4600000005676"" | ""4600000007055"""
+report_sales,$,15,brand,brand,string,15,0,text,"""порода"" | ""плод"" | ""ярко"" | ""разуметься"" | ""штаб"""
+report_sales,$,15,category,category,string,15,0,text,"""монета"" | ""результат"" | ""бровь"" | ""спорт"" | ""поезд"""
+report_sales,$,15,chrtId,chrt_id,integer,15,0,bigint,170000001 | 170000002 | 170000003 | 170000004 | 170000005
+report_sales,$,15,convertedCurrencyCode,converted_currency_code,integer,15,0,bigint,643
+report_sales,$,15,convertedFinalPrice,converted_final_price,integer,15,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+report_sales,$,15,convertedPrice,converted_price,integer,15,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+report_sales,$,15,countryName,country_name,string,15,0,text,"""лиловый"" | ""сохранять"" | ""указанный"" | ""вытаскивать"" | ""пересечь"""
+report_sales,$,15,createdAt,created_at,string,15,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+report_sales,$,15,currencyCode,currency_code,integer,15,0,bigint,643
+report_sales,$,15,date,date,string,15,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+report_sales,$,15,discountPercent,discount_percent,integer,15,0,bigint,577 | 10 | 473 | 446 | 28
+report_sales,$,15,finalPrice,final_price,integer,15,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+report_sales,$,15,finishedPrice,finished_price,integer,15,0,bigint,1687 | 9909 | 1524 | 6905 | 7025
+report_sales,$,15,forPay,for_pay,number,15,0,numeric,198.55 | 739.2 | 374.04 | 812.84 | 150.05
+report_sales,$,15,gNumber,g_number,string,15,0,text,"""приходить"" | ""способ"" | ""сопровождаться"" | ""ремень"" | ""витрина"""
+report_sales,$,15,id,id,integer,15,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+report_sales,$,15,incomeID,income_id,integer,15,0,bigint,85 | 479 | 611 | 546 | 568
+report_sales,$,15,isRealization,is_realization,boolean,15,0,boolean,true | false
+report_sales,$,15,isSupply,is_supply,boolean,15,0,boolean,true | false
+report_sales,$,15,lastChangeDate,last_change_date,string,15,0,timestamptz,"""2026-06-28T23:58:35.513398+00:00"" | ""2026-06-01T18:49:24.514164+00:00"" | ""2026-06-29T14:57:47.514767+00:00"" | ""2026-05-06T19:22:34.515458+00:00"" | ""2026-06-01T17:36:16.516097+00:00"""
+report_sales,$,15,nmId,nm_id,integer,15,0,bigint,70000001 | 70000002 | 70000003 | 70000004 | 70000005
+report_sales,$,15,oblastOkrugName,oblast_okrug_name,string,15,0,text,"""слишком"" | ""добиться"" | ""бетонный"" | ""палец"" | ""угодный"""
+report_sales,$,15,officeId,office_id,integer,15,0,bigint,2001 | 2002 | 2003 | 2004 | 2005
+report_sales,$,15,operationDate,operation_date,string,15,0,timestamptz,"""2026-06-22T02:27:03.100982+00:00"" | ""2026-06-24T10:41:31.101012+00:00"" | ""2026-06-03T17:01:54.101026+00:00"" | ""2026-06-04T20:44:47.101038+00:00"" | ""2026-06-08T12:02:49.101050+00:00"""
+report_sales,$,15,orderId,order_id,integer,15,0,bigint,1000001 | 1000002 | 1000003 | 1000004 | 1000005
+report_sales,$,15,orderUid,order_uid,string,15,0,text,"""1000001_29b1f0a7940346959ae10b50"" | ""1000002_d6e5fa96f7084aca890e3849"" | ""1000003_b497cc398efd4521aefe6f73"" | ""1000004_ca91b40d6ea448fb90705a35"" | ""1000005_2b56efe97d0c4754b4d36b49"""
+report_sales,$,15,paymentSaleAmount,payment_sale_amount,integer,15,0,bigint,1575 | 7610 | 1140 | 5976 | 5760
+report_sales,$,15,price,price,integer,15,0,bigint,8178 | 5046 | 8585 | 3872 | 3164
+report_sales,$,15,priceWithDisc,price_with_disc,integer,15,0,bigint,1687 | 9909 | 1524 | 6905 | 7025
+report_sales,$,15,regionName,region_name,string,15,0,text,"""бетонный"" | ""ход"" | ""миллиард"" | ""а"" | ""рабочий"""
+report_sales,$,15,rid,rid,string,15,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+report_sales,$,15,saleDt,sale_dt,string,15,0,timestamptz,"""2026-05-31T15:31:49.053799+00:00"" | ""2026-06-29T05:15:30.054022+00:00"" | ""2026-06-22T10:13:45.054121+00:00"" | ""2026-06-08T11:12:03.054224+00:00"" | ""2026-06-14T20:24:18.054331+00:00"""
+report_sales,$,15,saleID,sale_id,string,15,0,text,"""ложиться"" | ""запретить"" | ""волк"" | ""плясать"" | ""парень"""
+report_sales,$,15,salePrice,sale_price,integer,15,0,bigint,6527 | 2751 | 6198 | 2458 | 3158
+report_sales,$,15,skus,skus,array,15,0,jsonb,"[""4600000001546"", ""4600000001655""] | [""4600000002958"", ""4600000003085"", ""4600000003171""] | [""4600000004313""] | [""4600000005676""] | [""4600000007055"", ""4600000007217""]"
+report_sales,$,15,spp,spp,number,15,0,numeric,76.7 | 675.21 | 406.44 | 580.88 | 875.29
+report_sales,$,15,srid,srid,string,15,0,text,"""rid_1000001"" | ""rid_1000002"" | ""rid_1000003"" | ""rid_1000004"" | ""rid_1000005"""
+report_sales,$,15,sticker,sticker,string,15,0,text,"""вообще"" | ""задержать"" | ""пробовать"" | ""результат"" | ""потом"""
+report_sales,$,15,subject,subject,string,15,0,text,"""левый"" | ""угодный"" | ""кпсс"" | ""вздрагивать"" | ""ремень"""
+report_sales,$,15,supplierArticle,supplier_article,string,15,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+report_sales,$,15,techSize,tech_size,string,15,0,text,"""посидеть"" | ""рай"" | ""роскошный"" | ""исследование"" | ""выраженный"""
+report_sales,$,15,totalPrice,total_price,integer,15,0,bigint,1687 | 9909 | 1524 | 6905 | 7025
+report_sales,$,15,vendorCode,vendor_code,string,15,0,text,"""art-1001"" | ""art-1002"" | ""art-1003"" | ""art-1004"" | ""art-1005"""
+report_sales,$,15,warehouseAddress,warehouse_address,string,15,0,text,"""г. Москва, складская зона 1"" | ""г. Москва, складская зона 2"" | ""г. Москва, складская зона 3"" | ""г. Москва, складская зона 4"" | ""г. Москва, складская зона 5"""
+report_sales,$,15,warehouseId,warehouse_id,integer,15,0,bigint,1001 | 1002 | 1003 | 1004 | 1005
+report_sales,$,15,warehouseName,warehouse_name,string,15,0,text,"""Склад WB 1"" | ""Склад WB 2"" | ""Склад WB 3"" | ""Склад WB 4"" | ""Склад WB 5"""
+report_sales,$,15,warehouseType,warehouse_type,string,15,0,text,"""Склад продавца"" | ""Склад WB"""
+tariffs_acceptance,$,14,allowUnload,allow_unload,boolean,14,0,boolean,true | false
+tariffs_acceptance,$,14,boxTypeID,box_type_id,integer,14,0,bigint,693 | 46 | 983 | 716 | 24
+tariffs_acceptance,$,14,coefficient,coefficient,number,14,0,numeric,174.43 | 830.72 | 972.55 | 250.38 | 288.11
+tariffs_acceptance,$,14,date,date,string,14,0,timestamptz,"""2026-05-09T23:39:56.055466+00:00"" | ""2026-05-03T01:07:45.056071+00:00"" | ""2026-06-02T22:26:17.056499+00:00"" | ""2026-05-20T14:44:42.056948+00:00"" | ""2026-06-20T16:02:14.057369+00:00"""
+tariffs_acceptance,$,14,deliveryAdditionalLiter,delivery_additional_liter,string,14,0,text,"""вперед"" | ""мера"" | ""понятный"" | ""недостаток"" | ""командование"""
+tariffs_acceptance,$,14,deliveryBaseLiter,delivery_base_liter,string,14,0,text,"""решение"" | ""провал"" | ""господь"" | ""выраженный"" | ""строительство"""
+tariffs_acceptance,$,14,deliveryCoef,delivery_coef,string,14,0,text,"""ребятишки"" | ""командующий"" | ""услать"" | ""какой"" | ""ученый"""
+tariffs_acceptance,$,14,isSortingCenter,is_sorting_center,boolean,14,0,boolean,true | false
+tariffs_acceptance,$,14,storageAdditionalLiter,storage_additional_liter,string,14,0,text,"""механический"" | ""блин"" | ""находить"" | ""народ"" | ""мимо"""
+tariffs_acceptance,$,14,storageBaseLiter,storage_base_liter,string,14,0,text,"""мягкий"" | ""нажать"" | ""труп"" | ""порог"" | ""хозяйка"""
+tariffs_acceptance,$,14,storageCoef,storage_coef,string,14,0,text,"""второй"" | ""шлем"" | ""прелесть"" | ""чувство"" | ""еврейский"""
+tariffs_acceptance,$,14,warehouseID,warehouse_id,integer,14,0,bigint,170 | 380 | 461 | 77 | 387
+tariffs_acceptance,$,14,warehouseName,warehouse_name,string,14,0,text,"""житель"" | ""командование"" | ""решение"" | ""ставить"" | ""низкий"""
+tariffs_box,response.data.warehouseList,3,boxDeliveryBase,box_delivery_base,string,3,0,text,"""костер"" | ""товар"" | ""способ"""
+tariffs_box,response.data.warehouseList,3,boxDeliveryCoefExpr,box_delivery_coef_expr,string,3,0,text,"""роса"" | ""конструкция"" | ""жить"""
+tariffs_box,response.data.warehouseList,3,boxDeliveryLiter,box_delivery_liter,string,3,0,text,"""танцевать"" | ""коричневый"" | ""изредка"""
+tariffs_box,response.data.warehouseList,3,boxDeliveryMarketplaceBase,box_delivery_marketplace_base,string,3,0,text,"""цель"" | ""падать"" | ""карандаш"""
+tariffs_box,response.data.warehouseList,3,boxDeliveryMarketplaceCoefExpr,box_delivery_marketplace_coef_expr,string,3,0,text,"""девка"" | ""бабочка"" | ""помолчать"""
+tariffs_box,response.data.warehouseList,3,boxDeliveryMarketplaceLiter,box_delivery_marketplace_liter,string,3,0,text,"""командир"" | ""изображать"" | ""медицина"""
+tariffs_box,response.data.warehouseList,3,boxStorageBase,box_storage_base,string,3,0,text,"""блин"" | ""космос"" | ""неправда"""
+tariffs_box,response.data.warehouseList,3,boxStorageCoefExpr,box_storage_coef_expr,string,3,0,text,"""прощение"" | ""наслаждение"" | ""инструкция"""
+tariffs_box,response.data.warehouseList,3,boxStorageLiter,box_storage_liter,string,3,0,text,"""присесть"" | ""монета"" | ""намерение"""
+tariffs_box,response.data.warehouseList,3,geoName,geo_name,string,3,0,text,"""господь"" | ""потом"" | ""поставить"""
+tariffs_box,response.data.warehouseList,3,warehouseName,warehouse_name,string,3,0,text,"""около"" | ""пасть"" | ""труп"""
+tariffs_commission,report,17,kgvpBooking,kgvp_booking,number,17,0,numeric,539.21 | 435.09 | 906.38 | 878.58 | 805.27
+tariffs_commission,report,17,kgvpMarketplace,kgvp_marketplace,number,17,0,numeric,664.11 | 729.96 | 335.81 | 489.02 | 163.71
+tariffs_commission,report,17,kgvpPickup,kgvp_pickup,number,17,0,numeric,352.87 | 657.77 | 442.89 | 630.08 | 64.58
+tariffs_commission,report,17,kgvpSupplier,kgvp_supplier,number,17,0,numeric,886.79 | 178.93 | 219.26 | 522.14 | 479.77
+tariffs_commission,report,17,kgvpSupplierExpress,kgvp_supplier_express,number,17,0,numeric,341.31 | 467.08 | 958.31 | 65.08 | 80.47
+tariffs_commission,report,17,paidStorageKgvp,paid_storage_kgvp,number,17,0,numeric,6.4 | 41.47 | 544.56 | 266.83 | 1.68
+tariffs_commission,report,17,parentID,parent_id,integer,17,0,bigint,166 | 891 | 477 | 90 | 648
+tariffs_commission,report,17,parentName,parent_name,string,17,0,text,"""пространство"" | ""банк"" | ""сутки"" | ""приятель"" | ""мотоцикл"""
+tariffs_commission,report,17,subjectID,subject_id,integer,17,0,bigint,624 | 59 | 113 | 929 | 611
+tariffs_commission,report,17,subjectName,subject_name,string,17,0,text,"""прелесть"" | ""поздравлять"" | ""место"" | ""покинуть"" | ""засунуть"""

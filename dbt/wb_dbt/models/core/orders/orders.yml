@@ -1,0 +1,230 @@
+version: 2
+
+models:
+  - name: orders
+    description: >
+      Core-таблица заказов WB. Одна строка = одна проверенная order-record строка,
+      прошедшая row quarantine через quarantine.v_orders_current_for_core.
+      Таблица сохраняет бизнес-идентификаторы заказа, товарные поля, даты, цены,
+      доставку, quality-флаги и технический lineage. На этом слое данные не агрегируются
+      и не склеиваются в последнюю версию заказа.
+
+    columns:
+      - name: order_row_id
+        description: "Стабильный surrogate key строки core.orders. Строится как md5 от raw_payload_id и record_index."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: order_identity
+        description: "Бизнес-идентификатор заказа/fallback key: order_id, order_uid, rid или order_code."
+        data_tests:
+          - not_null
+
+      - name: raw_payload_id
+        description: "Lineage ID исходного raw payload из landing.raw_payloads."
+        data_tests:
+          - not_null
+
+      - name: record_index
+        description: "Номер заказа внутри массива orders[] исходного JSON. Вместе с raw_payload_id идентифицирует исходную строку."
+        data_tests:
+          - not_null
+
+      - name: source_system
+        description: "Система-источник данных, например wb_mock."
+
+      - name: dataset_name
+        description: "Имя исходного dataset/endpoint mock API."
+        data_tests:
+          - not_null
+
+      - name: source_file
+        description: "Имя исходного JSON-файла."
+
+      - name: source_url
+        description: "URL исходного JSON-файла."
+
+      - name: file_hash
+        description: "Хэш исходного файла для контроля изменений и воспроизводимости."
+
+      - name: loaded_at
+        description: "Время загрузки raw payload в PostgreSQL."
+
+      - name: order_flow
+        description: "Нормализованный поток заказа: fbs, dbs, dbw или pickup."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['fbs', 'dbs', 'dbw', 'pickup']
+
+      - name: order_kind
+        description: "Тип набора заказов: new, current, completed или archive."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['new', 'current', 'completed', 'archive']
+
+      - name: is_archive
+        description: "Флаг архивного набора заказов."
+
+      - name: order_id
+        description: "Числовой идентификатор заказа, если он есть в источнике."
+
+      - name: rid
+        description: "Уникальный WB-идентификатор заказа/строки заказа."
+        data_tests:
+          - not_null
+
+      - name: srid
+        description: "Дополнительный строковый WB-идентификатор, если присутствует."
+
+      - name: order_uid
+        description: "Строковый UID заказа из источника."
+
+      - name: order_code
+        description: "Дополнительный код заказа из источника."
+
+      - name: created_at
+        description: "Дата и время создания заказа в источнике."
+
+      - name: order_date
+        description: "Дата заказа, вычисляется как created_at::date. Использовать только если can_use_order_date = true."
+
+      - name: ddate
+        description: "Дата доставки/плановая дата, если присутствует."
+
+      - name: seller_date
+        description: "Дата, связанная с продавцом или операцией продавца."
+
+      - name: delivery_type
+        description: "Тип доставки из исходного JSON."
+
+      - name: delivery_method
+        description: "Метод доставки из исходного JSON."
+
+      - name: delivery_service
+        description: "Служба доставки из исходного JSON."
+
+      - name: pay_mode
+        description: "Способ оплаты заказа."
+
+      - name: article
+        description: "Артикул продавца/vendor code."
+
+      - name: nm_id
+        description: "WB nmId — идентификатор карточки/номенклатуры товара."
+        data_tests:
+          - not_null
+
+      - name: chrt_id
+        description: "WB chrtId — идентификатор характеристики/размера товара."
+        data_tests:
+          - not_null
+
+      - name: barcode
+        description: "Баркод/SKU товара, если присутствует."
+
+      - name: skus
+        description: "JSON-массив SKU/баркодов товара."
+
+      - name: price_raw
+        description: "Цена заказа из источника без изменения масштаба."
+
+      - name: sale_price_raw
+        description: "Цена продажи/цена со скидкой из источника без изменения масштаба."
+
+      - name: final_price_raw
+        description: "Финальная цена из источника без изменения масштаба."
+
+      - name: converted_price_raw
+        description: "Цена после валютной конвертации из источника без изменения масштаба."
+
+      - name: converted_final_price_raw
+        description: "Финальная цена после валютной конвертации из источника без изменения масштаба."
+
+      - name: currency_code
+        description: "Код валюты исходной цены."
+
+      - name: converted_currency_code
+        description: "Код валюты после конвертации."
+
+      - name: scan_price_raw
+        description: "Сканированная цена из источника без изменения масштаба."
+
+      - name: warehouse_id
+        description: "ID склада или точки, связанной с заказом."
+
+      - name: warehouse_address
+        description: "Адрес склада, если присутствует."
+
+      - name: office_id
+        description: "ID офиса/точки выдачи/операционной точки."
+
+      - name: supply_id
+        description: "ID поставки, если заказ связан с поставкой."
+
+      - name: address_full
+        description: "Полный адрес доставки/точки."
+
+      - name: address_latitude
+        description: "Широта адреса."
+
+      - name: address_longitude
+        description: "Долгота адреса."
+
+      - name: group_id
+        description: "Групповой идентификатор заказа/операции из источника."
+
+      - name: cargo_type
+        description: "Тип груза из источника."
+
+      - name: cross_border_type
+        description: "Тип cross-border операции."
+
+      - name: color_code
+        description: "Служебный цветовой код из источника."
+
+      - name: comment
+        description: "Комментарий к заказу из источника."
+
+      - name: is_zero_order
+        description: "Флаг zero-order из источника."
+
+      - name: is_b2b
+        description: "Флаг B2B-заказа."
+
+      - name: quality_status
+        description: "Итоговый статус качества строки после row quarantine: good или partial."
+
+      - name: quality_issues
+        description: "Массив bad/partial issue-кодов. Для core не должно быть bad-issues."
+
+      - name: warning_issues
+        description: "Массив warning issue-кодов."
+
+      - name: issue_details
+        description: "JSONB-массив подробностей по issues строки."
+
+      - name: can_load_to_core
+        description: "Флаг допуска строки в core. В core.orders должны попадать только true."
+        data_tests:
+          - not_null
+
+      - name: can_count_order
+        description: "Флаг: можно ли учитывать строку как заказ."
+
+      - name: can_count_revenue
+        description: "Флаг: можно ли учитывать строку в revenue-аналитике."
+
+      - name: can_use_order_date
+        description: "Флаг: можно ли использовать дату заказа в аналитике по датам."
+
+      - name: is_complete
+        description: "true, если у строки нет bad/partial-проблем."
+
+      - name: raw_record
+        description: "Исходный JSON-объект заказа. Оставлен в core для трассировки и отладки."
+
+      - name: core_loaded_at
+        description: "Время построения строки core.orders при dbt run."

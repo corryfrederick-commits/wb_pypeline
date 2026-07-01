@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: rq_items_stocks_issues
+    description: "Единая row-quality таблица нарушений для `stg_items_stocks`. Одна строка = одно нарушение одного правила одной staging-строки."
+    columns:
+      - name: raw_payload_id
+        description: "Идентификатор исходного payload из landing.raw_payloads."
+      - name: record_index
+        description: "Порядковый номер записи внутри распарсенного payload."
+      - name: dataset_name
+        description: "Имя исходного mock/WB dataset."
+      - name: rule_id
+        description: "Технический идентификатор row-quality правила."
+      - name: rule_group
+        description: "Группа правила качества."
+      - name: rule_type
+        description: "Тип правила качества."
+      - name: issue_severity
+        description: "Критичность нарушения: bad или warning."
+      - name: column_name
+        description: "Колонка или набор колонок, к которым относится правило."
+      - name: issue_code
+        description: "Код найденной проблемы качества."
+      - name: issue_message
+        description: "Человекочитаемое описание проблемы качества."
+      - name: detected_at
+        description: "Время вычисления нарушения."
+
+  - name: rq_items_stocks_quality
+    description: "Единая row-quality таблица для `stg_items_stocks`. Содержит исходные staging-поля и агрегированные quality-флаги."
+    columns:
+      - name: issue_count
+        description: "Общее количество найденных нарушений по строке."
+      - name: bad_issue_count
+        description: "Количество критических нарушений bad по строке."
+      - name: warning_issue_count
+        description: "Количество предупреждений warning по строке."
+      - name: quality_status
+        description: "Итоговый статус качества строки: good, partial или bad."
+      - name: quality_issues
+        description: "Массив кодов критических bad-нарушений."
+      - name: warning_issues
+        description: "Массив кодов warning-предупреждений."
+      - name: can_load_to_cleaned
+        description: "Флаг, показывающий, можно ли загружать строку в staging_cleaned."
+
+  - name: v_items_stocks_for_cleaned
+    description: "View строк `stg_items_stocks`, разрешённых к загрузке в staging_cleaned. Фильтр: can_load_to_cleaned = true."

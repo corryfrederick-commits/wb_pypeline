@@ -1,0 +1,312 @@
+[
+  {
+    "dataset_name": "analytics_sales_funnel",
+    "domain": "analytics",
+    "model_name": "stg_analytics_sales_funnel",
+    "main_record_path": "data.products",
+    "record_count": 1,
+    "field_count": 100,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "analytics_stocks",
+    "domain": "analytics",
+    "model_name": "stg_analytics_stocks",
+    "main_record_path": "data.items",
+    "record_count": 9,
+    "field_count": 8,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "communications_chats",
+    "domain": "communications",
+    "model_name": "stg_communications_chats",
+    "main_record_path": "result",
+    "record_count": 11,
+    "field_count": 22,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "communications_feedbacks",
+    "domain": "communications",
+    "model_name": "stg_communications_feedbacks",
+    "main_record_path": "data.feedbacks",
+    "record_count": 12,
+    "field_count": 39,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "fbw_supplies",
+    "domain": "fbw",
+    "model_name": "stg_fbw_supplies",
+    "main_record_path": "$",
+    "record_count": 18,
+    "field_count": 10,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "finance_balance",
+    "domain": "finance",
+    "model_name": "stg_finance_balance",
+    "main_record_path": "$",
+    "record_count": 1,
+    "field_count": 3,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "finance_sales_reports",
+    "domain": "finance",
+    "model_name": "stg_finance_sales_reports",
+    "main_record_path": "$",
+    "record_count": 6,
+    "field_count": 46,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "finance_sales_reports_detailed",
+    "domain": "finance",
+    "model_name": "stg_finance_sales_reports_detailed",
+    "main_record_path": "$",
+    "record_count": 6,
+    "field_count": 109,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "general_seller_info",
+    "domain": "general",
+    "model_name": "stg_general_seller_info",
+    "main_record_path": "$",
+    "record_count": 1,
+    "field_count": 4,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "items_cards",
+    "domain": "items",
+    "model_name": "stg_items_cards",
+    "main_record_path": "cards",
+    "record_count": 18,
+    "field_count": 30,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "items_stocks",
+    "domain": "items",
+    "model_name": "stg_items_stocks",
+    "main_record_path": "stocks",
+    "record_count": 14,
+    "field_count": 14,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "items_warehouses",
+    "domain": "items",
+    "model_name": "stg_items_warehouses",
+    "main_record_path": "$",
+    "record_count": 17,
+    "field_count": 10,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "orders_dbs_completed",
+    "domain": "orders",
+    "model_name": "stg_orders_dbs_completed",
+    "main_record_path": "orders",
+    "record_count": 15,
+    "field_count": 39,
+    "enabled": false,
+    "reason": "covered_by_stg_orders_current"
+  },
+  {
+    "dataset_name": "orders_dbs_new",
+    "domain": "orders",
+    "model_name": "stg_orders_dbs_new",
+    "main_record_path": "orders",
+    "record_count": 8,
+    "field_count": 39,
+    "enabled": false,
+    "reason": "covered_by_stg_orders_current"
+  },
+  {
+    "dataset_name": "orders_dbs_statuses",
+    "domain": "orders",
+    "model_name": "stg_orders_dbs_statuses",
+    "main_record_path": "orders",
+    "record_count": 13,
+    "field_count": 11,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "orders_dbw_completed",
+    "domain": "orders",
+    "model_name": "stg_orders_dbw_completed",
+    "main_record_path": "orders",
+    "record_count": 16,
+    "field_count": 37,
+    "enabled": false,
+    "reason": "covered_by_stg_orders_current"
+  },
+  {
+    "dataset_name": "orders_dbw_new",
+    "domain": "orders",
+    "model_name": "stg_orders_dbw_new",
+    "main_record_path": "orders",
+    "record_count": 7,
+    "field_count": 38,
+    "enabled": false,
+    "reason": "covered_by_stg_orders_current"
+  },
+  {
+    "dataset_name": "orders_dbw_statuses",
+    "domain": "orders",
+    "model_name": "stg_orders_dbw_statuses",
+    "main_record_path": "orders",
+    "record_count": 10,
+    "field_count": 10,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "orders_fbs_archive",
+    "domain": "orders",
+    "model_name": "stg_orders_fbs_archive",
+    "main_record_path": "orders.metaDetails",
+    "record_count": 0,
+    "field_count": 0,
+    "enabled": false,
+    "reason": "covered_by_stg_orders_current"
+  },
+  {
+    "dataset_name": "orders_fbs_current",
+    "domain": "orders",
+    "model_name": "stg_orders_fbs_current",
+    "main_record_path": "orders",
+    "record_count": 15,
+    "field_count": 40,
+    "enabled": false,
+    "reason": "covered_by_stg_orders_current"
+  },
+  {
+    "dataset_name": "orders_fbs_new",
+    "domain": "orders",
+    "model_name": "stg_orders_fbs_new",
+    "main_record_path": "orders",
+    "record_count": 15,
+    "field_count": 44,
+    "enabled": false,
+    "reason": "covered_by_stg_orders_current"
+  },
+  {
+    "dataset_name": "orders_fbs_statuses",
+    "domain": "orders",
+    "model_name": "stg_orders_fbs_statuses",
+    "main_record_path": "orders",
+    "record_count": 11,
+    "field_count": 11,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "orders_pickup_new",
+    "domain": "orders",
+    "model_name": "stg_orders_pickup_new",
+    "main_record_path": "orders",
+    "record_count": 12,
+    "field_count": 32,
+    "enabled": false,
+    "reason": "covered_by_stg_orders_current"
+  },
+  {
+    "dataset_name": "orders_pickup_statuses",
+    "domain": "orders",
+    "model_name": "stg_orders_pickup_statuses",
+    "main_record_path": "orders",
+    "record_count": 18,
+    "field_count": 11,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "promotion_campaigns",
+    "domain": "promotion",
+    "model_name": "stg_promotion_campaigns",
+    "main_record_path": "adverts",
+    "record_count": 13,
+    "field_count": 20,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "promotion_fullstats",
+    "domain": "promotion",
+    "model_name": "stg_promotion_fullstats",
+    "main_record_path": "$[].days[].apps[].nms[]",
+    "record_count": 58,
+    "field_count": 57,
+    "enabled": true,
+    "reason": "manual_nested_staging_root_days_apps_nms"
+  },
+  {
+    "dataset_name": "report_orders",
+    "domain": "reports",
+    "model_name": "stg_report_orders",
+    "main_record_path": "$",
+    "record_count": 11,
+    "field_count": 48,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "report_sales",
+    "domain": "reports",
+    "model_name": "stg_report_sales",
+    "main_record_path": "$",
+    "record_count": 15,
+    "field_count": 49,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "tariffs_acceptance",
+    "domain": "tariffs",
+    "model_name": "stg_tariffs_acceptance",
+    "main_record_path": "$",
+    "record_count": 14,
+    "field_count": 13,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "tariffs_box",
+    "domain": "tariffs",
+    "model_name": "stg_tariffs_box",
+    "main_record_path": "response.data.warehouseList",
+    "record_count": 3,
+    "field_count": 11,
+    "enabled": true,
+    "reason": "auto_staging"
+  },
+  {
+    "dataset_name": "tariffs_commission",
+    "domain": "tariffs",
+    "model_name": "stg_tariffs_commission",
+    "main_record_path": "report",
+    "record_count": 17,
+    "field_count": 10,
+    "enabled": true,
+    "reason": "auto_staging"
+  }
+]

@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: existing_staging
+    schema: staging
+    description: "Уже существующий staging-слой, созданный SQL-скриптами пайплайна."
+    tables:
+      - name: orders_current
+        description: "Технически нормализованные заказы WB из raw JSON. Одна строка = один заказ из orders-массива одного raw payload."

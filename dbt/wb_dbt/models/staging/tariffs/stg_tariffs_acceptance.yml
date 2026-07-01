@@ -1,0 +1,64 @@
+version: 2
+models:
+- name: stg_tariffs_acceptance
+  description: 'Автоматически сгенерированная staging-модель для dataset tariffs_acceptance. Главный record path: $. Одна строка = одна запись
+    из главного массива JSON.'
+  columns:
+  - name: raw_payload_id
+    description: Технический lineage. ID строки из landing.raw_payloads.
+    data_tests:
+    - not_null
+  - name: record_index
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    data_tests:
+    - not_null
+  - name: source_system
+    description: Система-источник данных.
+  - name: dataset_name
+    description: Имя исходного dataset/endpoint mock API.
+    data_tests:
+    - not_null
+  - name: source_file
+    description: Имя исходного JSON-файла.
+  - name: source_url
+    description: URL исходного JSON-файла.
+  - name: file_hash
+    description: Хэш исходного файла.
+  - name: loaded_at
+    description: Время загрузки raw payload в PostgreSQL.
+  - name: raw_record
+    description: Исходный JSON-объект одной записи без потери структуры.
+    data_tests:
+    - not_null
+  - name: allow_unload
+    description: 'Availability of acceptance for deliveries of this type, see the value of the field `boxTypeID`:  - `true` — available  - `false`
+      — not available JSON path: `allowUnload`. Dataset: `tariffs_acceptance`.'
+  - name: box_type_id
+    description: 'Supply type ID:   - `2` — Box   - `5` — Monopallets   - `6` — Super safe <br>For the **QR-delivery with boxes** supply type
+      the field is not returned JSON path: `boxTypeID`. Dataset: `tariffs_acceptance`.'
+  - name: coefficient
+    description: 'Acceptance coefficient:   - `-1` — acceptance is not available, regardless of the value of the field `allowUnload`   - `0` —
+      free acceptance   - from `1` — acceptance cost multiplier JSON path: `coefficient`. Dataset: `tariffs_acceptance`.'
+  - name: date_value
+    description: 'Date, YYYY-MM-DD JSON path: `date`. Dataset: `tariffs_acceptance`.'
+  - name: delivery_additional_liter
+    description: 'Cost of logistic for each additional liter JSON path: `deliveryAdditionalLiter`. Dataset: `tariffs_acceptance`.'
+  - name: delivery_base_liter
+    description: 'Cost of logistic for the first liter JSON path: `deliveryBaseLiter`. Dataset: `tariffs_acceptance`.'
+  - name: delivery_coef
+    description: 'Logistic coefficient JSON path: `deliveryCoef`. Dataset: `tariffs_acceptance`.'
+  - name: is_sorting_center
+    description: 'Warehouse type: - `true` — a sorting center (SC) - `false` — regular JSON path: `isSortingCenter`. Dataset: `tariffs_acceptance`.'
+  - name: storage_additional_liter
+    description: 'Storage cost for each additional liter:   - for pallets — will always be `null` since the storage cost per pallet is defined
+      in `StorageBaseLiter`   - for boxes — storage cost for each additional liter JSON path: `storageAdditionalLiter`. Dataset: `tariffs_acceptance`.'
+  - name: storage_base_liter
+    description: 'Storage cost:   - for pallets — cost per pallet   - for boxes — storage cost for the first liter JSON path: `storageBaseLiter`.
+      Dataset: `tariffs_acceptance`.'
+  - name: storage_coef
+    description: 'Storage coefficient JSON path: `storageCoef`. Dataset: `tariffs_acceptance`.'
+  - name: warehouse_id
+    description: 'Warehouse ID. Use it to get [information about the warehouse](./orders-fbw#tag/Information-for-Forming-Supplies/paths/~1api~1v1~1warehouses/get)
+      JSON path: `warehouseID`. Dataset: `tariffs_acceptance`.'
+  - name: warehouse_name
+    description: 'Warehouse name JSON path: `warehouseName`. Dataset: `tariffs_acceptance`.'

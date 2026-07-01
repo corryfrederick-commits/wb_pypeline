@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: landing
+    schema: landing
+    description: "Слой сырых JSON payload от WB mock API."
+    tables:
+      - name: raw_payloads
+        description: "Сырые JSON payload без потери структуры. Одна строка = один скачанный JSON-файл."

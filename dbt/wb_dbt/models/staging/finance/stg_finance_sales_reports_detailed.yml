@@ -1,0 +1,272 @@
+version: 2
+models:
+- name: stg_finance_sales_reports_detailed
+  description: 'Автоматически сгенерированная staging-модель для dataset finance_sales_reports_detailed. Главный record path: $. Одна строка =
+    одна запись из главного массива JSON.'
+  columns:
+  - name: raw_payload_id
+    description: Технический lineage. ID строки из landing.raw_payloads.
+    data_tests:
+    - not_null
+  - name: record_index
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    data_tests:
+    - not_null
+  - name: source_system
+    description: Система-источник данных.
+  - name: dataset_name
+    description: Имя исходного dataset/endpoint mock API.
+    data_tests:
+    - not_null
+  - name: source_file
+    description: Имя исходного JSON-файла.
+  - name: source_url
+    description: URL исходного JSON-файла.
+  - name: file_hash
+    description: Хэш исходного файла.
+  - name: loaded_at
+    description: Время загрузки raw payload в PostgreSQL.
+  - name: raw_record
+    description: Исходный JSON-объект одной записи без потери структуры.
+    data_tests:
+    - not_null
+  - name: acquiring_bank
+    description: 'Acquiring bank JSON path: `acquiringBank`. Dataset: `finance_sales_reports_detailed`.'
+  - name: acquiring_fee
+    description: 'Compensation for payment services/payment services integration fee JSON path: `acquiringFee`. Dataset: `finance_sales_reports_detailed`.'
+  - name: acquiring_percent
+    description: 'Compensation amount for payment services/payment services integration fee amount (%) JSON path: `acquiringPercent`. Dataset:
+      `finance_sales_reports_detailed`.'
+  - name: additional_payment
+    description: 'WB fee adjustment JSON path: `additionalPayment`. Dataset: `finance_sales_reports_detailed`.'
+  - name: agency_vat
+    description: 'Tax agent VAT withholding (%).<br>Only for sellers from Kyrgyzstan JSON path: `agencyVat`. Dataset: `finance_sales_reports_detailed`.'
+  - name: article
+    description: 'Артикул продавца JSON path: `article`. Dataset: `finance_sales_reports_detailed`.'
+  - name: article_substitution
+    description: 'Promo item number ID JSON path: `articleSubstitution`. Dataset: `finance_sales_reports_detailed`.'
+  - name: barcode
+    description: 'Barcode JSON path: `barcode`. Dataset: `finance_sales_reports_detailed`.'
+  - name: bonus_type_name
+    description: 'Deduction reason JSON path: `bonusTypeName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: brand_name
+    description: 'Brand JSON path: `brandName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: cashback_amount
+    description: 'Amount deducted for Loyalty Program rewards JSON path: `cashbackAmount`. Dataset: `finance_sales_reports_detailed`.'
+  - name: cashback_commission_change
+    description: 'Loyalty program participation cost JSON path: `cashbackCommissionChange`. Dataset: `finance_sales_reports_detailed`.'
+  - name: cashback_discount
+    description: 'Loyalty Program discount compensation JSON path: `cashbackDiscount`. Dataset: `finance_sales_reports_detailed`.'
+  - name: chrt_id
+    description: 'Size ID JSON path: `chrtId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: commission_percent
+    description: 'WB fee rate (%) JSON path: `commissionPercent`. Dataset: `finance_sales_reports_detailed`.'
+  - name: converted_currency_code
+    description: 'Код валюты страны продавца JSON path: `convertedCurrencyCode`. Dataset: `finance_sales_reports_detailed`.'
+  - name: converted_final_price
+    description: 'Сумма к оплате покупателем в валюте страны продавца с учетом всех скидок, умноженная на 100. Предоставляется в информационных
+      целях JSON path: `convertedFinalPrice`. Dataset: `finance_sales_reports_detailed`.'
+  - name: converted_price
+    description: 'Цена в валюте страны продавца с учетом всех скидок, кроме скидки по WB Кошельку, умноженная на 100 JSON path: `convertedPrice`.
+      Dataset: `finance_sales_reports_detailed`.'
+  - name: country
+    description: 'Delivery country JSON path: `country`. Dataset: `finance_sales_reports_detailed`.'
+  - name: create_date
+    description: 'Report date JSON path: `createDate`. Dataset: `finance_sales_reports_detailed`.'
+  - name: created_at
+    description: 'Creation date and time JSON path: `createdAt`. Dataset: `finance_sales_reports_detailed`.'
+  - name: currency
+    description: 'Currency JSON path: `currency`. Dataset: `finance_sales_reports_detailed`.'
+  - name: currency_code
+    description: 'Код валюты продажи JSON path: `currencyCode`. Dataset: `finance_sales_reports_detailed`.'
+  - name: date_from
+    description: 'Report start date.<br>Date in the [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format. You may send date or date
+      with time. Time could be specified in seconds or milliseconds.<br> The time stands in Moscow time zone `UTC+3`.<br>Examples:   - `2025-06-20`   -
+      `2025-06-20T23:59:59`   - `2025-06-20T00:00:00.12345`   - `2025-06-25T00:00:00` JSON path: `dateFrom`. Dataset: `finance_sales_reports_detailed`.'
+  - name: date_to
+    description: 'Report end date.<br>Date in the [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format. You may send date or date with
+      time. Time could be specified in seconds or milliseconds.<br> The time stands in Moscow time zone `UTC+3`.<br>Examples:   - `2025-06-20`   -
+      `2025-06-20T23:59:59`   - `2025-06-20T00:00:00.12345`   - `2025-06-20T00:00:00` JSON path: `dateTo`. Dataset: `finance_sales_reports_detailed`.'
+  - name: declaration_number
+    description: 'Cargo Customs Declaration No. JSON path: `declarationNumber`. Dataset: `finance_sales_reports_detailed`.'
+  - name: deduction
+    description: 'Deductions and payments JSON path: `deduction`. Dataset: `finance_sales_reports_detailed`.'
+  - name: delivery_amount
+    description: 'Number of deliveries JSON path: `deliveryAmount`. Dataset: `finance_sales_reports_detailed`.'
+  - name: delivery_method
+    description: 'Sales model and item type JSON path: `deliveryMethod`. Dataset: `finance_sales_reports_detailed`.'
+  - name: delivery_service
+    description: 'Delivery to user JSON path: `deliveryService`. Dataset: `finance_sales_reports_detailed`.'
+  - name: dlv_prc
+    description: 'Fixed warehouse multiplier for shipments JSON path: `dlvPrc`. Dataset: `finance_sales_reports_detailed`.'
+  - name: doc_type_name
+    description: 'Purchased or returned JSON path: `docTypeName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: final_price
+    description: 'Сумма к оплате покупателем в валюте продажи с учетом всех скидок, умноженная на 100. Код валюты продажи указан в поле `currencyCode`.
+      Предоставляется в информационных целях JSON path: `finalPrice`. Dataset: `finance_sales_reports_detailed`.'
+  - name: fix_tariff_date_from
+    description: 'Warehouse multiplier fixed on JSON path: `fixTariffDateFrom`. Dataset: `finance_sales_reports_detailed`.'
+  - name: fix_tariff_date_to
+    description: 'Warehouse multiplier fixed until JSON path: `fixTariffDateTo`. Dataset: `finance_sales_reports_detailed`.'
+  - name: for_pay
+    description: 'Net revenue for sold items JSON path: `forPay`. Dataset: `finance_sales_reports_detailed`.'
+  - name: gi_box_type_name
+    description: 'Type of boxes JSON path: `giBoxTypeName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: gi_id
+    description: 'Shipment ID JSON path: `giId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: id
+    description: 'News ID JSON path: `id`. Dataset: `finance_sales_reports_detailed`.'
+  - name: installment_cofinancing_amount
+    description: 'Co-financing discount JSON path: `installmentCofinancingAmount`. Dataset: `finance_sales_reports_detailed`.'
+  - name: is_b2b
+    description: 'B2B sale JSON path: `isB2b`. Dataset: `finance_sales_reports_detailed`.'
+  - name: is_kgvp_v2
+    description: 'WB fee rate reduction due to promos (%) JSON path: `isKgvpV2`. Dataset: `finance_sales_reports_detailed`.'
+  - name: kiz
+    description: 'Labeling code [Chestny ZNAK](https://chestnyznak.ru/en) JSON path: `kiz`. Dataset: `finance_sales_reports_detailed`.'
+  - name: kvw
+    description: 'Final VAT-exempt WB fee rate (%) JSON path: `kvw`. Dataset: `finance_sales_reports_detailed`.'
+  - name: kvw_base
+    description: 'VAT-exempt WB fee rate (%) JSON path: `kvwBase`. Dataset: `finance_sales_reports_detailed`.'
+  - name: loyalty_discount
+    description: 'Loyalty discount (%) JSON path: `loyaltyDiscount`. Dataset: `finance_sales_reports_detailed`.'
+  - name: loyalty_id
+    description: 'Loyalty discount ID JSON path: `loyaltyId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: nm_id
+    description: 'WB item number JSON path: `nmId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: office_id
+    description: 'Office ID JSON path: `officeId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: office_name
+    description: 'Warehouse JSON path: `officeName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: operation_date
+    description: 'Дата и время операции в детализированном финансовом отчёте. Исходное поле WB JSON: `operationDate`. Описание добавлено вручную,
+      потому что в исходном WB YAML для этого поля не было description.'
+  - name: order_dt
+    description: 'Ordered on JSON path: `orderDt`. Dataset: `finance_sales_reports_detailed`.'
+  - name: order_id
+    description: 'Assembly order ID JSON path: `orderId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: order_uid
+    description: 'Cart ID.<br>Orders in the same buyer''s cart will have the same `orderUid` JSON path: `orderUid`. Dataset: `finance_sales_reports_detailed`.'
+  - name: paid_acceptance
+    description: 'Acceptance expenses JSON path: `paidAcceptance`. Dataset: `finance_sales_reports_detailed`.'
+  - name: paid_storage
+    description: 'Storage JSON path: `paidStorage`. Dataset: `finance_sales_reports_detailed`.'
+  - name: payment_processing
+    description: 'Payment type: Compensation for payment services/payment services integration fee JSON path: `paymentProcessing`. Dataset: `finance_sales_reports_detailed`.'
+  - name: payment_schedule
+    description: 'One-time payment period change JSON path: `paymentSchedule`. Dataset: `finance_sales_reports_detailed`.'
+  - name: penalty
+    description: 'Total penalties JSON path: `penalty`. Dataset: `finance_sales_reports_detailed`.'
+  - name: ppvz_office_id
+    description: 'Pickup point ID JSON path: `ppvzOfficeId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: ppvz_office_name
+    description: 'Pickup point details JSON path: `ppvzOfficeName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: ppvz_reward
+    description: 'Pickup point handover and return fee JSON path: `ppvzReward`. Dataset: `finance_sales_reports_detailed`.'
+  - name: ppvz_sales_commission
+    description: 'VAT-exempt WB fee excluding attorney service cost JSON path: `ppvzSalesCommission`. Dataset: `finance_sales_reports_detailed`.'
+  - name: ppvz_supplier_inn
+    description: 'Pickup point TIN JSON path: `ppvzSupplierInn`. Dataset: `finance_sales_reports_detailed`.'
+  - name: ppvz_supplier_name
+    description: 'Pickup point name JSON path: `ppvzSupplierName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: price
+    description: 'Price, ₽<br> Specified when adding the size JSON path: `price`. Dataset: `finance_sales_reports_detailed`.'
+  - name: product_discount_for_report
+    description: 'Final agreed discount (%) JSON path: `productDiscountForReport`. Dataset: `finance_sales_reports_detailed`.'
+  - name: quantity
+    description: 'Number of purchases and returns JSON path: `quantity`. Dataset: `finance_sales_reports_detailed`.'
+  - name: rebill_logistic_cost
+    description: 'Delivery and warehouse fee JSON path: `rebillLogisticCost`. Dataset: `finance_sales_reports_detailed`.'
+  - name: rebill_logistic_org
+    description: 'Carrier JSON path: `rebillLogisticOrg`. Dataset: `finance_sales_reports_detailed`.'
+  - name: report_id
+    description: 'Report ID JSON path: `reportId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: report_type
+    description: 'Report type:   - `1` — general   - `2` — by purchase   - `3` — by purchase for Georgia JSON path: `reportType`. Dataset: `finance_sales_reports_detailed`.'
+  - name: retail_amount
+    description: 'Sales on WB JSON path: `retailAmount`. Dataset: `finance_sales_reports_detailed`.'
+  - name: retail_price
+    description: 'Retail price JSON path: `retailPrice`. Dataset: `finance_sales_reports_detailed`.'
+  - name: retail_price_with_disc
+    description: 'Price with applied agreed discount JSON path: `retailPriceWithDisc`. Dataset: `finance_sales_reports_detailed`.'
+  - name: return_amount
+    description: 'Number of returns JSON path: `returnAmount`. Dataset: `finance_sales_reports_detailed`.'
+  - name: rid
+    description: 'Уникальный ID заказа. <br> Примечание: `rid` — это `srid` в ответах методов:   - [Заявки покупателей на возврат](./user-communication#tag/Vozvraty-pokupatelyami/paths/~1api~1v1~1claims/get)   -
+      [Заказы](./reports#tag/Osnovnye-otchyoty/paths/~1api~1v1~1supplier~1orders/get)   - [Продажи](./reports#tag/Osnovnye-otchyoty/paths/~1api~1v1~1supplier~1sales/get)   -
+      [Отчёт о возвратах и перемещении товаров](./reports#tag/Otchyot-o-vozvratah-i-peremeshenii-tovarov)   - [Детализации к отчётам реализации
+      по ID отчётов](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1SalesReportsDetailedReportId)   - [Детализации
+      к отчётам реализации за период](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1SalesReportsDetailed)   - [Детализации
+      к отчётам об издержках на приём платежей по ID отчётов](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1AcquiringDetailedReportId)   -
+      [Детализации к отчётам об издержках на приём платежей за период](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1AcquiringDetailed)
+      JSON path: `rid`. Dataset: `finance_sales_reports_detailed`.'
+  - name: rr_date
+    description: 'Operation date JSON path: `rrDate`. Dataset: `finance_sales_reports_detailed`.'
+  - name: rrd_id
+    description: 'Response row ID. Required to get the report in parts.<br>Start report uploading with `"rrdid":0`. In subsequent requests, specify
+      the `rrdId` value from the last row of the previous response.<br>Repeat the request until you get `204` response JSON path: `rrdId`. Dataset:
+      `finance_sales_reports_detailed`.'
+  - name: sale_dt
+    description: 'Purchased on JSON path: `saleDt`. Dataset: `finance_sales_reports_detailed`.'
+  - name: sale_percent
+    description: 'Agreed seller discount (%) JSON path: `salePercent`. Dataset: `finance_sales_reports_detailed`.'
+  - name: sale_price
+    description: 'Цена продавца в валюте продажи с учётом скидки продавца, без учёта скидки WB Клуба, умноженная на 100. Предоставляется в информационных
+      целях JSON path: `salePrice`. Dataset: `finance_sales_reports_detailed`.'
+  - name: sale_price_affiliated_discount_prc
+    description: 'Promo item number discount (%) JSON path: `salePriceAffiliatedDiscountPrc`. Dataset: `finance_sales_reports_detailed`.'
+  - name: sale_price_promocode_discount_prc
+    description: 'Promo code discount (%) JSON path: `salePricePromocodeDiscountPrc`. Dataset: `finance_sales_reports_detailed`.'
+  - name: sale_price_wholesale_discount_prc
+    description: 'Wholesale discount for businesses (%) JSON path: `salePriceWholesaleDiscountPrc`. Dataset: `finance_sales_reports_detailed`.'
+  - name: seller_oper_name
+    description: 'Deduction reason JSON path: `sellerOperName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: seller_promo
+    description: 'Promo code (%) JSON path: `sellerPromo`. Dataset: `finance_sales_reports_detailed`.'
+  - name: seller_promo_discount
+    description: 'Custom promo discount (%) JSON path: `sellerPromoDiscount`. Dataset: `finance_sales_reports_detailed`.'
+  - name: seller_promo_id
+    description: 'Custom promo discount ID JSON path: `sellerPromoId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: shk_id
+    description: 'Item No. JSON path: `shkId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: sku
+    description: 'SKU JSON path: `sku`. Dataset: `finance_sales_reports_detailed`.'
+  - name: skus
+    description: 'SKU JSON path: `skus`. Dataset: `finance_sales_reports_detailed`.'
+  - name: spp
+    description: 'WB discount (%) JSON path: `spp`. Dataset: `finance_sales_reports_detailed`.'
+  - name: srid
+    description: 'Order ID.<br>In the responses of the [FBS](./orders-fbs#tag/FBS-Assembly-Orders), [DBW](./orders-dbw#tag/DBW-Assembly-Orders),
+      [DBS](./orders-dbs#tag/DBS-Assembly-Orders), and [In-Store Pickup](./in-store-pickup#tag/In-Store-Pickup-Assembly-Orders) assembly order
+      methods, `srid` is `rid` JSON path: `srid`. Dataset: `finance_sales_reports_detailed`.'
+  - name: srv_dbs
+    description: 'Paid delivery JSON path: `srvDbs`. Dataset: `finance_sales_reports_detailed`.'
+  - name: sticker_id
+    description: 'FBS sticker JSON path: `stickerId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: subject_name
+    description: 'Subcategory JSON path: `subjectName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: sup_rating_up
+    description: 'WB fee rate reduction due to rating (%) JSON path: `supRatingUp`. Dataset: `finance_sales_reports_detailed`.'
+  - name: tech_size
+    description: 'Size JSON path: `techSize`. Dataset: `finance_sales_reports_detailed`.'
+  - name: title
+    description: 'Document category name from the [response](./financial-reports-and-accounting#tag/Documents/paths/~1api~1v1~1documents~1list/get)
+      field `category` JSON path: `title`. Dataset: `finance_sales_reports_detailed`.'
+  - name: trbx_id
+    description: 'Master case ID JSON path: `trbxId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: uuid_promocode
+    description: 'Promo code ID JSON path: `uuidPromocode`. Dataset: `finance_sales_reports_detailed`.'
+  - name: vendor_code
+    description: 'Seller item number JSON path: `vendorCode`. Dataset: `finance_sales_reports_detailed`.'
+  - name: vw
+    description: 'VAT-exempt WB fee JSON path: `vw`. Dataset: `finance_sales_reports_detailed`.'
+  - name: vw_nds
+    description: 'VAT on WB fee JSON path: `vwNds`. Dataset: `finance_sales_reports_detailed`.'
+  - name: warehouse_address
+    description: 'Store address (seller warehouse) where the assembly order was received JSON path: `warehouseAddress`. Dataset: `finance_sales_reports_detailed`.'
+  - name: warehouse_id
+    description: 'ID склада продавца, с которого был отгружен товар JSON path: `warehouseId`. Dataset: `finance_sales_reports_detailed`.'
+  - name: warehouse_name
+    description: 'Warehouse name for planned supply JSON path: `warehouseName`. Dataset: `finance_sales_reports_detailed`.'
+  - name: wibes_discount_percent
+    description: 'Wibes discount (%) JSON path: `wibesDiscountPercent`. Dataset: `finance_sales_reports_detailed`.'
