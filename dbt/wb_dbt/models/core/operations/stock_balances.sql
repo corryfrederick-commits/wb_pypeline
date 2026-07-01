@@ -1,0 +1,52 @@
+{{ config(materialized='table', schema='core', alias='stock_balances', tags=['core', 'core_operations']) }}
+
+with source as (
+
+    select *
+    from {{ ref('items_stocks_cleaned') }}
+    where can_load_to_cleaned = true
+
+)
+
+select
+    md5(concat_ws(
+        '||',
+        'stock_balance',
+        raw_payload_id::text,
+        record_index::text
+    )) as stock_balance_key,
+
+    loaded_at::date as stock_snapshot_date,
+    loaded_at as stock_snapshot_at,
+
+    nm_id as product_id,
+    nm_id,
+    chrt_id as product_variant_id,
+    chrt_id,
+
+    coalesce(warehouse_id, office_id) as warehouse_natural_id,
+    md5(concat_ws('||', 'warehouse', coalesce(warehouse_id, office_id)::text)) as warehouse_key,
+    warehouse_id,
+    office_id,
+    warehouse_name,
+    warehouse_address,
+
+    barcode::text as barcode_value,
+    article,
+    vendor_code,
+    skus,
+
+    quantity,
+    amount,
+    in_way_to_client,
+    in_way_from_client,
+
+    source_system,
+    dataset_name as source_dataset,
+    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    raw_payload_id,
+    record_index,
+    loaded_at as source_loaded_at,
+    now() as core_loaded_at
+
+from source

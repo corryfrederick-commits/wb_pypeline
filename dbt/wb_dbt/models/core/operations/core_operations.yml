@@ -1,0 +1,302 @@
+version: 2
+
+models:
+  - name: stock_balances
+    description: "Core факт-снимок остатков товаров на складах. Одна строка соответствует остатку товара/варианта на складе на момент загрузки данных."
+    columns:
+      - name: stock_balance_key
+        description: "Суррогатный ключ снимка остатка."
+        tests:
+          - not_null
+          - unique
+      - name: stock_snapshot_date
+        description: "Дата снимка остатков."
+      - name: stock_snapshot_at
+        description: "Время снимка остатков."
+      - name: product_id
+        description: "Ссылка на товар. Соответствует nm_id."
+      - name: nm_id
+        description: "Идентификатор номенклатуры WB."
+      - name: product_variant_id
+        description: "Ссылка на вариант товара. Соответствует chrt_id."
+      - name: chrt_id
+        description: "Идентификатор характеристики / варианта товара WB."
+      - name: warehouse_natural_id
+        description: "Единый натуральный идентификатор склада."
+      - name: warehouse_key
+        description: "Суррогатный ключ склада."
+      - name: warehouse_id
+        description: "Идентификатор склада WB."
+      - name: office_id
+        description: "Идентификатор офиса WB."
+      - name: warehouse_name
+        description: "Название склада."
+      - name: warehouse_address
+        description: "Адрес склада."
+      - name: barcode_value
+        description: "Barcode товара."
+      - name: article
+        description: "Артикул товара."
+      - name: vendor_code
+        description: "Артикул продавца."
+      - name: skus
+        description: "JSON-массив SKU / barcode."
+      - name: quantity
+        description: "Количество товара в остатке."
+      - name: amount
+        description: "Количество / сумма из источника, если передана отдельно от quantity."
+      - name: in_way_to_client
+        description: "Количество товара в пути к клиенту."
+      - name: in_way_from_client
+        description: "Количество товара в пути от клиента."
+      - name: source_system
+        description: "Источник данных."
+      - name: source_dataset
+        description: "Название исходного cleaned-набора данных."
+      - name: source_row_id
+        description: "Технический идентификатор исходной строки."
+      - name: raw_payload_id
+        description: "Идентификатор исходного raw payload."
+      - name: record_index
+        description: "Номер записи внутри исходного payload."
+      - name: source_loaded_at
+        description: "Время загрузки исходных данных."
+      - name: core_loaded_at
+        description: "Время построения core-записи."
+
+  - name: orders
+    description: "Core таблица бизнес-заказов. Одна строка соответствует одному заказу, дедуплицированному по order_uid/srid/rid/order_id."
+    columns:
+      - name: order_key
+        description: "Суррогатный ключ заказа."
+        tests:
+          - not_null
+          - unique
+      - name: order_natural_id
+        description: "Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id."
+        tests:
+          - not_null
+      - name: order_id
+        description: "Числовой идентификатор заказа WB."
+      - name: rid
+        description: "RID заказа."
+      - name: srid
+        description: "SRID заказа."
+      - name: order_uid
+        description: "UID заказа."
+      - name: order_code
+        description: "Код заказа."
+      - name: order_flow
+        description: "Схема / поток заказа."
+      - name: order_kind
+        description: "Тип заказа."
+      - name: order_created_at
+        description: "Дата и время создания заказа."
+      - name: delivery_deadline_at
+        description: "Плановая дата / дедлайн доставки."
+      - name: seller_date
+        description: "Дата продавца из источника."
+      - name: inserted_at
+        description: "Время вставки записи из источника."
+      - name: delivery_type
+        description: "Тип доставки."
+      - name: delivery_method
+        description: "Метод доставки."
+      - name: delivery_service
+        description: "Служба доставки."
+      - name: pay_mode
+        description: "Способ оплаты."
+      - name: warehouse_id
+        description: "Идентификатор склада WB."
+      - name: office_id
+        description: "Идентификатор офиса WB."
+      - name: warehouse_address
+        description: "Адрес склада."
+      - name: supply_id
+        description: "Идентификатор поставки."
+      - name: group_id
+        description: "Идентификатор группы заказа."
+      - name: cargo_type
+        description: "Тип груза."
+      - name: cross_border_type
+        description: "Тип трансграничности заказа."
+      - name: color_code
+        description: "Цветовой код из источника."
+      - name: comment
+        description: "Комментарий к заказу."
+      - name: is_zero_order
+        description: "Признак нулевого заказа."
+      - name: is_b2b
+        description: "Признак B2B-заказа."
+      - name: is_archive
+        description: "Признак архивного заказа."
+      - name: address_full
+        description: "Полный адрес доставки."
+      - name: address_latitude
+        description: "Широта адреса доставки."
+      - name: address_longitude
+        description: "Долгота адреса доставки."
+      - name: source_system
+        description: "Источник данных."
+      - name: source_dataset
+        description: "Название исходного cleaned-набора данных."
+      - name: source_row_id
+        description: "Технический идентификатор исходной строки."
+      - name: raw_payload_id
+        description: "Идентификатор исходного raw payload."
+      - name: record_index
+        description: "Номер записи внутри исходного payload."
+      - name: source_loaded_at
+        description: "Время загрузки исходных данных."
+      - name: core_loaded_at
+        description: "Время построения core-записи."
+
+  - name: order_items
+    description: "Core таблица товарных строк заказов. Одна строка соответствует одной товарной строке заказа из cleaned orders."
+    columns:
+      - name: order_item_key
+        description: "Суррогатный ключ товарной строки заказа."
+        tests:
+          - not_null
+          - unique
+      - name: order_key
+        description: "Суррогатный ключ заказа."
+        tests:
+          - not_null
+      - name: order_natural_id
+        description: "Натуральный идентификатор заказа."
+      - name: order_id
+        description: "Числовой идентификатор заказа WB."
+      - name: rid
+        description: "RID заказа."
+      - name: srid
+        description: "SRID заказа."
+      - name: order_uid
+        description: "UID заказа."
+      - name: order_code
+        description: "Код заказа."
+      - name: product_id
+        description: "Ссылка на товар. Соответствует nm_id."
+      - name: nm_id
+        description: "Идентификатор номенклатуры WB."
+      - name: product_variant_id
+        description: "Ссылка на вариант товара. Соответствует chrt_id."
+      - name: chrt_id
+        description: "Идентификатор характеристики / варианта товара WB."
+      - name: article
+        description: "Артикул товара."
+      - name: barcode_value
+        description: "Barcode товара."
+      - name: skus
+        description: "JSON-массив SKU / barcode."
+      - name: price
+        description: "Цена товара."
+      - name: sale_price
+        description: "Цена продажи."
+      - name: final_price
+        description: "Финальная цена."
+      - name: converted_price
+        description: "Цена после конвертации."
+      - name: converted_final_price
+        description: "Финальная цена после конвертации."
+      - name: currency_code
+        description: "Код валюты."
+      - name: converted_currency_code
+        description: "Код валюты после конвертации."
+      - name: scan_price
+        description: "Цена сканирования / scan price из источника."
+      - name: warehouse_id
+        description: "Идентификатор склада WB."
+      - name: office_id
+        description: "Идентификатор офиса WB."
+      - name: order_flow
+        description: "Схема / поток заказа."
+      - name: order_kind
+        description: "Тип заказа."
+      - name: delivery_type
+        description: "Тип доставки."
+      - name: delivery_method
+        description: "Метод доставки."
+      - name: delivery_service
+        description: "Служба доставки."
+      - name: pay_mode
+        description: "Способ оплаты."
+      - name: order_created_at
+        description: "Дата и время создания заказа."
+      - name: delivery_deadline_at
+        description: "Плановая дата / дедлайн доставки."
+      - name: seller_date
+        description: "Дата продавца из источника."
+      - name: source_system
+        description: "Источник данных."
+      - name: source_dataset
+        description: "Название исходного cleaned-набора данных."
+      - name: source_row_id
+        description: "Технический идентификатор исходной строки."
+      - name: raw_payload_id
+        description: "Идентификатор исходного raw payload."
+      - name: record_index
+        description: "Номер записи внутри исходного payload."
+      - name: source_loaded_at
+        description: "Время загрузки исходных данных."
+      - name: core_loaded_at
+        description: "Время построения core-записи."
+
+  - name: order_status_snapshots
+    description: "Core факт-снимок статусов заказов из FBS/DBS/DBW/Pickup status endpoint'ов."
+    columns:
+      - name: order_status_snapshot_key
+        description: "Суррогатный ключ снимка статуса заказа."
+        tests:
+          - not_null
+          - unique
+      - name: order_key
+        description: "Суррогатный ключ заказа."
+        tests:
+          - not_null
+      - name: order_natural_id
+        description: "Натуральный идентификатор заказа."
+      - name: source_status_id
+        description: "Идентификатор статуса в исходном endpoint."
+      - name: order_id
+        description: "Числовой идентификатор заказа WB."
+      - name: order_uid
+        description: "UID заказа."
+      - name: rid
+        description: "RID заказа."
+      - name: srid
+        description: "SRID заказа."
+      - name: order_flow
+        description: "Схема заказа, определённая по status dataset."
+      - name: source_status_dataset
+        description: "Исходный status dataset."
+      - name: status
+        description: "Общий статус заказа."
+      - name: supplier_status
+        description: "Статус заказа у поставщика."
+      - name: wb_status
+        description: "Статус заказа на стороне WB."
+      - name: is_cancellable
+        description: "Признак возможности отмены заказа."
+      - name: errors
+        description: "JSON с ошибками статуса, если источник их передаёт."
+      - name: status_created_at
+        description: "Дата создания статуса."
+      - name: status_updated_at
+        description: "Дата обновления статуса."
+      - name: status_snapshot_at
+        description: "Время получения снимка статуса."
+      - name: source_system
+        description: "Источник данных."
+      - name: source_dataset
+        description: "Название исходного cleaned-набора данных."
+      - name: source_row_id
+        description: "Технический идентификатор исходной строки."
+      - name: raw_payload_id
+        description: "Идентификатор исходного raw payload."
+      - name: record_index
+        description: "Номер записи внутри исходного payload."
+      - name: source_loaded_at
+        description: "Время загрузки исходных данных."
+      - name: core_loaded_at
+        description: "Время построения core-записи."
