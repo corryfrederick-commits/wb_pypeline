@@ -1,0 +1,217 @@
+version: 2
+models:
+- name: chats
+  description: Core таблица чатов / коммуникаций с покупателями.
+  columns:
+  - name: chat_key
+    description: 'Суррогатный ключ: chat key.'
+  - name: chat_natural_id
+    description: 'Идентификатор: chat natural id.'
+  - name: chat_id
+    description: 'Идентификатор: chat id.'
+  - name: source_chat_row_id
+    description: 'Идентификатор: source chat row id.'
+  - name: client_name
+    description: 'Название: client name.'
+  - name: reply_sign
+    description: 'Поле core-модели: reply sign.'
+  - name: chat_created_at
+    description: 'Дата и время: chat created at.'
+  - name: last_message_at
+    description: 'Дата и время: last message at.'
+  - name: last_message_timestamp_raw
+    description: 'Поле core-модели: last message timestamp raw.'
+  - name: last_message_text
+    description: 'Текстовое поле: last message text.'
+  - name: order_key
+    description: Суррогатный ключ заказа.
+  - name: order_natural_id
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+  - name: order_id
+    description: Числовой идентификатор заказа WB.
+  - name: order_uid
+    description: UID заказа.
+  - name: rid
+    description: RID заказа.
+  - name: srid
+    description: SRID заказа.
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: product_variant_id
+    description: Ссылка на вариант товара. Соответствует chrt_id.
+  - name: chrt_id
+    description: Идентификатор характеристики / варианта товара WB.
+  - name: article
+    description: Артикул товара.
+  - name: vendor_code
+    description: Артикул продавца.
+  - name: barcode_value
+    description: Значение barcode или SKU.
+  - name: skus
+    description: JSON-массив SKU / barcode.
+  - name: good_card_nm_id
+    description: 'Идентификатор: good card nm id.'
+  - name: good_card_rid
+    description: 'Поле core-модели: good card rid.'
+  - name: good_card_size
+    description: 'Поле core-модели: good card size.'
+  - name: good_card_price
+    description: 'Ценовой показатель: good card price.'
+  - name: good_card_price_currency
+    description: 'Ценовой показатель: good card price currency.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: fbw_supplies
+  description: Core таблица поставок FBW.
+  columns:
+  - name: fbw_supply_key
+    description: 'Суррогатный ключ: fbw supply key.'
+  - name: fbw_supply_natural_id
+    description: 'Идентификатор: fbw supply natural id.'
+  - name: supply_id
+    description: 'Идентификатор: supply id.'
+  - name: preorder_id
+    description: 'Идентификатор: preorder id.'
+  - name: status_id
+    description: 'Идентификатор: status id.'
+  - name: box_type_id
+    description: 'Идентификатор: box type id.'
+  - name: is_box_on_pallet
+    description: 'Булевый признак: is box on pallet.'
+  - name: supply_created_at
+    description: 'Дата и время: supply created at.'
+  - name: supply_date
+    description: 'Дата: supply date.'
+  - name: fact_date
+    description: 'Дата: fact date.'
+  - name: supply_updated_at
+    description: 'Дата и время: supply updated at.'
+  - name: phone
+    description: Телефон из источника.
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: feedbacks
+  description: Core таблица отзывов покупателей.
+  columns:
+  - name: feedback_key
+    description: 'Суррогатный ключ: feedback key.'
+  - name: source_feedback_id
+    description: 'Идентификатор: source feedback id.'
+  - name: parent_feedback_id
+    description: 'Идентификатор: parent feedback id.'
+  - name: child_feedback_id
+    description: 'Идентификатор: child feedback id.'
+  - name: feedback_created_at
+    description: 'Дата и время: feedback created at.'
+  - name: feedback_state
+    description: 'Поле core-модели: feedback state.'
+  - name: answer_state
+    description: 'Поле core-модели: answer state.'
+  - name: was_viewed
+    description: 'Поле core-модели: was viewed.'
+  - name: user_name
+    description: 'Название: user name.'
+  - name: feedback_text
+    description: 'Текстовое поле: feedback text.'
+  - name: pros
+    description: 'Поле core-модели: pros.'
+  - name: cons
+    description: 'Поле core-модели: cons.'
+  - name: matching_size
+    description: 'Поле core-модели: matching size.'
+  - name: color
+    description: 'Поле core-модели: color.'
+  - name: product_valuation
+    description: 'Поле core-модели: product valuation.'
+  - name: supplier_feedback_valuation
+    description: 'Поле core-модели: supplier feedback valuation.'
+  - name: supplier_product_valuation
+    description: 'Поле core-модели: supplier product valuation.'
+  - name: answer_text
+    description: 'Текстовое поле: answer text.'
+  - name: answer_editable
+    description: 'Поле core-модели: answer editable.'
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: imt_id
+    description: 'Идентификатор: imt id.'
+  - name: product_name
+    description: 'Название: product name.'
+  - name: brand_name
+    description: 'Название: brand name.'
+  - name: supplier_article
+    description: 'Поле core-модели: supplier article.'
+  - name: supplier_name
+    description: 'Название: supplier name.'
+  - name: product_size
+    description: 'Поле core-модели: product size.'
+  - name: subject_id
+    description: Идентификатор предмета / категории WB.
+  - name: subject_name
+    description: Название предмета / категории WB.
+  - name: order_status
+    description: 'Поле core-модели: order status.'
+  - name: last_order_created_at
+    description: 'Дата и время: last order created at.'
+  - name: last_order_shk_id
+    description: 'Идентификатор: last order shk id.'
+  - name: is_able_return_product_orders
+    description: 'Булевый признак: is able return product orders.'
+  - name: is_able_supplier_feedback_valuation
+    description: 'Булевый признак: is able supplier feedback valuation.'
+  - name: is_able_supplier_product_valuation
+    description: 'Булевый признак: is able supplier product valuation.'
+  - name: return_product_orders_date
+    description: 'Дата: return product orders date.'
+  - name: photo_links
+    description: 'Поле core-модели: photo links.'
+  - name: video_link
+    description: 'Поле core-модели: video link.'
+  - name: video_preview_image
+    description: 'Поле core-модели: video preview image.'
+  - name: video_duration_sec
+    description: 'Поле core-модели: video duration sec.'
+  - name: bables
+    description: 'Поле core-модели: bables.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.

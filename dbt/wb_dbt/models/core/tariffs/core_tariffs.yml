@@ -1,0 +1,141 @@
+version: 2
+models:
+- name: tariff_acceptance_prices
+  description: Core периодический справочник тарифов приёмки WB.
+  columns:
+  - name: tariff_acceptance_price_key
+    description: 'Суррогатный ключ: tariff acceptance price key.'
+  - name: tariff_snapshot_date
+    description: 'Дата: tariff snapshot date.'
+  - name: tariff_snapshot_at
+    description: 'Дата и время: tariff snapshot at.'
+  - name: tariff_date
+    description: 'Дата: tariff date.'
+  - name: warehouse_id
+    description: Идентификатор склада WB.
+  - name: warehouse_key
+    description: Суррогатный ключ склада.
+  - name: warehouse_name
+    description: Название склада.
+  - name: box_type_id
+    description: 'Идентификатор: box type id.'
+  - name: coefficient
+    description: 'Поле core-модели: coefficient.'
+  - name: allow_unload
+    description: 'Поле core-модели: allow unload.'
+  - name: is_sorting_center
+    description: 'Булевый признак: is sorting center.'
+  - name: delivery_base_liter
+    description: 'Поле core-модели: delivery base liter.'
+  - name: delivery_additional_liter
+    description: 'Поле core-модели: delivery additional liter.'
+  - name: delivery_coef
+    description: 'Поле core-модели: delivery coef.'
+  - name: storage_base_liter
+    description: 'Поле core-модели: storage base liter.'
+  - name: storage_additional_liter
+    description: 'Поле core-модели: storage additional liter.'
+  - name: storage_coef
+    description: 'Поле core-модели: storage coef.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: tariff_box_prices
+  description: Core периодический справочник тарифов коробов WB.
+  columns:
+  - name: tariff_box_price_key
+    description: 'Суррогатный ключ: tariff box price key.'
+  - name: tariff_snapshot_date
+    description: 'Дата: tariff snapshot date.'
+  - name: tariff_snapshot_at
+    description: 'Дата и время: tariff snapshot at.'
+  - name: geo_name
+    description: 'Название: geo name.'
+  - name: warehouse_name
+    description: Название склада.
+  - name: box_delivery_base
+    description: 'Поле core-модели: box delivery base.'
+  - name: box_delivery_coef_expr
+    description: 'Поле core-модели: box delivery coef expr.'
+  - name: box_delivery_liter
+    description: 'Поле core-модели: box delivery liter.'
+  - name: box_delivery_marketplace_base
+    description: 'Поле core-модели: box delivery marketplace base.'
+  - name: box_delivery_marketplace_coef_expr
+    description: 'Поле core-модели: box delivery marketplace coef expr.'
+  - name: box_delivery_marketplace_liter
+    description: 'Поле core-модели: box delivery marketplace liter.'
+  - name: box_storage_base
+    description: 'Поле core-модели: box storage base.'
+  - name: box_storage_coef_expr
+    description: 'Поле core-модели: box storage coef expr.'
+  - name: box_storage_liter
+    description: 'Поле core-модели: box storage liter.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: tariff_commissions
+  description: Core периодический справочник комиссий WB по категориям и предметам.
+  columns:
+  - name: tariff_commission_key
+    description: 'Суррогатный ключ: tariff commission key.'
+  - name: tariff_snapshot_date
+    description: 'Дата: tariff snapshot date.'
+  - name: tariff_snapshot_at
+    description: 'Дата и время: tariff snapshot at.'
+  - name: parent_id
+    description: 'Идентификатор: parent id.'
+  - name: parent_name
+    description: 'Название: parent name.'
+  - name: subject_id
+    description: Идентификатор предмета / категории WB.
+  - name: subject_name
+    description: Название предмета / категории WB.
+  - name: kgvp_booking
+    description: 'Поле core-модели: kgvp booking.'
+  - name: kgvp_marketplace
+    description: 'Поле core-модели: kgvp marketplace.'
+  - name: kgvp_pickup
+    description: 'Поле core-модели: kgvp pickup.'
+  - name: kgvp_supplier
+    description: 'Поле core-модели: kgvp supplier.'
+  - name: kgvp_supplier_express
+    description: 'Поле core-модели: kgvp supplier express.'
+  - name: paid_storage_kgvp
+    description: 'Поле core-модели: paid storage kgvp.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.

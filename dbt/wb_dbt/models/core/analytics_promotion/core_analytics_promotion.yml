@@ -1,0 +1,486 @@
+version: 2
+models:
+- name: promotion_campaigns
+  description: Core справочник рекламных кампаний WB.
+  columns:
+  - name: promotion_campaign_key
+    description: 'Суррогатный ключ: promotion campaign key.'
+  - name: promotion_campaign_natural_id
+    description: 'Идентификатор: promotion campaign natural id.'
+  - name: campaign_id
+    description: 'Идентификатор: campaign id.'
+  - name: advert_id
+    description: 'Идентификатор: advert id.'
+  - name: source_campaign_row_id
+    description: 'Идентификатор: source campaign row id.'
+  - name: status
+    description: Статус.
+  - name: bid_type
+    description: 'Поле core-модели: bid type.'
+  - name: settings_name
+    description: 'Название: settings name.'
+  - name: settings_payment_type
+    description: 'Поле core-модели: settings payment type.'
+  - name: settings_placements_search
+    description: 'Поле core-модели: settings placements search.'
+  - name: settings_placements_recommendations
+    description: 'Поле core-модели: settings placements recommendations.'
+  - name: nm_settings
+    description: 'Метрика рекламной статистики на уровне товара: nm settings.'
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: product_variant_id
+    description: Ссылка на вариант товара. Соответствует chrt_id.
+  - name: chrt_id
+    description: Идентификатор характеристики / варианта товара WB.
+  - name: article
+    description: Артикул товара.
+  - name: vendor_code
+    description: Артикул продавца.
+  - name: barcode_value
+    description: Значение barcode или SKU.
+  - name: skus
+    description: JSON-массив SKU / barcode.
+  - name: campaign_created_at
+    description: 'Дата и время: campaign created at.'
+  - name: campaign_started_at
+    description: 'Дата и время: campaign started at.'
+  - name: campaign_updated_at
+    description: 'Дата и время: campaign updated at.'
+  - name: campaign_deleted_at
+    description: 'Дата и время: campaign deleted at.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: promotion_product_daily_stats
+  description: Core дневная статистика рекламы по кампании, приложению и товару.
+  columns:
+  - name: promotion_product_daily_stat_key
+    description: 'Суррогатный ключ: promotion product daily stat key.'
+  - name: campaign_id
+    description: 'Идентификатор: campaign id.'
+  - name: advert_id
+    description: 'Идентификатор: advert id.'
+  - name: promotion_campaign_key
+    description: 'Суррогатный ключ: promotion campaign key.'
+  - name: stat_date
+    description: 'Дата: stat date.'
+  - name: stat_snapshot_date
+    description: 'Дата: stat snapshot date.'
+  - name: stat_snapshot_at
+    description: 'Дата и время: stat snapshot at.'
+  - name: app_app_type
+    description: 'Метрика рекламной статистики на уровне приложения: app app type.'
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: product_variant_id
+    description: Ссылка на вариант товара. Соответствует chrt_id.
+  - name: chrt_id
+    description: Идентификатор характеристики / варианта товара WB.
+  - name: nm_name
+    description: 'Название: nm name.'
+  - name: root_article
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root article.'
+  - name: root_vendor_code
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root vendor code.'
+  - name: barcode_value
+    description: Значение barcode или SKU.
+  - name: root_skus
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root skus.'
+  - name: root_views
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root views.'
+  - name: root_clicks
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root clicks.'
+  - name: root_ctr
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root ctr.'
+  - name: root_cpc
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root cpc.'
+  - name: root_cr
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root cr.'
+  - name: root_atbs
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root atbs.'
+  - name: root_orders
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root orders.'
+  - name: root_sum
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root sum.'
+  - name: root_sum_price
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root sum price.'
+  - name: root_shks
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root shks.'
+  - name: root_canceled
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root canceled.'
+  - name: root_booster_stats
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root booster stats.'
+  - name: day_views
+    description: 'Дневная метрика рекламной статистики: day views.'
+  - name: day_clicks
+    description: 'Дневная метрика рекламной статистики: day clicks.'
+  - name: day_ctr
+    description: 'Дневная метрика рекламной статистики: day ctr.'
+  - name: day_cpc
+    description: 'Дневная метрика рекламной статистики: day cpc.'
+  - name: day_cr
+    description: 'Дневная метрика рекламной статистики: day cr.'
+  - name: day_atbs
+    description: 'Дневная метрика рекламной статистики: day atbs.'
+  - name: day_orders
+    description: 'Дневная метрика рекламной статистики: day orders.'
+  - name: day_sum
+    description: 'Дневная метрика рекламной статистики: day sum.'
+  - name: day_sum_price
+    description: 'Дневная метрика рекламной статистики: day sum price.'
+  - name: day_shks
+    description: 'Дневная метрика рекламной статистики: day shks.'
+  - name: day_canceled
+    description: 'Дневная метрика рекламной статистики: day canceled.'
+  - name: app_views
+    description: 'Метрика рекламной статистики на уровне приложения: app views.'
+  - name: app_clicks
+    description: 'Метрика рекламной статистики на уровне приложения: app clicks.'
+  - name: app_ctr
+    description: 'Метрика рекламной статистики на уровне приложения: app ctr.'
+  - name: app_cpc
+    description: 'Метрика рекламной статистики на уровне приложения: app cpc.'
+  - name: app_cr
+    description: 'Метрика рекламной статистики на уровне приложения: app cr.'
+  - name: app_atbs
+    description: 'Метрика рекламной статистики на уровне приложения: app atbs.'
+  - name: app_orders
+    description: 'Метрика рекламной статистики на уровне приложения: app orders.'
+  - name: app_sum
+    description: 'Метрика рекламной статистики на уровне приложения: app sum.'
+  - name: app_sum_price
+    description: 'Метрика рекламной статистики на уровне приложения: app sum price.'
+  - name: app_shks
+    description: 'Метрика рекламной статистики на уровне приложения: app shks.'
+  - name: app_canceled
+    description: 'Метрика рекламной статистики на уровне приложения: app canceled.'
+  - name: nm_views
+    description: 'Метрика рекламной статистики на уровне товара: nm views.'
+  - name: nm_clicks
+    description: 'Метрика рекламной статистики на уровне товара: nm clicks.'
+  - name: nm_ctr
+    description: 'Метрика рекламной статистики на уровне товара: nm ctr.'
+  - name: nm_cpc
+    description: 'Метрика рекламной статистики на уровне товара: nm cpc.'
+  - name: nm_cr
+    description: 'Метрика рекламной статистики на уровне товара: nm cr.'
+  - name: nm_atbs
+    description: 'Метрика рекламной статистики на уровне товара: nm atbs.'
+  - name: nm_orders
+    description: 'Метрика рекламной статистики на уровне товара: nm orders.'
+  - name: nm_sum
+    description: 'Метрика рекламной статистики на уровне товара: nm sum.'
+  - name: nm_sum_price
+    description: 'Метрика рекламной статистики на уровне товара: nm sum price.'
+  - name: nm_shks
+    description: 'Метрика рекламной статистики на уровне товара: nm shks.'
+  - name: nm_canceled
+    description: 'Метрика рекламной статистики на уровне товара: nm canceled.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: root_index
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root index.'
+  - name: day_index
+    description: 'Дневная метрика рекламной статистики: day index.'
+  - name: app_index
+    description: 'Метрика рекламной статистики на уровне приложения: app index.'
+  - name: nm_index
+    description: 'Метрика рекламной статистики на уровне товара: nm index.'
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: sales_funnel_metrics
+  description: Core агрегированные метрики воронки продаж WB.
+  columns:
+  - name: sales_funnel_metric_key
+    description: 'Суррогатный ключ: sales funnel metric key.'
+  - name: metric_snapshot_date
+    description: 'Дата: metric snapshot date.'
+  - name: metric_snapshot_at
+    description: 'Дата и время: metric snapshot at.'
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: product_brand_name
+    description: 'Название: product brand name.'
+  - name: product_feedback_rating
+    description: 'Поле core-модели: product feedback rating.'
+  - name: product_product_rating
+    description: 'Поле core-модели: product product rating.'
+  - name: product_stocks_balance_sum
+    description: 'Суммовой показатель: product stocks balance sum.'
+  - name: product_stocks_mp
+    description: 'Поле core-модели: product stocks mp.'
+  - name: product_stocks_wb
+    description: 'Поле core-модели: product stocks wb.'
+  - name: product_subject_id
+    description: 'Идентификатор: product subject id.'
+  - name: product_subject_name
+    description: 'Название: product subject name.'
+  - name: product_tags
+    description: 'Поле core-модели: product tags.'
+  - name: product_title
+    description: 'Поле core-модели: product title.'
+  - name: product_vendor_code
+    description: 'Поле core-модели: product vendor code.'
+  - name: statistic_comparison_add_to_wishlist_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison add to wishlist dynamic.'
+  - name: statistic_comparison_avg_orders_count_per_day_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison avg orders count per day dynamic.'
+  - name: statistic_comparison_avg_price_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison avg price dynamic.'
+  - name: statistic_comparison_buyout_count_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison buyout count dynamic.'
+  - name: statistic_comparison_buyout_sum_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison buyout sum dynamic.'
+  - name: statistic_comparison_cancel_count_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison cancel count dynamic.'
+  - name: statistic_comparison_cancel_sum_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison cancel sum dynamic.'
+  - name: statistic_comparison_cart_count_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison cart count dynamic.'
+  - name: statistic_comparison_conversions_add_to_cart_percent
+    description: 'Метрика воронки продаж WB: statistic comparison conversions add to cart percent.'
+  - name: statistic_comparison_conversions_buyout_percent
+    description: 'Метрика воронки продаж WB: statistic comparison conversions buyout percent.'
+  - name: statistic_comparison_conversions_cart_to_order_percent
+    description: 'Метрика воронки продаж WB: statistic comparison conversions cart to order percent.'
+  - name: statistic_comparison_localization_percent_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison localization percent dynamic.'
+  - name: statistic_comparison_open_count_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison open count dynamic.'
+  - name: statistic_comparison_order_count_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison order count dynamic.'
+  - name: statistic_comparison_order_sum_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison order sum dynamic.'
+  - name: statistic_comparison_share_order_percent_dynamic
+    description: 'Метрика воронки продаж WB: statistic comparison share order percent dynamic.'
+  - name: statistic_comparison_time_to_ready_dynamic_days
+    description: 'Метрика воронки продаж WB: statistic comparison time to ready dynamic days.'
+  - name: statistic_comparison_time_to_ready_dynamic_hours
+    description: 'Метрика воронки продаж WB: statistic comparison time to ready dynamic hours.'
+  - name: statistic_comparison_time_to_ready_dynamic_mins
+    description: 'Метрика воронки продаж WB: statistic comparison time to ready dynamic mins.'
+  - name: statistic_comparison_wb_club_dynamic_avg_order_count_per_day
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic avg order count per day.'
+  - name: statistic_comparison_wb_club_dynamic_avg_price
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic avg price.'
+  - name: statistic_comparison_wb_club_dynamic_buyout_count
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic buyout count.'
+  - name: statistic_comparison_wb_club_dynamic_buyout_percent
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic buyout percent.'
+  - name: statistic_comparison_wb_club_dynamic_buyout_sum
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic buyout sum.'
+  - name: statistic_comparison_wb_club_dynamic_cancel_count
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic cancel count.'
+  - name: statistic_comparison_wb_club_dynamic_cancel_sum
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic cancel sum.'
+  - name: statistic_comparison_wb_club_dynamic_order_count
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic order count.'
+  - name: statistic_comparison_wb_club_dynamic_order_sum
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic order sum.'
+  - name: statistic_past_add_to_wishlist
+    description: 'Метрика воронки продаж WB: statistic past add to wishlist.'
+  - name: statistic_past_avg_orders_count_per_day
+    description: 'Метрика воронки продаж WB: statistic past avg orders count per day.'
+  - name: statistic_past_avg_price
+    description: 'Метрика воронки продаж WB: statistic past avg price.'
+  - name: statistic_past_buyout_count
+    description: 'Метрика воронки продаж WB: statistic past buyout count.'
+  - name: statistic_past_buyout_sum
+    description: 'Метрика воронки продаж WB: statistic past buyout sum.'
+  - name: statistic_past_cancel_count
+    description: 'Метрика воронки продаж WB: statistic past cancel count.'
+  - name: statistic_past_cancel_sum
+    description: 'Метрика воронки продаж WB: statistic past cancel sum.'
+  - name: statistic_past_cart_count
+    description: 'Метрика воронки продаж WB: statistic past cart count.'
+  - name: statistic_past_conversions_add_to_cart_percent
+    description: 'Метрика воронки продаж WB: statistic past conversions add to cart percent.'
+  - name: statistic_past_conversions_buyout_percent
+    description: 'Метрика воронки продаж WB: statistic past conversions buyout percent.'
+  - name: statistic_past_conversions_cart_to_order_percent
+    description: 'Метрика воронки продаж WB: statistic past conversions cart to order percent.'
+  - name: statistic_past_localization_percent
+    description: 'Метрика воронки продаж WB: statistic past localization percent.'
+  - name: statistic_past_open_count
+    description: 'Метрика воронки продаж WB: statistic past open count.'
+  - name: statistic_past_order_count
+    description: 'Метрика воронки продаж WB: statistic past order count.'
+  - name: statistic_past_order_sum
+    description: 'Метрика воронки продаж WB: statistic past order sum.'
+  - name: statistic_past_period_end
+    description: 'Метрика воронки продаж WB: statistic past period end.'
+  - name: statistic_past_period_start
+    description: 'Метрика воронки продаж WB: statistic past period start.'
+  - name: statistic_past_share_order_percent
+    description: 'Метрика воронки продаж WB: statistic past share order percent.'
+  - name: statistic_past_time_to_ready_days
+    description: 'Метрика воронки продаж WB: statistic past time to ready days.'
+  - name: statistic_past_time_to_ready_hours
+    description: 'Метрика воронки продаж WB: statistic past time to ready hours.'
+  - name: statistic_past_time_to_ready_mins
+    description: 'Метрика воронки продаж WB: statistic past time to ready mins.'
+  - name: statistic_past_wb_club_avg_order_count_per_day
+    description: 'Метрика воронки продаж WB: statistic past wb club avg order count per day.'
+  - name: statistic_past_wb_club_avg_price
+    description: 'Метрика воронки продаж WB: statistic past wb club avg price.'
+  - name: statistic_past_wb_club_buyout_count
+    description: 'Метрика воронки продаж WB: statistic past wb club buyout count.'
+  - name: statistic_past_wb_club_buyout_percent
+    description: 'Метрика воронки продаж WB: statistic past wb club buyout percent.'
+  - name: statistic_past_wb_club_buyout_sum
+    description: 'Метрика воронки продаж WB: statistic past wb club buyout sum.'
+  - name: statistic_past_wb_club_cancel_count
+    description: 'Метрика воронки продаж WB: statistic past wb club cancel count.'
+  - name: statistic_past_wb_club_cancel_sum
+    description: 'Метрика воронки продаж WB: statistic past wb club cancel sum.'
+  - name: statistic_past_wb_club_order_count
+    description: 'Метрика воронки продаж WB: statistic past wb club order count.'
+  - name: statistic_past_wb_club_order_sum
+    description: 'Метрика воронки продаж WB: statistic past wb club order sum.'
+  - name: statistic_selected_add_to_wishlist
+    description: 'Метрика воронки продаж WB: statistic selected add to wishlist.'
+  - name: statistic_selected_avg_orders_count_per_day
+    description: 'Метрика воронки продаж WB: statistic selected avg orders count per day.'
+  - name: statistic_selected_avg_price
+    description: 'Метрика воронки продаж WB: statistic selected avg price.'
+  - name: statistic_selected_buyout_count
+    description: 'Метрика воронки продаж WB: statistic selected buyout count.'
+  - name: statistic_selected_buyout_sum
+    description: 'Метрика воронки продаж WB: statistic selected buyout sum.'
+  - name: statistic_selected_cancel_count
+    description: 'Метрика воронки продаж WB: statistic selected cancel count.'
+  - name: statistic_selected_cancel_sum
+    description: 'Метрика воронки продаж WB: statistic selected cancel sum.'
+  - name: statistic_selected_cart_count
+    description: 'Метрика воронки продаж WB: statistic selected cart count.'
+  - name: statistic_selected_conversions_add_to_cart_percent
+    description: 'Метрика воронки продаж WB: statistic selected conversions add to cart percent.'
+  - name: statistic_selected_conversions_buyout_percent
+    description: 'Метрика воронки продаж WB: statistic selected conversions buyout percent.'
+  - name: statistic_selected_conversions_cart_to_order_percent
+    description: 'Метрика воронки продаж WB: statistic selected conversions cart to order percent.'
+  - name: statistic_selected_localization_percent
+    description: 'Метрика воронки продаж WB: statistic selected localization percent.'
+  - name: statistic_selected_open_count
+    description: 'Метрика воронки продаж WB: statistic selected open count.'
+  - name: statistic_selected_order_count
+    description: 'Метрика воронки продаж WB: statistic selected order count.'
+  - name: statistic_selected_order_sum
+    description: 'Метрика воронки продаж WB: statistic selected order sum.'
+  - name: statistic_selected_period_end
+    description: 'Метрика воронки продаж WB: statistic selected period end.'
+  - name: statistic_selected_period_start
+    description: 'Метрика воронки продаж WB: statistic selected period start.'
+  - name: statistic_selected_share_order_percent
+    description: 'Метрика воронки продаж WB: statistic selected share order percent.'
+  - name: statistic_selected_time_to_ready_days
+    description: 'Метрика воронки продаж WB: statistic selected time to ready days.'
+  - name: statistic_selected_time_to_ready_hours
+    description: 'Метрика воронки продаж WB: statistic selected time to ready hours.'
+  - name: statistic_selected_time_to_ready_mins
+    description: 'Метрика воронки продаж WB: statistic selected time to ready mins.'
+  - name: statistic_selected_wb_club_avg_order_count_per_day
+    description: 'Метрика воронки продаж WB: statistic selected wb club avg order count per day.'
+  - name: statistic_selected_wb_club_avg_price
+    description: 'Метрика воронки продаж WB: statistic selected wb club avg price.'
+  - name: statistic_selected_wb_club_buyout_count
+    description: 'Метрика воронки продаж WB: statistic selected wb club buyout count.'
+  - name: statistic_selected_wb_club_buyout_percent
+    description: 'Метрика воронки продаж WB: statistic selected wb club buyout percent.'
+  - name: statistic_selected_wb_club_buyout_sum
+    description: 'Метрика воронки продаж WB: statistic selected wb club buyout sum.'
+  - name: statistic_selected_wb_club_cancel_count
+    description: 'Метрика воронки продаж WB: statistic selected wb club cancel count.'
+  - name: statistic_selected_wb_club_cancel_sum
+    description: 'Метрика воронки продаж WB: statistic selected wb club cancel sum.'
+  - name: statistic_selected_wb_club_order_count
+    description: 'Метрика воронки продаж WB: statistic selected wb club order count.'
+  - name: statistic_selected_wb_club_order_sum
+    description: 'Метрика воронки продаж WB: statistic selected wb club order sum.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: stock_analytics_metrics
+  description: Core агрегированные аналитические метрики остатков WB.
+  columns:
+  - name: stock_analytics_metric_key
+    description: 'Суррогатный ключ: stock analytics metric key.'
+  - name: metric_snapshot_date
+    description: 'Дата: metric snapshot date.'
+  - name: metric_snapshot_at
+    description: 'Дата и время: metric snapshot at.'
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: product_variant_id
+    description: Ссылка на вариант товара. Соответствует chrt_id.
+  - name: chrt_id
+    description: Идентификатор характеристики / варианта товара WB.
+  - name: warehouse_id
+    description: Идентификатор склада WB.
+  - name: warehouse_key
+    description: Суррогатный ключ склада.
+  - name: warehouse_name
+    description: Название склада.
+  - name: region_name
+    description: 'Название: region name.'
+  - name: quantity
+    description: Количество.
+  - name: in_way_to_client
+    description: 'Поле core-модели: in way to client.'
+  - name: in_way_from_client
+    description: 'Поле core-модели: in way from client.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.

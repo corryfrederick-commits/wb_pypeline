@@ -1,0 +1,647 @@
+version: 2
+models:
+- name: finance_balances
+  description: Core факт-снимок финансового баланса продавца.
+  columns:
+  - name: finance_balance_key
+    description: 'Суррогатный ключ: finance balance key.'
+  - name: balance_snapshot_date
+    description: 'Дата: balance snapshot date.'
+  - name: balance_snapshot_at
+    description: 'Дата и время: balance snapshot at.'
+  - name: currency
+    description: Валюта.
+  - name: current_balance
+    description: 'Поле core-модели: current balance.'
+  - name: available_for_withdraw
+    description: 'Поле core-модели: available for withdraw.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: finance_report_summaries
+  description: Core таблица сводных строк финансовых отчётов WB.
+  columns:
+  - name: finance_report_summary_key
+    description: 'Суррогатный ключ: finance report summary key.'
+  - name: source_finance_report_row_id
+    description: 'Идентификатор: source finance report row id.'
+  - name: report_id
+    description: Идентификатор отчёта WB.
+  - name: report_type
+    description: Тип отчёта WB.
+  - name: payment_schedule
+    description: График платежей.
+  - name: seller_finance_name
+    description: 'Название: seller finance name.'
+  - name: date_from
+    description: Начало периода.
+  - name: date_to
+    description: Конец периода.
+  - name: operation_date
+    description: Дата операции.
+  - name: create_date
+    description: 'Дата: create date.'
+  - name: created_at
+    description: Дата и время создания записи в источнике.
+  - name: sale_dt
+    description: 'Поле core-модели: sale dt.'
+  - name: order_key
+    description: Суррогатный ключ заказа.
+  - name: order_natural_id
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+  - name: order_id
+    description: Числовой идентификатор заказа WB.
+  - name: order_uid
+    description: UID заказа.
+  - name: rid
+    description: RID заказа.
+  - name: srid
+    description: SRID заказа.
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: product_variant_id
+    description: Ссылка на вариант товара. Соответствует chrt_id.
+  - name: chrt_id
+    description: Идентификатор характеристики / варианта товара WB.
+  - name: article
+    description: Артикул товара.
+  - name: vendor_code
+    description: Артикул продавца.
+  - name: barcode_value
+    description: Значение barcode или SKU.
+  - name: skus
+    description: JSON-массив SKU / barcode.
+  - name: warehouse_id
+    description: Идентификатор склада WB.
+  - name: office_id
+    description: Идентификатор офиса WB.
+  - name: warehouse_key
+    description: Суррогатный ключ склада.
+  - name: warehouse_name
+    description: Название склада.
+  - name: warehouse_address
+    description: Адрес склада.
+  - name: currency
+    description: Валюта.
+  - name: currency_code
+    description: Код валюты.
+  - name: converted_currency_code
+    description: Код валюты после конвертации.
+  - name: price
+    description: Цена.
+  - name: sale_price
+    description: Цена продажи.
+  - name: final_price
+    description: Финальная цена.
+  - name: converted_price
+    description: Цена после конвертации.
+  - name: converted_final_price
+    description: Финальная цена после конвертации.
+  - name: retail_amount_sum
+    description: 'Суммовой показатель: retail amount sum.'
+  - name: for_pay_sum
+    description: 'Суммовой показатель: for pay sum.'
+  - name: bank_payment_sum
+    description: 'Суммовой показатель: bank payment sum.'
+  - name: additional_payment_sum
+    description: 'Суммовой показатель: additional payment sum.'
+  - name: cashback_amount_sum
+    description: 'Суммовой показатель: cashback amount sum.'
+  - name: cashback_commission_change_sum
+    description: 'Суммовой показатель: cashback commission change sum.'
+  - name: cashback_discount_sum
+    description: 'Суммовой показатель: cashback discount sum.'
+  - name: deduction_sum
+    description: 'Суммовой показатель: deduction sum.'
+  - name: delivery_service_sum
+    description: 'Суммовой показатель: delivery service sum.'
+  - name: paid_acceptance_sum
+    description: 'Суммовой показатель: paid acceptance sum.'
+  - name: paid_storage_sum
+    description: 'Суммовой показатель: paid storage sum.'
+  - name: penalty_sum
+    description: 'Суммовой показатель: penalty sum.'
+  - name: avg_sale_percent
+    description: 'Процентный показатель: avg sale percent.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: finance_transactions
+  description: Core таблица детальных финансовых операций WB.
+  columns:
+  - name: finance_transaction_key
+    description: 'Суррогатный ключ: finance transaction key.'
+  - name: source_finance_transaction_id
+    description: 'Идентификатор: source finance transaction id.'
+  - name: rrd_id
+    description: 'Идентификатор: rrd id.'
+  - name: report_id
+    description: Идентификатор отчёта WB.
+  - name: report_type
+    description: Тип отчёта WB.
+  - name: payment_schedule
+    description: График платежей.
+  - name: operation_date
+    description: Дата операции.
+  - name: create_date
+    description: 'Дата: create date.'
+  - name: created_at
+    description: Дата и время создания записи в источнике.
+  - name: date_from
+    description: Начало периода.
+  - name: date_to
+    description: Конец периода.
+  - name: sale_dt
+    description: 'Поле core-модели: sale dt.'
+  - name: order_dt
+    description: 'Поле core-модели: order dt.'
+  - name: rr_date
+    description: 'Дата: rr date.'
+  - name: order_key
+    description: Суррогатный ключ заказа.
+  - name: order_natural_id
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+  - name: order_id
+    description: Числовой идентификатор заказа WB.
+  - name: order_uid
+    description: UID заказа.
+  - name: rid
+    description: RID заказа.
+  - name: srid
+    description: SRID заказа.
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: product_variant_id
+    description: Ссылка на вариант товара. Соответствует chrt_id.
+  - name: chrt_id
+    description: Идентификатор характеристики / варианта товара WB.
+  - name: article
+    description: Артикул товара.
+  - name: vendor_code
+    description: Артикул продавца.
+  - name: barcode_value
+    description: Значение barcode или SKU.
+  - name: sku
+    description: 'Поле core-модели: sku.'
+  - name: skus
+    description: JSON-массив SKU / barcode.
+  - name: brand_name
+    description: 'Название: brand name.'
+  - name: subject_name
+    description: Название предмета / категории WB.
+  - name: title
+    description: Название товара.
+  - name: tech_size
+    description: 'Поле core-модели: tech size.'
+  - name: warehouse_id
+    description: Идентификатор склада WB.
+  - name: office_id
+    description: Идентификатор офиса WB.
+  - name: warehouse_key
+    description: Суррогатный ключ склада.
+  - name: warehouse_name
+    description: Название склада.
+  - name: warehouse_address
+    description: Адрес склада.
+  - name: office_name
+    description: 'Название: office name.'
+  - name: country
+    description: 'Количественный показатель: country.'
+  - name: currency
+    description: Валюта.
+  - name: currency_code
+    description: Код валюты.
+  - name: converted_currency_code
+    description: Код валюты после конвертации.
+  - name: price
+    description: Цена.
+  - name: retail_price
+    description: 'Ценовой показатель: retail price.'
+  - name: retail_price_with_disc
+    description: 'Ценовой показатель: retail price with disc.'
+  - name: sale_price
+    description: Цена продажи.
+  - name: final_price
+    description: Финальная цена.
+  - name: converted_price
+    description: Цена после конвертации.
+  - name: converted_final_price
+    description: Финальная цена после конвертации.
+  - name: quantity
+    description: Количество.
+  - name: delivery_amount
+    description: 'Поле core-модели: delivery amount.'
+  - name: return_amount
+    description: 'Поле core-модели: return amount.'
+  - name: for_pay
+    description: 'Поле core-модели: for pay.'
+  - name: retail_amount
+    description: 'Поле core-модели: retail amount.'
+  - name: acquiring_fee
+    description: 'Поле core-модели: acquiring fee.'
+  - name: acquiring_percent
+    description: 'Процентный показатель: acquiring percent.'
+  - name: acquiring_bank
+    description: 'Поле core-модели: acquiring bank.'
+  - name: commission_percent
+    description: 'Процентный показатель: commission percent.'
+  - name: kvw
+    description: 'Поле core-модели: kvw.'
+  - name: kvw_base
+    description: 'Поле core-модели: kvw base.'
+  - name: dlv_prc
+    description: 'Процентный показатель: dlv prc.'
+  - name: ppvz_reward
+    description: 'Поле core-модели: ppvz reward.'
+  - name: ppvz_sales_commission
+    description: 'Показатель комиссии: ppvz sales commission.'
+  - name: vw
+    description: 'Поле core-модели: vw.'
+  - name: vw_nds
+    description: 'Поле core-модели: vw nds.'
+  - name: additional_payment
+    description: 'Поле core-модели: additional payment.'
+  - name: cashback_amount
+    description: 'Поле core-модели: cashback amount.'
+  - name: cashback_commission_change
+    description: 'Показатель комиссии: cashback commission change.'
+  - name: cashback_discount
+    description: 'Количественный показатель: cashback discount.'
+  - name: deduction
+    description: 'Поле core-модели: deduction.'
+  - name: paid_acceptance
+    description: 'Поле core-модели: paid acceptance.'
+  - name: paid_storage
+    description: 'Поле core-модели: paid storage.'
+  - name: penalty
+    description: 'Поле core-модели: penalty.'
+  - name: delivery_service
+    description: Служба доставки.
+  - name: payment_processing
+    description: 'Поле core-модели: payment processing.'
+  - name: loyalty_discount
+    description: 'Количественный показатель: loyalty discount.'
+  - name: product_discount_for_report
+    description: 'Количественный показатель: product discount for report.'
+  - name: sale_percent
+    description: 'Процентный показатель: sale percent.'
+  - name: sale_price_affiliated_discount_prc
+    description: 'Ценовой показатель: sale price affiliated discount prc.'
+  - name: sale_price_promocode_discount_prc
+    description: 'Ценовой показатель: sale price promocode discount prc.'
+  - name: sale_price_wholesale_discount_prc
+    description: 'Ценовой показатель: sale price wholesale discount prc.'
+  - name: seller_promo
+    description: 'Поле core-модели: seller promo.'
+  - name: seller_promo_discount
+    description: 'Количественный показатель: seller promo discount.'
+  - name: seller_promo_id
+    description: 'Идентификатор: seller promo id.'
+  - name: spp
+    description: 'Поле core-модели: spp.'
+  - name: seller_oper_name
+    description: 'Название: seller oper name.'
+  - name: doc_type_name
+    description: 'Название: doc type name.'
+  - name: bonus_type_name
+    description: 'Название: bonus type name.'
+  - name: gi_id
+    description: 'Идентификатор: gi id.'
+  - name: shk_id
+    description: 'Идентификатор: shk id.'
+  - name: sticker_id
+    description: 'Идентификатор: sticker id.'
+  - name: trbx_id
+    description: 'Идентификатор: trbx id.'
+  - name: declaration_number
+    description: 'Поле core-модели: declaration number.'
+  - name: kiz
+    description: 'Поле core-модели: kiz.'
+  - name: is_b2b
+    description: Признак B2B.
+  - name: is_kgvp_v2
+    description: 'Булевый признак: is kgvp v2.'
+  - name: srv_dbs
+    description: 'Поле core-модели: srv dbs.'
+  - name: ppvz_office_id
+    description: 'Идентификатор: ppvz office id.'
+  - name: ppvz_office_name
+    description: 'Название: ppvz office name.'
+  - name: ppvz_supplier_inn
+    description: 'Поле core-модели: ppvz supplier inn.'
+  - name: ppvz_supplier_name
+    description: 'Название: ppvz supplier name.'
+  - name: rebill_logistic_cost
+    description: 'Поле core-модели: rebill logistic cost.'
+  - name: rebill_logistic_org
+    description: 'Поле core-модели: rebill logistic org.'
+  - name: installment_cofinancing_amount
+    description: 'Поле core-модели: installment cofinancing amount.'
+  - name: agency_vat
+    description: 'Поле core-модели: agency vat.'
+  - name: sup_rating_up
+    description: 'Поле core-модели: sup rating up.'
+  - name: fix_tariff_date_from
+    description: 'Поле core-модели: fix tariff date from.'
+  - name: fix_tariff_date_to
+    description: 'Поле core-модели: fix tariff date to.'
+  - name: article_substitution
+    description: 'Поле core-модели: article substitution.'
+  - name: loyalty_id
+    description: 'Идентификатор: loyalty id.'
+  - name: uuid_promocode
+    description: 'Поле core-модели: uuid promocode.'
+  - name: wibes_discount_percent
+    description: 'Количественный показатель: wibes discount percent.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: report_order_events
+  description: Core таблица отчётных событий по заказам WB.
+  columns:
+  - name: report_order_event_key
+    description: 'Суррогатный ключ: report order event key.'
+  - name: source_report_order_id
+    description: 'Идентификатор: source report order id.'
+  - name: order_key
+    description: Суррогатный ключ заказа.
+  - name: order_natural_id
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+  - name: order_id
+    description: Числовой идентификатор заказа WB.
+  - name: order_uid
+    description: UID заказа.
+  - name: rid
+    description: RID заказа.
+  - name: srid
+    description: SRID заказа.
+  - name: g_number
+    description: 'Поле core-модели: g number.'
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: product_variant_id
+    description: Ссылка на вариант товара. Соответствует chrt_id.
+  - name: chrt_id
+    description: Идентификатор характеристики / варианта товара WB.
+  - name: article
+    description: Артикул товара.
+  - name: supplier_article
+    description: 'Поле core-модели: supplier article.'
+  - name: vendor_code
+    description: Артикул продавца.
+  - name: barcode_value
+    description: Значение barcode или SKU.
+  - name: skus
+    description: JSON-массив SKU / barcode.
+  - name: brand
+    description: Бренд.
+  - name: subject
+    description: 'Поле core-модели: subject.'
+  - name: category
+    description: Категория товара.
+  - name: tech_size
+    description: 'Поле core-модели: tech size.'
+  - name: warehouse_id
+    description: Идентификатор склада WB.
+  - name: office_id
+    description: Идентификатор офиса WB.
+  - name: warehouse_key
+    description: Суррогатный ключ склада.
+  - name: warehouse_name
+    description: Название склада.
+  - name: warehouse_address
+    description: Адрес склада.
+  - name: warehouse_type
+    description: 'Поле core-модели: warehouse type.'
+  - name: operation_date
+    description: Дата операции.
+  - name: date_value
+    description: 'Поле core-модели: date value.'
+  - name: created_at
+    description: Дата и время создания записи в источнике.
+  - name: last_change_date
+    description: 'Дата: last change date.'
+  - name: sale_dt
+    description: 'Поле core-модели: sale dt.'
+  - name: cancel_date
+    description: 'Дата: cancel date.'
+  - name: is_cancel
+    description: 'Булевый признак: is cancel.'
+  - name: is_realization
+    description: 'Булевый признак: is realization.'
+  - name: is_supply
+    description: 'Булевый признак: is supply.'
+  - name: country_name
+    description: 'Название: country name.'
+  - name: region_name
+    description: 'Название: region name.'
+  - name: oblast_okrug_name
+    description: 'Название: oblast okrug name.'
+  - name: price
+    description: Цена.
+  - name: total_price
+    description: 'Ценовой показатель: total price.'
+  - name: price_with_disc
+    description: 'Ценовой показатель: price with disc.'
+  - name: sale_price
+    description: Цена продажи.
+  - name: final_price
+    description: Финальная цена.
+  - name: finished_price
+    description: 'Ценовой показатель: finished price.'
+  - name: converted_price
+    description: Цена после конвертации.
+  - name: converted_final_price
+    description: Финальная цена после конвертации.
+  - name: currency_code
+    description: Код валюты.
+  - name: converted_currency_code
+    description: Код валюты после конвертации.
+  - name: discount_percent
+    description: 'Количественный показатель: discount percent.'
+  - name: spp
+    description: 'Поле core-модели: spp.'
+  - name: income_id
+    description: 'Идентификатор: income id.'
+  - name: sticker
+    description: 'Поле core-модели: sticker.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
+- name: report_sale_events
+  description: Core таблица отчётных событий по продажам WB.
+  columns:
+  - name: report_sale_event_key
+    description: 'Суррогатный ключ: report sale event key.'
+  - name: source_report_sale_id
+    description: 'Идентификатор: source report sale id.'
+  - name: sale_id
+    description: 'Идентификатор: sale id.'
+  - name: order_key
+    description: Суррогатный ключ заказа.
+  - name: order_natural_id
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+  - name: order_id
+    description: Числовой идентификатор заказа WB.
+  - name: order_uid
+    description: UID заказа.
+  - name: rid
+    description: RID заказа.
+  - name: srid
+    description: SRID заказа.
+  - name: g_number
+    description: 'Поле core-модели: g number.'
+  - name: product_id
+    description: Ссылка на товар. Соответствует nm_id.
+  - name: nm_id
+    description: Идентификатор номенклатуры WB.
+  - name: product_variant_id
+    description: Ссылка на вариант товара. Соответствует chrt_id.
+  - name: chrt_id
+    description: Идентификатор характеристики / варианта товара WB.
+  - name: article
+    description: Артикул товара.
+  - name: supplier_article
+    description: 'Поле core-модели: supplier article.'
+  - name: vendor_code
+    description: Артикул продавца.
+  - name: barcode_value
+    description: Значение barcode или SKU.
+  - name: skus
+    description: JSON-массив SKU / barcode.
+  - name: brand
+    description: Бренд.
+  - name: subject
+    description: 'Поле core-модели: subject.'
+  - name: category
+    description: Категория товара.
+  - name: tech_size
+    description: 'Поле core-модели: tech size.'
+  - name: warehouse_id
+    description: Идентификатор склада WB.
+  - name: office_id
+    description: Идентификатор офиса WB.
+  - name: warehouse_key
+    description: Суррогатный ключ склада.
+  - name: warehouse_name
+    description: Название склада.
+  - name: warehouse_address
+    description: Адрес склада.
+  - name: warehouse_type
+    description: 'Поле core-модели: warehouse type.'
+  - name: operation_date
+    description: Дата операции.
+  - name: date_value
+    description: 'Поле core-модели: date value.'
+  - name: created_at
+    description: Дата и время создания записи в источнике.
+  - name: last_change_date
+    description: 'Дата: last change date.'
+  - name: sale_dt
+    description: 'Поле core-модели: sale dt.'
+  - name: is_realization
+    description: 'Булевый признак: is realization.'
+  - name: is_supply
+    description: 'Булевый признак: is supply.'
+  - name: country_name
+    description: 'Название: country name.'
+  - name: region_name
+    description: 'Название: region name.'
+  - name: oblast_okrug_name
+    description: 'Название: oblast okrug name.'
+  - name: price
+    description: Цена.
+  - name: total_price
+    description: 'Ценовой показатель: total price.'
+  - name: price_with_disc
+    description: 'Ценовой показатель: price with disc.'
+  - name: sale_price
+    description: Цена продажи.
+  - name: final_price
+    description: Финальная цена.
+  - name: finished_price
+    description: 'Ценовой показатель: finished price.'
+  - name: converted_price
+    description: Цена после конвертации.
+  - name: converted_final_price
+    description: Финальная цена после конвертации.
+  - name: currency_code
+    description: Код валюты.
+  - name: converted_currency_code
+    description: Код валюты после конвертации.
+  - name: discount_percent
+    description: 'Количественный показатель: discount percent.'
+  - name: spp
+    description: 'Поле core-модели: spp.'
+  - name: for_pay
+    description: 'Поле core-модели: for pay.'
+  - name: payment_sale_amount
+    description: 'Поле core-модели: payment sale amount.'
+  - name: income_id
+    description: 'Идентификатор: income id.'
+  - name: sticker
+    description: 'Поле core-модели: sticker.'
+  - name: source_system
+    description: Источник данных.
+  - name: source_dataset
+    description: Название исходного cleaned-набора данных.
+  - name: source_row_id
+    description: Технический идентификатор исходной строки.
+  - name: raw_payload_id
+    description: Идентификатор исходного raw payload.
+  - name: record_index
+    description: Номер записи внутри исходного payload.
+  - name: source_loaded_at
+    description: Время загрузки исходных данных.
+  - name: core_loaded_at
+    description: Время построения core-записи.
