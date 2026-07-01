@@ -5,6 +5,9 @@ models:
   columns:
   - name: finance_balance_key
     description: 'Суррогатный ключ: finance balance key.'
+    tests:
+    - not_null
+    - unique
   - name: balance_snapshot_date
     description: 'Дата: balance snapshot date.'
   - name: balance_snapshot_at
@@ -34,6 +37,9 @@ models:
   columns:
   - name: finance_report_summary_key
     description: 'Суррогатный ключ: finance report summary key.'
+    tests:
+    - not_null
+    - unique
   - name: source_finance_report_row_id
     description: 'Идентификатор: source finance report row id.'
   - name: report_id
@@ -58,6 +64,12 @@ models:
     description: 'Поле core-модели: sale dt.'
   - name: order_key
     description: Суррогатный ключ заказа.
+    tests:
+    - relationships:
+        to: ref('orders')
+        field: order_key
+        config:
+          where: order_key is not null
   - name: order_natural_id
     description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
@@ -70,10 +82,22 @@ models:
     description: SRID заказа.
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: article
@@ -90,6 +114,12 @@ models:
     description: Идентификатор офиса WB.
   - name: warehouse_key
     description: Суррогатный ключ склада.
+    tests:
+    - relationships:
+        to: ref('warehouses')
+        field: warehouse_key
+        config:
+          where: warehouse_key is not null
   - name: warehouse_name
     description: Название склада.
   - name: warehouse_address
@@ -155,6 +185,9 @@ models:
   columns:
   - name: finance_transaction_key
     description: 'Суррогатный ключ: finance transaction key.'
+    tests:
+    - not_null
+    - unique
   - name: source_finance_transaction_id
     description: 'Идентификатор: source finance transaction id.'
   - name: rrd_id
@@ -183,6 +216,12 @@ models:
     description: 'Дата: rr date.'
   - name: order_key
     description: Суррогатный ключ заказа.
+    tests:
+    - relationships:
+        to: ref('orders')
+        field: order_key
+        config:
+          where: order_key is not null
   - name: order_natural_id
     description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
@@ -195,10 +234,22 @@ models:
     description: SRID заказа.
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: article
@@ -225,6 +276,12 @@ models:
     description: Идентификатор офиса WB.
   - name: warehouse_key
     description: Суррогатный ключ склада.
+    tests:
+    - relationships:
+        to: ref('warehouses')
+        field: warehouse_key
+        config:
+          where: warehouse_key is not null
   - name: warehouse_name
     description: Название склада.
   - name: warehouse_address
@@ -398,10 +455,19 @@ models:
   columns:
   - name: report_order_event_key
     description: 'Суррогатный ключ: report order event key.'
+    tests:
+    - not_null
+    - unique
   - name: source_report_order_id
     description: 'Идентификатор: source report order id.'
   - name: order_key
     description: Суррогатный ключ заказа.
+    tests:
+    - relationships:
+        to: ref('orders')
+        field: order_key
+        config:
+          where: order_key is not null
   - name: order_natural_id
     description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
@@ -416,10 +482,22 @@ models:
     description: 'Поле core-модели: g number.'
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: article
@@ -446,6 +524,12 @@ models:
     description: Идентификатор офиса WB.
   - name: warehouse_key
     description: Суррогатный ключ склада.
+    tests:
+    - relationships:
+        to: ref('warehouses')
+        field: warehouse_key
+        config:
+          where: warehouse_key is not null
   - name: warehouse_name
     description: Название склада.
   - name: warehouse_address
@@ -523,12 +607,21 @@ models:
   columns:
   - name: report_sale_event_key
     description: 'Суррогатный ключ: report sale event key.'
+    tests:
+    - not_null
+    - unique
   - name: source_report_sale_id
     description: 'Идентификатор: source report sale id.'
   - name: sale_id
     description: 'Идентификатор: sale id.'
   - name: order_key
     description: Суррогатный ключ заказа.
+    tests:
+    - relationships:
+        to: ref('orders')
+        field: order_key
+        config:
+          where: order_key is not null
   - name: order_natural_id
     description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
@@ -543,10 +636,22 @@ models:
     description: 'Поле core-модели: g number.'
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: article
@@ -573,6 +678,12 @@ models:
     description: Идентификатор офиса WB.
   - name: warehouse_key
     description: Суррогатный ключ склада.
+    tests:
+    - relationships:
+        to: ref('warehouses')
+        field: warehouse_key
+        config:
+          where: warehouse_key is not null
   - name: warehouse_name
     description: Название склада.
   - name: warehouse_address

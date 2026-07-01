@@ -5,6 +5,9 @@ models:
   columns:
   - name: chat_key
     description: 'Суррогатный ключ: chat key.'
+    tests:
+    - not_null
+    - unique
   - name: chat_natural_id
     description: 'Идентификатор: chat natural id.'
   - name: chat_id
@@ -25,6 +28,12 @@ models:
     description: 'Текстовое поле: last message text.'
   - name: order_key
     description: Суррогатный ключ заказа.
+    tests:
+    - relationships:
+        to: ref('orders')
+        field: order_key
+        config:
+          where: order_key is not null
   - name: order_natural_id
     description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
@@ -37,10 +46,22 @@ models:
     description: SRID заказа.
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: article
@@ -80,6 +101,9 @@ models:
   columns:
   - name: fbw_supply_key
     description: 'Суррогатный ключ: fbw supply key.'
+    tests:
+    - not_null
+    - unique
   - name: fbw_supply_natural_id
     description: 'Идентификатор: fbw supply natural id.'
   - name: supply_id
@@ -121,6 +145,9 @@ models:
   columns:
   - name: feedback_key
     description: 'Суррогатный ключ: feedback key.'
+    tests:
+    - not_null
+    - unique
   - name: source_feedback_id
     description: 'Идентификатор: source feedback id.'
   - name: parent_feedback_id

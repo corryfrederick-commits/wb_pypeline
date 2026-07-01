@@ -12,6 +12,11 @@ models:
     description: Суррогатный ключ заказа.
     tests:
     - not_null
+    - relationships:
+        to: ref('orders')
+        field: order_key
+        config:
+          where: order_key is not null
   - name: order_natural_id
     description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
@@ -26,10 +31,22 @@ models:
     description: Код заказа.
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: article
@@ -102,6 +119,11 @@ models:
     description: Суррогатный ключ заказа.
     tests:
     - not_null
+    - relationships:
+        to: ref('orders')
+        field: order_key
+        config:
+          where: order_key is not null
   - name: order_natural_id
     description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: source_status_id
@@ -248,16 +270,34 @@ models:
     description: 'Дата и время: stock snapshot at.'
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: warehouse_natural_id
     description: Единый натуральный идентификатор склада.
   - name: warehouse_key
     description: Суррогатный ключ склада.
+    tests:
+    - relationships:
+        to: ref('warehouses')
+        field: warehouse_key
+        config:
+          where: warehouse_key is not null
   - name: warehouse_id
     description: Идентификатор склада WB.
   - name: office_id

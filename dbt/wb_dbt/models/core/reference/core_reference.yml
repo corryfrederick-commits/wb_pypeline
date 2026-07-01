@@ -10,10 +10,22 @@ models:
     - unique
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: barcode_value
@@ -51,6 +63,12 @@ models:
     - unique
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: vendor_code

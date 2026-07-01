@@ -5,6 +5,9 @@ models:
   columns:
   - name: tariff_acceptance_price_key
     description: 'Суррогатный ключ: tariff acceptance price key.'
+    tests:
+    - not_null
+    - unique
   - name: tariff_snapshot_date
     description: 'Дата: tariff snapshot date.'
   - name: tariff_snapshot_at
@@ -56,6 +59,9 @@ models:
   columns:
   - name: tariff_box_price_key
     description: 'Суррогатный ключ: tariff box price key.'
+    tests:
+    - not_null
+    - unique
   - name: tariff_snapshot_date
     description: 'Дата: tariff snapshot date.'
   - name: tariff_snapshot_at
@@ -101,6 +107,9 @@ models:
   columns:
   - name: tariff_commission_key
     description: 'Суррогатный ключ: tariff commission key.'
+    tests:
+    - not_null
+    - unique
   - name: tariff_snapshot_date
     description: 'Дата: tariff snapshot date.'
   - name: tariff_snapshot_at

@@ -5,6 +5,9 @@ models:
   columns:
   - name: promotion_campaign_key
     description: 'Суррогатный ключ: promotion campaign key.'
+    tests:
+    - not_null
+    - unique
   - name: promotion_campaign_natural_id
     description: 'Идентификатор: promotion campaign natural id.'
   - name: campaign_id
@@ -29,10 +32,22 @@ models:
     description: 'Метрика рекламной статистики на уровне товара: nm settings.'
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: article
@@ -70,12 +85,21 @@ models:
   columns:
   - name: promotion_product_daily_stat_key
     description: 'Суррогатный ключ: promotion product daily stat key.'
+    tests:
+    - not_null
+    - unique
   - name: campaign_id
     description: 'Идентификатор: campaign id.'
   - name: advert_id
     description: 'Идентификатор: advert id.'
   - name: promotion_campaign_key
     description: 'Суррогатный ключ: promotion campaign key.'
+    tests:
+    - relationships:
+        to: ref('promotion_campaigns')
+        field: promotion_campaign_key
+        config:
+          where: promotion_campaign_key is not null
   - name: stat_date
     description: 'Дата: stat date.'
   - name: stat_snapshot_date
@@ -90,6 +114,12 @@ models:
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: nm_name
@@ -219,6 +249,9 @@ models:
   columns:
   - name: sales_funnel_metric_key
     description: 'Суррогатный ключ: sales funnel metric key.'
+    tests:
+    - not_null
+    - unique
   - name: metric_snapshot_date
     description: 'Дата: metric snapshot date.'
   - name: metric_snapshot_at
@@ -444,6 +477,9 @@ models:
   columns:
   - name: stock_analytics_metric_key
     description: 'Суррогатный ключ: stock analytics metric key.'
+    tests:
+    - not_null
+    - unique
   - name: metric_snapshot_date
     description: 'Дата: metric snapshot date.'
   - name: metric_snapshot_at
