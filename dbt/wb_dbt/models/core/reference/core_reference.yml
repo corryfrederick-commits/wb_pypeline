@@ -1,0 +1,242 @@
+version: 2
+
+models:
+  - name: sellers
+    description: "Core-справочник продавцов / кабинетов WB. Одна строка соответствует одному продавцу или кабинету продавца."
+    columns:
+      - name: seller_key
+        description: "Суррогатный ключ продавца."
+        tests:
+          - not_null
+          - unique
+      - name: seller_sid
+        description: "Идентификатор продавца / кабинета из источника."
+      - name: seller_tin
+        description: "ИНН или налоговый идентификатор продавца."
+      - name: seller_name
+        description: "Название продавца."
+      - name: trade_mark
+        description: "Торговая марка продавца."
+      - name: source_system
+        description: "Источник данных."
+      - name: source_dataset
+        description: "Название исходного cleaned-набора данных."
+      - name: source_row_id
+        description: "Технический идентификатор исходной строки."
+      - name: raw_payload_id
+        description: "Идентификатор исходного raw payload."
+      - name: record_index
+        description: "Номер записи внутри исходного payload."
+      - name: source_loaded_at
+        description: "Время загрузки исходных данных."
+      - name: core_loaded_at
+        description: "Время построения core-записи."
+
+  - name: products
+    description: "Core-справочник товаров WB. Одна строка соответствует одному товару WB по nm_id."
+    columns:
+      - name: product_id
+        description: "Бизнес-ключ товара. Соответствует nm_id."
+        tests:
+          - not_null
+          - unique
+      - name: nm_id
+        description: "Идентификатор номенклатуры WB."
+        tests:
+          - not_null
+          - unique
+      - name: nm_id_2
+        description: "Дополнительный идентификатор номенклатуры из источника, если присутствует."
+      - name: imt_id
+        description: "Идентификатор объединённой карточки товара."
+      - name: nm_uuid
+        description: "UUID номенклатуры."
+      - name: vendor_code
+        description: "Артикул продавца."
+      - name: article
+        description: "Артикул товара из источника."
+      - name: brand
+        description: "Бренд товара."
+      - name: subject_id
+        description: "Идентификатор предмета / категории WB."
+      - name: subject_name
+        description: "Название предмета / категории WB."
+      - name: title
+        description: "Название товара."
+      - name: description
+        description: "Описание товара."
+      - name: photos
+        description: "JSON с фотографиями товара."
+      - name: tags
+        description: "JSON с тегами товара."
+      - name: video
+        description: "Ссылка или идентификатор видео товара."
+      - name: dimensions_height
+        description: "Высота товара."
+      - name: dimensions_length
+        description: "Длина товара."
+      - name: dimensions_width
+        description: "Ширина товара."
+      - name: dimensions_weight_brutto
+        description: "Вес брутто товара."
+      - name: dimensions_is_valid
+        description: "Флаг валидности габаритов."
+      - name: kiz_marked
+        description: "Признак маркировки КИЗ."
+      - name: need_kiz
+        description: "Признак необходимости КИЗ."
+      - name: wholesale_enabled
+        description: "Признак доступности оптовой продажи."
+      - name: wholesale_quantum
+        description: "Квант оптовой продажи."
+      - name: created_at
+        description: "Дата создания карточки товара."
+      - name: updated_at
+        description: "Дата обновления карточки товара."
+      - name: source_system
+        description: "Источник данных."
+      - name: source_dataset
+        description: "Название исходного cleaned-набора данных."
+      - name: source_row_id
+        description: "Технический идентификатор исходной строки."
+      - name: raw_payload_id
+        description: "Идентификатор исходного raw payload."
+      - name: record_index
+        description: "Номер записи внутри исходного payload."
+      - name: source_loaded_at
+        description: "Время загрузки исходных данных."
+      - name: core_loaded_at
+        description: "Время построения core-записи."
+
+  - name: product_variants
+    description: "Core-справочник вариантов товаров WB. Одна строка соответствует одному варианту товара по chrt_id."
+    columns:
+      - name: product_variant_id
+        description: "Бизнес-ключ варианта товара. Соответствует chrt_id."
+        tests:
+          - not_null
+          - unique
+      - name: chrt_id
+        description: "Идентификатор характеристики / варианта товара WB."
+        tests:
+          - not_null
+          - unique
+      - name: product_id
+        description: "Ссылка на товар. Соответствует nm_id."
+      - name: nm_id
+        description: "Идентификатор номенклатуры WB."
+      - name: vendor_code
+        description: "Артикул продавца."
+      - name: article
+        description: "Артикул товара из источника."
+      - name: barcode
+        description: "Основной barcode варианта товара."
+      - name: skus
+        description: "JSON-массив SKU / barcode из карточки товара."
+      - name: characteristics
+        description: "JSON с характеристиками варианта товара."
+      - name: sizes
+        description: "JSON с размерами варианта товара."
+      - name: created_at
+        description: "Дата создания карточки / варианта."
+      - name: updated_at
+        description: "Дата обновления карточки / варианта."
+      - name: source_system
+        description: "Источник данных."
+      - name: source_dataset
+        description: "Название исходного cleaned-набора данных."
+      - name: source_row_id
+        description: "Технический идентификатор исходной строки."
+      - name: raw_payload_id
+        description: "Идентификатор исходного raw payload."
+      - name: record_index
+        description: "Номер записи внутри исходного payload."
+      - name: source_loaded_at
+        description: "Время загрузки исходных данных."
+      - name: core_loaded_at
+        description: "Время построения core-записи."
+
+  - name: product_barcodes
+    description: "Core-справочная bridge-таблица barcode/SKU товаров. Одна строка соответствует одному barcode/SKU для варианта товара."
+    columns:
+      - name: product_barcode_key
+        description: "Суррогатный ключ связки товар-вариант-barcode."
+        tests:
+          - not_null
+          - unique
+      - name: product_id
+        description: "Ссылка на товар. Соответствует nm_id."
+      - name: nm_id
+        description: "Идентификатор номенклатуры WB."
+      - name: product_variant_id
+        description: "Ссылка на вариант товара. Соответствует chrt_id."
+      - name: chrt_id
+        description: "Идентификатор характеристики / варианта товара WB."
+      - name: barcode_value
+        description: "Значение barcode или SKU."
+        tests:
+          - not_null
+      - name: barcode_source
+        description: "Поле-источник barcode: barcode или skus."
+      - name: source_system
+        description: "Источник данных."
+      - name: source_dataset
+        description: "Название исходного cleaned-набора данных."
+      - name: source_row_id
+        description: "Технический идентификатор исходной строки."
+      - name: raw_payload_id
+        description: "Идентификатор исходного raw payload."
+      - name: record_index
+        description: "Номер записи внутри исходного payload."
+      - name: source_loaded_at
+        description: "Время загрузки исходных данных."
+      - name: core_loaded_at
+        description: "Время построения core-записи."
+
+  - name: warehouses
+    description: "Core-справочник складов / офисов / точек исполнения WB."
+    columns:
+      - name: warehouse_key
+        description: "Суррогатный ключ склада."
+        tests:
+          - not_null
+          - unique
+      - name: warehouse_natural_id
+        description: "Единый натуральный идентификатор склада, собранный из warehouse_id, office_id или id."
+        tests:
+          - not_null
+          - unique
+      - name: warehouse_id
+        description: "Идентификатор склада WB."
+      - name: office_id
+        description: "Идентификатор офиса WB."
+      - name: source_warehouse_id
+        description: "Исходное поле id из endpoint склада."
+      - name: warehouse_name
+        description: "Нормализованное название склада."
+      - name: source_name
+        description: "Исходное название из поля name."
+      - name: warehouse_address
+        description: "Адрес склада."
+      - name: delivery_type
+        description: "Тип доставки / логистики."
+      - name: cargo_type
+        description: "Тип груза."
+      - name: is_deleting
+        description: "Признак удаления склада в источнике."
+      - name: is_processing
+        description: "Признак обработки склада в источнике."
+      - name: source_system
+        description: "Источник данных."
+      - name: source_dataset
+        description: "Название исходного cleaned-набора данных."
+      - name: source_row_id
+        description: "Технический идентификатор исходной строки."
+      - name: raw_payload_id
+        description: "Идентификатор исходного raw payload."
+      - name: record_index
+        description: "Номер записи внутри исходного payload."
+      - name: source_loaded_at
+        description: "Время загрузки исходных данных."
+      - name: core_loaded_at
+        description: "Время построения core-записи."
