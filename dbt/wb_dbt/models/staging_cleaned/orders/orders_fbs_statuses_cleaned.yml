@@ -1,0 +1,78 @@
+version: 2
+models:
+- name: orders_fbs_statuses_cleaned
+  description: Очищенная staging-модель `orders_fbs_statuses`. Данные берутся из `quarantine.v_orders_fbs_statuses_for_cleaned` после единого
+    row quarantine. Сохраняет endpoint-level структуру и technical/quality поля. Это trusted staging слой, а не финальная нормализованная core-сущность.
+  columns:
+  - name: raw_payload_id
+    description: Технический lineage. ID строки из landing.raw_payloads.
+    data_tests:
+    - not_null
+  - name: record_index
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    data_tests:
+    - not_null
+  - name: source_system
+    description: Система-источник данных.
+  - name: dataset_name
+    description: Имя исходного dataset/endpoint mock API.
+    data_tests:
+    - not_null
+  - name: source_file
+    description: Имя исходного JSON-файла.
+  - name: source_url
+    description: URL исходного JSON-файла.
+  - name: file_hash
+    description: Хэш исходного файла.
+  - name: loaded_at
+    description: Время загрузки raw payload в PostgreSQL.
+  - name: raw_record
+    description: Исходный JSON-объект одной записи без потери структуры.
+    data_tests:
+    - not_null
+  - name: created_at
+    description: 'Дата создания заказа JSON path: `createdAt`. Dataset: `orders_fbs_statuses`.'
+  - name: id
+    description: 'ID пропуска продавца JSON path: `id`. Dataset: `orders_fbs_statuses`.'
+  - name: is_cancellable
+    description: 'Доступна ли [отмена](./openapi/orders-fbs#tag/Sborochnye-zadaniya-FBS/paths/~1api~1v3~1orders~1%7BorderId%7D~1cancel/patch)
+      сборочного задания: - `false` — недоступна - `true` — доступна JSON path: `isCancellable`. Dataset: `orders_fbs_statuses`.'
+  - name: order_id
+    description: 'ID сборочного задания JSON path: `orderId`. Dataset: `orders_fbs_statuses`.'
+  - name: order_uid
+    description: 'ID транзакции для группировки сборочных заданий. Сборочные задания в одной корзине покупателя будут иметь одинаковый `orderUid`
+      JSON path: `orderUid`. Dataset: `orders_fbs_statuses`.'
+  - name: rid
+    description: 'Уникальный ID заказа. <br> Примечание: `rid` — это `srid` в ответах методов:   - [Заявки покупателей на возврат](./user-communication#tag/Vozvraty-pokupatelyami/paths/~1api~1v1~1claims/get)   -
+      [Заказы](./reports#tag/Osnovnye-otchyoty/paths/~1api~1v1~1supplier~1orders/get)   - [Продажи](./reports#tag/Osnovnye-otchyoty/paths/~1api~1v1~1supplier~1sales/get)   -
+      [Отчёт о возвратах и перемещении товаров](./reports#tag/Otchyot-o-vozvratah-i-peremeshenii-tovarov)   - [Детализации к отчётам реализации
+      по ID отчётов](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1SalesReportsDetailedReportId)   - [Детализации
+      к отчётам реализации за период](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1SalesReportsDetailed)   - [Детализации
+      к отчётам об издержках на приём платежей по ID отчётов](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1AcquiringDetailedReportId)   -
+      [Детализации к отчётам об издержках на приём платежей за период](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1AcquiringDetailed)
+      JSON path: `rid`. Dataset: `orders_fbs_statuses`.'
+  - name: srid
+    description: 'Unique order ID for which a item claim was created JSON path: `srid`. Dataset: `orders_fbs_statuses`.'
+  - name: status
+    description: 'Статус генерации стикера:   - `awaitingTrackNumber` — стикер не готов. Ожидается трек-номер от перевозчика.   - `ready` — стикер
+      готов JSON path: `status`. Dataset: `orders_fbs_statuses`.'
+  - name: supplier_status
+    description: 'Статус сборочного задания, установленный продавцом JSON path: `supplierStatus`. Dataset: `orders_fbs_statuses`.'
+  - name: updated_at
+    description: 'Update date and time JSON path: `updatedAt`. Dataset: `orders_fbs_statuses`.'
+  - name: wb_status
+    description: 'Статус сборочного задания в системе Wildberries JSON path: `wbStatus`. Dataset: `orders_fbs_statuses`.'
+  - name: issue_count
+    description: Общее количество найденных row-quality нарушений по строке.
+  - name: bad_issue_count
+    description: Количество критических bad-нарушений по строке.
+  - name: warning_issue_count
+    description: Количество warning-предупреждений по строке.
+  - name: quality_status
+    description: 'Итоговый статус качества строки: good, partial или bad.'
+  - name: quality_issues
+    description: Массив кодов критических bad-нарушений.
+  - name: warning_issues
+    description: Массив кодов warning-предупреждений.
+  - name: can_load_to_cleaned
+    description: Флаг, показывающий, что строка прошла row quarantine и разрешена к загрузке в staging_cleaned.

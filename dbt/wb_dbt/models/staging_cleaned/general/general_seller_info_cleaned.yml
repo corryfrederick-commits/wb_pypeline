@@ -1,0 +1,54 @@
+version: 2
+models:
+- name: general_seller_info_cleaned
+  description: Очищенная staging-модель `general_seller_info`. Данные берутся из `quarantine.v_general_seller_info_for_cleaned` после единого
+    row quarantine. Сохраняет endpoint-level структуру и technical/quality поля. Это trusted staging слой, а не финальная нормализованная core-сущность.
+  columns:
+  - name: raw_payload_id
+    description: Технический lineage. ID строки из landing.raw_payloads.
+    data_tests:
+    - not_null
+  - name: record_index
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    data_tests:
+    - not_null
+  - name: source_system
+    description: Система-источник данных.
+  - name: dataset_name
+    description: Имя исходного dataset/endpoint mock API.
+    data_tests:
+    - not_null
+  - name: source_file
+    description: Имя исходного JSON-файла.
+  - name: source_url
+    description: URL исходного JSON-файла.
+  - name: file_hash
+    description: Хэш исходного файла.
+  - name: loaded_at
+    description: Время загрузки raw payload в PostgreSQL.
+  - name: raw_record
+    description: Исходный JSON-объект одной записи без потери структуры.
+    data_tests:
+    - not_null
+  - name: name
+    description: 'Tag name JSON path: `name`. Dataset: `general_seller_info`.'
+  - name: sid
+    description: 'Wildberries Seller [ID](./api-information#tag/Avtorizaciya/Kak-ustroen-token) JSON path: `sid`. Dataset: `general_seller_info`.'
+  - name: tin
+    description: 'Taxpayer identification number of the partner (INN in Russian) JSON path: `tin`. Dataset: `general_seller_info`.'
+  - name: trade_mark
+    description: 'Seller''s trade name JSON path: `tradeMark`. Dataset: `general_seller_info`.'
+  - name: issue_count
+    description: Общее количество найденных row-quality нарушений по строке.
+  - name: bad_issue_count
+    description: Количество критических bad-нарушений по строке.
+  - name: warning_issue_count
+    description: Количество warning-предупреждений по строке.
+  - name: quality_status
+    description: 'Итоговый статус качества строки: good, partial или bad.'
+  - name: quality_issues
+    description: Массив кодов критических bad-нарушений.
+  - name: warning_issues
+    description: Массив кодов warning-предупреждений.
+  - name: can_load_to_cleaned
+    description: Флаг, показывающий, что строка прошла row quarantine и разрешена к загрузке в staging_cleaned.

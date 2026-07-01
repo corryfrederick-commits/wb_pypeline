@@ -1,0 +1,70 @@
+version: 2
+models:
+- name: items_warehouses_cleaned
+  description: Очищенная staging-модель `items_warehouses`. Данные берутся из `quarantine.v_items_warehouses_for_cleaned` после единого row quarantine.
+    Сохраняет endpoint-level структуру и technical/quality поля. Это trusted staging слой, а не финальная нормализованная core-сущность.
+  columns:
+  - name: raw_payload_id
+    description: Технический lineage. ID строки из landing.raw_payloads.
+    data_tests:
+    - not_null
+  - name: record_index
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    data_tests:
+    - not_null
+  - name: source_system
+    description: Система-источник данных.
+  - name: dataset_name
+    description: Имя исходного dataset/endpoint mock API.
+    data_tests:
+    - not_null
+  - name: source_file
+    description: Имя исходного JSON-файла.
+  - name: source_url
+    description: URL исходного JSON-файла.
+  - name: file_hash
+    description: Хэш исходного файла.
+  - name: loaded_at
+    description: Время загрузки raw payload в PostgreSQL.
+  - name: raw_record
+    description: Исходный JSON-объект одной записи без потери структуры.
+    data_tests:
+    - not_null
+  - name: cargo_type
+    description: 'The type of items a warehouse can accept:   - `1` — small-sized items   - `2` — over dimensional cargo (ODC)   - `3` — dimensional
+      cargo+ (CD+) JSON path: `cargoType`. Dataset: `items_warehouses`.'
+  - name: delivery_type
+    description: 'The type of deliveries:   - `1` — Fulfillment By Wildberries (FBS)   - `2` — Delivery By Seller (DBS)   - `3` — Delivery by
+      WB courier (DBW)   - `5` — In-Store Pickup (C&C)   - `6` — Express Delivery By Seller (EDBS) JSON path: `deliveryType`. Dataset: `items_warehouses`.'
+  - name: id
+    description: 'Parent category ID JSON path: `id`. Dataset: `items_warehouses`.'
+  - name: is_deleting
+    description: 'Warehouse is being deleted:   - `false` — no   - `true` — yes  After deletion, the warehouse will disappear from the list JSON
+      path: `isDeleting`. Dataset: `items_warehouses`.'
+  - name: is_processing
+    description: 'Warehouse is being updated:   - `false` — no   - `true` — yes, update and deletion of inventory is not available  Data update
+      may take several minutes JSON path: `isProcessing`. Dataset: `items_warehouses`.'
+  - name: name
+    description: 'Category name JSON path: `name`. Dataset: `items_warehouses`.'
+  - name: office_id
+    description: 'Office ID JSON path: `officeId`. Dataset: `items_warehouses`.'
+  - name: warehouse_address
+    description: 'Store address (seller warehouse) where the assembly order was received JSON path: `warehouseAddress`. Dataset: `items_warehouses`.'
+  - name: warehouse_id
+    description: 'ID склада продавца, с которого был отгружен товар JSON path: `warehouseId`. Dataset: `items_warehouses`.'
+  - name: warehouse_name
+    description: 'Warehouse name for planned supply JSON path: `warehouseName`. Dataset: `items_warehouses`.'
+  - name: issue_count
+    description: Общее количество найденных row-quality нарушений по строке.
+  - name: bad_issue_count
+    description: Количество критических bad-нарушений по строке.
+  - name: warning_issue_count
+    description: Количество warning-предупреждений по строке.
+  - name: quality_status
+    description: 'Итоговый статус качества строки: good, partial или bad.'
+  - name: quality_issues
+    description: Массив кодов критических bad-нарушений.
+  - name: warning_issues
+    description: Массив кодов warning-предупреждений.
+  - name: can_load_to_cleaned
+    description: Флаг, показывающий, что строка прошла row quarantine и разрешена к загрузке в staging_cleaned.
