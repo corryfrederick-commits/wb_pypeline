@@ -85,3 +85,20 @@ models:
       - name: promotion_date
         tests:
           - not_null
+
+  - name: mart_business_daily
+    description: Daily business overview mart with orders, sales, stock and promotion metrics.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+      - name: mart_business_daily_key
+        tests:
+          - not_null
+          - unique
+      - name: business_date
+        tests:
+          - not_null
