@@ -12,9 +12,11 @@ prepared as (
 
     select
         *,
-        coalesce(warehouse_id, office_id, id) as warehouse_natural_id
+        coalesce(id, warehouse_id, office_id) as warehouse_natural_id,
+        coalesce(nullif(name, ''), nullif(warehouse_name, '')) as resolved_warehouse_name,
+        coalesce(nullif(warehouse_address, ''), null) as resolved_warehouse_address
     from source
-    where coalesce(warehouse_id, office_id, id) is not null
+    where coalesce(id, warehouse_id, office_id) is not null
 
 ),
 
@@ -34,13 +36,13 @@ select
     md5(concat_ws('||', 'warehouse', warehouse_natural_id::text)) as warehouse_key,
 
     warehouse_natural_id,
-    warehouse_id,
+    warehouse_natural_id as warehouse_id,
     office_id,
     id as source_warehouse_id,
 
-    coalesce(nullif(warehouse_name, ''), nullif(name, '')) as warehouse_name,
+    resolved_warehouse_name as warehouse_name,
     nullif(name, '') as source_name,
-    nullif(warehouse_address, '') as warehouse_address,
+    resolved_warehouse_address as warehouse_address,
 
     delivery_type,
     cargo_type,

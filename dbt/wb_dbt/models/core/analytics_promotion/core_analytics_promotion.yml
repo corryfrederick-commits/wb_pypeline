@@ -110,6 +110,12 @@ models:
     description: 'Метрика рекламной статистики на уровне приложения: app app type.'
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
@@ -258,6 +264,12 @@ models:
     description: 'Дата и время: metric snapshot at.'
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_brand_name
@@ -486,16 +498,34 @@ models:
     description: 'Дата и время: metric snapshot at.'
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
+    tests:
+    - relationships:
+        to: ref('products')
+        field: product_id
+        config:
+          where: product_id is not null
   - name: nm_id
     description: Идентификатор номенклатуры WB.
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
+    tests:
+    - relationships:
+        to: ref('product_variants')
+        field: product_variant_id
+        config:
+          where: product_variant_id is not null
   - name: chrt_id
     description: Идентификатор характеристики / варианта товара WB.
   - name: warehouse_id
     description: Идентификатор склада WB.
   - name: warehouse_key
     description: Суррогатный ключ склада.
+    tests:
+    - relationships:
+        to: ref('warehouses')
+        field: warehouse_key
+        config:
+          where: warehouse_key is not null
   - name: warehouse_name
     description: Название склада.
   - name: region_name
