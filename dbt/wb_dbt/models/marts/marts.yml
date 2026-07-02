@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: mart_products_catalog
+    description: Product catalog mart with product, variant and barcode attributes.
+    columns:
+      - name: client_id
+        description: Internal SaaS client identifier.
+        tests:
+          - not_null
+      - name: wb_account_id
+        description: Internal Wildberries account identifier.
+        tests:
+          - not_null
+      - name: mart_products_catalog_key
+        description: Surrogate key of product catalog row.
+        tests:
+          - not_null
+          - unique
+      - name: product_id
+        tests:
+          - not_null
+
+  - name: mart_stock_current
+    description: Current stock mart by product variant and warehouse.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+      - name: mart_stock_current_key
+        tests:
+          - not_null
+          - unique
+
+  - name: mart_orders_daily
+    description: Daily order mart grouped by product, warehouse and order attributes.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+      - name: mart_orders_daily_key
+        tests:
+          - not_null
+          - unique
+      - name: order_date
+        tests:
+          - not_null
+
+  - name: mart_sales_daily
+    description: Daily sales mart grouped by product, warehouse and geography.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+      - name: mart_sales_daily_key
+        tests:
+          - not_null
+          - unique
+      - name: sale_date
+        tests:
+          - not_null
+
+  - name: mart_promotion_daily
+    description: Daily promotion mart by campaign, product and app type.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+      - name: mart_promotion_daily_key
+        tests:
+          - not_null
+          - unique
+      - name: promotion_date
+        tests:
+          - not_null
