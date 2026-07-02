@@ -8,52 +8,71 @@ with source as (
 
 ),
 
-primary_barcodes as (
+direct_barcodes as (
 
     select
+        client_id,
+        wb_account_id,
         raw_payload_id,
         record_index,
         source_system,
         dataset_name,
         loaded_at,
-        nm_id,
-        chrt_id,
+
+        coalesce(nm_id, nm_id_2) as product_id,
+        chrt_id as product_variant_id,
         nullif(barcode::text, '') as barcode_value,
-        'barcode' as barcode_source,
-        1 as source_priority
+        'barcode' as barcode_source
+
     from source
-    where barcode is not null
+    where nullif(barcode::text, '') is not null
 
 ),
 
 sku_barcodes as (
 
     select
+        s.client_id,
+        s.wb_account_id,
         s.raw_payload_id,
         s.record_index,
         s.source_system,
         s.dataset_name,
         s.loaded_at,
-        s.nm_id,
-        s.chrt_id,
-        nullif(sku.value, '') as barcode_value,
-        'skus' as barcode_source,
-        2 as source_priority
-    from source as s
+
+        coalesce(s.nm_id, s.nm_id_2) as product_id,
+        s.chrt_id as product_variant_id,
+        nullif(x.sku, '') as barcode_value,
+        'skus' as barcode_source
+
+    from source s
     cross join lateral jsonb_array_elements_text(
         case
             when jsonb_typeof(s.skus) = 'array' then s.skus
+            when jsonb_typeof(s.skus) = 'string' then jsonb_build_array(s.skus)
             else '[]'::jsonb
         end
-    ) as sku(value)
+    ) as x(sku)
+
+    where nullif(x.sku, '') is not null
 
 ),
 
-unioned as (
+combined as (
 
-    select * from primary_barcodes
+    select * from direct_barcodes
     union all
     select * from sku_barcodes
+
+),
+
+prepared as (
+
+    select *
+    from combined
+    where product_id is not null
+      and product_variant_id is not null
+      and barcode_value is not null
 
 ),
 
@@ -63,35 +82,49 @@ deduplicated as (
         *,
         row_number() over (
             partition by
-                coalesce(nm_id::text, 'unknown'),
-                coalesce(chrt_id::text, 'unknown'),
+                client_id,
+                wb_account_id,
+                product_id,
+                product_variant_id,
                 barcode_value
-            order by source_priority, loaded_at desc, raw_payload_id desc, record_index desc
+            order by loaded_at desc, raw_payload_id desc, record_index desc
         ) as rn
-    from unioned
-    where barcode_value is not null
+    from prepared
 
 )
 
 select
+    client_id,
+    wb_account_id,
+
     md5(concat_ws(
         '||',
+        client_id,
+        wb_account_id,
         'product_barcode',
-        coalesce(nm_id::text, 'unknown'),
-        coalesce(chrt_id::text, 'unknown'),
+        product_id::text,
+        product_variant_id::text,
         barcode_value
     )) as product_barcode_key,
 
-    nm_id as product_id,
-    nm_id,
-    chrt_id as product_variant_id,
-    chrt_id,
+    md5(concat_ws('||', client_id, wb_account_id, 'product', product_id::text)) as product_key,
+    md5(concat_ws('||', client_id, wb_account_id, 'product_variant', product_variant_id::text)) as product_variant_key,
+
+    product_id,
+    product_variant_id,
     barcode_value,
     barcode_source,
 
     source_system,
     dataset_name as source_dataset,
-    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    md5(concat_ws(
+        '||',
+        client_id,
+        wb_account_id,
+        raw_payload_id::text,
+        record_index::text,
+        barcode_value
+    )) as source_row_id,
     raw_payload_id,
     record_index,
     loaded_at as source_loaded_at,

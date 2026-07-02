@@ -2,8 +2,10 @@
 
 with latest_raw as (
 
-    select distinct on (source_system, dataset_name, source_file)
+    select distinct on (client_id, wb_account_id, source_system, dataset_name, source_file)
         id as raw_payload_id,
+        client_id,
+        wb_account_id,
         source_system,
         dataset_name,
         source_file,
@@ -23,6 +25,8 @@ with latest_raw as (
         'orders_pickup_new'
     )
     order by
+        client_id,
+        wb_account_id,
         source_system,
         dataset_name,
         source_file,
@@ -35,6 +39,8 @@ mapped_raw as (
 
     select
         raw_payload_id,
+        client_id,
+        wb_account_id,
         source_system,
         dataset_name,
         source_file,
@@ -66,6 +72,8 @@ orders_expanded as (
 
     select
         r.raw_payload_id,
+        r.client_id,
+        r.wb_account_id,
         r.source_system,
         r.dataset_name,
         r.source_file,
@@ -90,6 +98,8 @@ typed as (
 
     select
         raw_payload_id,
+        client_id,
+        wb_account_id,
         record_index,
 
         source_system,

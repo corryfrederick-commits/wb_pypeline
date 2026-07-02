@@ -26,7 +26,7 @@ deduplicated as (
     select
         *,
         row_number() over (
-            partition by fbw_supply_natural_id
+            partition by client_id, wb_account_id, fbw_supply_natural_id
             order by coalesce(updated_date, fact_date, supply_date, create_date, loaded_at) desc, raw_payload_id desc, record_index desc
         ) as rn
     from prepared
@@ -34,7 +34,9 @@ deduplicated as (
 )
 
 select
-    md5(concat_ws('||', 'fbw_supply', fbw_supply_natural_id)) as fbw_supply_key,
+    client_id,
+    wb_account_id,
+    md5(concat_ws('||', client_id, wb_account_id, 'fbw_supply', fbw_supply_natural_id)) as fbw_supply_key,
 
     fbw_supply_natural_id,
     supply_id,
@@ -53,7 +55,7 @@ select
 
     source_system,
     dataset_name as source_dataset,
-    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    md5(concat_ws('||', client_id, wb_account_id, raw_payload_id::text, record_index::text)) as source_row_id,
     raw_payload_id,
     record_index,
     loaded_at as source_loaded_at,

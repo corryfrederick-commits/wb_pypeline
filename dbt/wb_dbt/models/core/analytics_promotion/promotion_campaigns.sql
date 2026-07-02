@@ -27,7 +27,7 @@ deduplicated as (
     select
         *,
         row_number() over (
-            partition by promotion_campaign_natural_id
+            partition by client_id, wb_account_id, promotion_campaign_natural_id
             order by coalesce(timestamps_updated, timestamps_created, loaded_at) desc, raw_payload_id desc, record_index desc
         ) as rn
     from prepared
@@ -35,7 +35,9 @@ deduplicated as (
 )
 
 select
-    md5(concat_ws('||', 'promotion_campaign', promotion_campaign_natural_id)) as promotion_campaign_key,
+    client_id,
+    wb_account_id,
+    md5(concat_ws('||', client_id, wb_account_id, 'promotion_campaign', promotion_campaign_natural_id)) as promotion_campaign_key,
 
     promotion_campaign_natural_id,
 
@@ -68,7 +70,7 @@ select
 
     source_system,
     dataset_name as source_dataset,
-    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    md5(concat_ws('||', client_id, wb_account_id, raw_payload_id::text, record_index::text)) as source_row_id,
     raw_payload_id,
     record_index,
     loaded_at as source_loaded_at,

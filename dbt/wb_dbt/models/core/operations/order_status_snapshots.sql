@@ -4,6 +4,8 @@ with fbs as (
 
     select
         raw_payload_id,
+        client_id,
+        wb_account_id,
         record_index,
         source_system,
         dataset_name,
@@ -29,6 +31,8 @@ dbs as (
 
     select
         raw_payload_id,
+        client_id,
+        wb_account_id,
         record_index,
         source_system,
         dataset_name,
@@ -54,6 +58,8 @@ dbw as (
 
     select
         raw_payload_id,
+        client_id,
+        wb_account_id,
         record_index,
         source_system,
         dataset_name,
@@ -79,6 +85,8 @@ pickup as (
 
     select
         raw_payload_id,
+        client_id,
+        wb_account_id,
         record_index,
         source_system,
         dataset_name,
@@ -145,7 +153,7 @@ select
         record_index::text
     )) as order_status_snapshot_key,
 
-    md5(concat_ws('||', 'order', order_natural_id)) as order_key,
+    md5(concat_ws('||', client_id, wb_account_id, 'order', order_natural_id)) as order_key,
     order_natural_id,
 
     id as source_status_id,
@@ -169,8 +177,10 @@ select
 
     source_system,
     dataset_name as source_dataset,
-    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    md5(concat_ws('||', client_id, wb_account_id, raw_payload_id::text, record_index::text)) as source_row_id,
     raw_payload_id,
+        client_id,
+        wb_account_id,
     record_index,
     loaded_at as source_loaded_at,
     now() as core_loaded_at

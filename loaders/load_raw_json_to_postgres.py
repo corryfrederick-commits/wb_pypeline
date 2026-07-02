@@ -23,6 +23,11 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 WB_MOCK_BASE_URL = os.getenv("WB_MOCK_BASE_URL")
 
+# Internal SaaS identifiers.
+# WB API does not return these fields; our loader assigns them.
+WB_CLIENT_ID = os.getenv("WB_CLIENT_ID", "demo_client")
+WB_ACCOUNT_ID = os.getenv("WB_ACCOUNT_ID", "demo_wb_account")
+
 DOWNLOAD_DIR = PROJECT_DIR / "data" / "tmp_downloads"
 
 
@@ -78,13 +83,15 @@ def load_json_file(cur, json_path: Path):
         """
         SELECT id
         FROM landing.raw_payloads
-        WHERE source_system = %s
+        WHERE client_id = %s
+          AND wb_account_id = %s
+          AND source_system = %s
           AND source_file = %s
           AND file_hash = %s
         ORDER BY id
         LIMIT 1;
         """,
-        ("wb_mock", filename, file_hash),
+        (WB_CLIENT_ID, WB_ACCOUNT_ID, "wb_mock", filename, file_hash),
     )
 
     existing_row = cur.fetchone()
@@ -102,6 +109,8 @@ def load_json_file(cur, json_path: Path):
     cur.execute(
         """
         INSERT INTO landing.raw_payloads (
+            client_id,
+            wb_account_id,
             source_system,
             dataset_name,
             source_file,
@@ -111,10 +120,12 @@ def load_json_file(cur, json_path: Path):
             top_level_count,
             payload
         )
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         RETURNING id;
         """,
         (
+            WB_CLIENT_ID,
+            WB_ACCOUNT_ID,
             "wb_mock",
             dataset_name,
             filename,
@@ -178,6 +189,8 @@ def main():
                     """
                     CREATE TABLE IF NOT EXISTS landing.raw_payloads (
                         id BIGSERIAL PRIMARY KEY,
+                        client_id TEXT NOT NULL DEFAULT 'demo_client',
+                        wb_account_id TEXT NOT NULL DEFAULT 'demo_wb_account',
                         source_system TEXT NOT NULL,
                         dataset_name TEXT NOT NULL,
                         source_file TEXT NOT NULL,

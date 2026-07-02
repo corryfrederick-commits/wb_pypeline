@@ -9,6 +9,8 @@ with source as (
 )
 
 select
+    client_id,
+    wb_account_id,
     md5(concat_ws(
         '||',
         'finance_balance',
@@ -25,7 +27,7 @@ select
 
     source_system,
     dataset_name as source_dataset,
-    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    md5(concat_ws('||', client_id, wb_account_id, raw_payload_id::text, record_index::text)) as source_row_id,
     raw_payload_id,
     record_index,
     loaded_at as source_loaded_at,

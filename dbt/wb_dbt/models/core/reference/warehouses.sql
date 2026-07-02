@@ -25,7 +25,7 @@ deduplicated as (
     select
         *,
         row_number() over (
-            partition by warehouse_natural_id
+            partition by client_id, wb_account_id, warehouse_natural_id
             order by loaded_at desc, raw_payload_id desc, record_index desc
         ) as rn
     from prepared
@@ -33,7 +33,9 @@ deduplicated as (
 )
 
 select
-    md5(concat_ws('||', 'warehouse', warehouse_natural_id::text)) as warehouse_key,
+    client_id,
+    wb_account_id,
+    md5(concat_ws('||', client_id, wb_account_id, 'warehouse', warehouse_natural_id::text)) as warehouse_key,
 
     warehouse_natural_id,
     warehouse_natural_id as warehouse_id,
@@ -51,7 +53,7 @@ select
 
     source_system,
     dataset_name as source_dataset,
-    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    md5(concat_ws('||', client_id, wb_account_id, raw_payload_id::text, record_index::text)) as source_row_id,
     raw_payload_id,
     record_index,
     loaded_at as source_loaded_at,

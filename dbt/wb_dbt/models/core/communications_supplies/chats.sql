@@ -42,7 +42,7 @@ deduplicated as (
     select
         *,
         row_number() over (
-            partition by chat_natural_id
+            partition by client_id, wb_account_id, chat_natural_id
             order by coalesce(last_message_at_normalized, created_at, loaded_at) desc, raw_payload_id desc, record_index desc
         ) as rn
     from prepared
@@ -50,7 +50,9 @@ deduplicated as (
 )
 
 select
-    md5(concat_ws('||', 'chat', chat_natural_id)) as chat_key,
+    client_id,
+    wb_account_id,
+    md5(concat_ws('||', client_id, wb_account_id, 'chat', chat_natural_id)) as chat_key,
 
     chat_natural_id,
     chat_id,
@@ -64,7 +66,7 @@ select
     last_message_add_timestamp as last_message_timestamp_raw,
     last_message_text,
 
-    md5(concat_ws('||', 'order', order_natural_id)) as order_key,
+    md5(concat_ws('||', client_id, wb_account_id, 'order', order_natural_id)) as order_key,
     order_natural_id,
     order_id,
     order_uid,
@@ -89,7 +91,7 @@ select
 
     source_system,
     dataset_name as source_dataset,
-    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    md5(concat_ws('||', client_id, wb_account_id, raw_payload_id::text, record_index::text)) as source_row_id,
     raw_payload_id,
     record_index,
     loaded_at as source_loaded_at,

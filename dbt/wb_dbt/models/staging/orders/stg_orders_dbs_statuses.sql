@@ -2,8 +2,10 @@
 
 with latest_raw as (
 
-    select distinct on (source_system, dataset_name, source_file)
+    select distinct on (client_id, wb_account_id, source_system, dataset_name, source_file)
         id as raw_payload_id,
+        client_id,
+        wb_account_id,
         source_system,
         dataset_name,
         source_file,
@@ -14,6 +16,8 @@ with latest_raw as (
     from {{ source('quarantine', 'v_raw_payloads_schema_passed') }}
     where dataset_name = 'orders_dbs_statuses'
     order by
+        client_id,
+        wb_account_id,
         source_system,
         dataset_name,
         source_file,
@@ -26,6 +30,8 @@ expanded as (
 
     select
         p.raw_payload_id,
+        p.client_id,
+        p.wb_account_id,
         p.source_system,
         p.dataset_name,
         p.source_file,
@@ -49,6 +55,8 @@ typed as (
 
     select
         raw_payload_id,
+        client_id,
+        wb_account_id,
         record_index,
         source_system,
         dataset_name,

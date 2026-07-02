@@ -2,8 +2,10 @@
 
 with latest_raw as (
 
-    select distinct on (source_system, dataset_name, source_file)
+    select distinct on (client_id, wb_account_id, source_system, dataset_name, source_file)
         id as raw_payload_id,
+        client_id,
+        wb_account_id,
         source_system,
         dataset_name,
         source_file,
@@ -14,6 +16,8 @@ with latest_raw as (
     from {{ source('quarantine', 'v_raw_payloads_schema_passed') }}
     where dataset_name = 'promotion_fullstats'
     order by
+        client_id,
+        wb_account_id,
         source_system,
         dataset_name,
         source_file,
@@ -26,6 +30,8 @@ expanded_root as (
 
     select
         p.raw_payload_id,
+        p.client_id,
+        p.wb_account_id,
         p.source_system,
         p.dataset_name,
         p.source_file,
@@ -49,6 +55,8 @@ expanded_days as (
 
     select
         r.raw_payload_id,
+        r.client_id,
+        r.wb_account_id,
         r.source_system,
         r.dataset_name,
         r.source_file,
@@ -74,6 +82,8 @@ expanded_apps as (
 
     select
         d.raw_payload_id,
+        d.client_id,
+        d.wb_account_id,
         d.source_system,
         d.dataset_name,
         d.source_file,
@@ -101,6 +111,8 @@ expanded_nms as (
 
     select
         a.raw_payload_id,
+        a.client_id,
+        a.wb_account_id,
         a.source_system,
         a.dataset_name,
         a.source_file,
@@ -130,6 +142,8 @@ typed as (
 
     select
         raw_payload_id,
+        client_id,
+        wb_account_id,
         (
             row_number() over (
                 partition by raw_payload_id

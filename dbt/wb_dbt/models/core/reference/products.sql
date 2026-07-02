@@ -14,7 +14,7 @@ deduplicated as (
     select
         *,
         row_number() over (
-            partition by nm_id
+            partition by client_id, wb_account_id, nm_id
             order by coalesce(updated_at, created_at, loaded_at) desc, raw_payload_id desc, record_index desc
         ) as rn
     from source
@@ -22,6 +22,8 @@ deduplicated as (
 )
 
 select
+    client_id,
+    wb_account_id,
     nm_id as product_id,
     nm_id,
     nm_id_2,
@@ -56,7 +58,7 @@ select
 
     source_system,
     dataset_name as source_dataset,
-    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    md5(concat_ws('||', client_id, wb_account_id, raw_payload_id::text, record_index::text)) as source_row_id,
     raw_payload_id,
     record_index,
     loaded_at as source_loaded_at,

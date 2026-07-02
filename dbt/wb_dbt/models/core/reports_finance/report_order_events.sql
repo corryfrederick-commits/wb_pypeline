@@ -24,6 +24,8 @@ prepared as (
 )
 
 select
+    client_id,
+    wb_account_id,
     md5(concat_ws(
         '||',
         'report_order_event',
@@ -33,7 +35,7 @@ select
 
     id as source_report_order_id,
 
-    md5(concat_ws('||', 'order', order_natural_id)) as order_key,
+    md5(concat_ws('||', client_id, wb_account_id, 'order', order_natural_id)) as order_key,
     order_natural_id,
     order_id,
     order_uid,
@@ -57,7 +59,7 @@ select
 
     warehouse_id,
     office_id,
-    md5(concat_ws('||', 'warehouse', coalesce(warehouse_id, office_id)::text)) as warehouse_key,
+    md5(concat_ws('||', client_id, wb_account_id, 'warehouse', coalesce(warehouse_id, office_id)::text)) as warehouse_key,
     warehouse_name,
     warehouse_address,
     warehouse_type,
@@ -95,7 +97,7 @@ select
 
     source_system,
     dataset_name as source_dataset,
-    md5(concat_ws('||', raw_payload_id::text, record_index::text)) as source_row_id,
+    md5(concat_ws('||', client_id, wb_account_id, raw_payload_id::text, record_index::text)) as source_row_id,
     raw_payload_id,
     record_index,
     loaded_at as source_loaded_at,
