@@ -1,15 +1,25 @@
 version: 2
 models:
 - name: stg_analytics_stocks
-  description: 'Автоматически сгенерированная staging-модель для dataset analytics_stocks. Главный record path: data.items. Одна строка = одна
-    запись из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset analytics_stocks.
+    Главный record path: data.items. Одна строка = одна запись из главного массива
+    JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -39,7 +49,8 @@ models:
   - name: nm_id
     description: 'WB item number JSON path: `nmId`. Dataset: `analytics_stocks`.'
   - name: quantity
-    description: 'Warehouse inventory available to clients to add to cart JSON path: `quantity`. Dataset: `analytics_stocks`.'
+    description: 'Warehouse inventory available to clients to add to cart JSON path:
+      `quantity`. Dataset: `analytics_stocks`.'
   - name: region_name
     description: 'Shipping region JSON path: `regionName`. Dataset: `analytics_stocks`.'
   - name: warehouse_id

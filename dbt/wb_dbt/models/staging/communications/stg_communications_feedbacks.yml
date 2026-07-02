@@ -1,15 +1,25 @@
 version: 2
 models:
 - name: stg_communications_feedbacks
-  description: 'Автоматически сгенерированная staging-модель для dataset communications_feedbacks. Главный record path: data.feedbacks. Одна строка
-    = одна запись из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset communications_feedbacks.
+    Главный record path: data.feedbacks. Одна строка = одна запись из главного массива
+    JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -31,44 +41,55 @@ models:
     data_tests:
     - not_null
   - name: answer_editable
-    description: 'Ability to edit answer (`false` - unable, `true` - able to) JSON path: `answer.editable`. Dataset: `communications_feedbacks`.'
+    description: 'Ability to edit answer (`false` - unable, `true` - able to) JSON
+      path: `answer.editable`. Dataset: `communications_feedbacks`.'
   - name: answer_state
-    description: 'Question status:   - `none` — question rejected by seller (this question doesn''t appear on the buyer portal)   - `wbRu` — answer
-      provided, the question is displayed on the buyers site   - `suppliersPortalSynch` - new question JSON path: `answer.state`. Dataset: `communications_feedbacks`.'
+    description: 'Question status:   - `none` — question rejected by seller (this
+      question doesn''t appear on the buyer portal)   - `wbRu` — answer provided,
+      the question is displayed on the buyers site   - `suppliersPortalSynch` - new
+      question JSON path: `answer.state`. Dataset: `communications_feedbacks`.'
   - name: answer_text
     description: 'question text JSON path: `answer.text`. Dataset: `communications_feedbacks`.'
   - name: bables
     description: 'List of customer tags JSON path: `bables`. Dataset: `communications_feedbacks`.'
   - name: child_feedback_id
-    description: 'ID of the updated feedback (`null` if this feedback is updated) JSON path: `childFeedbackId`. Dataset: `communications_feedbacks`.'
+    description: 'ID of the updated feedback (`null` if this feedback is updated)
+      JSON path: `childFeedbackId`. Dataset: `communications_feedbacks`.'
   - name: color
     description: 'Item color JSON path: `color`. Dataset: `communications_feedbacks`.'
   - name: cons
     description: 'Item cons JSON path: `cons`. Dataset: `communications_feedbacks`.'
   - name: created_date
-    description: 'Date and time the question was created JSON path: `createdDate`. Dataset: `communications_feedbacks`.'
+    description: 'Date and time the question was created JSON path: `createdDate`.
+      Dataset: `communications_feedbacks`.'
   - name: id
     description: 'question id JSON path: `id`. Dataset: `communications_feedbacks`.'
   - name: is_able_return_product_orders
-    description: 'Item return option:   - `true` — available   - `false` — unavailable JSON path: `isAbleReturnProductOrders`. Dataset: `communications_feedbacks`.'
+    description: 'Item return option:   - `true` — available   - `false` — unavailable
+      JSON path: `isAbleReturnProductOrders`. Dataset: `communications_feedbacks`.'
   - name: is_able_supplier_feedback_valuation
-    description: 'Is the feedback rating available to the seller   - `true`— yes   - `false` — no JSON path: `isAbleSupplierFeedbackValuation`.
-      Dataset: `communications_feedbacks`.'
+    description: 'Is the feedback rating available to the seller   - `true`— yes   -
+      `false` — no JSON path: `isAbleSupplierFeedbackValuation`. Dataset: `communications_feedbacks`.'
   - name: is_able_supplier_product_valuation
-    description: 'Is the item rating available to the seller (`true` - available, `false` - not available) JSON path: `isAbleSupplierProductValuation`.
-      Dataset: `communications_feedbacks`.'
+    description: 'Is the item rating available to the seller (`true` - available,
+      `false` - not available) JSON path: `isAbleSupplierProductValuation`. Dataset:
+      `communications_feedbacks`.'
   - name: last_order_created_at
     description: 'Date of purchase JSON path: `lastOrderCreatedAt`. Dataset: `communications_feedbacks`.'
   - name: last_order_shk_id
     description: 'SKU of the item JSON path: `lastOrderShkId`. Dataset: `communications_feedbacks`.'
   - name: matching_size
-    description: 'Compliance of the declared size with the real one. <br>Possible values: - ` ` - for dimensionless items - `ок` - matches to
-      the size - `smaller` - size is smaller - `bigger` - size is bigger JSON path: `matchingSize`. Dataset: `communications_feedbacks`.'
+    description: 'Compliance of the declared size with the real one. <br>Possible
+      values: - ` ` - for dimensionless items - `ок` - matches to the size - `smaller`
+      - size is smaller - `bigger` - size is bigger JSON path: `matchingSize`. Dataset:
+      `communications_feedbacks`.'
   - name: order_status
-    description: 'Order status. <br>Possible values: - `buyout` — bought out - `rejected` — rejected - `returned` — returned - `notSpecified`
-      — status not assigned JSON path: `orderStatus`. Dataset: `communications_feedbacks`.'
+    description: 'Order status. <br>Possible values: - `buyout` — bought out - `rejected`
+      — rejected - `returned` — returned - `notSpecified` — status not assigned JSON
+      path: `orderStatus`. Dataset: `communications_feedbacks`.'
   - name: parent_feedback_id
-    description: 'ID of the original feedback (`null` if this feedback is original) JSON path: `parentFeedbackId`. Dataset: `communications_feedbacks`.'
+    description: 'ID of the original feedback (`null` if this feedback is original)
+      JSON path: `parentFeedbackId`. Dataset: `communications_feedbacks`.'
   - name: photo_links
     description: 'Array of structure of images JSON path: `photoLinks`. Dataset: `communications_feedbacks`.'
   - name: product_details_brand_name
@@ -80,29 +101,36 @@ models:
   - name: product_details_product_name
     description: 'Item name JSON path: `productDetails.productName`. Dataset: `communications_feedbacks`.'
   - name: product_details_size
-    description: 'Item size (`techSize'' in the listing) JSON path: `productDetails.size`. Dataset: `communications_feedbacks`.'
+    description: 'Item size (`techSize'' in the listing) JSON path: `productDetails.size`.
+      Dataset: `communications_feedbacks`.'
   - name: product_details_supplier_article
-    description: 'Seller item number JSON path: `productDetails.supplierArticle`. Dataset: `communications_feedbacks`.'
+    description: 'Seller item number JSON path: `productDetails.supplierArticle`.
+      Dataset: `communications_feedbacks`.'
   - name: product_details_supplier_name
-    description: 'Seller''s name JSON path: `productDetails.supplierName`. Dataset: `communications_feedbacks`.'
+    description: 'Seller''s name JSON path: `productDetails.supplierName`. Dataset:
+      `communications_feedbacks`.'
   - name: product_valuation
     description: 'Item rate JSON path: `productValuation`. Dataset: `communications_feedbacks`.'
   - name: pros
     description: 'Item pros JSON path: `pros`. Dataset: `communications_feedbacks`.'
   - name: return_product_orders_date
-    description: 'Date and time when a response with status code 200 was received for the return request. JSON path: `returnProductOrdersDate`.
-      Dataset: `communications_feedbacks`.'
+    description: 'Date and time when a response with status code 200 was received
+      for the return request. JSON path: `returnProductOrdersDate`. Dataset: `communications_feedbacks`.'
   - name: state
-    description: 'Question status:   - `none` — question rejected by seller (this question doesn''t appear on the buyer portal)   - `wbRu` — answer
-      provided, the question is displayed on the buyers site   - `suppliersPortalSynch` - new question JSON path: `state`. Dataset: `communications_feedbacks`.'
+    description: 'Question status:   - `none` — question rejected by seller (this
+      question doesn''t appear on the buyer portal)   - `wbRu` — answer provided,
+      the question is displayed on the buyers site   - `suppliersPortalSynch` - new
+      question JSON path: `state`. Dataset: `communications_feedbacks`.'
   - name: subject_id
     description: 'Subcategory ID JSON path: `subjectId`. Dataset: `communications_feedbacks`.'
   - name: subject_name
     description: 'Subcategory name JSON path: `subjectName`. Dataset: `communications_feedbacks`.'
   - name: supplier_feedback_valuation
-    description: 'Feedback rating left by the seller JSON path: `supplierFeedbackValuation`. Dataset: `communications_feedbacks`.'
+    description: 'Feedback rating left by the seller JSON path: `supplierFeedbackValuation`.
+      Dataset: `communications_feedbacks`.'
   - name: supplier_product_valuation
-    description: 'Item rating left by the seller JSON path: `supplierProductValuation`. Dataset: `communications_feedbacks`.'
+    description: 'Item rating left by the seller JSON path: `supplierProductValuation`.
+      Dataset: `communications_feedbacks`.'
   - name: text
     description: 'question text JSON path: `text`. Dataset: `communications_feedbacks`.'
   - name: user_name
@@ -110,8 +138,10 @@ models:
   - name: video_duration_sec
     description: 'Video duration JSON path: `video.durationSec`. Dataset: `communications_feedbacks`.'
   - name: video_link
-    description: 'Link to the playlist video file (available through hls protocol) JSON path: `video.link`. Dataset: `communications_feedbacks`.'
+    description: 'Link to the playlist video file (available through hls protocol)
+      JSON path: `video.link`. Dataset: `communications_feedbacks`.'
   - name: video_preview_image
-    description: 'Video preview image link JSON path: `video.previewImage`. Dataset: `communications_feedbacks`.'
+    description: 'Video preview image link JSON path: `video.previewImage`. Dataset:
+      `communications_feedbacks`.'
   - name: was_viewed
     description: 'If the question was viewed JSON path: `wasViewed`. Dataset: `communications_feedbacks`.'

@@ -1,8 +1,17 @@
 version: 2
 models:
 - name: stg_promotion_fullstats
-  description: Nested staging-модель для dataset promotion_fullstats. Одна строка = одна nm-запись внутри структуры promotion_fullstats[].days[].apps[].nms[].
+  description: Nested staging-модель для dataset promotion_fullstats. Одна строка
+    = одна nm-запись внутри структуры promotion_fullstats[].days[].apps[].nms[].
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
@@ -72,8 +81,9 @@ models:
   - name: root_booster_stats
     description: 'Booster statistics JSON path: `boosterStats`. Dataset: `promotion_fullstats`.'
   - name: root_campaign_id
-    description: 'Идентификатор рекламной кампании на корневом уровне fullstats. Исходное поле WB JSON: `campaignId`. Описание добавлено вручную,
-      потому что в исходном WB YAML для этого поля не было description.'
+    description: 'Идентификатор рекламной кампании на корневом уровне fullstats. Исходное
+      поле WB JSON: `campaignId`. Описание добавлено вручную, потому что в исходном
+      WB YAML для этого поля не было description.'
   - name: root_canceled
     description: 'Cancellations, pcs JSON path: `canceled`. Dataset: `promotion_fullstats`.'
   - name: root_chrt_id
@@ -83,11 +93,12 @@ models:
   - name: root_cpc
     description: 'Average cost per click, ₽ JSON path: `cpc`. Dataset: `promotion_fullstats`.'
   - name: root_cr
-    description: 'CR(conversion rate) is the ratio of the number of orders to the total number of visits to the campaign JSON path: `cr`. Dataset:
-      `promotion_fullstats`.'
+    description: 'CR(conversion rate) is the ratio of the number of orders to the
+      total number of visits to the campaign JSON path: `cr`. Dataset: `promotion_fullstats`.'
   - name: root_ctr
-    description: 'CTR (click-through rate) is the ratio of clicks to displays, expressed as a percentage.  For `cpc` campaigns (pay-per-click),
-      the value will be `null` JSON path: `ctr`. Dataset: `promotion_fullstats`.'
+    description: 'CTR (click-through rate) is the ratio of clicks to displays, expressed
+      as a percentage.  For `cpc` campaigns (pay-per-click), the value will be `null`
+      JSON path: `ctr`. Dataset: `promotion_fullstats`.'
   - name: root_nm_id
     description: 'WB item number JSON path: `nmId`. Dataset: `promotion_fullstats`.'
   - name: root_orders
@@ -103,7 +114,8 @@ models:
   - name: root_vendor_code
     description: 'Seller item number JSON path: `vendorCode`. Dataset: `promotion_fullstats`.'
   - name: root_views
-    description: 'Number of views.  For `cpc` campaigns (pay-per-click), the value will be `null` JSON path: `views`. Dataset: `promotion_fullstats`.'
+    description: 'Number of views.  For `cpc` campaigns (pay-per-click), the value
+      will be `null` JSON path: `views`. Dataset: `promotion_fullstats`.'
   - name: day_atbs
     description: 'Number of items added to the cart JSON path: `atbs`. Dataset: `promotion_fullstats`.'
   - name: day_canceled
@@ -113,11 +125,12 @@ models:
   - name: day_cpc
     description: 'Average cost per click, ₽ JSON path: `cpc`. Dataset: `promotion_fullstats`.'
   - name: day_cr
-    description: 'CR(conversion rate) is the ratio of the number of orders to the total number of visits to the campaign JSON path: `cr`. Dataset:
-      `promotion_fullstats`.'
+    description: 'CR(conversion rate) is the ratio of the number of orders to the
+      total number of visits to the campaign JSON path: `cr`. Dataset: `promotion_fullstats`.'
   - name: day_ctr
-    description: 'CTR (click-through rate) is the ratio of clicks to displays, expressed as a percentage.  For `cpc` campaigns (pay-per-click),
-      the value will be `null` JSON path: `ctr`. Dataset: `promotion_fullstats`.'
+    description: 'CTR (click-through rate) is the ratio of clicks to displays, expressed
+      as a percentage.  For `cpc` campaigns (pay-per-click), the value will be `null`
+      JSON path: `ctr`. Dataset: `promotion_fullstats`.'
   - name: day_date
     description: 'Payment date JSON path: `date`. Dataset: `promotion_fullstats`.'
   - name: day_orders
@@ -129,9 +142,11 @@ models:
   - name: day_sum_price
     description: 'Orders amount, ₽ JSON path: `sum_price`. Dataset: `promotion_fullstats`.'
   - name: day_views
-    description: 'Number of views.  For `cpc` campaigns (pay-per-click), the value will be `null` JSON path: `views`. Dataset: `promotion_fullstats`.'
+    description: 'Number of views.  For `cpc` campaigns (pay-per-click), the value
+      will be `null` JSON path: `views`. Dataset: `promotion_fullstats`.'
   - name: app_app_type
-    description: 'Platform type: - `1` — website - `32` — Android - `64` — IOS JSON path: `appType`. Dataset: `promotion_fullstats`.'
+    description: 'Platform type: - `1` — website - `32` — Android - `64` — IOS JSON
+      path: `appType`. Dataset: `promotion_fullstats`.'
   - name: app_atbs
     description: 'Number of items added to the cart JSON path: `atbs`. Dataset: `promotion_fullstats`.'
   - name: app_canceled
@@ -141,11 +156,12 @@ models:
   - name: app_cpc
     description: 'Average cost per click, ₽ JSON path: `cpc`. Dataset: `promotion_fullstats`.'
   - name: app_cr
-    description: 'CR(conversion rate) is the ratio of the number of orders to the total number of visits to the campaign JSON path: `cr`. Dataset:
-      `promotion_fullstats`.'
+    description: 'CR(conversion rate) is the ratio of the number of orders to the
+      total number of visits to the campaign JSON path: `cr`. Dataset: `promotion_fullstats`.'
   - name: app_ctr
-    description: 'CTR (click-through rate) is the ratio of clicks to displays, expressed as a percentage.  For `cpc` campaigns (pay-per-click),
-      the value will be `null` JSON path: `ctr`. Dataset: `promotion_fullstats`.'
+    description: 'CTR (click-through rate) is the ratio of clicks to displays, expressed
+      as a percentage.  For `cpc` campaigns (pay-per-click), the value will be `null`
+      JSON path: `ctr`. Dataset: `promotion_fullstats`.'
   - name: app_orders
     description: 'Number of orders JSON path: `orders`. Dataset: `promotion_fullstats`.'
   - name: app_shks
@@ -155,7 +171,8 @@ models:
   - name: app_sum_price
     description: 'Orders amount, ₽ JSON path: `sum_price`. Dataset: `promotion_fullstats`.'
   - name: app_views
-    description: 'Number of views.  For `cpc` campaigns (pay-per-click), the value will be `null` JSON path: `views`. Dataset: `promotion_fullstats`.'
+    description: 'Number of views.  For `cpc` campaigns (pay-per-click), the value
+      will be `null` JSON path: `views`. Dataset: `promotion_fullstats`.'
   - name: nm_atbs
     description: 'Number of items added to the cart JSON path: `atbs`. Dataset: `promotion_fullstats`.'
   - name: nm_canceled
@@ -165,11 +182,12 @@ models:
   - name: nm_cpc
     description: 'Average cost per click, ₽ JSON path: `cpc`. Dataset: `promotion_fullstats`.'
   - name: nm_cr
-    description: 'CR(conversion rate) is the ratio of the number of orders to the total number of visits to the campaign JSON path: `cr`. Dataset:
-      `promotion_fullstats`.'
+    description: 'CR(conversion rate) is the ratio of the number of orders to the
+      total number of visits to the campaign JSON path: `cr`. Dataset: `promotion_fullstats`.'
   - name: nm_ctr
-    description: 'CTR (click-through rate) is the ratio of clicks to displays, expressed as a percentage.  For `cpc` campaigns (pay-per-click),
-      the value will be `null` JSON path: `ctr`. Dataset: `promotion_fullstats`.'
+    description: 'CTR (click-through rate) is the ratio of clicks to displays, expressed
+      as a percentage.  For `cpc` campaigns (pay-per-click), the value will be `null`
+      JSON path: `ctr`. Dataset: `promotion_fullstats`.'
   - name: nm_name
     description: 'Campaign name JSON path: `name`. Dataset: `promotion_fullstats`.'
   - name: nm_nm_id
@@ -183,4 +201,5 @@ models:
   - name: nm_sum_price
     description: 'Orders amount, ₽ JSON path: `sum_price`. Dataset: `promotion_fullstats`.'
   - name: nm_views
-    description: 'Number of views.  For `cpc` campaigns (pay-per-click), the value will be `null` JSON path: `views`. Dataset: `promotion_fullstats`.'
+    description: 'Number of views.  For `cpc` campaigns (pay-per-click), the value
+      will be `null` JSON path: `views`. Dataset: `promotion_fullstats`.'

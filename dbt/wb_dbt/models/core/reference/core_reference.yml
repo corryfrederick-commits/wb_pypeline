@@ -1,8 +1,17 @@
 version: 2
 models:
 - name: product_barcodes
-  description: Core bridge-таблица barcode/SKU товаров. Одна строка соответствует одному barcode/SKU для товара или варианта товара.
+  description: Core bridge-таблица barcode/SKU товаров. Одна строка соответствует
+    одному barcode/SKU для товара или варианта товара.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: product_barcode_key
     description: 'Суррогатный ключ: product barcode key.'
     tests:
@@ -49,8 +58,17 @@ models:
   - name: core_loaded_at
     description: Время построения core-записи.
 - name: product_variants
-  description: Core-справочник вариантов товаров WB. Одна строка соответствует одному варианту товара по chrt_id.
+  description: Core-справочник вариантов товаров WB. Одна строка соответствует одному
+    варианту товара по chrt_id.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: product_variant_id
     description: Ссылка на вариант товара. Соответствует chrt_id.
     tests:
@@ -102,8 +120,17 @@ models:
   - name: core_loaded_at
     description: Время построения core-записи.
 - name: products
-  description: Core-справочник товаров WB. Одна строка соответствует одному товару WB по nm_id.
+  description: Core-справочник товаров WB. Одна строка соответствует одному товару
+    WB по nm_id.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: product_id
     description: Ссылка на товар. Соответствует nm_id.
     tests:
@@ -177,8 +204,17 @@ models:
   - name: core_loaded_at
     description: Время построения core-записи.
 - name: sellers
-  description: Core-справочник продавцов / кабинетов WB. Одна строка соответствует одному продавцу или кабинету продавца.
+  description: Core-справочник продавцов / кабинетов WB. Одна строка соответствует
+    одному продавцу или кабинету продавца.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: seller_key
     description: 'Суррогатный ключ: seller key.'
     tests:
@@ -209,6 +245,14 @@ models:
 - name: warehouses
   description: Core-справочник складов / офисов / точек исполнения WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: warehouse_key
     description: Суррогатный ключ склада.
     tests:

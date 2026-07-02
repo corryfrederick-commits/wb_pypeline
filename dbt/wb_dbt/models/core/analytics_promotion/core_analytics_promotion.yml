@@ -3,6 +3,14 @@ models:
 - name: promotion_campaigns
   description: Core справочник рекламных кампаний WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: promotion_campaign_key
     description: 'Суррогатный ключ: promotion campaign key.'
     tests:
@@ -83,6 +91,14 @@ models:
 - name: promotion_product_daily_stats
   description: Core дневная статистика рекламы по кампании, приложению и товару.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: promotion_product_daily_stat_key
     description: 'Суррогатный ключ: promotion product daily stat key.'
     tests:
@@ -133,7 +149,8 @@ models:
   - name: root_article
     description: 'Метрика или атрибут на root-уровне рекламной статистики: root article.'
   - name: root_vendor_code
-    description: 'Метрика или атрибут на root-уровне рекламной статистики: root vendor code.'
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root vendor
+      code.'
   - name: barcode_value
     description: Значение barcode или SKU.
   - name: root_skus
@@ -155,13 +172,15 @@ models:
   - name: root_sum
     description: 'Метрика или атрибут на root-уровне рекламной статистики: root sum.'
   - name: root_sum_price
-    description: 'Метрика или атрибут на root-уровне рекламной статистики: root sum price.'
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root sum
+      price.'
   - name: root_shks
     description: 'Метрика или атрибут на root-уровне рекламной статистики: root shks.'
   - name: root_canceled
     description: 'Метрика или атрибут на root-уровне рекламной статистики: root canceled.'
   - name: root_booster_stats
-    description: 'Метрика или атрибут на root-уровне рекламной статистики: root booster stats.'
+    description: 'Метрика или атрибут на root-уровне рекламной статистики: root booster
+      stats.'
   - name: day_views
     description: 'Дневная метрика рекламной статистики: day views.'
   - name: day_clicks
@@ -253,6 +272,14 @@ models:
 - name: sales_funnel_metrics
   description: Core агрегированные метрики воронки продаж WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: sales_funnel_metric_key
     description: 'Суррогатный ключ: sales funnel metric key.'
     tests:
@@ -295,9 +322,11 @@ models:
   - name: product_vendor_code
     description: 'Поле core-модели: product vendor code.'
   - name: statistic_comparison_add_to_wishlist_dynamic
-    description: 'Метрика воронки продаж WB: statistic comparison add to wishlist dynamic.'
+    description: 'Метрика воронки продаж WB: statistic comparison add to wishlist
+      dynamic.'
   - name: statistic_comparison_avg_orders_count_per_day_dynamic
-    description: 'Метрика воронки продаж WB: statistic comparison avg orders count per day dynamic.'
+    description: 'Метрика воронки продаж WB: statistic comparison avg orders count
+      per day dynamic.'
   - name: statistic_comparison_avg_price_dynamic
     description: 'Метрика воронки продаж WB: statistic comparison avg price dynamic.'
   - name: statistic_comparison_buyout_count_dynamic
@@ -311,13 +340,17 @@ models:
   - name: statistic_comparison_cart_count_dynamic
     description: 'Метрика воронки продаж WB: statistic comparison cart count dynamic.'
   - name: statistic_comparison_conversions_add_to_cart_percent
-    description: 'Метрика воронки продаж WB: statistic comparison conversions add to cart percent.'
+    description: 'Метрика воронки продаж WB: statistic comparison conversions add
+      to cart percent.'
   - name: statistic_comparison_conversions_buyout_percent
-    description: 'Метрика воронки продаж WB: statistic comparison conversions buyout percent.'
+    description: 'Метрика воронки продаж WB: statistic comparison conversions buyout
+      percent.'
   - name: statistic_comparison_conversions_cart_to_order_percent
-    description: 'Метрика воронки продаж WB: statistic comparison conversions cart to order percent.'
+    description: 'Метрика воронки продаж WB: statistic comparison conversions cart
+      to order percent.'
   - name: statistic_comparison_localization_percent_dynamic
-    description: 'Метрика воронки продаж WB: statistic comparison localization percent dynamic.'
+    description: 'Метрика воронки продаж WB: statistic comparison localization percent
+      dynamic.'
   - name: statistic_comparison_open_count_dynamic
     description: 'Метрика воронки продаж WB: statistic comparison open count dynamic.'
   - name: statistic_comparison_order_count_dynamic
@@ -325,31 +358,44 @@ models:
   - name: statistic_comparison_order_sum_dynamic
     description: 'Метрика воронки продаж WB: statistic comparison order sum dynamic.'
   - name: statistic_comparison_share_order_percent_dynamic
-    description: 'Метрика воронки продаж WB: statistic comparison share order percent dynamic.'
+    description: 'Метрика воронки продаж WB: statistic comparison share order percent
+      dynamic.'
   - name: statistic_comparison_time_to_ready_dynamic_days
-    description: 'Метрика воронки продаж WB: statistic comparison time to ready dynamic days.'
+    description: 'Метрика воронки продаж WB: statistic comparison time to ready dynamic
+      days.'
   - name: statistic_comparison_time_to_ready_dynamic_hours
-    description: 'Метрика воронки продаж WB: statistic comparison time to ready dynamic hours.'
+    description: 'Метрика воронки продаж WB: statistic comparison time to ready dynamic
+      hours.'
   - name: statistic_comparison_time_to_ready_dynamic_mins
-    description: 'Метрика воронки продаж WB: statistic comparison time to ready dynamic mins.'
+    description: 'Метрика воронки продаж WB: statistic comparison time to ready dynamic
+      mins.'
   - name: statistic_comparison_wb_club_dynamic_avg_order_count_per_day
-    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic avg order count per day.'
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic
+      avg order count per day.'
   - name: statistic_comparison_wb_club_dynamic_avg_price
-    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic avg price.'
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic
+      avg price.'
   - name: statistic_comparison_wb_club_dynamic_buyout_count
-    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic buyout count.'
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic
+      buyout count.'
   - name: statistic_comparison_wb_club_dynamic_buyout_percent
-    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic buyout percent.'
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic
+      buyout percent.'
   - name: statistic_comparison_wb_club_dynamic_buyout_sum
-    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic buyout sum.'
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic
+      buyout sum.'
   - name: statistic_comparison_wb_club_dynamic_cancel_count
-    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic cancel count.'
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic
+      cancel count.'
   - name: statistic_comparison_wb_club_dynamic_cancel_sum
-    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic cancel sum.'
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic
+      cancel sum.'
   - name: statistic_comparison_wb_club_dynamic_order_count
-    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic order count.'
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic
+      order count.'
   - name: statistic_comparison_wb_club_dynamic_order_sum
-    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic order sum.'
+    description: 'Метрика воронки продаж WB: statistic comparison wb club dynamic
+      order sum.'
   - name: statistic_past_add_to_wishlist
     description: 'Метрика воронки продаж WB: statistic past add to wishlist.'
   - name: statistic_past_avg_orders_count_per_day
@@ -367,11 +413,13 @@ models:
   - name: statistic_past_cart_count
     description: 'Метрика воронки продаж WB: statistic past cart count.'
   - name: statistic_past_conversions_add_to_cart_percent
-    description: 'Метрика воронки продаж WB: statistic past conversions add to cart percent.'
+    description: 'Метрика воронки продаж WB: statistic past conversions add to cart
+      percent.'
   - name: statistic_past_conversions_buyout_percent
     description: 'Метрика воронки продаж WB: statistic past conversions buyout percent.'
   - name: statistic_past_conversions_cart_to_order_percent
-    description: 'Метрика воронки продаж WB: statistic past conversions cart to order percent.'
+    description: 'Метрика воронки продаж WB: statistic past conversions cart to order
+      percent.'
   - name: statistic_past_localization_percent
     description: 'Метрика воронки продаж WB: statistic past localization percent.'
   - name: statistic_past_open_count
@@ -393,7 +441,8 @@ models:
   - name: statistic_past_time_to_ready_mins
     description: 'Метрика воронки продаж WB: statistic past time to ready mins.'
   - name: statistic_past_wb_club_avg_order_count_per_day
-    description: 'Метрика воронки продаж WB: statistic past wb club avg order count per day.'
+    description: 'Метрика воронки продаж WB: statistic past wb club avg order count
+      per day.'
   - name: statistic_past_wb_club_avg_price
     description: 'Метрика воронки продаж WB: statistic past wb club avg price.'
   - name: statistic_past_wb_club_buyout_count
@@ -413,7 +462,8 @@ models:
   - name: statistic_selected_add_to_wishlist
     description: 'Метрика воронки продаж WB: statistic selected add to wishlist.'
   - name: statistic_selected_avg_orders_count_per_day
-    description: 'Метрика воронки продаж WB: statistic selected avg orders count per day.'
+    description: 'Метрика воронки продаж WB: statistic selected avg orders count per
+      day.'
   - name: statistic_selected_avg_price
     description: 'Метрика воронки продаж WB: statistic selected avg price.'
   - name: statistic_selected_buyout_count
@@ -427,11 +477,14 @@ models:
   - name: statistic_selected_cart_count
     description: 'Метрика воронки продаж WB: statistic selected cart count.'
   - name: statistic_selected_conversions_add_to_cart_percent
-    description: 'Метрика воронки продаж WB: statistic selected conversions add to cart percent.'
+    description: 'Метрика воронки продаж WB: statistic selected conversions add to
+      cart percent.'
   - name: statistic_selected_conversions_buyout_percent
-    description: 'Метрика воронки продаж WB: statistic selected conversions buyout percent.'
+    description: 'Метрика воронки продаж WB: statistic selected conversions buyout
+      percent.'
   - name: statistic_selected_conversions_cart_to_order_percent
-    description: 'Метрика воронки продаж WB: statistic selected conversions cart to order percent.'
+    description: 'Метрика воронки продаж WB: statistic selected conversions cart to
+      order percent.'
   - name: statistic_selected_localization_percent
     description: 'Метрика воронки продаж WB: statistic selected localization percent.'
   - name: statistic_selected_open_count
@@ -453,7 +506,8 @@ models:
   - name: statistic_selected_time_to_ready_mins
     description: 'Метрика воронки продаж WB: statistic selected time to ready mins.'
   - name: statistic_selected_wb_club_avg_order_count_per_day
-    description: 'Метрика воронки продаж WB: statistic selected wb club avg order count per day.'
+    description: 'Метрика воронки продаж WB: statistic selected wb club avg order
+      count per day.'
   - name: statistic_selected_wb_club_avg_price
     description: 'Метрика воронки продаж WB: statistic selected wb club avg price.'
   - name: statistic_selected_wb_club_buyout_count
@@ -487,6 +541,14 @@ models:
 - name: stock_analytics_metrics
   description: Core агрегированные аналитические метрики остатков WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: stock_analytics_metric_key
     description: 'Суррогатный ключ: stock analytics metric key.'
     tests:

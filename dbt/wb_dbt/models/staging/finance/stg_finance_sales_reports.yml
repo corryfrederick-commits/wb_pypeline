@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_finance_sales_reports
-  description: 'Автоматически сгенерированная staging-модель для dataset finance_sales_reports. Главный record path: $. Одна строка = одна запись
-    из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset finance_sales_reports.
+    Главный record path: $. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -41,21 +50,26 @@ models:
   - name: barcode
     description: 'Barcode JSON path: `barcode`. Dataset: `finance_sales_reports`.'
   - name: cashback_amount_sum
-    description: 'Amount deducted for Loyalty Program rewards JSON path: `cashbackAmountSum`. Dataset: `finance_sales_reports`.'
+    description: 'Amount deducted for Loyalty Program rewards JSON path: `cashbackAmountSum`.
+      Dataset: `finance_sales_reports`.'
   - name: cashback_commission_change_sum
-    description: 'Loyalty Program participation cost JSON path: `cashbackCommissionChangeSum`. Dataset: `finance_sales_reports`.'
+    description: 'Loyalty Program participation cost JSON path: `cashbackCommissionChangeSum`.
+      Dataset: `finance_sales_reports`.'
   - name: cashback_discount_sum
-    description: 'Loyalty Program discount compensation JSON path: `cashbackDiscountSum`. Dataset: `finance_sales_reports`.'
+    description: 'Loyalty Program discount compensation JSON path: `cashbackDiscountSum`.
+      Dataset: `finance_sales_reports`.'
   - name: chrt_id
     description: 'Size ID JSON path: `chrtId`. Dataset: `finance_sales_reports`.'
   - name: converted_currency_code
-    description: 'Код валюты страны продавца JSON path: `convertedCurrencyCode`. Dataset: `finance_sales_reports`.'
+    description: 'Код валюты страны продавца JSON path: `convertedCurrencyCode`. Dataset:
+      `finance_sales_reports`.'
   - name: converted_final_price
-    description: 'Сумма к оплате покупателем в валюте страны продавца с учетом всех скидок, умноженная на 100. Предоставляется в информационных
-      целях JSON path: `convertedFinalPrice`. Dataset: `finance_sales_reports`.'
+    description: 'Сумма к оплате покупателем в валюте страны продавца с учетом всех
+      скидок, умноженная на 100. Предоставляется в информационных целях JSON path:
+      `convertedFinalPrice`. Dataset: `finance_sales_reports`.'
   - name: converted_price
-    description: 'Цена в валюте страны продавца с учетом всех скидок, кроме скидки по WB Кошельку, умноженная на 100 JSON path: `convertedPrice`.
-      Dataset: `finance_sales_reports`.'
+    description: 'Цена в валюте страны продавца с учетом всех скидок, кроме скидки
+      по WB Кошельку, умноженная на 100 JSON path: `convertedPrice`. Dataset: `finance_sales_reports`.'
   - name: create_date
     description: 'Report date JSON path: `createDate`. Dataset: `finance_sales_reports`.'
   - name: created_at
@@ -65,20 +79,26 @@ models:
   - name: currency_code
     description: 'Код валюты продажи JSON path: `currencyCode`. Dataset: `finance_sales_reports`.'
   - name: date_from
-    description: 'Report start date.<br>Date in the [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format. You may send date or date
-      with time. Time could be specified in seconds or milliseconds.<br> The time stands in Moscow time zone `UTC+3`.<br>Examples:   - `2025-06-20`   -
-      `2025-06-20T23:59:59`   - `2025-06-20T00:00:00.12345`   - `2025-06-25T00:00:00` JSON path: `dateFrom`. Dataset: `finance_sales_reports`.'
+    description: 'Report start date.<br>Date in the [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339)
+      format. You may send date or date with time. Time could be specified in seconds
+      or milliseconds.<br> The time stands in Moscow time zone `UTC+3`.<br>Examples:   -
+      `2025-06-20`   - `2025-06-20T23:59:59`   - `2025-06-20T00:00:00.12345`   - `2025-06-25T00:00:00`
+      JSON path: `dateFrom`. Dataset: `finance_sales_reports`.'
   - name: date_to
-    description: 'Report end date.<br>Date in the [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format. You may send date or date with
-      time. Time could be specified in seconds or milliseconds.<br> The time stands in Moscow time zone `UTC+3`.<br>Examples:   - `2025-06-20`   -
-      `2025-06-20T23:59:59`   - `2025-06-20T00:00:00.12345`   - `2025-06-20T00:00:00` JSON path: `dateTo`. Dataset: `finance_sales_reports`.'
+    description: 'Report end date.<br>Date in the [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339)
+      format. You may send date or date with time. Time could be specified in seconds
+      or milliseconds.<br> The time stands in Moscow time zone `UTC+3`.<br>Examples:   -
+      `2025-06-20`   - `2025-06-20T23:59:59`   - `2025-06-20T00:00:00.12345`   - `2025-06-20T00:00:00`
+      JSON path: `dateTo`. Dataset: `finance_sales_reports`.'
   - name: deduction_sum
-    description: 'Other deductions and payments JSON path: `deductionSum`. Dataset: `finance_sales_reports`.'
+    description: 'Other deductions and payments JSON path: `deductionSum`. Dataset:
+      `finance_sales_reports`.'
   - name: delivery_service_sum
     description: 'Logistics cost JSON path: `deliveryServiceSum`. Dataset: `finance_sales_reports`.'
   - name: final_price
-    description: 'Сумма к оплате покупателем в валюте продажи с учетом всех скидок, умноженная на 100. Код валюты продажи указан в поле `currencyCode`.
-      Предоставляется в информационных целях JSON path: `finalPrice`. Dataset: `finance_sales_reports`.'
+    description: 'Сумма к оплате покупателем в валюте продажи с учетом всех скидок,
+      умноженная на 100. Код валюты продажи указан в поле `currencyCode`. Предоставляется
+      в информационных целях JSON path: `finalPrice`. Dataset: `finance_sales_reports`.'
   - name: for_pay_sum
     description: 'Net revenue JSON path: `forPaySum`. Dataset: `finance_sales_reports`.'
   - name: id
@@ -88,55 +108,67 @@ models:
   - name: office_id
     description: 'Office ID JSON path: `officeId`. Dataset: `finance_sales_reports`.'
   - name: operation_date
-    description: 'Дата и время операции в финансовом отчёте. Исходное поле WB JSON: `operationDate`. Описание добавлено вручную, потому что в
-      исходном WB YAML для этого поля не было description.'
+    description: 'Дата и время операции в финансовом отчёте. Исходное поле WB JSON:
+      `operationDate`. Описание добавлено вручную, потому что в исходном WB YAML для
+      этого поля не было description.'
   - name: order_id
     description: 'Assembly order ID JSON path: `orderId`. Dataset: `finance_sales_reports`.'
   - name: order_uid
-    description: 'Cart ID.<br>Orders in the same buyer''s cart will have the same `orderUid` JSON path: `orderUid`. Dataset: `finance_sales_reports`.'
+    description: 'Cart ID.<br>Orders in the same buyer''s cart will have the same
+      `orderUid` JSON path: `orderUid`. Dataset: `finance_sales_reports`.'
   - name: paid_acceptance_sum
     description: 'Acceptance cost JSON path: `paidAcceptanceSum`. Dataset: `finance_sales_reports`.'
   - name: paid_storage_sum
     description: 'Storage cost JSON path: `paidStorageSum`. Dataset: `finance_sales_reports`.'
   - name: payment_schedule
-    description: 'One-time payment period change JSON path: `paymentSchedule`. Dataset: `finance_sales_reports`.'
+    description: 'One-time payment period change JSON path: `paymentSchedule`. Dataset:
+      `finance_sales_reports`.'
   - name: penalty_sum
     description: 'Total penalties JSON path: `penaltySum`. Dataset: `finance_sales_reports`.'
   - name: price
-    description: 'Price, ₽<br> Specified when adding the size JSON path: `price`. Dataset: `finance_sales_reports`.'
+    description: 'Price, ₽<br> Specified when adding the size JSON path: `price`.
+      Dataset: `finance_sales_reports`.'
   - name: report_id
     description: 'Report ID JSON path: `reportId`. Dataset: `finance_sales_reports`.'
   - name: report_type
-    description: 'Report type:   - `1` — general   - `2` — by purchase   - `3` — by purchase for Georgia JSON path: `reportType`. Dataset: `finance_sales_reports`.'
+    description: 'Report type:   - `1` — general   - `2` — by purchase   - `3` — by
+      purchase for Georgia JSON path: `reportType`. Dataset: `finance_sales_reports`.'
   - name: retail_amount_sum
     description: 'Sales JSON path: `retailAmountSum`. Dataset: `finance_sales_reports`.'
   - name: rid
-    description: 'Уникальный ID заказа. <br> Примечание: `rid` — это `srid` в ответах методов:   - [Заявки покупателей на возврат](./user-communication#tag/Vozvraty-pokupatelyami/paths/~1api~1v1~1claims/get)   -
-      [Заказы](./reports#tag/Osnovnye-otchyoty/paths/~1api~1v1~1supplier~1orders/get)   - [Продажи](./reports#tag/Osnovnye-otchyoty/paths/~1api~1v1~1supplier~1sales/get)   -
-      [Отчёт о возвратах и перемещении товаров](./reports#tag/Otchyot-o-vozvratah-i-peremeshenii-tovarov)   - [Детализации к отчётам реализации
-      по ID отчётов](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1SalesReportsDetailedReportId)   - [Детализации
-      к отчётам реализации за период](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1SalesReportsDetailed)   - [Детализации
-      к отчётам об издержках на приём платежей по ID отчётов](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1AcquiringDetailedReportId)   -
+    description: 'Уникальный ID заказа. <br> Примечание: `rid` — это `srid` в ответах
+      методов:   - [Заявки покупателей на возврат](./user-communication#tag/Vozvraty-pokupatelyami/paths/~1api~1v1~1claims/get)   -
+      [Заказы](./reports#tag/Osnovnye-otchyoty/paths/~1api~1v1~1supplier~1orders/get)   -
+      [Продажи](./reports#tag/Osnovnye-otchyoty/paths/~1api~1v1~1supplier~1sales/get)   -
+      [Отчёт о возвратах и перемещении товаров](./reports#tag/Otchyot-o-vozvratah-i-peremeshenii-tovarov)   -
+      [Детализации к отчётам реализации по ID отчётов](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1SalesReportsDetailedReportId)   -
+      [Детализации к отчётам реализации за период](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1SalesReportsDetailed)   -
+      [Детализации к отчётам об издержках на приём платежей по ID отчётов](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1AcquiringDetailedReportId)   -
       [Детализации к отчётам об издержках на приём платежей за период](./financial-reports-and-accounting#tag/Finansovye-otchyoty/operation/postV1AcquiringDetailed)
       JSON path: `rid`. Dataset: `finance_sales_reports`.'
   - name: sale_dt
     description: 'Purchased on JSON path: `saleDt`. Dataset: `finance_sales_reports`.'
   - name: sale_price
-    description: 'Цена продавца в валюте продажи с учётом скидки продавца, без учёта скидки WB Клуба, умноженная на 100. Предоставляется в информационных
-      целях JSON path: `salePrice`. Dataset: `finance_sales_reports`.'
+    description: 'Цена продавца в валюте продажи с учётом скидки продавца, без учёта
+      скидки WB Клуба, умноженная на 100. Предоставляется в информационных целях JSON
+      path: `salePrice`. Dataset: `finance_sales_reports`.'
   - name: seller_finance_name
     description: 'Seller name JSON path: `sellerFinanceName`. Dataset: `finance_sales_reports`.'
   - name: skus
     description: 'SKU JSON path: `skus`. Dataset: `finance_sales_reports`.'
   - name: srid
-    description: 'Order ID.<br>In the responses of the [FBS](./orders-fbs#tag/FBS-Assembly-Orders), [DBW](./orders-dbw#tag/DBW-Assembly-Orders),
-      [DBS](./orders-dbs#tag/DBS-Assembly-Orders), and [In-Store Pickup](./in-store-pickup#tag/In-Store-Pickup-Assembly-Orders) assembly order
-      methods, `srid` is `rid` JSON path: `srid`. Dataset: `finance_sales_reports`.'
+    description: 'Order ID.<br>In the responses of the [FBS](./orders-fbs#tag/FBS-Assembly-Orders),
+      [DBW](./orders-dbw#tag/DBW-Assembly-Orders), [DBS](./orders-dbs#tag/DBS-Assembly-Orders),
+      and [In-Store Pickup](./in-store-pickup#tag/In-Store-Pickup-Assembly-Orders)
+      assembly order methods, `srid` is `rid` JSON path: `srid`. Dataset: `finance_sales_reports`.'
   - name: vendor_code
     description: 'Seller item number JSON path: `vendorCode`. Dataset: `finance_sales_reports`.'
   - name: warehouse_address
-    description: 'Store address (seller warehouse) where the assembly order was received JSON path: `warehouseAddress`. Dataset: `finance_sales_reports`.'
+    description: 'Store address (seller warehouse) where the assembly order was received
+      JSON path: `warehouseAddress`. Dataset: `finance_sales_reports`.'
   - name: warehouse_id
-    description: 'ID склада продавца, с которого был отгружен товар JSON path: `warehouseId`. Dataset: `finance_sales_reports`.'
+    description: 'ID склада продавца, с которого был отгружен товар JSON path: `warehouseId`.
+      Dataset: `finance_sales_reports`.'
   - name: warehouse_name
-    description: 'Warehouse name for planned supply JSON path: `warehouseName`. Dataset: `finance_sales_reports`.'
+    description: 'Warehouse name for planned supply JSON path: `warehouseName`. Dataset:
+      `finance_sales_reports`.'

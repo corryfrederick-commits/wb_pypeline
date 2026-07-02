@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_finance_balance
-  description: 'Автоматически сгенерированная staging-модель для dataset finance_balance. Главный record path: $. Одна строка = одна запись из
-    главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset finance_balance.
+    Главный record path: $. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -35,4 +44,5 @@ models:
   - name: current
     description: 'Current seller balance JSON path: `current`. Dataset: `finance_balance`.'
   - name: for_withdraw
-    description: 'The money that can be withdrawn now JSON path: `for_withdraw`. Dataset: `finance_balance`.'
+    description: 'The money that can be withdrawn now JSON path: `for_withdraw`. Dataset:
+      `finance_balance`.'

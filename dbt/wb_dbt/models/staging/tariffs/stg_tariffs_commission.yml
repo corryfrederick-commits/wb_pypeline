@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_tariffs_commission
-  description: 'Автоматически сгенерированная staging-модель для dataset tariffs_commission. Главный record path: report. Одна строка = одна запись
-    из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset tariffs_commission.
+    Главный record path: report. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -31,17 +40,23 @@ models:
     data_tests:
     - not_null
   - name: kgvp_booking
-    description: 'Commission on the model «Booking», % JSON path: `kgvpBooking`. Dataset: `tariffs_commission`.'
+    description: 'Commission on the model «Booking», % JSON path: `kgvpBooking`. Dataset:
+      `tariffs_commission`.'
   - name: kgvp_marketplace
-    description: 'Commission on the model `FBS`, % JSON path: `kgvpMarketplace`. Dataset: `tariffs_commission`.'
+    description: 'Commission on the model `FBS`, % JSON path: `kgvpMarketplace`. Dataset:
+      `tariffs_commission`.'
   - name: kgvp_pickup
-    description: 'Commission on the model «In-store pickup» (`C&C`), % JSON path: `kgvpPickup`. Dataset: `tariffs_commission`.'
+    description: 'Commission on the model «In-store pickup» (`C&C`), % JSON path:
+      `kgvpPickup`. Dataset: `tariffs_commission`.'
   - name: kgvp_supplier
-    description: 'Commission on the models `DBS` and `DBW`, % JSON path: `kgvpSupplier`. Dataset: `tariffs_commission`.'
+    description: 'Commission on the models `DBS` and `DBW`, % JSON path: `kgvpSupplier`.
+      Dataset: `tariffs_commission`.'
   - name: kgvp_supplier_express
-    description: 'Commission on the model `EDBS`, % JSON path: `kgvpSupplierExpress`. Dataset: `tariffs_commission`.'
+    description: 'Commission on the model `EDBS`, % JSON path: `kgvpSupplierExpress`.
+      Dataset: `tariffs_commission`.'
   - name: paid_storage_kgvp
-    description: 'Commission on the model `FBW`, % JSON path: `paidStorageKgvp`. Dataset: `tariffs_commission`.'
+    description: 'Commission on the model `FBW`, % JSON path: `paidStorageKgvp`. Dataset:
+      `tariffs_commission`.'
   - name: parent_id
     description: 'Parent category ID JSON path: `parentID`. Dataset: `tariffs_commission`.'
   - name: parent_name

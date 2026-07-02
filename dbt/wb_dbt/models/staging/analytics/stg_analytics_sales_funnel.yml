@@ -1,15 +1,25 @@
 version: 2
 models:
 - name: stg_analytics_sales_funnel
-  description: 'Автоматически сгенерированная staging-модель для dataset analytics_sales_funnel. Главный record path: data.products. Одна строка
-    = одна запись из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset analytics_sales_funnel.
+    Главный record path: data.products. Одна строка = одна запись из главного массива
+    JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -39,11 +49,14 @@ models:
   - name: product_product_rating
     description: 'Item rating JSON path: `product.productRating`. Dataset: `analytics_sales_funnel`.'
   - name: product_stocks_balance_sum
-    description: 'Warehouse inventory value for the current day JSON path: `product.stocks.balanceSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Warehouse inventory value for the current day JSON path: `product.stocks.balanceSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: product_stocks_mp
-    description: 'Seller warehouse inventory for the current day JSON path: `product.stocks.mp`. Dataset: `analytics_sales_funnel`.'
+    description: 'Seller warehouse inventory for the current day JSON path: `product.stocks.mp`.
+      Dataset: `analytics_sales_funnel`.'
   - name: product_stocks_wb
-    description: 'WB warehouse inventory for the current day JSON path: `product.stocks.wb`. Dataset: `analytics_sales_funnel`.'
+    description: 'WB warehouse inventory for the current day JSON path: `product.stocks.wb`.
+      Dataset: `analytics_sales_funnel`.'
   - name: product_subject_id
     description: 'Subcategory ID JSON path: `product.subjectId`. Dataset: `analytics_sales_funnel`.'
   - name: product_subject_name
@@ -55,187 +68,268 @@ models:
   - name: product_vendor_code
     description: 'Seller item number JSON path: `product.vendorCode`. Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_add_to_wishlist_dynamic
-    description: 'Dynamics of adds-to-Favorites JSON path: `statistic.comparison.addToWishlistDynamic`. Dataset: `analytics_sales_funnel`.'
-  - name: statistic_comparison_avg_orders_count_per_day_dynamic
-    description: 'Dynamics of average daily orders JSON path: `statistic.comparison.avgOrdersCountPerDayDynamic`. Dataset: `analytics_sales_funnel`.'
-  - name: statistic_comparison_avg_price_dynamic
-    description: 'Dynamics of average item price. Discounts for promotions are taken into account JSON path: `statistic.comparison.avgPriceDynamic`.
+    description: 'Dynamics of adds-to-Favorites JSON path: `statistic.comparison.addToWishlistDynamic`.
       Dataset: `analytics_sales_funnel`.'
+  - name: statistic_comparison_avg_orders_count_per_day_dynamic
+    description: 'Dynamics of average daily orders JSON path: `statistic.comparison.avgOrdersCountPerDayDynamic`.
+      Dataset: `analytics_sales_funnel`.'
+  - name: statistic_comparison_avg_price_dynamic
+    description: 'Dynamics of average item price. Discounts for promotions are taken
+      into account JSON path: `statistic.comparison.avgPriceDynamic`. Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_buyout_count_dynamic
-    description: 'Dynamics of items purchased JSON path: `statistic.comparison.buyoutCountDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Dynamics of items purchased JSON path: `statistic.comparison.buyoutCountDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_buyout_sum_dynamic
-    description: 'Dynamics of total purchase value JSON path: `statistic.comparison.buyoutSumDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Dynamics of total purchase value JSON path: `statistic.comparison.buyoutSumDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_cancel_count_dynamic
-    description: 'Dynamics of items canceled and returned JSON path: `statistic.comparison.cancelCountDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Dynamics of items canceled and returned JSON path: `statistic.comparison.cancelCountDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_cancel_sum_dynamic
-    description: 'Dynamics of canceled and returned item value JSON path: `statistic.comparison.cancelSumDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Dynamics of canceled and returned item value JSON path: `statistic.comparison.cancelSumDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_cart_count_dynamic
-    description: 'Dynamics of adds-to-Cart JSON path: `statistic.comparison.cartCountDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Dynamics of adds-to-Cart JSON path: `statistic.comparison.cartCountDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_conversions_add_to_cart_percent
-    description: 'Conversion to cart. What percentage of visitors who opened the listing, added the item to the cart, % JSON path: `statistic.comparison.conversions.addToCartPercent`.
+    description: 'Conversion to cart. What percentage of visitors who opened the listing,
+      added the item to the cart, % JSON path: `statistic.comparison.conversions.addToCartPercent`.
       Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_conversions_buyout_percent
-    description: 'Purchase rate JSON path: `statistic.comparison.conversions.buyoutPercent`. Dataset: `analytics_sales_funnel`.'
+    description: 'Purchase rate JSON path: `statistic.comparison.conversions.buyoutPercent`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_conversions_cart_to_order_percent
-    description: 'Conversion to order. What percentage of visitors who added the item to the cart, placed an order, % JSON path: `statistic.comparison.conversions.cartToOrderPercent`.
+    description: 'Conversion to order. What percentage of visitors who added the item
+      to the cart, placed an order, % JSON path: `statistic.comparison.conversions.cartToOrderPercent`.
       Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_localization_percent_dynamic
-    description: 'Dynamics of local orders within the same region JSON path: `statistic.comparison.localizationPercentDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Dynamics of local orders within the same region JSON path: `statistic.comparison.localizationPercentDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_open_count_dynamic
-    description: 'Dynamics of click-throughs JSON path: `statistic.comparison.openCountDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Dynamics of click-throughs JSON path: `statistic.comparison.openCountDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_order_count_dynamic
-    description: 'Dynamics of items ordered JSON path: `statistic.comparison.orderCountDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Dynamics of items ordered JSON path: `statistic.comparison.orderCountDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_order_sum_dynamic
-    description: 'Order value dynamics JSON path: `statistic.comparison.orderSumDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Order value dynamics JSON path: `statistic.comparison.orderSumDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_share_order_percent_dynamic
-    description: 'Dynamics of share in revenue JSON path: `statistic.comparison.shareOrderPercentDynamic`. Dataset: `analytics_sales_funnel`.'
+    description: 'Dynamics of share in revenue JSON path: `statistic.comparison.shareOrderPercentDynamic`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_time_to_ready_dynamic_days
-    description: 'Number of days JSON path: `statistic.comparison.timeToReadyDynamic.days`. Dataset: `analytics_sales_funnel`.'
+    description: 'Number of days JSON path: `statistic.comparison.timeToReadyDynamic.days`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_time_to_ready_dynamic_hours
-    description: 'Number of hours JSON path: `statistic.comparison.timeToReadyDynamic.hours`. Dataset: `analytics_sales_funnel`.'
+    description: 'Number of hours JSON path: `statistic.comparison.timeToReadyDynamic.hours`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_time_to_ready_dynamic_mins
-    description: 'Minutes JSON path: `statistic.comparison.timeToReadyDynamic.mins`. Dataset: `analytics_sales_funnel`.'
+    description: 'Minutes JSON path: `statistic.comparison.timeToReadyDynamic.mins`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_wb_club_dynamic_avg_order_count_per_day
-    description: 'Average daily orders (WB Club) JSON path: `statistic.comparison.wbClubDynamic.avgOrderCountPerDay`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average daily orders (WB Club) JSON path: `statistic.comparison.wbClubDynamic.avgOrderCountPerDay`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_wb_club_dynamic_avg_price
-    description: 'Average item price JSON path: `statistic.comparison.wbClubDynamic.avgPrice`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average item price JSON path: `statistic.comparison.wbClubDynamic.avgPrice`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_wb_club_dynamic_buyout_count
-    description: 'Items purchased JSON path: `statistic.comparison.wbClubDynamic.buyoutCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items purchased JSON path: `statistic.comparison.wbClubDynamic.buyoutCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_wb_club_dynamic_buyout_percent
-    description: 'Purchase rate JSON path: `statistic.comparison.wbClubDynamic.buyoutPercent`. Dataset: `analytics_sales_funnel`.'
+    description: 'Purchase rate JSON path: `statistic.comparison.wbClubDynamic.buyoutPercent`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_wb_club_dynamic_buyout_sum
-    description: 'Total purchase value JSON path: `statistic.comparison.wbClubDynamic.buyoutSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Total purchase value JSON path: `statistic.comparison.wbClubDynamic.buyoutSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_wb_club_dynamic_cancel_count
-    description: 'Items canceled and returned JSON path: `statistic.comparison.wbClubDynamic.cancelCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items canceled and returned JSON path: `statistic.comparison.wbClubDynamic.cancelCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_wb_club_dynamic_cancel_sum
-    description: 'Canceled and returned item value JSON path: `statistic.comparison.wbClubDynamic.cancelSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Canceled and returned item value JSON path: `statistic.comparison.wbClubDynamic.cancelSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_wb_club_dynamic_order_count
-    description: 'Items ordered JSON path: `statistic.comparison.wbClubDynamic.orderCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items ordered JSON path: `statistic.comparison.wbClubDynamic.orderCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_comparison_wb_club_dynamic_order_sum
-    description: 'Total order value JSON path: `statistic.comparison.wbClubDynamic.orderSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Total order value JSON path: `statistic.comparison.wbClubDynamic.orderSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_add_to_wishlist
-    description: 'Adds-to-Favorites JSON path: `statistic.past.addToWishlist`. Dataset: `analytics_sales_funnel`.'
+    description: 'Adds-to-Favorites JSON path: `statistic.past.addToWishlist`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_past_avg_orders_count_per_day
-    description: 'Average daily orders JSON path: `statistic.past.avgOrdersCountPerDay`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average daily orders JSON path: `statistic.past.avgOrdersCountPerDay`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_avg_price
-    description: 'Average item price JSON path: `statistic.past.avgPrice`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average item price JSON path: `statistic.past.avgPrice`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_past_buyout_count
-    description: 'Items purchased JSON path: `statistic.past.buyoutCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items purchased JSON path: `statistic.past.buyoutCount`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_past_buyout_sum
-    description: 'Total purchase value JSON path: `statistic.past.buyoutSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Total purchase value JSON path: `statistic.past.buyoutSum`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_past_cancel_count
-    description: 'Items canceled and returned JSON path: `statistic.past.cancelCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items canceled and returned JSON path: `statistic.past.cancelCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_cancel_sum
-    description: 'Canceled and returned item value JSON path: `statistic.past.cancelSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Canceled and returned item value JSON path: `statistic.past.cancelSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_cart_count
     description: 'Adds-to-Cart JSON path: `statistic.past.cartCount`. Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_conversions_add_to_cart_percent
-    description: 'Conversion to cart. What percentage of visitors who opened the listing, added the item to the cart, % JSON path: `statistic.past.conversions.addToCartPercent`.
+    description: 'Conversion to cart. What percentage of visitors who opened the listing,
+      added the item to the cart, % JSON path: `statistic.past.conversions.addToCartPercent`.
       Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_conversions_buyout_percent
-    description: 'Purchase rate JSON path: `statistic.past.conversions.buyoutPercent`. Dataset: `analytics_sales_funnel`.'
+    description: 'Purchase rate JSON path: `statistic.past.conversions.buyoutPercent`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_conversions_cart_to_order_percent
-    description: 'Conversion to order. What percentage of visitors who added the item to the cart, placed an order, % JSON path: `statistic.past.conversions.cartToOrderPercent`.
+    description: 'Conversion to order. What percentage of visitors who added the item
+      to the cart, placed an order, % JSON path: `statistic.past.conversions.cartToOrderPercent`.
       Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_localization_percent
-    description: 'Local orders within the same region JSON path: `statistic.past.localizationPercent`. Dataset: `analytics_sales_funnel`.'
+    description: 'Local orders within the same region JSON path: `statistic.past.localizationPercent`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_open_count
     description: 'Click-throughs JSON path: `statistic.past.openCount`. Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_order_count
     description: 'Items ordered JSON path: `statistic.past.orderCount`. Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_order_sum
-    description: 'Total order value JSON path: `statistic.past.orderSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Total order value JSON path: `statistic.past.orderSum`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_past_period_end
-    description: 'End date of the period. No earlier than 365 days from today JSON path: `statistic.past.period.end`. Dataset: `analytics_sales_funnel`.'
+    description: 'End date of the period. No earlier than 365 days from today JSON
+      path: `statistic.past.period.end`. Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_period_start
-    description: 'Start date of the period. No later than `end`. No earlier than 365 days from today JSON path: `statistic.past.period.start`.
-      Dataset: `analytics_sales_funnel`.'
+    description: 'Start date of the period. No later than `end`. No earlier than 365
+      days from today JSON path: `statistic.past.period.start`. Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_share_order_percent
-    description: 'Share in revenue JSON path: `statistic.past.shareOrderPercent`. Dataset: `analytics_sales_funnel`.'
+    description: 'Share in revenue JSON path: `statistic.past.shareOrderPercent`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_time_to_ready_days
-    description: 'Number of days JSON path: `statistic.past.timeToReady.days`. Dataset: `analytics_sales_funnel`.'
+    description: 'Number of days JSON path: `statistic.past.timeToReady.days`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_past_time_to_ready_hours
-    description: 'Number of hours JSON path: `statistic.past.timeToReady.hours`. Dataset: `analytics_sales_funnel`.'
+    description: 'Number of hours JSON path: `statistic.past.timeToReady.hours`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_past_time_to_ready_mins
     description: 'Minutes JSON path: `statistic.past.timeToReady.mins`. Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_wb_club_avg_order_count_per_day
-    description: 'Average daily orders (WB Club) JSON path: `statistic.past.wbClub.avgOrderCountPerDay`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average daily orders (WB Club) JSON path: `statistic.past.wbClub.avgOrderCountPerDay`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_wb_club_avg_price
-    description: 'Average item price JSON path: `statistic.past.wbClub.avgPrice`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average item price JSON path: `statistic.past.wbClub.avgPrice`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_wb_club_buyout_count
-    description: 'Items purchased JSON path: `statistic.past.wbClub.buyoutCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items purchased JSON path: `statistic.past.wbClub.buyoutCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_wb_club_buyout_percent
-    description: 'Purchase rate JSON path: `statistic.past.wbClub.buyoutPercent`. Dataset: `analytics_sales_funnel`.'
+    description: 'Purchase rate JSON path: `statistic.past.wbClub.buyoutPercent`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_wb_club_buyout_sum
-    description: 'Total purchase value JSON path: `statistic.past.wbClub.buyoutSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Total purchase value JSON path: `statistic.past.wbClub.buyoutSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_wb_club_cancel_count
-    description: 'Items canceled and returned JSON path: `statistic.past.wbClub.cancelCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items canceled and returned JSON path: `statistic.past.wbClub.cancelCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_wb_club_cancel_sum
-    description: 'Canceled and returned item value JSON path: `statistic.past.wbClub.cancelSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Canceled and returned item value JSON path: `statistic.past.wbClub.cancelSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_past_wb_club_order_count
-    description: 'Items ordered JSON path: `statistic.past.wbClub.orderCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items ordered JSON path: `statistic.past.wbClub.orderCount`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_past_wb_club_order_sum
-    description: 'Total order value JSON path: `statistic.past.wbClub.orderSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Total order value JSON path: `statistic.past.wbClub.orderSum`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_selected_add_to_wishlist
-    description: 'Adds-to-Favorites JSON path: `statistic.selected.addToWishlist`. Dataset: `analytics_sales_funnel`.'
+    description: 'Adds-to-Favorites JSON path: `statistic.selected.addToWishlist`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_avg_orders_count_per_day
-    description: 'Average daily orders JSON path: `statistic.selected.avgOrdersCountPerDay`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average daily orders JSON path: `statistic.selected.avgOrdersCountPerDay`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_avg_price
-    description: 'Average item price JSON path: `statistic.selected.avgPrice`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average item price JSON path: `statistic.selected.avgPrice`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_selected_buyout_count
-    description: 'Items purchased JSON path: `statistic.selected.buyoutCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items purchased JSON path: `statistic.selected.buyoutCount`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_selected_buyout_sum
-    description: 'Total purchase value JSON path: `statistic.selected.buyoutSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Total purchase value JSON path: `statistic.selected.buyoutSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_cancel_count
-    description: 'Items canceled and returned JSON path: `statistic.selected.cancelCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items canceled and returned JSON path: `statistic.selected.cancelCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_cancel_sum
-    description: 'Canceled and returned item value JSON path: `statistic.selected.cancelSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Canceled and returned item value JSON path: `statistic.selected.cancelSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_cart_count
-    description: 'Adds-to-Cart JSON path: `statistic.selected.cartCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Adds-to-Cart JSON path: `statistic.selected.cartCount`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_selected_conversions_add_to_cart_percent
-    description: 'Conversion to cart. What percentage of visitors who opened the listing, added the item to the cart, % JSON path: `statistic.selected.conversions.addToCartPercent`.
+    description: 'Conversion to cart. What percentage of visitors who opened the listing,
+      added the item to the cart, % JSON path: `statistic.selected.conversions.addToCartPercent`.
       Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_conversions_buyout_percent
-    description: 'Purchase rate JSON path: `statistic.selected.conversions.buyoutPercent`. Dataset: `analytics_sales_funnel`.'
+    description: 'Purchase rate JSON path: `statistic.selected.conversions.buyoutPercent`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_conversions_cart_to_order_percent
-    description: 'Conversion to order. What percentage of visitors who added the item to the cart, placed an order, % JSON path: `statistic.selected.conversions.cartToOrderPercent`.
+    description: 'Conversion to order. What percentage of visitors who added the item
+      to the cart, placed an order, % JSON path: `statistic.selected.conversions.cartToOrderPercent`.
       Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_localization_percent
-    description: 'Local orders within the same region JSON path: `statistic.selected.localizationPercent`. Dataset: `analytics_sales_funnel`.'
-  - name: statistic_selected_open_count
-    description: 'Click-throughs JSON path: `statistic.selected.openCount`. Dataset: `analytics_sales_funnel`.'
-  - name: statistic_selected_order_count
-    description: 'Items ordered JSON path: `statistic.selected.orderCount`. Dataset: `analytics_sales_funnel`.'
-  - name: statistic_selected_order_sum
-    description: 'Total order value JSON path: `statistic.selected.orderSum`. Dataset: `analytics_sales_funnel`.'
-  - name: statistic_selected_period_end
-    description: 'End date of the period. No earlier than 365 days from today JSON path: `statistic.selected.period.end`. Dataset: `analytics_sales_funnel`.'
-  - name: statistic_selected_period_start
-    description: 'Start date of the period. No later than `end`. No earlier than 365 days from today JSON path: `statistic.selected.period.start`.
+    description: 'Local orders within the same region JSON path: `statistic.selected.localizationPercent`.
       Dataset: `analytics_sales_funnel`.'
+  - name: statistic_selected_open_count
+    description: 'Click-throughs JSON path: `statistic.selected.openCount`. Dataset:
+      `analytics_sales_funnel`.'
+  - name: statistic_selected_order_count
+    description: 'Items ordered JSON path: `statistic.selected.orderCount`. Dataset:
+      `analytics_sales_funnel`.'
+  - name: statistic_selected_order_sum
+    description: 'Total order value JSON path: `statistic.selected.orderSum`. Dataset:
+      `analytics_sales_funnel`.'
+  - name: statistic_selected_period_end
+    description: 'End date of the period. No earlier than 365 days from today JSON
+      path: `statistic.selected.period.end`. Dataset: `analytics_sales_funnel`.'
+  - name: statistic_selected_period_start
+    description: 'Start date of the period. No later than `end`. No earlier than 365
+      days from today JSON path: `statistic.selected.period.start`. Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_share_order_percent
-    description: 'Share in revenue JSON path: `statistic.selected.shareOrderPercent`. Dataset: `analytics_sales_funnel`.'
+    description: 'Share in revenue JSON path: `statistic.selected.shareOrderPercent`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_time_to_ready_days
-    description: 'Number of days JSON path: `statistic.selected.timeToReady.days`. Dataset: `analytics_sales_funnel`.'
+    description: 'Number of days JSON path: `statistic.selected.timeToReady.days`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_time_to_ready_hours
-    description: 'Number of hours JSON path: `statistic.selected.timeToReady.hours`. Dataset: `analytics_sales_funnel`.'
+    description: 'Number of hours JSON path: `statistic.selected.timeToReady.hours`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_time_to_ready_mins
-    description: 'Minutes JSON path: `statistic.selected.timeToReady.mins`. Dataset: `analytics_sales_funnel`.'
+    description: 'Minutes JSON path: `statistic.selected.timeToReady.mins`. Dataset:
+      `analytics_sales_funnel`.'
   - name: statistic_selected_wb_club_avg_order_count_per_day
-    description: 'Average daily orders (WB Club) JSON path: `statistic.selected.wbClub.avgOrderCountPerDay`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average daily orders (WB Club) JSON path: `statistic.selected.wbClub.avgOrderCountPerDay`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_wb_club_avg_price
-    description: 'Average item price JSON path: `statistic.selected.wbClub.avgPrice`. Dataset: `analytics_sales_funnel`.'
+    description: 'Average item price JSON path: `statistic.selected.wbClub.avgPrice`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_wb_club_buyout_count
-    description: 'Items purchased JSON path: `statistic.selected.wbClub.buyoutCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items purchased JSON path: `statistic.selected.wbClub.buyoutCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_wb_club_buyout_percent
-    description: 'Purchase rate JSON path: `statistic.selected.wbClub.buyoutPercent`. Dataset: `analytics_sales_funnel`.'
+    description: 'Purchase rate JSON path: `statistic.selected.wbClub.buyoutPercent`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_wb_club_buyout_sum
-    description: 'Total purchase value JSON path: `statistic.selected.wbClub.buyoutSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Total purchase value JSON path: `statistic.selected.wbClub.buyoutSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_wb_club_cancel_count
-    description: 'Items canceled and returned JSON path: `statistic.selected.wbClub.cancelCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items canceled and returned JSON path: `statistic.selected.wbClub.cancelCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_wb_club_cancel_sum
-    description: 'Canceled and returned item value JSON path: `statistic.selected.wbClub.cancelSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Canceled and returned item value JSON path: `statistic.selected.wbClub.cancelSum`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_wb_club_order_count
-    description: 'Items ordered JSON path: `statistic.selected.wbClub.orderCount`. Dataset: `analytics_sales_funnel`.'
+    description: 'Items ordered JSON path: `statistic.selected.wbClub.orderCount`.
+      Dataset: `analytics_sales_funnel`.'
   - name: statistic_selected_wb_club_order_sum
-    description: 'Total order value JSON path: `statistic.selected.wbClub.orderSum`. Dataset: `analytics_sales_funnel`.'
+    description: 'Total order value JSON path: `statistic.selected.wbClub.orderSum`.
+      Dataset: `analytics_sales_funnel`.'

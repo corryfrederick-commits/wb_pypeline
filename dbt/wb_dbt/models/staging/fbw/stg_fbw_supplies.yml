@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_fbw_supplies
-  description: 'Автоматически сгенерированная staging-модель для dataset fbw_supplies. Главный record path: $. Одна строка = одна запись из главного
-    массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset fbw_supplies.
+    Главный record path: $. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -31,25 +40,32 @@ models:
     data_tests:
     - not_null
   - name: box_type_id
-    description: 'Supply type ID:   - `0` — Without boxes (virtual supply)   - `1` and `2` — Boxes   - `5` — Monopallets   - `6` — Supersafe JSON
-      path: `boxTypeID`. Dataset: `fbw_supplies`.'
+    description: 'Supply type ID:   - `0` — Without boxes (virtual supply)   - `1`
+      and `2` — Boxes   - `5` — Monopallets   - `6` — Supersafe JSON path: `boxTypeID`.
+      Dataset: `fbw_supplies`.'
   - name: create_date
-    description: 'Date and time the supply was created JSON path: `createDate`. Dataset: `fbw_supplies`.'
+    description: 'Date and time the supply was created JSON path: `createDate`. Dataset:
+      `fbw_supplies`.'
   - name: fact_date
     description: 'Actual unloading date JSON path: `factDate`. Dataset: `fbw_supplies`.'
   - name: is_box_on_pallet
-    description: '**Pallet with Single Items** — supply type:   - `true` — yes   - `false` — no    The field is returned only when `"boxTypeID":
-      2` JSON path: `isBoxOnPallet`. Dataset: `fbw_supplies`.'
+    description: '**Pallet with Single Items** — supply type:   - `true` — yes   -
+      `false` — no    The field is returned only when `"boxTypeID": 2` JSON path:
+      `isBoxOnPallet`. Dataset: `fbw_supplies`.'
   - name: phone
-    description: 'Phone number of the user that created the supply JSON path: `phone`. Dataset: `fbw_supplies`.'
+    description: 'Phone number of the user that created the supply JSON path: `phone`.
+      Dataset: `fbw_supplies`.'
   - name: preorder_id
-    description: 'Order ID (unplanned supply). Will be `0` for all virtual supplies JSON path: `preorderID`. Dataset: `fbw_supplies`.'
+    description: 'Order ID (unplanned supply). Will be `0` for all virtual supplies
+      JSON path: `preorderID`. Dataset: `fbw_supplies`.'
   - name: status_id
-    description: 'Supply status ID: - `1` — Not planned - `2` — Planned - `3` — Unloading allowed - `4` — Accepting - `5` — Accepted - `6` — Unloaded
-      at the gate JSON path: `statusID`. Dataset: `fbw_supplies`.'
+    description: 'Supply status ID: - `1` — Not planned - `2` — Planned - `3` — Unloading
+      allowed - `4` — Accepting - `5` — Accepted - `6` — Unloaded at the gate JSON
+      path: `statusID`. Dataset: `fbw_supplies`.'
   - name: supply_date
     description: 'Planned unloading date JSON path: `supplyDate`. Dataset: `fbw_supplies`.'
   - name: supply_id
-    description: 'Supply ID. If `null`, it''s an order, so use the value of the `preorderID` field JSON path: `supplyID`. Dataset: `fbw_supplies`.'
+    description: 'Supply ID. If `null`, it''s an order, so use the value of the `preorderID`
+      field JSON path: `supplyID`. Dataset: `fbw_supplies`.'
   - name: updated_date
     description: 'Date of the supply update JSON path: `updatedDate`. Dataset: `fbw_supplies`.'

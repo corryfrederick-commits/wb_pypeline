@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_report_orders
-  description: 'Автоматически сгенерированная staging-модель для dataset report_orders. Главный record path: $. Одна строка = одна запись из главного
-    массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset report_orders.
+    Главный record path: $. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -37,20 +46,23 @@ models:
   - name: brand
     description: 'Brand JSON path: `brand`. Dataset: `report_orders`.'
   - name: cancel_date
-    description: 'Date and time for order canceling. If order wasn''t canceled, then `"0001-01-01T00:00:00"`. If the time zone is not specified,
-      then Moscow time UTC+3 is taken. JSON path: `cancelDate`. Dataset: `report_orders`.'
+    description: 'Date and time for order canceling. If order wasn''t canceled, then
+      `"0001-01-01T00:00:00"`. If the time zone is not specified, then Moscow time
+      UTC+3 is taken. JSON path: `cancelDate`. Dataset: `report_orders`.'
   - name: category
     description: 'Category JSON path: `category`. Dataset: `report_orders`.'
   - name: chrt_id
     description: 'Size ID JSON path: `chrtId`. Dataset: `report_orders`.'
   - name: converted_currency_code
-    description: 'Код валюты страны продавца JSON path: `convertedCurrencyCode`. Dataset: `report_orders`.'
+    description: 'Код валюты страны продавца JSON path: `convertedCurrencyCode`. Dataset:
+      `report_orders`.'
   - name: converted_final_price
-    description: 'Сумма к оплате покупателем в валюте страны продавца с учетом всех скидок, умноженная на 100. Предоставляется в информационных
-      целях JSON path: `convertedFinalPrice`. Dataset: `report_orders`.'
+    description: 'Сумма к оплате покупателем в валюте страны продавца с учетом всех
+      скидок, умноженная на 100. Предоставляется в информационных целях JSON path:
+      `convertedFinalPrice`. Dataset: `report_orders`.'
   - name: converted_price
-    description: 'Цена в валюте страны продавца с учетом всех скидок, кроме скидки по WB Кошельку, умноженная на 100 JSON path: `convertedPrice`.
-      Dataset: `report_orders`.'
+    description: 'Цена в валюте страны продавца с учетом всех скидок, кроме скидки
+      по WB Кошельку, умноженная на 100 JSON path: `convertedPrice`. Dataset: `report_orders`.'
   - name: country_name
     description: 'Country JSON path: `countryName`. Dataset: `report_orders`.'
   - name: created_at
@@ -58,31 +70,37 @@ models:
   - name: currency_code
     description: 'Код валюты продажи JSON path: `currencyCode`. Dataset: `report_orders`.'
   - name: date_value
-    description: 'Date and time of order. This field equals to `dateFrom` in request if `flag=1`. If the time zone is not specified, then Moscow
-      time UTC+3 is taken. JSON path: `date`. Dataset: `report_orders`.'
+    description: 'Date and time of order. This field equals to `dateFrom` in request
+      if `flag=1`. If the time zone is not specified, then Moscow time UTC+3 is taken.
+      JSON path: `date`. Dataset: `report_orders`.'
   - name: discount_percent
     description: 'Seller discount, % JSON path: `discountPercent`. Dataset: `report_orders`.'
   - name: final_price
-    description: 'Сумма к оплате покупателем в валюте продажи с учетом всех скидок, умноженная на 100. Код валюты продажи указан в поле `currencyCode`.
-      Предоставляется в информационных целях JSON path: `finalPrice`. Dataset: `report_orders`.'
+    description: 'Сумма к оплате покупателем в валюте продажи с учетом всех скидок,
+      умноженная на 100. Код валюты продажи указан в поле `currencyCode`. Предоставляется
+      в информационных целях JSON path: `finalPrice`. Dataset: `report_orders`.'
   - name: finished_price
-    description: 'Price with all discounts, except WB Wallet sum JSON path: `finishedPrice`. Dataset: `report_orders`.'
+    description: 'Price with all discounts, except WB Wallet sum JSON path: `finishedPrice`.
+      Dataset: `report_orders`.'
   - name: g_number
-    description: 'Buyer''s cart ID. Orders within a single transaction will have the same `gNumber` JSON path: `gNumber`. Dataset: `report_orders`.'
+    description: 'Buyer''s cart ID. Orders within a single transaction will have the
+      same `gNumber` JSON path: `gNumber`. Dataset: `report_orders`.'
   - name: id
     description: 'Task ID JSON path: `id`. Dataset: `report_orders`.'
   - name: income_id
     description: 'Shipment number JSON path: `incomeID`. Dataset: `report_orders`.'
   - name: is_cancel
-    description: 'Order cancel:  - `true` — the order is cancelled JSON path: `isCancel`. Dataset: `report_orders`.'
+    description: 'Order cancel:  - `true` — the order is cancelled JSON path: `isCancel`.
+      Dataset: `report_orders`.'
   - name: is_realization
     description: 'Implementation contract JSON path: `isRealization`. Dataset: `report_orders`.'
   - name: is_supply
     description: 'Supply contract JSON path: `isSupply`. Dataset: `report_orders`.'
   - name: last_change_date
-    description: 'Date and time of refreshing info of service. This field corresponds to the `dateFrom` parameter in the request if the `flag=0`
-      parameter exist or not specified. If the time zone is not specified, then Moscow time UTC+3 is taken. JSON path: `lastChangeDate`. Dataset:
-      `report_orders`.'
+    description: 'Date and time of refreshing info of service. This field corresponds
+      to the `dateFrom` parameter in the request if the `flag=0` parameter exist or
+      not specified. If the time zone is not specified, then Moscow time UTC+3 is
+      taken. JSON path: `lastChangeDate`. Dataset: `report_orders`.'
   - name: nm_id
     description: 'WB item number JSON path: `nmId`. Dataset: `report_orders`.'
   - name: oblast_okrug_name
@@ -90,17 +108,20 @@ models:
   - name: office_id
     description: 'Warehouse ID JSON path: `officeId`. Dataset: `report_orders`.'
   - name: operation_date
-    description: 'Дата и время операции в отчёте по заказам. Исходное поле WB JSON: `operationDate`. Описание добавлено вручную, потому что в
-      исходном WB YAML для этого поля не было description.'
+    description: 'Дата и время операции в отчёте по заказам. Исходное поле WB JSON:
+      `operationDate`. Описание добавлено вручную, потому что в исходном WB YAML для
+      этого поля не было description.'
   - name: order_id
     description: 'Assembly order number JSON path: `orderId`. Dataset: `report_orders`.'
   - name: order_uid
-    description: 'ID транзакции для группировки сборочных заданий. Сборочные задания в одной корзине покупателя будут иметь одинаковый `orderUid`
-      JSON path: `orderUid`. Dataset: `report_orders`.'
+    description: 'ID транзакции для группировки сборочных заданий. Сборочные задания
+      в одной корзине покупателя будут иметь одинаковый `orderUid` JSON path: `orderUid`.
+      Dataset: `report_orders`.'
   - name: price
     description: 'Price including VAT JSON path: `price`. Dataset: `report_orders`.'
   - name: price_with_disc
-    description: 'Price with seller discount, including WB Club discount JSON path: `priceWithDisc`. Dataset: `report_orders`.'
+    description: 'Price with seller discount, including WB Club discount JSON path:
+      `priceWithDisc`. Dataset: `report_orders`.'
   - name: region_name
     description: 'Region JSON path: `regionName`. Dataset: `report_orders`.'
   - name: rid
@@ -108,8 +129,9 @@ models:
   - name: sale_dt
     description: 'Purchased on JSON path: `saleDt`. Dataset: `report_orders`.'
   - name: sale_price
-    description: 'Цена продавца в валюте продажи с учётом скидки продавца, без учёта скидки WB Клуба, умноженная на 100. Предоставляется в информационных
-      целях JSON path: `salePrice`. Dataset: `report_orders`.'
+    description: 'Цена продавца в валюте продажи с учётом скидки продавца, без учёта
+      скидки WB Клуба, умноженная на 100. Предоставляется в информационных целях JSON
+      path: `salePrice`. Dataset: `report_orders`.'
   - name: skus
     description: 'SKU JSON path: `skus`. Dataset: `report_orders`.'
   - name: spp
@@ -129,11 +151,13 @@ models:
   - name: vendor_code
     description: 'Seller item number JSON path: `vendorCode`. Dataset: `report_orders`.'
   - name: warehouse_address
-    description: 'Store address (seller warehouse) where the assembly order was received JSON path: `warehouseAddress`. Dataset: `report_orders`.'
+    description: 'Store address (seller warehouse) where the assembly order was received
+      JSON path: `warehouseAddress`. Dataset: `report_orders`.'
   - name: warehouse_id
-    description: 'ID склада продавца, с которого был отгружен товар JSON path: `warehouseId`. Dataset: `report_orders`.'
+    description: 'ID склада продавца, с которого был отгружен товар JSON path: `warehouseId`.
+      Dataset: `report_orders`.'
   - name: warehouse_name
     description: 'Warehouse name JSON path: `warehouseName`. Dataset: `report_orders`.'
   - name: warehouse_type
-    description: 'Type of items storage warehouse:   - `Склад WB` —  WB warehouse   - `Склад продавца` — seller warehouse JSON path: `warehouseType`.
-      Dataset: `report_orders`.'
+    description: 'Type of items storage warehouse:   - `Склад WB` —  WB warehouse   -
+      `Склад продавца` — seller warehouse JSON path: `warehouseType`. Dataset: `report_orders`.'

@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_orders_dbs_statuses
-  description: 'Автоматически сгенерированная staging-модель для dataset orders_dbs_statuses. Главный record path: orders. Одна строка = одна
-    запись из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset orders_dbs_statuses.
+    Главный record path: orders. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -39,23 +48,29 @@ models:
   - name: order_id
     description: 'Assembly order ID JSON path: `orderId`. Dataset: `orders_dbs_statuses`.'
   - name: order_uid
-    description: 'Transaction ID for order grouping. Orders in the same buyer''s cart will have the same `orderUid`. JSON path: `orderUid`. Dataset:
-      `orders_dbs_statuses`.'
+    description: 'Transaction ID for order grouping. Orders in the same buyer''s cart
+      will have the same `orderUid`. JSON path: `orderUid`. Dataset: `orders_dbs_statuses`.'
   - name: rid
-    description: 'Unique order ID. <br> Note: `rid` corresponds to `srid` in the responses of the methods:   - [Buyers Return Applications](./user-communication#tag/Buyers-Returns/paths/~1api~1v1~1claims/get)   -
-      [Orders](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1orders/get)   - [Sales](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1sales/get)   -
-      [Returns and Item Movement Report](./reports#tag/Returns-and-Product-Movement-Report)   - [Details for the Sales Reports by Report ID](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1SalesReportsDetailedReportId)   -
+    description: 'Unique order ID. <br> Note: `rid` corresponds to `srid` in the responses
+      of the methods:   - [Buyers Return Applications](./user-communication#tag/Buyers-Returns/paths/~1api~1v1~1claims/get)   -
+      [Orders](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1orders/get)   -
+      [Sales](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1sales/get)   -
+      [Returns and Item Movement Report](./reports#tag/Returns-and-Product-Movement-Report)   -
+      [Details for the Sales Reports by Report ID](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1SalesReportsDetailedReportId)   -
       [Details for the Sales Reports by Period](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1SalesReportsDetailed)   -
       [Details for the Acquiring Expenses Reports by Report ID](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1AcquiringDetailedReportId)   -
       [Details for the Acquiring Expenses Reports by Period](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1AcquiringDetailed)
       JSON path: `rid`. Dataset: `orders_dbs_statuses`.'
   - name: srid
-    description: 'Unique order ID for which a item claim was created JSON path: `srid`. Dataset: `orders_dbs_statuses`.'
+    description: 'Unique order ID for which a item claim was created JSON path: `srid`.
+      Dataset: `orders_dbs_statuses`.'
   - name: status
     description: 'HTTP status code JSON path: `status`. Dataset: `orders_dbs_statuses`.'
   - name: supplier_status
-    description: 'Assembly order status set by the seller JSON path: `supplierStatus`. Dataset: `orders_dbs_statuses`.'
+    description: 'Assembly order status set by the seller JSON path: `supplierStatus`.
+      Dataset: `orders_dbs_statuses`.'
   - name: updated_at
     description: 'Update date and time JSON path: `updatedAt`. Dataset: `orders_dbs_statuses`.'
   - name: wb_status
-    description: 'Assembly order status set by WB system JSON path: `wbStatus`. Dataset: `orders_dbs_statuses`.'
+    description: 'Assembly order status set by WB system JSON path: `wbStatus`. Dataset:
+      `orders_dbs_statuses`.'

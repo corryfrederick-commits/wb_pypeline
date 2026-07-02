@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_general_seller_info
-  description: 'Автоматически сгенерированная staging-модель для dataset general_seller_info. Главный record path: $. Одна строка = одна запись
-    из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset general_seller_info.
+    Главный record path: $. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -33,8 +42,10 @@ models:
   - name: name
     description: 'Tag name JSON path: `name`. Dataset: `general_seller_info`.'
   - name: sid
-    description: 'Wildberries Seller [ID](./api-information#tag/Avtorizaciya/Kak-ustroen-token) JSON path: `sid`. Dataset: `general_seller_info`.'
+    description: 'Wildberries Seller [ID](./api-information#tag/Avtorizaciya/Kak-ustroen-token)
+      JSON path: `sid`. Dataset: `general_seller_info`.'
   - name: tin
-    description: 'Taxpayer identification number of the partner (INN in Russian) JSON path: `tin`. Dataset: `general_seller_info`.'
+    description: 'Taxpayer identification number of the partner (INN in Russian) JSON
+      path: `tin`. Dataset: `general_seller_info`.'
   - name: trade_mark
     description: 'Seller''s trade name JSON path: `tradeMark`. Dataset: `general_seller_info`.'

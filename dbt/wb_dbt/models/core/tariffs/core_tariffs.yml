@@ -3,6 +3,14 @@ models:
 - name: tariff_acceptance_prices
   description: Core периодический справочник тарифов приёмки WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: tariff_acceptance_price_key
     description: 'Суррогатный ключ: tariff acceptance price key.'
     tests:
@@ -63,6 +71,14 @@ models:
 - name: tariff_box_prices
   description: Core периодический справочник тарифов коробов WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: tariff_box_price_key
     description: 'Суррогатный ключ: tariff box price key.'
     tests:
@@ -111,6 +127,14 @@ models:
 - name: tariff_commissions
   description: Core периодический справочник комиссий WB по категориям и предметам.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: tariff_commission_key
     description: 'Суррогатный ключ: tariff commission key.'
     tests:

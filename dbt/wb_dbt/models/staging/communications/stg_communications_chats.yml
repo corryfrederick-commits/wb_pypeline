@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_communications_chats
-  description: 'Автоматически сгенерированная staging-модель для dataset communications_chats. Главный record path: result. Одна строка = одна
-    запись из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset communications_chats.
+    Главный record path: result. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -45,23 +54,29 @@ models:
   - name: good_card_nm_id
     description: 'WB item number JSON path: `goodCard.nmID`. Dataset: `communications_chats`.'
   - name: good_card_price
-    description: 'Actual price with all discounts applied. Charged to the buyer JSON path: `goodCard.price`. Dataset: `communications_chats`.'
+    description: 'Actual price with all discounts applied. Charged to the buyer JSON
+      path: `goodCard.price`. Dataset: `communications_chats`.'
   - name: good_card_price_currency
     description: 'Currency JSON path: `goodCard.priceCurrency`. Dataset: `communications_chats`.'
   - name: good_card_rid
-    description: 'Unique order ID. <br> Note: `rid` corresponds to `srid` in the responses of the methods:   - [Buyers Return Applications](./user-communication#tag/Buyers-Returns/paths/~1api~1v1~1claims/get)   -
-      [Orders](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1orders/get)   - [Sales](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1sales/get)   -
-      [Returns and Item Movement Report](./reports#tag/Returns-and-Product-Movement-Report)   - [Details for the Sales Reports by Report ID](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1SalesReportsDetailedReportId)   -
+    description: 'Unique order ID. <br> Note: `rid` corresponds to `srid` in the responses
+      of the methods:   - [Buyers Return Applications](./user-communication#tag/Buyers-Returns/paths/~1api~1v1~1claims/get)   -
+      [Orders](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1orders/get)   -
+      [Sales](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1sales/get)   -
+      [Returns and Item Movement Report](./reports#tag/Returns-and-Product-Movement-Report)   -
+      [Details for the Sales Reports by Report ID](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1SalesReportsDetailedReportId)   -
       [Details for the Sales Reports by Period](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1SalesReportsDetailed)   -
       [Details for the Acquiring Expenses Reports by Report ID](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1AcquiringDetailedReportId)   -
       [Details for the Acquiring Expenses Reports by Period](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1AcquiringDetailed)
       JSON path: `goodCard.rid`. Dataset: `communications_chats`.'
   - name: good_card_size
-    description: 'Item size (`techSize'' in the listing) JSON path: `goodCard.size`. Dataset: `communications_chats`.'
+    description: 'Item size (`techSize'' in the listing) JSON path: `goodCard.size`.
+      Dataset: `communications_chats`.'
   - name: id
     description: 'question id JSON path: `id`. Dataset: `communications_chats`.'
   - name: last_message_add_timestamp
-    description: 'Time of event occurrence on the server. Unix timestamp format JSON path: `lastMessage.addTimestamp`. Dataset: `communications_chats`.'
+    description: 'Time of event occurrence on the server. Unix timestamp format JSON
+      path: `lastMessage.addTimestamp`. Dataset: `communications_chats`.'
   - name: last_message_text
     description: 'question text JSON path: `lastMessage.text`. Dataset: `communications_chats`.'
   - name: nm_id
@@ -69,16 +84,21 @@ models:
   - name: order_id
     description: 'ID сборочного задания JSON path: `orderId`. Dataset: `communications_chats`.'
   - name: order_uid
-    description: 'ID транзакции для группировки сборочных заданий. Сборочные задания в одной корзине покупателя будут иметь одинаковый `orderUid`
-      JSON path: `orderUid`. Dataset: `communications_chats`.'
+    description: 'ID транзакции для группировки сборочных заданий. Сборочные задания
+      в одной корзине покупателя будут иметь одинаковый `orderUid` JSON path: `orderUid`.
+      Dataset: `communications_chats`.'
   - name: reply_sign
     description: 'Chat signature. Can be obtained from [chat information](./user-communication#tag/Buyers-Chat/paths/~1api~1v1~1seller~1chats/get)
-      or [event data](./user-communication#tag/Buyers-Chat/paths/~1api~1v1~1seller~1events/get) if the event contains the `"isNewChat": true`
-      field. JSON path: `replySign`. Dataset: `communications_chats`.'
+      or [event data](./user-communication#tag/Buyers-Chat/paths/~1api~1v1~1seller~1events/get)
+      if the event contains the `"isNewChat": true` field. JSON path: `replySign`.
+      Dataset: `communications_chats`.'
   - name: rid
-    description: 'Unique order ID. <br> Note: `rid` corresponds to `srid` in the responses of the methods:   - [Buyers Return Applications](./user-communication#tag/Buyers-Returns/paths/~1api~1v1~1claims/get)   -
-      [Orders](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1orders/get)   - [Sales](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1sales/get)   -
-      [Returns and Item Movement Report](./reports#tag/Returns-and-Product-Movement-Report)   - [Details for the Sales Reports by Report ID](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1SalesReportsDetailedReportId)   -
+    description: 'Unique order ID. <br> Note: `rid` corresponds to `srid` in the responses
+      of the methods:   - [Buyers Return Applications](./user-communication#tag/Buyers-Returns/paths/~1api~1v1~1claims/get)   -
+      [Orders](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1orders/get)   -
+      [Sales](./reports#tag/Main-Reports/paths/~1api~1v1~1supplier~1sales/get)   -
+      [Returns and Item Movement Report](./reports#tag/Returns-and-Product-Movement-Report)   -
+      [Details for the Sales Reports by Report ID](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1SalesReportsDetailedReportId)   -
       [Details for the Sales Reports by Period](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1SalesReportsDetailed)   -
       [Details for the Acquiring Expenses Reports by Report ID](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1AcquiringDetailedReportId)   -
       [Details for the Acquiring Expenses Reports by Period](./financial-reports-and-accounting#tag/Financial-Reports/operation/postV1AcquiringDetailed)
@@ -86,6 +106,7 @@ models:
   - name: skus
     description: 'SKU JSON path: `skus`. Dataset: `communications_chats`.'
   - name: srid
-    description: 'Unique order ID for which a item claim was created JSON path: `srid`. Dataset: `communications_chats`.'
+    description: 'Unique order ID for which a item claim was created JSON path: `srid`.
+      Dataset: `communications_chats`.'
   - name: vendor_code
     description: 'Seller item number JSON path: `vendorCode`. Dataset: `communications_chats`.'

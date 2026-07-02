@@ -1,8 +1,17 @@
 version: 2
 models:
 - name: order_items
-  description: Core таблица товарных строк заказов. Одна строка соответствует одной товарной строке заказа.
+  description: Core таблица товарных строк заказов. Одна строка соответствует одной
+    товарной строке заказа.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: order_item_key
     description: 'Суррогатный ключ: order item key.'
     tests:
@@ -18,7 +27,8 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
+      или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: rid
@@ -110,6 +120,14 @@ models:
 - name: order_status_snapshots
   description: Core факт-снимок статусов заказов из status endpoint'ов.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: order_status_snapshot_key
     description: 'Суррогатный ключ: order status snapshot key.'
     tests:
@@ -125,7 +143,8 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
+      или order_id.
   - name: source_status_id
     description: 'Идентификатор: source status id.'
   - name: order_id
@@ -173,13 +192,22 @@ models:
 - name: orders
   description: Core таблица бизнес-заказов. Одна строка соответствует одному заказу.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: order_key
     description: Суррогатный ключ заказа.
     tests:
     - not_null
     - unique
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
+      или order_id.
     tests:
     - not_null
   - name: order_id
@@ -257,8 +285,17 @@ models:
   - name: core_loaded_at
     description: Время построения core-записи.
 - name: stock_balances
-  description: Core факт-снимок остатков товаров на складах. Одна строка соответствует остатку товара/варианта на складе на момент загрузки данных.
+  description: Core факт-снимок остатков товаров на складах. Одна строка соответствует
+    остатку товара/варианта на складе на момент загрузки данных.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: stock_balance_key
     description: 'Суррогатный ключ: stock balance key.'
     tests:

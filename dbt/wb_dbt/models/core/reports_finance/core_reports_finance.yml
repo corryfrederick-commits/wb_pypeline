@@ -3,6 +3,14 @@ models:
 - name: finance_balances
   description: Core факт-снимок финансового баланса продавца.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: finance_balance_key
     description: 'Суррогатный ключ: finance balance key.'
     tests:
@@ -35,6 +43,14 @@ models:
 - name: finance_report_summaries
   description: Core таблица сводных строк финансовых отчётов WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: finance_report_summary_key
     description: 'Суррогатный ключ: finance report summary key.'
     tests:
@@ -71,7 +87,8 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
+      или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: order_uid
@@ -183,6 +200,14 @@ models:
 - name: finance_transactions
   description: Core таблица детальных финансовых операций WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: finance_transaction_key
     description: 'Суррогатный ключ: finance transaction key.'
     tests:
@@ -223,7 +248,8 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
+      или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: order_uid
@@ -453,6 +479,14 @@ models:
 - name: report_order_events
   description: Core таблица отчётных событий по заказам WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: report_order_event_key
     description: 'Суррогатный ключ: report order event key.'
     tests:
@@ -469,7 +503,8 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
+      или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: order_uid
@@ -605,6 +640,14 @@ models:
 - name: report_sale_events
   description: Core таблица отчётных событий по продажам WB.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: report_sale_event_key
     description: 'Суррогатный ключ: report sale event key.'
     tests:
@@ -623,7 +666,8 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
+      или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: order_uid

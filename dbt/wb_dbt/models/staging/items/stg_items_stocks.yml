@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_items_stocks
-  description: 'Автоматически сгенерированная staging-модель для dataset items_stocks. Главный record path: stocks. Одна строка = одна запись
-    из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset items_stocks.
+    Главный record path: stocks. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -47,14 +56,18 @@ models:
   - name: office_id
     description: 'Office ID JSON path: `officeId`. Dataset: `items_stocks`.'
   - name: quantity
-    description: 'Total quantity of items in the package, pieces JSON path: `quantity`. Dataset: `items_stocks`.'
+    description: 'Total quantity of items in the package, pieces JSON path: `quantity`.
+      Dataset: `items_stocks`.'
   - name: skus
     description: 'SKU JSON path: `skus`. Dataset: `items_stocks`.'
   - name: vendor_code
     description: 'Seller item number JSON path: `vendorCode`. Dataset: `items_stocks`.'
   - name: warehouse_address
-    description: 'Store address (seller warehouse) where the assembly order was received JSON path: `warehouseAddress`. Dataset: `items_stocks`.'
+    description: 'Store address (seller warehouse) where the assembly order was received
+      JSON path: `warehouseAddress`. Dataset: `items_stocks`.'
   - name: warehouse_id
-    description: 'ID склада продавца, с которого был отгружен товар JSON path: `warehouseId`. Dataset: `items_stocks`.'
+    description: 'ID склада продавца, с которого был отгружен товар JSON path: `warehouseId`.
+      Dataset: `items_stocks`.'
   - name: warehouse_name
-    description: 'Warehouse name for planned supply JSON path: `warehouseName`. Dataset: `items_stocks`.'
+    description: 'Warehouse name for planned supply JSON path: `warehouseName`. Dataset:
+      `items_stocks`.'

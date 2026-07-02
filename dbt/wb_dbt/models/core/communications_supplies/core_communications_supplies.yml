@@ -3,6 +3,14 @@ models:
 - name: chats
   description: Core таблица чатов / коммуникаций с покупателями.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: chat_key
     description: 'Суррогатный ключ: chat key.'
     tests:
@@ -35,7 +43,8 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
+      или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: order_uid
@@ -99,6 +108,14 @@ models:
 - name: fbw_supplies
   description: Core таблица поставок FBW.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: fbw_supply_key
     description: 'Суррогатный ключ: fbw supply key.'
     tests:
@@ -143,6 +160,14 @@ models:
 - name: feedbacks
   description: Core таблица отзывов покупателей.
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: feedback_key
     description: 'Суррогатный ключ: feedback key.'
     tests:

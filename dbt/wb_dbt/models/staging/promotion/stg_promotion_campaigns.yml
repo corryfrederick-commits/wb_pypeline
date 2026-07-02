@@ -1,15 +1,24 @@
 version: 2
 models:
 - name: stg_promotion_campaigns
-  description: 'Автоматически сгенерированная staging-модель для dataset promotion_campaigns. Главный record path: adverts. Одна строка = одна
-    запись из главного массива JSON.'
+  description: 'Автоматически сгенерированная staging-модель для dataset promotion_campaigns.
+    Главный record path: adverts. Одна строка = одна запись из главного массива JSON.'
   columns:
+  - name: wb_account_id
+    description: Internal Wildberries account identifier assigned at ingestion.
+    tests:
+    - not_null
+  - name: client_id
+    description: Internal SaaS client identifier assigned at ingestion.
+    tests:
+    - not_null
   - name: raw_payload_id
     description: Технический lineage. ID строки из landing.raw_payloads.
     data_tests:
     - not_null
   - name: record_index
-    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация начинается с 1.
+    description: Порядковый номер записи внутри главного массива исходного JSON. Нумерация
+      начинается с 1.
     data_tests:
     - not_null
   - name: source_system
@@ -37,10 +46,12 @@ models:
   - name: barcode
     description: 'Закодированное значение стикера JSON path: `barcode`. Dataset: `promotion_campaigns`.'
   - name: bid_type
-    description: 'Bid type:   - `unified` — standard bid   - `manual` — custom bid JSON path: `bid_type`. Dataset: `promotion_campaigns`.'
+    description: 'Bid type:   - `unified` — standard bid   - `manual` — custom bid
+      JSON path: `bid_type`. Dataset: `promotion_campaigns`.'
   - name: campaign_id
-    description: 'Идентификатор рекламной кампании. Исходное поле WB JSON: `campaignId`. Описание добавлено вручную, потому что в исходном WB
-      YAML для этого поля не было description.'
+    description: 'Идентификатор рекламной кампании. Исходное поле WB JSON: `campaignId`.
+      Описание добавлено вручную, потому что в исходном WB YAML для этого поля не
+      было description.'
   - name: chrt_id
     description: 'Size ID JSON path: `chrtId`. Dataset: `promotion_campaigns`.'
   - name: id
@@ -52,12 +63,14 @@ models:
   - name: settings_name
     description: 'Campaign name JSON path: `settings.name`. Dataset: `promotion_campaigns`.'
   - name: settings_payment_type
-    description: 'Payment type:   - `cpm` — per mille   - `cpc` — per click JSON path: `settings.payment_type`. Dataset: `promotion_campaigns`.'
+    description: 'Payment type:   - `cpm` — per mille   - `cpc` — per click JSON path:
+      `settings.payment_type`. Dataset: `promotion_campaigns`.'
   - name: settings_placements_recommendations
-    description: 'Placement in recommendations   - `false` — disabled   - `true` — enabled JSON path: `settings.placements.recommendations`. Dataset:
-      `promotion_campaigns`.'
+    description: 'Placement in recommendations   - `false` — disabled   - `true` —
+      enabled JSON path: `settings.placements.recommendations`. Dataset: `promotion_campaigns`.'
   - name: settings_placements_search
-    description: 'Placement in search:   - `false` — disabled   - `true` — enabled JSON path: `settings.placements.search`. Dataset: `promotion_campaigns`.'
+    description: 'Placement in search:   - `false` — disabled   - `true` — enabled
+      JSON path: `settings.placements.search`. Dataset: `promotion_campaigns`.'
   - name: skus
     description: 'SKU JSON path: `skus`. Dataset: `promotion_campaigns`.'
   - name: status
@@ -69,6 +82,7 @@ models:
   - name: timestamps_started
     description: 'Campaign launch time JSON path: `timestamps.started`. Dataset: `promotion_campaigns`.'
   - name: timestamps_updated
-    description: 'Campaign last update time JSON path: `timestamps.updated`. Dataset: `promotion_campaigns`.'
+    description: 'Campaign last update time JSON path: `timestamps.updated`. Dataset:
+      `promotion_campaigns`.'
   - name: vendor_code
     description: 'Seller item number JSON path: `vendorCode`. Dataset: `promotion_campaigns`.'
