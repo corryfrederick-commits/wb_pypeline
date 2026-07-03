@@ -1,0 +1,542 @@
+version: 2
+
+models:
+  - name: client_staging_cleaned__analytics_sales_funnel_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__analytics_sales_funnel_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__analytics_stocks_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__analytics_stocks_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__communications_chats_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__communications_chats_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__communications_feedbacks_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__communications_feedbacks_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__fbw_supplies_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__fbw_supplies_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__finance_balance_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__finance_balance_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__finance_sales_reports_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__finance_sales_reports_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__finance_sales_reports_detailed_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__finance_sales_reports_detailed_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__general_seller_info_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__general_seller_info_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__items_cards_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__items_cards_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__items_stocks_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__items_stocks_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__items_warehouses_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__items_warehouses_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__orders_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__orders_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__orders_dbs_statuses_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__orders_dbs_statuses_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__orders_dbw_statuses_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__orders_dbw_statuses_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__orders_fbs_statuses_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__orders_fbs_statuses_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__orders_pickup_statuses_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__orders_pickup_statuses_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__promotion_campaigns_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__promotion_campaigns_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__promotion_fullstats_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__promotion_fullstats_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__report_orders_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__report_orders_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__report_sales_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__report_sales_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__tariffs_acceptance_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__tariffs_acceptance_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__tariffs_box_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__tariffs_box_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_staging_cleaned__tariffs_commission_cleaned
+    description: Client-facing materialized view for staging_cleaned.staging_cleaned__tariffs_commission_cleaned.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__promotion_campaigns
+    description: Client-facing materialized view for core.core__promotion_campaigns.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__promotion_product_daily_stats
+    description: Client-facing materialized view for core.core__promotion_product_daily_stats.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__sales_funnel_metrics
+    description: Client-facing materialized view for core.core__sales_funnel_metrics.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__stock_analytics_metrics
+    description: Client-facing materialized view for core.core__stock_analytics_metrics.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__chats
+    description: Client-facing materialized view for core.core__chats.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__fbw_supplies
+    description: Client-facing materialized view for core.core__fbw_supplies.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__feedbacks
+    description: Client-facing materialized view for core.core__feedbacks.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__order_items
+    description: Client-facing materialized view for core.core__order_items.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__order_status_snapshots
+    description: Client-facing materialized view for core.core__order_status_snapshots.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__orders
+    description: Client-facing materialized view for core.core__orders.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__stock_balances
+    description: Client-facing materialized view for core.core__stock_balances.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__product_barcodes
+    description: Client-facing materialized view for core.core__product_barcodes.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__product_variants
+    description: Client-facing materialized view for core.core__product_variants.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__products
+    description: Client-facing materialized view for core.core__products.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__sellers
+    description: Client-facing materialized view for core.core__sellers.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__warehouses
+    description: Client-facing materialized view for core.core__warehouses.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__finance_balances
+    description: Client-facing materialized view for core.core__finance_balances.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__finance_report_summaries
+    description: Client-facing materialized view for core.core__finance_report_summaries.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__finance_transactions
+    description: Client-facing materialized view for core.core__finance_transactions.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__report_order_events
+    description: Client-facing materialized view for core.core__report_order_events.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__report_sale_events
+    description: Client-facing materialized view for core.core__report_sale_events.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__tariff_acceptance_prices
+    description: Client-facing materialized view for core.core__tariff_acceptance_prices.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__tariff_box_prices
+    description: Client-facing materialized view for core.core__tariff_box_prices.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_core__tariff_commissions
+    description: Client-facing materialized view for core.core__tariff_commissions.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_marts__mart_business_daily
+    description: Client-facing materialized view for marts.marts__mart_business_daily.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_marts__mart_orders_daily
+    description: Client-facing materialized view for marts.marts__mart_orders_daily.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_marts__mart_products_catalog
+    description: Client-facing materialized view for marts.marts__mart_products_catalog.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_marts__mart_promotion_daily
+    description: Client-facing materialized view for marts.marts__mart_promotion_daily.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_marts__mart_sales_daily
+    description: Client-facing materialized view for marts.marts__mart_sales_daily.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null
+
+  - name: client_marts__mart_stock_current
+    description: Client-facing materialized view for marts.marts__mart_stock_current.
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: wb_account_id
+        tests:
+          - not_null

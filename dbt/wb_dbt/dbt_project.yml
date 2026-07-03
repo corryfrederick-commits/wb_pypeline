@@ -27,3 +27,6 @@ models:
     marts:
       +schema: marts
       +materialized: table
+    client_exports:
+      +schema: client_demo
+      +materialized: materialized_view
