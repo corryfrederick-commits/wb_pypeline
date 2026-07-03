@@ -40,3 +40,13 @@ dbt/.user.yml
 
 # local dbt profile with credentials
 dbt/profiles.yml
+
+# Airflow runtime
+airflow/logs/
+airflow/plugins/
+airflow/*.cfg
+airflow/*.db
+airflow/webserver_config.py
+airflow/*pid
+airflow/__pycache__/
+airflow/dags/__pycache__/
