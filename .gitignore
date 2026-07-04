@@ -53,3 +53,4 @@ airflow/dags/__pycache__/
 
 # Airflow local virtualenv
 airflow_venv/
+backups/

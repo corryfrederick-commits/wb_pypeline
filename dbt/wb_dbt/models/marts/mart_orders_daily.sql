@@ -3,14 +3,14 @@
 with order_items as (
 
     select *
-    from {{ ref('order_items') }}
+    from {{ ref('order_items_current') }}
 
 ),
 
 orders as (
 
     select *
-    from {{ ref('orders') }}
+    from {{ ref('orders_current') }}
 
 ),
 

@@ -3,7 +3,7 @@
 with sales as (
 
     select *
-    from {{ ref('report_sale_events') }}
+    from {{ ref('report_sale_events_current') }}
 
 )
 

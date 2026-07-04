@@ -87,8 +87,7 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
-      или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: order_uid
@@ -248,8 +247,7 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
-      или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: order_uid
@@ -491,7 +489,6 @@ models:
     description: 'Суррогатный ключ: report order event key.'
     tests:
     - not_null
-    - unique
   - name: source_report_order_id
     description: 'Идентификатор: source report order id.'
   - name: order_key
@@ -503,8 +500,7 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
-      или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: order_uid
@@ -637,6 +633,22 @@ models:
     description: Время загрузки исходных данных.
   - name: core_loaded_at
     description: Время построения core-записи.
+  - name: report_order_event_version_key
+    tests:
+    - not_null
+    - unique
+  - name: report_order_event_row_hash
+    tests:
+    - not_null
+  - name: version_number
+    tests:
+    - not_null
+  - name: valid_from
+    tests:
+    - not_null
+  - name: is_current
+    tests:
+    - not_null
 - name: report_sale_events
   description: Core таблица отчётных событий по продажам WB.
   columns:
@@ -652,7 +664,6 @@ models:
     description: 'Суррогатный ключ: report sale event key.'
     tests:
     - not_null
-    - unique
   - name: source_report_sale_id
     description: 'Идентификатор: source report sale id.'
   - name: sale_id
@@ -666,8 +677,7 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
-      или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: order_uid
@@ -800,3 +810,19 @@ models:
     description: Время загрузки исходных данных.
   - name: core_loaded_at
     description: Время построения core-записи.
+  - name: report_sale_event_version_key
+    tests:
+    - not_null
+    - unique
+  - name: sale_event_row_hash
+    tests:
+    - not_null
+  - name: version_number
+    tests:
+    - not_null
+  - name: valid_from
+    tests:
+    - not_null
+  - name: is_current
+    tests:
+    - not_null

@@ -1,8 +1,7 @@
 version: 2
 models:
 - name: order_items
-  description: Core таблица товарных строк заказов. Одна строка соответствует одной
-    товарной строке заказа.
+  description: Core таблица товарных строк заказов. Одна строка соответствует одной товарной строке заказа.
   columns:
   - name: wb_account_id
     description: Internal Wildberries account identifier assigned at ingestion.
@@ -16,7 +15,6 @@ models:
     description: 'Суррогатный ключ: order item key.'
     tests:
     - not_null
-    - unique
   - name: order_key
     description: Суррогатный ключ заказа.
     tests:
@@ -27,8 +25,7 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
-      или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: order_id
     description: Числовой идентификатор заказа WB.
   - name: rid
@@ -117,6 +114,22 @@ models:
     description: Время загрузки исходных данных.
   - name: core_loaded_at
     description: Время построения core-записи.
+  - name: order_item_version_key
+    tests:
+    - not_null
+    - unique
+  - name: order_item_row_hash
+    tests:
+    - not_null
+  - name: version_number
+    tests:
+    - not_null
+  - name: valid_from
+    tests:
+    - not_null
+  - name: is_current
+    tests:
+    - not_null
 - name: order_status_snapshots
   description: Core факт-снимок статусов заказов из status endpoint'ов.
   columns:
@@ -143,8 +156,7 @@ models:
         config:
           where: order_key is not null
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
-      или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
   - name: source_status_id
     description: 'Идентификатор: source status id.'
   - name: order_id
@@ -204,10 +216,8 @@ models:
     description: Суррогатный ключ заказа.
     tests:
     - not_null
-    - unique
   - name: order_natural_id
-    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid
-      или order_id.
+    description: Натуральный идентификатор заказа, собранный из order_uid, srid, rid или order_id.
     tests:
     - not_null
   - name: order_id
@@ -284,9 +294,25 @@ models:
     description: Время загрузки исходных данных.
   - name: core_loaded_at
     description: Время построения core-записи.
+  - name: order_version_key
+    tests:
+    - not_null
+    - unique
+  - name: order_row_hash
+    tests:
+    - not_null
+  - name: version_number
+    tests:
+    - not_null
+  - name: valid_from
+    tests:
+    - not_null
+  - name: is_current
+    tests:
+    - not_null
 - name: stock_balances
-  description: Core факт-снимок остатков товаров на складах. Одна строка соответствует
-    остатку товара/варианта на складе на момент загрузки данных.
+  description: Core факт-снимок остатков товаров на складах. Одна строка соответствует остатку товара/варианта на складе на
+    момент загрузки данных.
   columns:
   - name: wb_account_id
     description: Internal Wildberries account identifier assigned at ingestion.
