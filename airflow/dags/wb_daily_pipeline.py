@@ -51,6 +51,23 @@ with DAG(
         """),
     )
 
+    download_mock_json = BashOperator(
+        task_id="download_mock_json",
+        bash_command=bash("""
+            set -euo pipefail
+
+            cd /opt/wb_pipeline
+
+            set -a
+            source /opt/wb_pipeline/.env
+            set +a
+
+            source /opt/wb_pipeline/venv/bin/activate
+
+            python /opt/wb_pipeline/loaders/download_mock_json.py
+        """),
+    )
+
     load_raw_payloads = BashOperator(
         task_id="load_raw_payloads",
         bash_command=bash("""
@@ -145,6 +162,7 @@ with DAG(
 
     (
         check_mock_api
+        >> download_mock_json
         >> load_raw_payloads
         >> dbt_build_internal_dwh
         >> dbt_build_client_exports
