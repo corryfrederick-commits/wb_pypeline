@@ -28,8 +28,9 @@ models:
     description: Суррогатный ключ склада.
     tests:
     - relationships:
-        to: ref('warehouses')
-        field: warehouse_key
+        arguments:
+          to: ref('warehouses')
+          field: warehouse_key
         config:
           where: warehouse_key is not null
   - name: warehouse_name

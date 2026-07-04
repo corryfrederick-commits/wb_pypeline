@@ -82,8 +82,9 @@ models:
     description: Суррогатный ключ заказа.
     tests:
     - relationships:
-        to: ref('orders')
-        field: order_key
+        arguments:
+          to: ref('orders')
+          field: order_key
         config:
           where: order_key is not null
   - name: order_natural_id
@@ -100,8 +101,9 @@ models:
     description: Ссылка на товар. Соответствует nm_id.
     tests:
     - relationships:
-        to: ref('products')
-        field: product_id
+        arguments:
+          to: ref('products')
+          field: product_id
         config:
           where: product_id is not null
   - name: nm_id
@@ -110,8 +112,9 @@ models:
     description: Ссылка на вариант товара. Соответствует chrt_id.
     tests:
     - relationships:
-        to: ref('product_variants')
-        field: product_variant_id
+        arguments:
+          to: ref('product_variants')
+          field: product_variant_id
         config:
           where: product_variant_id is not null
   - name: chrt_id
@@ -132,8 +135,9 @@ models:
     description: Суррогатный ключ склада.
     tests:
     - relationships:
-        to: ref('warehouses')
-        field: warehouse_key
+        arguments:
+          to: ref('warehouses')
+          field: warehouse_key
         config:
           where: warehouse_key is not null
   - name: warehouse_name
@@ -242,8 +246,9 @@ models:
     description: Суррогатный ключ заказа.
     tests:
     - relationships:
-        to: ref('orders')
-        field: order_key
+        arguments:
+          to: ref('orders')
+          field: order_key
         config:
           where: order_key is not null
   - name: order_natural_id
@@ -260,8 +265,9 @@ models:
     description: Ссылка на товар. Соответствует nm_id.
     tests:
     - relationships:
-        to: ref('products')
-        field: product_id
+        arguments:
+          to: ref('products')
+          field: product_id
         config:
           where: product_id is not null
   - name: nm_id
@@ -270,8 +276,9 @@ models:
     description: Ссылка на вариант товара. Соответствует chrt_id.
     tests:
     - relationships:
-        to: ref('product_variants')
-        field: product_variant_id
+        arguments:
+          to: ref('product_variants')
+          field: product_variant_id
         config:
           where: product_variant_id is not null
   - name: chrt_id
@@ -302,8 +309,9 @@ models:
     description: Суррогатный ключ склада.
     tests:
     - relationships:
-        to: ref('warehouses')
-        field: warehouse_key
+        arguments:
+          to: ref('warehouses')
+          field: warehouse_key
         config:
           where: warehouse_key is not null
   - name: warehouse_name
@@ -495,8 +503,9 @@ models:
     description: Суррогатный ключ заказа.
     tests:
     - relationships:
-        to: ref('orders')
-        field: order_key
+        arguments:
+          to: ref('orders')
+          field: order_key
         config:
           where: order_key is not null
   - name: order_natural_id
@@ -515,8 +524,9 @@ models:
     description: Ссылка на товар. Соответствует nm_id.
     tests:
     - relationships:
-        to: ref('products')
-        field: product_id
+        arguments:
+          to: ref('products')
+          field: product_id
         config:
           where: product_id is not null
   - name: nm_id
@@ -525,8 +535,9 @@ models:
     description: Ссылка на вариант товара. Соответствует chrt_id.
     tests:
     - relationships:
-        to: ref('product_variants')
-        field: product_variant_id
+        arguments:
+          to: ref('product_variants')
+          field: product_variant_id
         config:
           where: product_variant_id is not null
   - name: chrt_id
@@ -557,8 +568,9 @@ models:
     description: Суррогатный ключ склада.
     tests:
     - relationships:
-        to: ref('warehouses')
-        field: warehouse_key
+        arguments:
+          to: ref('warehouses')
+          field: warehouse_key
         config:
           where: warehouse_key is not null
   - name: warehouse_name
@@ -672,8 +684,9 @@ models:
     description: Суррогатный ключ заказа.
     tests:
     - relationships:
-        to: ref('orders')
-        field: order_key
+        arguments:
+          to: ref('orders')
+          field: order_key
         config:
           where: order_key is not null
   - name: order_natural_id
@@ -692,8 +705,9 @@ models:
     description: Ссылка на товар. Соответствует nm_id.
     tests:
     - relationships:
-        to: ref('products')
-        field: product_id
+        arguments:
+          to: ref('products')
+          field: product_id
         config:
           where: product_id is not null
   - name: nm_id
@@ -702,8 +716,9 @@ models:
     description: Ссылка на вариант товара. Соответствует chrt_id.
     tests:
     - relationships:
-        to: ref('product_variants')
-        field: product_variant_id
+        arguments:
+          to: ref('product_variants')
+          field: product_variant_id
         config:
           where: product_variant_id is not null
   - name: chrt_id
@@ -734,8 +749,9 @@ models:
     description: Суррогатный ключ склада.
     tests:
     - relationships:
-        to: ref('warehouses')
-        field: warehouse_key
+        arguments:
+          to: ref('warehouses')
+          field: warehouse_key
         config:
           where: warehouse_key is not null
   - name: warehouse_name

@@ -42,8 +42,9 @@ models:
     description: Ссылка на товар. Соответствует nm_id.
     tests:
     - relationships:
-        to: ref('products')
-        field: product_id
+        arguments:
+          to: ref('products')
+          field: product_id
         config:
           where: product_id is not null
   - name: nm_id
@@ -52,8 +53,9 @@ models:
     description: Ссылка на вариант товара. Соответствует chrt_id.
     tests:
     - relationships:
-        to: ref('product_variants')
-        field: product_variant_id
+        arguments:
+          to: ref('product_variants')
+          field: product_variant_id
         config:
           where: product_variant_id is not null
   - name: chrt_id
@@ -112,8 +114,9 @@ models:
     description: 'Суррогатный ключ: promotion campaign key.'
     tests:
     - relationships:
-        to: ref('promotion_campaigns')
-        field: promotion_campaign_key
+        arguments:
+          to: ref('promotion_campaigns')
+          field: promotion_campaign_key
         config:
           where: promotion_campaign_key is not null
   - name: stat_date
@@ -128,8 +131,9 @@ models:
     description: Ссылка на товар. Соответствует nm_id.
     tests:
     - relationships:
-        to: ref('products')
-        field: product_id
+        arguments:
+          to: ref('products')
+          field: product_id
         config:
           where: product_id is not null
   - name: nm_id
@@ -138,8 +142,9 @@ models:
     description: Ссылка на вариант товара. Соответствует chrt_id.
     tests:
     - relationships:
-        to: ref('product_variants')
-        field: product_variant_id
+        arguments:
+          to: ref('product_variants')
+          field: product_variant_id
         config:
           where: product_variant_id is not null
   - name: chrt_id
@@ -293,8 +298,9 @@ models:
     description: Ссылка на товар. Соответствует nm_id.
     tests:
     - relationships:
-        to: ref('products')
-        field: product_id
+        arguments:
+          to: ref('products')
+          field: product_id
         config:
           where: product_id is not null
   - name: nm_id
@@ -562,8 +568,9 @@ models:
     description: Ссылка на товар. Соответствует nm_id.
     tests:
     - relationships:
-        to: ref('products')
-        field: product_id
+        arguments:
+          to: ref('products')
+          field: product_id
         config:
           where: product_id is not null
   - name: nm_id
@@ -572,8 +579,9 @@ models:
     description: Ссылка на вариант товара. Соответствует chrt_id.
     tests:
     - relationships:
-        to: ref('product_variants')
-        field: product_variant_id
+        arguments:
+          to: ref('product_variants')
+          field: product_variant_id
         config:
           where: product_variant_id is not null
   - name: chrt_id
@@ -584,8 +592,9 @@ models:
     description: Суррогатный ключ склада.
     tests:
     - relationships:
-        to: ref('warehouses')
-        field: warehouse_key
+        arguments:
+          to: ref('warehouses')
+          field: warehouse_key
         config:
           where: warehouse_key is not null
   - name: warehouse_name
