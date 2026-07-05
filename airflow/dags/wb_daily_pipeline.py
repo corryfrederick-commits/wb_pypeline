@@ -85,6 +85,23 @@ with DAG(
         """),
     )
 
+    detect_json_schema_drift = BashOperator(
+        task_id="detect_json_schema_drift",
+        bash_command=bash("""
+            set -euo pipefail
+
+            cd /opt/wb_pipeline
+
+            set -a
+            source /opt/wb_pipeline/.env
+            set +a
+
+            source /opt/wb_pipeline/venv/bin/activate
+
+            python /opt/wb_pipeline/loaders/discover_json_fields.py --mode check
+        """),
+    )
+
     dbt_build_internal_dwh = BashOperator(
         task_id="dbt_build_internal_dwh",
         bash_command=bash("""
@@ -164,6 +181,7 @@ with DAG(
         check_mock_api
         >> download_mock_json
         >> load_raw_payloads
+        >> detect_json_schema_drift
         >> dbt_build_internal_dwh
         >> dbt_build_client_exports
         >> check_client_demo
