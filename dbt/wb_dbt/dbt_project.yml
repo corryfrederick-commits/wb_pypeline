@@ -30,3 +30,7 @@ models:
     client_exports:
       +schema: client_demo
       +materialized: materialized_view
+
+
+on-run-start:
+  - "{{ ensure_safe_cast_functions() }}"

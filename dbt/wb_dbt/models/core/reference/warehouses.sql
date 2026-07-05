@@ -77,7 +77,15 @@ fact_warehouse_keys as (
     select client_id, wb_account_id, warehouse_key
     from {{ ref('report_sale_events') }}
     where warehouse_key is not null
-
+    union
+    select distinct
+        client_id,
+        wb_account_id,
+        warehouse_key
+    from {{ ref('stock_balances') }}
+    where warehouse_key is not null
+      and client_id is not null
+      and wb_account_id is not null
 ),
 
 inferred_rows as (
