@@ -168,3 +168,17 @@ RAW / landing
   -> marts
   -> client_exports
 ```
+
+## client_id / wb_account_id scope
+
+Schema discovery and drift checks are scoped by:
+
+```text
+client_id
+wb_account_id
+dataset_name
+source_file
+json_path
+```
+
+This prevents one client/account schema drift from being mixed with another client/account schema drift.

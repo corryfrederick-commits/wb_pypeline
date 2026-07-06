@@ -75,6 +75,8 @@ def ensure_objects(cur):
     cur.execute("""
         CREATE TABLE IF NOT EXISTS audit.json_field_discovery (
             id BIGSERIAL PRIMARY KEY,
+            client_id TEXT NOT NULL DEFAULT 'demo_client',
+            wb_account_id TEXT NOT NULL DEFAULT 'demo_wb_account',
             source_system TEXT NOT NULL,
             dataset_name TEXT NOT NULL,
             source_file TEXT NOT NULL,
@@ -83,27 +85,58 @@ def ensure_objects(cur):
             value_type TEXT NOT NULL,
             sample_value TEXT,
             discovered_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-            UNIQUE (source_system, dataset_name, source_file, json_path, value_type)
+            UNIQUE (client_id, wb_account_id, source_system, dataset_name, source_file, json_path, value_type)
         );
     """)
 
     cur.execute("""
         CREATE TABLE IF NOT EXISTS audit.expected_json_fields (
             id BIGSERIAL PRIMARY KEY,
+            client_id TEXT NOT NULL DEFAULT 'demo_client',
+            wb_account_id TEXT NOT NULL DEFAULT 'demo_wb_account',
             dataset_name TEXT NOT NULL,
             source_file TEXT NOT NULL,
             json_path TEXT NOT NULL,
             expected_type TEXT NOT NULL,
             is_required BOOLEAN NOT NULL DEFAULT TRUE,
             created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-            UNIQUE (dataset_name, source_file, json_path)
+            UNIQUE (client_id, wb_account_id, dataset_name, source_file, json_path)
         );
     """)
+
+    # client/account scoped schema drift migrations
+    cur.execute("ALTER TABLE audit.json_field_discovery ADD COLUMN IF NOT EXISTS client_id TEXT;")
+    cur.execute("ALTER TABLE audit.json_field_discovery ADD COLUMN IF NOT EXISTS wb_account_id TEXT;")
+    cur.execute("UPDATE audit.json_field_discovery SET client_id = 'demo_client' WHERE client_id IS NULL;")
+    cur.execute("UPDATE audit.json_field_discovery SET wb_account_id = 'demo_wb_account' WHERE wb_account_id IS NULL;")
+    cur.execute("ALTER TABLE audit.json_field_discovery ALTER COLUMN client_id SET DEFAULT 'demo_client';")
+    cur.execute("ALTER TABLE audit.json_field_discovery ALTER COLUMN wb_account_id SET DEFAULT 'demo_wb_account';")
+    cur.execute("ALTER TABLE audit.json_field_discovery ALTER COLUMN client_id SET NOT NULL;")
+    cur.execute("ALTER TABLE audit.json_field_discovery ALTER COLUMN wb_account_id SET NOT NULL;")
+    cur.execute("DROP INDEX IF EXISTS audit.ux_json_field_discovery_client_account_path_type;")
+    cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS ux_json_field_discovery_client_account_path_type ON audit.json_field_discovery (client_id, wb_account_id, source_system, dataset_name, source_file, json_path, value_type);")
+
+    cur.execute("ALTER TABLE audit.expected_json_fields ADD COLUMN IF NOT EXISTS client_id TEXT;")
+    cur.execute("ALTER TABLE audit.expected_json_fields ADD COLUMN IF NOT EXISTS wb_account_id TEXT;")
+    cur.execute("UPDATE audit.expected_json_fields SET client_id = 'demo_client' WHERE client_id IS NULL;")
+    cur.execute("UPDATE audit.expected_json_fields SET wb_account_id = 'demo_wb_account' WHERE wb_account_id IS NULL;")
+    cur.execute("ALTER TABLE audit.expected_json_fields ALTER COLUMN client_id SET DEFAULT 'demo_client';")
+    cur.execute("ALTER TABLE audit.expected_json_fields ALTER COLUMN wb_account_id SET DEFAULT 'demo_wb_account';")
+    cur.execute("ALTER TABLE audit.expected_json_fields ALTER COLUMN client_id SET NOT NULL;")
+    cur.execute("ALTER TABLE audit.expected_json_fields ALTER COLUMN wb_account_id SET NOT NULL;")
+    cur.execute("DROP INDEX IF EXISTS audit.ux_expected_json_fields_dataset_file_path;")
+    cur.execute("DROP INDEX IF EXISTS audit.ux_expected_json_fields_client_account_path;")
+    cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS ux_expected_json_fields_client_account_path ON audit.expected_json_fields (client_id, wb_account_id, dataset_name, source_file, json_path);")
+
+    cur.execute("ALTER TABLE quarantine.json_schema_drift_events ADD COLUMN IF NOT EXISTS client_id TEXT;")
+    cur.execute("ALTER TABLE quarantine.json_schema_drift_events ADD COLUMN IF NOT EXISTS wb_account_id TEXT;")
 
     cur.execute("""
         CREATE TABLE IF NOT EXISTS quarantine.json_schema_drift_events (
             id BIGSERIAL PRIMARY KEY,
             run_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            client_id TEXT,
+            wb_account_id TEXT,
             dataset_name TEXT NOT NULL,
             source_file TEXT NOT NULL,
             json_path TEXT NOT NULL,
@@ -126,16 +159,20 @@ def ensure_objects(cur):
         CREATE OR REPLACE VIEW audit.v_json_schema_check AS
         WITH actual_agg AS (
             SELECT
+                client_id,
+                wb_account_id,
                 dataset_name,
                 source_file,
                 json_path,
                 ARRAY_AGG(DISTINCT value_type ORDER BY value_type) AS actual_types,
                 MIN(sample_value) AS sample_value
             FROM audit.json_field_discovery
-            GROUP BY dataset_name, source_file, json_path
+            GROUP BY client_id, wb_account_id, dataset_name, source_file, json_path
         ),
         expected_vs_actual AS (
             SELECT
+                e.client_id,
+                e.wb_account_id,
                 e.dataset_name,
                 e.source_file,
                 e.json_path,
@@ -149,12 +186,16 @@ def ensure_objects(cur):
                 END AS check_status
             FROM audit.expected_json_fields e
             LEFT JOIN actual_agg a
-              ON a.dataset_name = e.dataset_name
+              ON a.client_id = e.client_id
+             AND a.wb_account_id = e.wb_account_id
+             AND a.dataset_name = e.dataset_name
              AND a.source_file = e.source_file
              AND a.json_path = e.json_path
         ),
         extra_actual AS (
             SELECT
+                a.client_id,
+                a.wb_account_id,
                 a.dataset_name,
                 a.source_file,
                 a.json_path,
@@ -164,7 +205,9 @@ def ensure_objects(cur):
                 'extra_in_actual' AS check_status
             FROM actual_agg a
             LEFT JOIN audit.expected_json_fields e
-              ON e.dataset_name = a.dataset_name
+              ON e.client_id = a.client_id
+             AND e.wb_account_id = a.wb_account_id
+             AND e.dataset_name = a.dataset_name
              AND e.source_file = a.source_file
              AND e.json_path = a.json_path
             WHERE e.json_path IS NULL
@@ -179,10 +222,10 @@ def refresh_discovery(cur):
     cur.execute("TRUNCATE TABLE audit.json_field_discovery RESTART IDENTITY;")
 
     cur.execute("""
-        SELECT DISTINCT ON (source_system, dataset_name, source_file)
-            id, source_system, dataset_name, source_file, payload
+        SELECT DISTINCT ON (client_id, wb_account_id, source_system, dataset_name, source_file)
+            id, client_id, wb_account_id, source_system, dataset_name, source_file, payload
         FROM landing.raw_payloads
-        ORDER BY source_system, dataset_name, source_file, loaded_at DESC, id DESC;
+        ORDER BY client_id, wb_account_id, source_system, dataset_name, source_file, loaded_at DESC, id DESC;
     """)
 
     rows = cur.fetchall()
@@ -193,24 +236,24 @@ def refresh_discovery(cur):
 
     total = 0
 
-    for raw_payload_id, source_system, dataset_name, source_file, payload in rows:
+    for raw_payload_id, client_id, wb_account_id, source_system, dataset_name, source_file, payload in rows:
         local = 0
         for json_path, value_type, sample_value in walk_json(payload):
             cur.execute("""
                 INSERT INTO audit.json_field_discovery (
-                    source_system, dataset_name, source_file,
+                    client_id, wb_account_id, source_system, dataset_name, source_file,
                     raw_payload_id, json_path, value_type, sample_value
                 )
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON CONFLICT (
-                    source_system, dataset_name, source_file, json_path, value_type
+                    client_id, wb_account_id, source_system, dataset_name, source_file, json_path, value_type
                 )
                 DO UPDATE SET
                     raw_payload_id = EXCLUDED.raw_payload_id,
                     sample_value = EXCLUDED.sample_value,
                     discovered_at = NOW();
             """, (
-                source_system, dataset_name, source_file,
+                client_id, wb_account_id, source_system, dataset_name, source_file,
                 raw_payload_id, json_path, value_type, sample_value
             ))
             local += 1
@@ -225,23 +268,25 @@ def baseline(cur):
     cur.execute("""
         WITH ranked AS (
             SELECT
+                client_id,
+                wb_account_id,
                 dataset_name,
                 source_file,
                 json_path,
                 value_type,
                 ROW_NUMBER() OVER (
-                    PARTITION BY dataset_name, source_file, json_path
+                    PARTITION BY client_id, wb_account_id, dataset_name, source_file, json_path
                     ORDER BY CASE WHEN value_type = 'null' THEN 2 ELSE 1 END, value_type
                 ) AS rn
             FROM audit.json_field_discovery
         )
         INSERT INTO audit.expected_json_fields (
-            dataset_name, source_file, json_path, expected_type, is_required
+            client_id, wb_account_id, dataset_name, source_file, json_path, expected_type, is_required
         )
-        SELECT dataset_name, source_file, json_path, value_type, TRUE
+        SELECT client_id, wb_account_id, dataset_name, source_file, json_path, value_type, TRUE
         FROM ranked
         WHERE rn = 1
-        ON CONFLICT (dataset_name, source_file, json_path) DO NOTHING;
+        ON CONFLICT (client_id, wb_account_id, dataset_name, source_file, json_path) DO NOTHING;
     """)
 
     cur.execute("SELECT COUNT(*) FROM audit.expected_json_fields;")
@@ -264,6 +309,8 @@ def log_drift(cur):
 
     cur.execute("""
         INSERT INTO quarantine.json_schema_drift_events (
+            client_id,
+            wb_account_id,
             dataset_name,
             source_file,
             json_path,
@@ -275,6 +322,8 @@ def log_drift(cur):
             action_taken
         )
         SELECT
+            client_id,
+            wb_account_id,
             dataset_name,
             source_file,
             json_path,
