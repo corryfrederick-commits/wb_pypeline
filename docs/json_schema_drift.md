@@ -107,3 +107,17 @@ from audit.v_json_extra_fields_pending;
 ```
 
 If an extra field is accepted, it is inserted into `audit.expected_json_fields` as optional and stops being reported as unknown.
+
+## Missing JSON fields policy
+
+`missing_in_actual` is handled as schema drift plus row-level validation.
+
+Missing fields do not fail Airflow by themselves. Required missing fields become row-level quarantine issues if they remain NULL after staging_cleaned normalization. Optional missing fields can pass as NULL or documented defaults.
+
+Useful views:
+
+```sql
+select * from audit.v_json_missing_fields_current;
+select * from audit.v_json_missing_required_fields_current;
+select * from audit.v_json_missing_optional_fields_current;
+```
