@@ -116,6 +116,10 @@ def ensure_objects(cur):
         );
     """)
 
+    cur.execute("DROP VIEW IF EXISTS audit.v_json_extra_fields_pending;")
+    cur.execute("DROP VIEW IF EXISTS audit.v_json_missing_required_fields_current;")
+    cur.execute("DROP VIEW IF EXISTS audit.v_json_missing_optional_fields_current;")
+    cur.execute("DROP VIEW IF EXISTS audit.v_json_missing_fields_current;")
     cur.execute("DROP VIEW IF EXISTS audit.v_json_schema_check;")
 
     cur.execute("""

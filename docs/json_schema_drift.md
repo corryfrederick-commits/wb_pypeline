@@ -137,3 +137,36 @@ audit.v_json_missing_optional_fields_current
 ```
 
 This makes extra/missing drift policy objects reproducible after database recreation.
+
+## Single source of truth for JSON schema quarantine
+
+The canonical JSON schema drift implementation is:
+
+```text
+loaders/discover_json_fields.py
+→ audit.json_field_discovery
+→ audit.expected_json_fields
+→ audit.v_json_schema_check
+→ quarantine.json_schema_drift_events
+→ ensure_json_drift_policy_views()
+```
+
+Legacy SQL implementations must not recreate `audit.v_json_schema_check` with a different schema.
+
+The expected schema table uses:
+
+```text
+dataset_name
+source_file
+json_path
+expected_type
+is_required
+```
+
+The schema check view exposes aggregated actual JSON types as:
+
+```text
+actual_types
+```
+
+Any old SQL expecting `source_system`, `value_type`, or singular `actual_type` is incompatible and should not be used.
