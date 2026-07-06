@@ -83,26 +83,38 @@ def collect(cur, pipeline_name: str, orchestrator_run_id: str) -> int:
             raw_records_loaded,
             duplicate_payloads
         )
+        with run_scope as (
+            select
+                run_id,
+                started_at,
+                coalesce(finished_at, now()) as finished_at
+            from audit.load_runs
+            where run_id = %s::bigint
+        )
         select
-            %s::bigint,
-            client_id,
-            wb_account_id,
-            coalesce(source_system, 'wb'),
-            dataset_name,
-            coalesce(source_file, 'unknown'),
+            rs.run_id,
+            rp.client_id,
+            rp.wb_account_id,
+            coalesce(rp.source_system, 'wb'),
+            rp.dataset_name,
+            coalesce(rp.source_file, 'unknown'),
             'success',
-            min(loaded_at),
-            max(loaded_at),
+            min(rp.loaded_at),
+            max(rp.loaded_at),
             count(*)::bigint,
-            sum(coalesce(top_level_count, 1))::bigint,
-            (count(*) - count(distinct md5(payload::text)))::bigint
-        from landing.raw_payloads
+            sum(coalesce(rp.top_level_count, 1))::bigint,
+            (count(*) - count(distinct md5(rp.payload::text)))::bigint
+        from landing.raw_payloads rp
+        join run_scope rs
+          on rp.loaded_at >= rs.started_at
+         and rp.loaded_at <= rs.finished_at
         group by
-            client_id,
-            wb_account_id,
-            coalesce(source_system, 'wb'),
-            dataset_name,
-            coalesce(source_file, 'unknown')
+            rs.run_id,
+            rp.client_id,
+            rp.wb_account_id,
+            coalesce(rp.source_system, 'wb'),
+            rp.dataset_name,
+            coalesce(rp.source_file, 'unknown')
         on conflict (
             run_id,
             client_id,
