@@ -92,3 +92,18 @@ safe_cast применяется только в местах первичног
 Текущая проверка показала, что в staging/staging_cleaned нет опасных бизнесовых cast, которые нужно заменить немедленно.
 
 Инфраструктура safe cast готова для будущих изменений схемы и новых generated staging_cleaned моделей.
+
+## Extra JSON fields policy
+
+`extra_in_actual` is handled as a schema acceptance workflow.
+
+Extra fields are stored in RAW, logged by schema drift detection, and do not block rows.
+
+Pending extra fields are visible in:
+
+```sql
+select *
+from audit.v_json_extra_fields_pending;
+```
+
+If an extra field is accepted, it is inserted into `audit.expected_json_fields` as optional and stops being reported as unknown.
