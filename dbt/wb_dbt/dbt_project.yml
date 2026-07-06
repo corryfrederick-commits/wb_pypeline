@@ -34,3 +34,4 @@ models:
 
 on-run-start:
   - "{{ ensure_safe_cast_functions() }}"
+  - "{{ ensure_json_drift_policy_views() }}"

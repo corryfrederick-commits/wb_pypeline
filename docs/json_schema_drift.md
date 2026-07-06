@@ -121,3 +121,19 @@ select * from audit.v_json_missing_fields_current;
 select * from audit.v_json_missing_required_fields_current;
 select * from audit.v_json_missing_optional_fields_current;
 ```
+
+## Recreating extra/missing policy objects
+
+The dbt `on-run-start` hook calls `ensure_json_drift_policy_views()`.
+
+It recreates:
+
+```text
+audit.json_extra_field_decisions
+audit.v_json_extra_fields_pending
+audit.v_json_missing_fields_current
+audit.v_json_missing_required_fields_current
+audit.v_json_missing_optional_fields_current
+```
+
+This makes extra/missing drift policy objects reproducible after database recreation.
