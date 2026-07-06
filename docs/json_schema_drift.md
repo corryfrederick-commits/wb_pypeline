@@ -170,3 +170,38 @@ actual_types
 ```
 
 Any old SQL expecting `source_system`, `value_type`, or singular `actual_type` is incompatible and should not be used.
+
+## Canonical row quarantine implementation
+
+The canonical row-level quarantine implementation lives in dbt:
+
+```text
+dbt/wb_dbt/models/quarantine/row_quality
+```
+
+Manual SQL files under `sql/quarantine` must not create parallel row-quality pipelines.
+
+The old manual orders quarantine SQL was archived as legacy documentation and removed from the active path.
+
+Its useful concepts were moved into dbt row-quality decision models:
+
+```text
+rq_row_quality_decisions
+rq_orders_row_quality_decisions
+```
+
+These models classify row issues as:
+
+```text
+bad
+partial
+warning
+```
+
+and expose capability flags:
+
+```text
+can_load_to_core
+can_count_revenue
+can_use_order_date
+```
