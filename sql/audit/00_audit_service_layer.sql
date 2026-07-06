@@ -78,6 +78,7 @@ ALTER SEQUENCE audit.dataset_runs_dataset_run_id_seq OWNED BY audit.dataset_runs
 CREATE TABLE audit.load_runs (
     run_id bigint NOT NULL,
     pipeline_name text NOT NULL,
+    orchestrator_run_id text,
     client_id text,
     wb_account_id text,
     run_mode text DEFAULT 'scheduled'::text NOT NULL,
@@ -350,3 +351,7 @@ ALTER TABLE ONLY audit.dataset_runs
 
 \unrestrict 7U8h9R8eT1IeyuAnC5IlWupkh5S6rGMmcIxNxf4npwzOTgvqKDDGkvea7sVDrl6
 
+
+CREATE UNIQUE INDEX IF NOT EXISTS ux_load_runs_pipeline_orchestrator_run
+    ON audit.load_runs (pipeline_name, orchestrator_run_id)
+    WHERE orchestrator_run_id IS NOT NULL;
