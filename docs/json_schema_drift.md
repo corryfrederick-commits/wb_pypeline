@@ -1,159 +1,23 @@
+# JSON schema drift and quarantine policy
 
-## Safe cast for type mismatch
+This project has one canonical schema-drift implementation and one canonical row-quality quarantine implementation.
 
-Для обработки `type_mismatch` добавлена инфраструктура безопасного приведения типов.
-
-Реализованы dbt macros:
-
-```text
-dbt/wb_dbt/macros/safe_cast.sql
-dbt/wb_dbt/macros/ensure_safe_cast_functions.sql
-Добавлены PostgreSQL-функции:
-
-audit.try_cast_date(text)
-audit.try_cast_timestamp(text)
-audit.try_cast_timestamptz(text)
-audit.try_cast_jsonb(text)
-
-Принцип работы:
-
-если значение можно безопасно привести к нужному типу → оно приводится
-если значение нельзя безопасно привести → возвращается NULL
-dbt build не падает из-за невалидного значения
-
-Важно:
-
-safe_cast применяется только в местах первичного приведения JSON/staging-значений к бизнес-типам
-технические приведения вроде ordinality::integer или '[]'::jsonb не меняются
-агрегационные cast в marts не относятся к schema drift type_mismatch
-
-Текущая проверка показала, что в staging/staging_cleaned нет опасных бизнесовых cast, которые нужно заменить немедленно.
-Инфраструктура safe cast готова для будущих изменений схемы и новых generated staging_cleaned моделей.
-
-## Safe cast for type mismatch
-
-Для обработки `type_mismatch` добавлена инфраструктура безопасного приведения типов.
-
-Реализованы dbt macros:
-
-```text
-dbt/wb_dbt/macros/safe_cast.sql
-dbt/wb_dbt/macros/ensure_safe_cast_functions.sql
-> Добавлены PostgreSQL-функции:
-
-audit.try_cast_date(text)
-audit.try_cast_timestamp(text)
-audit.try_cast_timestamptz(text)
-audit.try_cast_jsonb(text)
-
-Принцип работы:
-
-если значение можно безопасно привести к нужному типу → оно приводится
-если значение нельзя безопасно привести → возвращается NULL
-dbt build не падает из-за невалидного значения
-
-Важно:
-
-safe_cast применяется только в местах первичного приведения JSON/staging-значений к бизнес-типам
-технические приведения вроде ordinality::integer или '[]'::jsonb не меняются
-агрегационные cast в marts не относятся к schema drift type_mismatch
-
-Текущая проверка показала, что в staging/staging_cleaned нет опасных бизнесовых cast, которые нужно заменить немедленно.
-Инфраструктура safe cast готова для будущих изменений схемы и новых generated staging_cleaned моделей.
-
-## Safe cast for type mismatch
-
-Для обработки `type_mismatch` добавлена инфраструктура безопасного приведения типов.
-
-Реализованы dbt macros:
-
-    dbt/wb_dbt/macros/safe_cast.sql
-    dbt/wb_dbt/macros/ensure_safe_cast_functions.sql
-
-Добавлены PostgreSQL-функции:
-
-    audit.try_cast_date(text)
-    audit.try_cast_timestamp(text)
-    audit.try_cast_timestamptz(text)
-    audit.try_cast_jsonb(text)
-
-Принцип работы:
-
-    если значение можно безопасно привести к нужному типу — оно приводится
-    если значение нельзя безопасно привести — возвращается NULL
-    dbt build не падает из-за невалидного значения
-
-Важно:
-
-    safe_cast применяется только в местах первичного приведения JSON/staging-значений к бизнес-типам
-    технические приведения вроде ordinality::integer или '[]'::jsonb не меняются
-    агрегационные cast в marts не относятся к schema drift type_mismatch
-
-Текущая проверка показала, что в staging/staging_cleaned нет опасных бизнесовых cast, которые нужно заменить немедленно.
-
-Инфраструктура safe cast готова для будущих изменений схемы и новых generated staging_cleaned моделей.
-
-## Extra JSON fields policy
-
-`extra_in_actual` is handled as a schema acceptance workflow.
-
-Extra fields are stored in RAW, logged by schema drift detection, and do not block rows.
-
-Pending extra fields are visible in:
-
-```sql
-select *
-from audit.v_json_extra_fields_pending;
-```
-
-If an extra field is accepted, it is inserted into `audit.expected_json_fields` as optional and stops being reported as unknown.
-
-## Missing JSON fields policy
-
-`missing_in_actual` is handled as schema drift plus row-level validation.
-
-Missing fields do not fail Airflow by themselves. Required missing fields become row-level quarantine issues if they remain NULL after staging_cleaned normalization. Optional missing fields can pass as NULL or documented defaults.
-
-Useful views:
-
-```sql
-select * from audit.v_json_missing_fields_current;
-select * from audit.v_json_missing_required_fields_current;
-select * from audit.v_json_missing_optional_fields_current;
-```
-
-## Recreating extra/missing policy objects
-
-The dbt `on-run-start` hook calls `ensure_json_drift_policy_views()`.
-
-It recreates:
-
-```text
-audit.json_extra_field_decisions
-audit.v_json_extra_fields_pending
-audit.v_json_missing_fields_current
-audit.v_json_missing_required_fields_current
-audit.v_json_missing_optional_fields_current
-```
-
-This makes extra/missing drift policy objects reproducible after database recreation.
-
-## Single source of truth for JSON schema quarantine
-
-The canonical JSON schema drift implementation is:
+## Canonical schema drift flow
 
 ```text
 loaders/discover_json_fields.py
-→ audit.json_field_discovery
-→ audit.expected_json_fields
-→ audit.v_json_schema_check
-→ quarantine.json_schema_drift_events
-→ ensure_json_drift_policy_views()
+  -> audit.json_field_discovery
+  -> audit.expected_json_fields
+  -> audit.v_json_schema_check
+  -> quarantine.json_schema_drift_events
+  -> dbt on-run-start: ensure_json_drift_policy_views()
 ```
 
-Legacy SQL implementations must not recreate `audit.v_json_schema_check` with a different schema.
+`discover_json_fields.py` owns `audit.v_json_schema_check`. Legacy SQL must not recreate that view with another schema.
 
-The expected schema table uses:
+## Canonical expected schema
+
+`audit.expected_json_fields` uses:
 
 ```text
 dataset_name
@@ -163,34 +27,118 @@ expected_type
 is_required
 ```
 
-The schema check view exposes aggregated actual JSON types as:
+`audit.v_json_schema_check` exposes source JSON types as `actual_types`.
+
+Old SQL expecting `value_type`, `source_system`, or singular `actual_type` for schema drift is legacy and must not be used.
+
+## Drift statuses
 
 ```text
-actual_types
+ok
+type_mismatch
+missing_in_actual
+extra_in_actual
 ```
 
-Any old SQL expecting `source_system`, `value_type`, or singular `actual_type` is incompatible and should not be used.
+Schema drift detection is soft: it logs drift and Airflow continues.
 
-## Canonical row quarantine implementation
+## type_mismatch
 
-The canonical row-level quarantine implementation lives in dbt:
+`type_mismatch` means a JSON field exists, but its JSON type differs from the expected type.
+
+RAW stores the payload unchanged. The drift check logs the issue. Type normalization happens later in `staging_cleaned` via safe casting where applicable.
+
+Examples:
+
+```text
+"12345" -> 12345 -> row passes
+"abc"   -> NULL  -> row is blocked only if the field is required
+```
+
+Safe-cast infrastructure:
+
+```text
+dbt/wb_dbt/macros/safe_cast.sql
+dbt/wb_dbt/macros/ensure_safe_cast_functions.sql
+audit.try_cast_date(text)
+audit.try_cast_timestamp(text)
+audit.try_cast_timestamptz(text)
+audit.try_cast_jsonb(text)
+```
+
+`safe_cast` belongs at the typing boundary, normally `staging_cleaned`, not core/marts.
+
+## missing_in_actual
+
+`missing_in_actual` means a field exists in expected schema but is absent from the current JSON payload.
+
+Optional missing fields may pass as NULL/default. Required missing fields become row-level quarantine issues if they remain NULL after normalization.
+
+Useful views:
+
+```sql
+select * from audit.v_json_missing_fields_current;
+select * from audit.v_json_missing_required_fields_current;
+select * from audit.v_json_missing_optional_fields_current;
+```
+
+## extra_in_actual
+
+`extra_in_actual` means the payload contains a field absent from expected schema.
+
+Extra fields do not block the pipeline and do not quarantine rows. RAW keeps the full payload; typed layers ignore the field until it is accepted and modeled.
+
+Useful view:
+
+```sql
+select * from audit.v_json_extra_fields_pending;
+```
+
+Accepting an extra field means adding it to `audit.expected_json_fields` as optional. It does not automatically add it to staging/core/marts/client exports.
+
+## Recreated policy objects
+
+The dbt `on-run-start` hook calls `ensure_json_drift_policy_views()` and recreates:
+
+```text
+audit.json_extra_field_decisions
+audit.v_json_extra_fields_pending
+audit.v_json_missing_fields_current
+audit.v_json_missing_required_fields_current
+audit.v_json_missing_optional_fields_current
+```
+
+## Canonical row quarantine
+
+Canonical row-level quarantine lives in:
 
 ```text
 dbt/wb_dbt/models/quarantine/row_quality
 ```
 
-Manual SQL files under `sql/quarantine` must not create parallel row-quality pipelines.
+Manual SQL under `sql/quarantine` must not create parallel row-quality pipelines.
 
-The old manual orders quarantine SQL was archived as legacy documentation and removed from the active path.
-
-Its useful concepts were moved into dbt row-quality decision models:
+The old orders SQL is archived only as legacy documentation:
 
 ```text
-rq_row_quality_decisions
-rq_orders_row_quality_decisions
+docs/legacy/sql_quarantine/01_quarantine_orders_rows.legacy.sql
 ```
 
-These models classify row issues as:
+## Cleaned required NULL decision layer
+
+The generic decision model is intentionally named narrowly:
+
+```text
+rq_cleaned_required_null_decisions
+```
+
+The orders-specific view is:
+
+```text
+rq_orders_cleaned_required_null_decisions
+```
+
+These models classify only `*_required_null_issues` as:
 
 ```text
 bad
@@ -198,10 +146,25 @@ partial
 warning
 ```
 
-and expose capability flags:
+and expose:
 
 ```text
 can_load_to_core
 can_count_revenue
 can_use_order_date
+```
+
+## Current architecture
+
+```text
+RAW / landing
+  -> discover_json_fields.py
+  -> audit.v_json_schema_check
+  -> quarantine.json_schema_drift_events
+  -> dbt staging
+  -> dbt staging_cleaned / safe_cast / normalization
+  -> dbt row_quality quarantine
+  -> core
+  -> marts
+  -> client_exports
 ```
