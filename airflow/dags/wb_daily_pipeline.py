@@ -19,6 +19,22 @@ def bash(cmd: str) -> str:
     return dedent(cmd).strip()
 
 
+def audit_cmd(action: str, extra_args: str = "") -> str:
+    return bash(f"""
+        set -euo pipefail
+
+        cd /opt/wb_pipeline
+
+        set -a
+        source /opt/wb_pipeline/.env
+        set +a
+
+        source /opt/wb_pipeline/venv/bin/activate
+
+        python /opt/wb_pipeline/scripts/audit_airflow_run.py {action} --orchestrator-run-id "{{{{ run_id }}}}" {extra_args}
+    """)
+
+
 with DAG(
     dag_id="wb_daily_pipeline",
     description="Daily WB mock API load, dbt build and client materialized exports",
@@ -29,6 +45,27 @@ with DAG(
     max_active_runs=1,
     tags=["wb", "dwh", "daily"],
 ) as dag:
+
+    audit_start_run = BashOperator(
+        task_id="audit_start_run",
+        bash_command=audit_cmd("start", "--run-mode scheduled"),
+    )
+
+    audit_collect_dataset_runs = BashOperator(
+        task_id="audit_collect_dataset_runs",
+        bash_command=audit_cmd("collect"),
+    )
+
+    audit_finish_success = BashOperator(
+        task_id="audit_finish_success",
+        bash_command=audit_cmd("success"),
+    )
+
+    audit_finish_failed = BashOperator(
+        task_id="audit_finish_failed",
+        trigger_rule="one_failed",
+        bash_command=audit_cmd("failed"),
+    )
 
     check_mock_api = BashOperator(
         task_id="check_mock_api",
@@ -178,11 +215,25 @@ with DAG(
     )
 
     (
-        check_mock_api
+        audit_start_run
+        >> check_mock_api
         >> download_mock_json
         >> load_raw_payloads
+        >> audit_collect_dataset_runs
         >> detect_json_schema_drift
         >> dbt_build_internal_dwh
         >> dbt_build_client_exports
         >> check_client_demo
+        >> audit_finish_success
     )
+
+    [
+        check_mock_api,
+        download_mock_json,
+        load_raw_payloads,
+        audit_collect_dataset_runs,
+        detect_json_schema_drift,
+        dbt_build_internal_dwh,
+        dbt_build_client_exports,
+        check_client_demo,
+    ] >> audit_finish_failed
