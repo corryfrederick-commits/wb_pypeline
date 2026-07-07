@@ -150,7 +150,9 @@ def collect(cur, pipeline_name: str, orchestrator_run_id: str) -> int:
     return rid
 
 
-def refresh_table_freshness(cur, run_id: int) -> None:
+def refresh_table_freshness(cur, run_id: int, run_status: str) -> None:
+    freshness_status = "fresh" if run_status == "success" else "fresh_with_warnings"
+
     cur.execute(
         """
         select
@@ -166,16 +168,29 @@ def refresh_table_freshness(cur, run_id: int) -> None:
         update audit.table_freshness
         set
             last_refreshed_at = %s,
-            last_successful_run_id = %s::bigint,
+            last_run_id = %s::bigint,
+            last_run_status = %s,
+            last_successful_run_id = case
+                when %s = 'success' then %s::bigint
+                else last_successful_run_id
+            end,
             row_count = %s::bigint,
-            status = 'fresh',
+            status = %s,
             checked_at = now()
         where schema_name = 'landing'
           and table_name = 'raw_payloads'
           and client_id = '__all__'
           and wb_account_id = '__all__'
         """,
-        (last_refreshed_at, run_id, row_count),
+        (
+            last_refreshed_at,
+            run_id,
+            run_status,
+            run_status,
+            run_id,
+            row_count,
+            freshness_status,
+        ),
     )
 
     if cur.rowcount == 0:
@@ -187,6 +202,8 @@ def refresh_table_freshness(cur, run_id: int) -> None:
                 client_id,
                 wb_account_id,
                 last_refreshed_at,
+                last_run_id,
+                last_run_status,
                 last_successful_run_id,
                 row_count,
                 status
@@ -198,12 +215,23 @@ def refresh_table_freshness(cur, run_id: int) -> None:
                 '__all__',
                 %s,
                 %s::bigint,
+                %s,
+                case when %s = 'success' then %s::bigint else null end,
                 %s::bigint,
-                'fresh'
+                %s
             )
             """,
-            (last_refreshed_at, run_id, row_count),
+            (
+                last_refreshed_at,
+                run_id,
+                run_status,
+                run_status,
+                run_id,
+                row_count,
+                freshness_status,
+            ),
         )
+
 
 
 def finish(cur, pipeline_name: str, orchestrator_run_id: str, status: str, error_message: str | None) -> int:
@@ -241,7 +269,7 @@ def finish(cur, pipeline_name: str, orchestrator_run_id: str, status: str, error
     )
 
     if final_status in ("success", "partial_success"):
-        refresh_table_freshness(cur, rid)
+        refresh_table_freshness(cur, rid, final_status)
 
     return rid
 
