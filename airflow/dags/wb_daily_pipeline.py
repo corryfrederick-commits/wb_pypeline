@@ -118,6 +118,14 @@ with DAG(
 
             source /opt/wb_pipeline/venv/bin/activate
 
+            AUDIT_RUN_ID="$(
+              python /opt/wb_pipeline/scripts/audit_airflow_run.py get-run-id --orchestrator-run-id "{{ run_id }}"
+            )"
+
+            export AUDIT_RUN_ID
+
+            echo "AUDIT_RUN_ID=$AUDIT_RUN_ID"
+
             python /opt/wb_pipeline/loaders/load_raw_json_to_postgres.py
         """),
     )

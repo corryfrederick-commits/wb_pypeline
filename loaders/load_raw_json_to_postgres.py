@@ -27,6 +27,7 @@ WB_MOCK_BASE_URL = os.getenv("WB_MOCK_BASE_URL")
 # WB API does not return these fields; our loader assigns them.
 WB_CLIENT_ID = os.getenv("WB_CLIENT_ID", "demo_client")
 WB_ACCOUNT_ID = os.getenv("WB_ACCOUNT_ID", "demo_wb_account")
+AUDIT_RUN_ID = os.getenv("AUDIT_RUN_ID")
 
 DOWNLOAD_DIR = PROJECT_DIR / "data" / "tmp_downloads"
 
@@ -56,6 +57,94 @@ def get_payload_info(data):
         return "array", len(data)
 
     return type(data).__name__, 1
+
+
+
+def record_raw_payload_load_event(
+    cur,
+    *,
+    raw_payload_id,
+    client_id,
+    wb_account_id,
+    source_system,
+    dataset_name,
+    source_file,
+    source_url,
+    file_hash,
+    payload_type,
+    top_level_count,
+    status,
+    error_message=None,
+):
+    if not AUDIT_RUN_ID:
+        return
+
+    cur.execute(
+        """
+        INSERT INTO audit.raw_payload_load_events (
+            run_id,
+            raw_payload_id,
+            client_id,
+            wb_account_id,
+            source_system,
+            dataset_name,
+            source_file,
+            source_url,
+            file_hash,
+            payload_type,
+            top_level_count,
+            status,
+            error_message
+        )
+        VALUES (
+            %s::bigint,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s
+        )
+        ON CONFLICT (
+            run_id,
+            client_id,
+            wb_account_id,
+            source_system,
+            source_file,
+            file_hash
+        )
+        DO UPDATE SET
+            raw_payload_id = EXCLUDED.raw_payload_id,
+            dataset_name = EXCLUDED.dataset_name,
+            source_url = EXCLUDED.source_url,
+            payload_type = EXCLUDED.payload_type,
+            top_level_count = EXCLUDED.top_level_count,
+            status = EXCLUDED.status,
+            event_at = now(),
+            error_message = EXCLUDED.error_message;
+        """,
+        (
+            int(AUDIT_RUN_ID),
+            raw_payload_id,
+            client_id,
+            wb_account_id,
+            source_system,
+            dataset_name,
+            source_file,
+            source_url,
+            file_hash,
+            payload_type,
+            top_level_count,
+            status,
+            error_message,
+        ),
+    )
 
 
 def load_json_file(cur, json_path: Path):
@@ -100,6 +189,22 @@ def load_json_file(cur, json_path: Path):
         existing_id = existing_row[0]
         print("[=] Такой JSON уже есть, повторно не загружаю.")
         print(f"    landing.raw_payloads.id = {existing_id}")
+
+        record_raw_payload_load_event(
+            cur,
+            raw_payload_id=existing_id,
+            client_id=WB_CLIENT_ID,
+            wb_account_id=WB_ACCOUNT_ID,
+            source_system="wb_mock",
+            dataset_name=dataset_name,
+            source_file=filename,
+            source_url=source_url,
+            file_hash=file_hash,
+            payload_type=payload_type,
+            top_level_count=top_level_count,
+            status="skipped_duplicate",
+        )
+
         return {
             "filename": filename,
             "status": "skipped_duplicate",
@@ -138,6 +243,21 @@ def load_json_file(cur, json_path: Path):
     )
 
     raw_id = cur.fetchone()[0]
+
+    record_raw_payload_load_event(
+        cur,
+        raw_payload_id=raw_id,
+        client_id=WB_CLIENT_ID,
+        wb_account_id=WB_ACCOUNT_ID,
+        source_system="wb_mock",
+        dataset_name=dataset_name,
+        source_file=filename,
+        source_url=source_url,
+        file_hash=file_hash,
+        payload_type=payload_type,
+        top_level_count=top_level_count,
+        status="inserted",
+    )
 
     print("[+] JSON записан в PostgreSQL")
     print(f"    landing.raw_payloads.id = {raw_id}")

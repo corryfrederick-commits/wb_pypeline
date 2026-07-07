@@ -81,40 +81,51 @@ def collect(cur, pipeline_name: str, orchestrator_run_id: str) -> int:
             finished_at,
             raw_payloads_loaded,
             raw_records_loaded,
-            duplicate_payloads
-        )
-        with run_scope as (
-            select
-                run_id,
-                started_at,
-                coalesce(finished_at, now()) as finished_at
-            from audit.load_runs
-            where run_id = %s::bigint
+            duplicate_payloads,
+            skipped_duplicate_payloads,
+            duplicate_payloads_in_raw
         )
         select
-            rs.run_id,
-            rp.client_id,
-            rp.wb_account_id,
-            coalesce(rp.source_system, 'wb'),
-            rp.dataset_name,
-            coalesce(rp.source_file, 'unknown'),
-            'success',
-            min(rp.loaded_at),
-            max(rp.loaded_at),
-            count(*)::bigint,
-            sum(coalesce(rp.top_level_count, 1))::bigint,
-            (count(*) - count(distinct md5(rp.payload::text)))::bigint
-        from landing.raw_payloads rp
-        join run_scope rs
-          on rp.loaded_at >= rs.started_at
-         and rp.loaded_at <= rs.finished_at
+            %s::bigint,
+            e.client_id,
+            e.wb_account_id,
+            coalesce(e.source_system, 'wb'),
+            e.dataset_name,
+            coalesce(e.source_file, 'unknown'),
+            case
+                when count(*) filter (where e.status = 'failed') > 0 then 'failed'
+                else 'success'
+            end,
+            min(e.event_at),
+            max(e.event_at),
+            count(*) filter (where e.status = 'inserted'),
+            coalesce(
+                sum(
+                    case
+                        when e.status = 'inserted'
+                        then coalesce(e.top_level_count, 1)
+                        else 0
+                    end
+                ),
+                0
+            )::bigint,
+            (
+                count(*) filter (where e.status = 'inserted')
+                - count(distinct e.raw_payload_id) filter (where e.status = 'inserted')
+            )::bigint,
+            count(*) filter (where e.status = 'skipped_duplicate'),
+            (
+                count(*) filter (where e.status = 'inserted')
+                - count(distinct e.raw_payload_id) filter (where e.status = 'inserted')
+            )::bigint
+        from audit.raw_payload_load_events e
+        where e.run_id = %s::bigint
         group by
-            rs.run_id,
-            rp.client_id,
-            rp.wb_account_id,
-            coalesce(rp.source_system, 'wb'),
-            rp.dataset_name,
-            coalesce(rp.source_file, 'unknown')
+            e.client_id,
+            e.wb_account_id,
+            coalesce(e.source_system, 'wb'),
+            e.dataset_name,
+            coalesce(e.source_file, 'unknown')
         on conflict (
             run_id,
             client_id,
@@ -130,9 +141,11 @@ def collect(cur, pipeline_name: str, orchestrator_run_id: str) -> int:
             raw_payloads_loaded = excluded.raw_payloads_loaded,
             raw_records_loaded = excluded.raw_records_loaded,
             duplicate_payloads = excluded.duplicate_payloads,
+            skipped_duplicate_payloads = excluded.skipped_duplicate_payloads,
+            duplicate_payloads_in_raw = excluded.duplicate_payloads_in_raw,
             error_message = null
         """,
-        (rid,),
+        (rid, rid),
     )
     return rid
 
@@ -198,7 +211,7 @@ def finish(cur, pipeline_name: str, orchestrator_run_id: str, status: str, error
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["start", "collect", "success", "failed"])
+    parser.add_argument("action", choices=["start", "collect", "success", "failed", "get-run-id"])
     parser.add_argument("--pipeline-name", default="wb_daily_pipeline")
     parser.add_argument("--orchestrator-run-id", required=True)
     parser.add_argument("--run-mode", default="scheduled")
@@ -207,7 +220,11 @@ def main() -> int:
 
     with conn() as c:
         with c.cursor() as cur:
-            if args.action == "start":
+            if args.action == "get-run-id":
+                rid = run_id(cur, args.pipeline_name, args.orchestrator_run_id)
+                print(rid)
+                return 0
+            elif args.action == "start":
                 rid = start(cur, args.pipeline_name, args.orchestrator_run_id, args.run_mode)
             elif args.action == "collect":
                 rid = collect(cur, args.pipeline_name, args.orchestrator_run_id)
