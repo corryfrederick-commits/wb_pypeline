@@ -150,10 +150,35 @@ def collect(cur, pipeline_name: str, orchestrator_run_id: str) -> int:
     return rid
 
 
-def finish(cur, pipeline_name: str, orchestrator_run_id: str, status: str, error: str | None) -> int:
-    rid = run_id(cur, pipeline_name, orchestrator_run_id)
+def refresh_table_freshness(cur, run_id: int) -> None:
+    cur.execute(
+        """
+        select
+            count(*)::bigint as row_count,
+            max(loaded_at) as last_refreshed_at
+        from landing.raw_payloads
+        """
+    )
+    row_count, last_refreshed_at = cur.fetchone()
 
-    if status == "success":
+    cur.execute(
+        """
+        update audit.table_freshness
+        set
+            last_refreshed_at = %s,
+            last_successful_run_id = %s::bigint,
+            row_count = %s::bigint,
+            status = 'fresh',
+            checked_at = now()
+        where schema_name = 'landing'
+          and table_name = 'raw_payloads'
+          and client_id = '__all__'
+          and wb_account_id = '__all__'
+        """,
+        (last_refreshed_at, run_id, row_count),
+    )
+
+    if cur.rowcount == 0:
         cur.execute(
             """
             insert into audit.table_freshness (
@@ -164,48 +189,60 @@ def finish(cur, pipeline_name: str, orchestrator_run_id: str, status: str, error
                 last_refreshed_at,
                 last_successful_run_id,
                 row_count,
-                max_data_date,
-                status,
-                checked_at
+                status
             )
-            select
+            values (
                 'landing',
                 'raw_payloads',
                 '__all__',
                 '__all__',
-                max(loaded_at),
+                %s,
                 %s::bigint,
-                count(*)::bigint,
-                null::date,
-                case
-                    when count(*) = 0 then 'empty'
-                    when max(loaded_at) < now() - interval '36 hours' then 'stale'
-                    else 'fresh'
-                end,
-                now()
-            from landing.raw_payloads
-            on conflict (schema_name, table_name, client_id, wb_account_id)
-            do update set
-                last_refreshed_at = excluded.last_refreshed_at,
-                last_successful_run_id = excluded.last_successful_run_id,
-                row_count = excluded.row_count,
-                max_data_date = excluded.max_data_date,
-                status = excluded.status,
-                checked_at = now()
+                %s::bigint,
+                'fresh'
+            )
+            """,
+            (last_refreshed_at, run_id, row_count),
+        )
+
+
+def finish(cur, pipeline_name: str, orchestrator_run_id: str, status: str, error_message: str | None) -> int:
+    rid = run_id(cur, pipeline_name, orchestrator_run_id)
+
+    final_status = status
+    final_error_message = error_message
+
+    if status == "success":
+        cur.execute(
+            """
+            select count(*)::bigint
+            from audit.dataset_runs
+            where run_id = %s::bigint
+              and status = 'failed'
             """,
             (rid,),
         )
+        failed_dataset_runs = cur.fetchone()[0]
+
+        if failed_dataset_runs > 0:
+            final_status = "partial_success"
+            final_error_message = f"{failed_dataset_runs} dataset run(s) failed"
 
     cur.execute(
         """
         update audit.load_runs
-        set status = %s,
+        set
+            status = %s,
             finished_at = now(),
             error_message = %s
-        where run_id = %s
+        where run_id = %s::bigint
         """,
-        (status, error, rid),
+        (final_status, final_error_message, rid),
     )
+
+    if final_status in ("success", "partial_success"):
+        refresh_table_freshness(cur, rid)
+
     return rid
 
 
