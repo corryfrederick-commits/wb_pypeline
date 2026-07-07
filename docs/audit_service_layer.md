@@ -71,3 +71,15 @@ where audit.raw_payload_load_events.run_id = audit.load_runs.run_id
 ```
 
 This avoids time-window ambiguity and correctly records repeated runs where all files are skipped as duplicates.
+
+## Retry semantics
+
+Raw payload load events use status precedence inside the same audit run:
+
+```text
+inserted > skipped_duplicate > failed
+```
+
+This prevents a successful `inserted` event from being overwritten by `skipped_duplicate` during an Airflow retry of the same run.
+
+File-level loader errors are recorded as `failed` events in `audit.raw_payload_load_events`.

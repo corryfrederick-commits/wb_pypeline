@@ -120,14 +120,32 @@ def record_raw_payload_load_event(
             file_hash
         )
         DO UPDATE SET
-            raw_payload_id = EXCLUDED.raw_payload_id,
+            raw_payload_id = COALESCE(EXCLUDED.raw_payload_id, audit.raw_payload_load_events.raw_payload_id),
             dataset_name = EXCLUDED.dataset_name,
             source_url = EXCLUDED.source_url,
             payload_type = EXCLUDED.payload_type,
             top_level_count = EXCLUDED.top_level_count,
-            status = EXCLUDED.status,
+            status = CASE
+                WHEN audit.raw_payload_load_events.status = 'inserted' THEN 'inserted'
+                WHEN EXCLUDED.status = 'inserted' THEN 'inserted'
+                WHEN audit.raw_payload_load_events.status = 'skipped_duplicate'
+                     AND EXCLUDED.status = 'failed' THEN 'skipped_duplicate'
+                ELSE EXCLUDED.status
+            END,
             event_at = now(),
-            error_message = EXCLUDED.error_message;
+            error_message = CASE
+                WHEN (
+                    CASE
+                        WHEN audit.raw_payload_load_events.status = 'inserted' THEN 'inserted'
+                        WHEN EXCLUDED.status = 'inserted' THEN 'inserted'
+                        WHEN audit.raw_payload_load_events.status = 'skipped_duplicate'
+                             AND EXCLUDED.status = 'failed' THEN 'skipped_duplicate'
+                        ELSE EXCLUDED.status
+                    END
+                ) = 'failed'
+                THEN EXCLUDED.error_message
+                ELSE NULL
+            END;
         """,
         (
             int(AUDIT_RUN_ID),
@@ -325,14 +343,68 @@ def main():
                 )
 
                 for json_path in json_paths:
-                    results.append(load_json_file(cur, json_path))
+                    cur.execute("SAVEPOINT sp_raw_payload_file;")
+                    try:
+                        result = load_json_file(cur, json_path)
+                    except Exception as exc:
+                        cur.execute("ROLLBACK TO SAVEPOINT sp_raw_payload_file;")
+
+                        filename = json_path.name
+                        dataset_name = get_dataset_name(filename)
+
+                        source_url = None
+                        if WB_MOCK_BASE_URL:
+                            source_url = f"{WB_MOCK_BASE_URL.rstrip('/')}/{filename}"
+
+                        try:
+                            file_hash = hashlib.sha256(json_path.read_bytes()).hexdigest()
+                        except Exception:
+                            file_hash = f"unavailable:{filename}"
+
+                        error_message = f"{type(exc).__name__}: {exc}"[:2000]
+
+                        print("\n[!] Ошибка обработки JSON:")
+                        print(f"    Файл: {json_path}")
+                        print(f"    Dataset: {dataset_name}")
+                        print(f"    Ошибка: {error_message}")
+
+                        record_raw_payload_load_event(
+                            cur,
+                            raw_payload_id=None,
+                            client_id=WB_CLIENT_ID,
+                            wb_account_id=WB_ACCOUNT_ID,
+                            source_system="wb_mock",
+                            dataset_name=dataset_name,
+                            source_file=filename,
+                            source_url=source_url,
+                            file_hash=file_hash,
+                            payload_type=None,
+                            top_level_count=None,
+                            status="failed",
+                            error_message=error_message,
+                        )
+
+                        cur.execute("RELEASE SAVEPOINT sp_raw_payload_file;")
+
+                        result = {
+                            "filename": filename,
+                            "status": "failed",
+                            "raw_payload_id": None,
+                            "error_message": error_message,
+                        }
+                    else:
+                        cur.execute("RELEASE SAVEPOINT sp_raw_payload_file;")
+
+                    results.append(result)
 
         inserted_count = sum(1 for item in results if item["status"] == "inserted")
         skipped_count = sum(1 for item in results if item["status"] == "skipped_duplicate")
+        failed_count = sum(1 for item in results if item["status"] == "failed")
 
         print("\\n========== ИТОГ ЗАГРУЗКИ В POSTGRESQL ==========")
         print(f"[+] Новых JSON загружено: {inserted_count}")
         print(f"[=] Дубликатов пропущено: {skipped_count}")
+        print(f"[!] Ошибок загрузки: {failed_count}")
 
         for item in results:
             print(
